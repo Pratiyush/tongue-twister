@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../models/language_section.dart';
+import '../providers/favorites_provider.dart';
 import '../providers/practice_provider.dart';
 import '../providers/twister_providers.dart';
+import '../theme/app_theme.dart';
 import 'favorites_screen.dart';
 import 'section_screen.dart';
 import 'settings_screen.dart';
@@ -13,20 +15,6 @@ import 'twister_detail_screen.dart';
 
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
-
-  void _openRandom(BuildContext context, WidgetRef ref) {
-    final all = ref.read(allTwistersProvider);
-    final pick = all[Random().nextInt(all.length)];
-    final sectionList = ref.read(sectionTwistersProvider(pick.section));
-    Navigator.of(context).push(
-      MaterialPageRoute<void>(
-        builder: (_) => TwisterDetailScreen(
-          twisters: sectionList,
-          initialIndex: sectionList.indexOf(pick),
-        ),
-      ),
-    );
-  }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -51,31 +39,125 @@ class HomeScreen extends ConsumerWidget {
           ),
         ],
       ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () => _openRandom(context, ref),
-        icon: const Icon(Icons.shuffle),
-        label: const Text('Surprise me'),
-      ),
       body: ListView(
-        padding: const EdgeInsets.fromLTRB(16, 8, 16, 96),
+        padding: const EdgeInsets.fromLTRB(16, 4, 16, 32),
         children: [
-          Text(
-            'Pick a language, listen to a native-accent voice, '
-            'then try it yourself, faster each time.',
-            style: theme.textTheme.bodyMedium?.copyWith(
-              color: theme.colorScheme.onSurfaceVariant,
-            ),
-          ),
+          const _Hero(),
           for (final group in SectionGroup.values) ...[
             Padding(
-              padding: const EdgeInsets.only(top: 24, bottom: 8),
-              child: Text(group.label, style: theme.textTheme.titleLarge),
+              padding: const EdgeInsets.only(top: 24, bottom: 6, left: 4),
+              child: Text(
+                group.label,
+                style: theme.textTheme.titleLarge?.copyWith(
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
             ),
             for (final section in group.sections)
               _SectionCard(section: section),
           ],
         ],
       ),
+    );
+  }
+}
+
+class _Hero extends ConsumerWidget {
+  const _Hero();
+
+  void _openRandom(BuildContext context, WidgetRef ref) {
+    final all = ref.read(allTwistersProvider);
+    final pick = all[Random().nextInt(all.length)];
+    final sectionList = ref.read(sectionTwistersProvider(pick.section));
+    Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (_) => TwisterDetailScreen(
+          twisters: sectionList,
+          initialIndex: sectionList.indexOf(pick),
+        ),
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final theme = Theme.of(context);
+    final practised = ref.watch(
+      practiceProvider.select((c) => c.values.where((n) => n > 0).length),
+    );
+    final total = ref.watch(allTwistersProvider).length;
+    final favourites = ref.watch(favoritesProvider.select((f) => f.length));
+
+    return Container(
+      padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        gradient: AppColors.heroGradient,
+        borderRadius: BorderRadius.circular(24),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Twist your tongue!',
+            style: theme.textTheme.headlineSmall?.copyWith(
+              color: Colors.white,
+              fontWeight: FontWeight.w800,
+            ),
+          ),
+          const SizedBox(height: 6),
+          Text(
+            'Listen to a native voice, then say it faster each time.',
+            style: theme.textTheme.bodyMedium?.copyWith(color: Colors.white70),
+          ),
+          const SizedBox(height: 16),
+          Row(
+            children: [
+              _Stat(value: '$practised/$total', label: 'practised'),
+              const SizedBox(width: 24),
+              _Stat(value: '$favourites', label: 'favourites'),
+            ],
+          ),
+          const SizedBox(height: 16),
+          FilledButton.icon(
+            style: FilledButton.styleFrom(
+              minimumSize: const Size.fromHeight(48),
+              backgroundColor: Colors.white,
+              foregroundColor: AppColors.brandDeep,
+            ),
+            onPressed: () => _openRandom(context, ref),
+            icon: const Icon(Icons.shuffle),
+            label: const Text('Surprise me'),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _Stat extends StatelessWidget {
+  const _Stat({required this.value, required this.label});
+
+  final String value;
+  final String label;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          value,
+          style: theme.textTheme.titleLarge?.copyWith(
+            color: Colors.white,
+            fontWeight: FontWeight.w800,
+          ),
+        ),
+        Text(
+          label,
+          style: theme.textTheme.labelSmall?.copyWith(color: Colors.white70),
+        ),
+      ],
     );
   }
 }
@@ -91,50 +173,87 @@ class _SectionCard extends ConsumerWidget {
     final total = ref.watch(sectionTwistersProvider(section)).length;
     final practiced = ref.watch(sectionProgressProvider(section));
 
-    return Card(
-      clipBehavior: Clip.antiAlias,
-      child: InkWell(
-        onTap: () => Navigator.of(context).push(
-          MaterialPageRoute<void>(
-            builder: (_) => SectionScreen(section: section),
-          ),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Row(
-            children: [
-              Text(section.flag, style: const TextStyle(fontSize: 40)),
-              const SizedBox(width: 16),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(section.title, style: theme.textTheme.titleMedium),
-                    const SizedBox(height: 2),
-                    Text(
-                      section.subtitle,
-                      style: theme.textTheme.bodySmall?.copyWith(
-                        color: theme.colorScheme.onSurfaceVariant,
-                      ),
-                    ),
-                    const SizedBox(height: 10),
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(4),
-                      child: LinearProgressIndicator(
-                        value: total == 0 ? 0 : practiced / total,
-                        minHeight: 6,
-                      ),
-                    ),
-                    const SizedBox(height: 4),
-                    Text(
-                      '$practiced of $total practised',
-                      style: theme.textTheme.labelSmall,
-                    ),
-                  ],
-                ),
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 6),
+      child: Material(
+        borderRadius: BorderRadius.circular(20),
+        clipBehavior: Clip.antiAlias,
+        child: Ink(
+          decoration: BoxDecoration(gradient: section.gradient),
+          child: InkWell(
+            onTap: () => Navigator.of(context).push(
+              MaterialPageRoute<void>(
+                builder: (_) => SectionScreen(section: section),
               ),
-              const Icon(Icons.chevron_right),
-            ],
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: Row(
+                children: [
+                  Container(
+                    width: 56,
+                    height: 56,
+                    alignment: Alignment.center,
+                    decoration: const BoxDecoration(
+                      color: Colors.white24,
+                      shape: BoxShape.circle,
+                    ),
+                    child: Text(
+                      section.flag,
+                      style: const TextStyle(fontSize: 30),
+                    ),
+                  ),
+                  const SizedBox(width: 16),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          section.title,
+                          style: theme.textTheme.titleMedium?.copyWith(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                        const SizedBox(height: 2),
+                        Text(
+                          section.subtitle,
+                          style: theme.textTheme.bodySmall?.copyWith(
+                            color: Colors.white.withValues(alpha: 0.85),
+                          ),
+                        ),
+                        const SizedBox(height: 10),
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(4),
+                          child: LinearProgressIndicator(
+                            value: total == 0 ? 0 : practiced / total,
+                            minHeight: 6,
+                            color: Colors.white,
+                            backgroundColor: Colors.white24,
+                          ),
+                        ),
+                        const SizedBox(height: 4),
+                        Text(
+                          '$practiced of $total practised',
+                          style: theme.textTheme.labelSmall?.copyWith(
+                            color: Colors.white.withValues(alpha: 0.9),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(width: 12),
+                  Container(
+                    padding: const EdgeInsets.all(4),
+                    decoration: const BoxDecoration(
+                      color: Colors.white,
+                      shape: BoxShape.circle,
+                    ),
+                    child: Icon(Icons.chevron_right, color: section.accentDeep),
+                  ),
+                ],
+              ),
+            ),
           ),
         ),
       ),

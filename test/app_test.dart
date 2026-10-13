@@ -17,6 +17,7 @@ void main() {
     expect(find.text('English'), findsOneWidget);
     expect(find.text('British English'), findsOneWidget);
     expect(find.text('American English'), findsOneWidget);
+    await tester.scrollUntilVisible(find.text('हिन्दी · Hindi'), 200);
     expect(find.text('हिन्दी · Hindi'), findsOneWidget);
     await tester.scrollUntilVisible(find.text('Deutsch · German'), 200);
     expect(find.text('Deutsch · German'), findsOneWidget);
@@ -30,6 +31,7 @@ void main() {
     addTearDown(container.dispose);
     await tester.pumpWidget(buildApp(container));
 
+    await tester.scrollUntilVisible(find.text('British English'), 200);
     await tester.tap(find.text('British English'));
     await tester.pumpAndSettle();
 
@@ -62,6 +64,7 @@ void main() {
     addTearDown(container.dispose);
     await tester.pumpWidget(buildApp(container));
 
+    await tester.scrollUntilVisible(find.text('हिन्दी · Hindi'), 200);
     await tester.tap(find.text('हिन्दी · Hindi'));
     await tester.pumpAndSettle();
     await tester.tap(find.byTooltip('Listen').first);

@@ -6,6 +6,7 @@ import '../providers/favorites_provider.dart';
 import '../providers/practice_provider.dart';
 import '../providers/settings_provider.dart';
 import '../providers/speech_provider.dart';
+import '../theme/app_theme.dart';
 import '../widgets/difficulty_badge.dart';
 import '../widgets/speak_button.dart';
 
@@ -76,42 +77,45 @@ class _TwisterDetailScreenState extends ConsumerState<TwisterDetailScreen> {
       onPopInvokedWithResult: (didPop, _) {
         if (didPop) ref.read(speechControllerProvider.notifier).stop();
       },
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text('${twister.section.flag}  ${twister.section.title}'),
-          actions: [
-            IconButton(
-              tooltip: isFavorite
-                  ? 'Remove from favourites'
-                  : 'Add to favourites',
-              icon: Icon(isFavorite ? Icons.favorite : Icons.favorite_border),
-              color: isFavorite ? Theme.of(context).colorScheme.error : null,
-              onPressed: () =>
-                  ref.read(favoritesProvider.notifier).toggle(twister.id),
-            ),
-          ],
-        ),
-        body: Column(
-          children: [
-            Expanded(
-              child: PageView.builder(
-                controller: _pageController,
-                itemCount: widget.twisters.length,
-                onPageChanged: _onPageChanged,
-                itemBuilder: (context, index) =>
-                    _TwisterPage(twister: widget.twisters[index]),
+      child: SectionTheme(
+        section: twister.section,
+        child: Scaffold(
+          appBar: AppBar(
+            title: Text('${twister.section.flag}  ${twister.section.title}'),
+            actions: [
+              IconButton(
+                tooltip: isFavorite
+                    ? 'Remove from favourites'
+                    : 'Add to favourites',
+                icon: Icon(isFavorite ? Icons.favorite : Icons.favorite_border),
+                color: isFavorite ? AppColors.favorite : null,
+                onPressed: () =>
+                    ref.read(favoritesProvider.notifier).toggle(twister.id),
               ),
-            ),
-            if (widget.twisters.length > 1)
-              Padding(
-                padding: const EdgeInsets.only(bottom: 4),
-                child: Text(
-                  '${_index + 1} / ${widget.twisters.length} · swipe for more',
-                  style: Theme.of(context).textTheme.labelSmall,
+            ],
+          ),
+          body: Column(
+            children: [
+              Expanded(
+                child: PageView.builder(
+                  controller: _pageController,
+                  itemCount: widget.twisters.length,
+                  onPageChanged: _onPageChanged,
+                  itemBuilder: (context, index) =>
+                      _TwisterPage(twister: widget.twisters[index]),
                 ),
               ),
-            _PracticeControls(twister: twister, onSaidIt: _recordAttempt),
-          ],
+              if (widget.twisters.length > 1)
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 4),
+                  child: Text(
+                    '${_index + 1} / ${widget.twisters.length} · swipe for more',
+                    style: Theme.of(context).textTheme.labelSmall,
+                  ),
+                ),
+              _PracticeControls(twister: twister, onSaidIt: _recordAttempt),
+            ],
+          ),
         ),
       ),
     );
@@ -150,9 +154,21 @@ class _TwisterPage extends ConsumerWidget {
             ],
           ),
           const SizedBox(height: 24),
-          SelectableText(
-            twister.text,
-            style: theme.textTheme.headlineSmall?.copyWith(height: 1.4),
+          Container(
+            width: double.infinity,
+            padding: const EdgeInsets.all(20),
+            decoration: BoxDecoration(
+              color: theme.colorScheme.primaryContainer,
+              borderRadius: BorderRadius.circular(24),
+            ),
+            child: SelectableText(
+              twister.text,
+              style: theme.textTheme.headlineSmall?.copyWith(
+                height: 1.4,
+                fontWeight: FontWeight.w600,
+                color: theme.colorScheme.onPrimaryContainer,
+              ),
+            ),
           ),
           if (settings.showPronunciation &&
               twister.transliteration != null) ...[

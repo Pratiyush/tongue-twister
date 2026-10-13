@@ -19,6 +19,7 @@ A Flutter app (iOS and Android) for practising tongue twisters in four sections:
 - **Surprise me** opens a random twister.
 - Swipe left and right on the practice screen to move between twisters.
 - **Settings**: light, dark or system theme; default speaking speed; repeat-challenge length (2–5×); show or hide pronunciation and meanings; a voice check that shows which language voices are installed, with a test button for each; reset progress; clear favourites.
+- Each language has its own colours: royal blue for British English, crimson for American, saffron for Hindi and gold for German. Difficulty badges use traffic-light colours, and light and dark themes are both supported.
 - Custom app icon on iOS and Android, including an Android adaptive icon.
 
 ## Download
@@ -37,9 +38,14 @@ git tag v1.0.1 && git push origin v1.0.1
 | `tongue-twisters-unsigned.ipa` | iOS requires signing. Sign and install it with Sideloadly or AltStore using your Apple ID, or run `flutter run --release` from a Mac with Xcode. App Store or TestFlight distribution needs an Apple Developer account. |
 
 <p>
-  <img src="docs/screenshots/1_section_british.png" width="260" alt="British English list">
-  <img src="docs/screenshots/2_detail_british.png" width="260" alt="Practice screen">
-  <img src="docs/screenshots/3_settings.png" width="260" alt="Settings">
+  <img src="docs/screenshots/1_home.png" width="200" alt="Home">
+  <img src="docs/screenshots/2_section_hindi.png" width="200" alt="Hindi twisters">
+  <img src="docs/screenshots/3_detail_hindi.png" width="200" alt="Practice screen, Hindi">
+  <img src="docs/screenshots/4_detail_german.png" width="200" alt="Practice screen, German">
+</p>
+<p>
+  <img src="docs/screenshots/1_home_dark.png" width="200" alt="Home, dark mode">
+  <img src="docs/screenshots/5_settings.png" width="200" alt="Settings">
 </p>
 
 ## Architecture
@@ -60,7 +66,10 @@ lib/
     speech_provider.dart    SpeechEngine (flutter_tts wrapper), SpeechController, voice check
   screens/                  home, section list, practice detail, favourites, settings
   widgets/                  twister card, difficulty badge, speak button
+  theme/app_theme.dart      brand and per-section colours, buildTheme(), SectionTheme
 ```
+
+See [AGENTS.md](AGENTS.md) for conventions, content rules and how to add a language. Claude Code users also get [CLAUDE.md](CLAUDE.md) and two project subagents in `.claude/agents/`.
 
 `SpeechEngine` is an interface, so tests replace text-to-speech with a fake (see `test/helpers.dart`).
 

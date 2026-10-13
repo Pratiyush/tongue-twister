@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../models/twister.dart';
+import '../theme/app_theme.dart';
 import '../providers/favorites_provider.dart';
 import '../providers/practice_provider.dart';
 import '../providers/settings_provider.dart';
@@ -101,7 +102,7 @@ class TwisterCard extends ConsumerWidget {
                     icon: Icon(
                       isFavorite ? Icons.favorite : Icons.favorite_border,
                     ),
-                    color: isFavorite ? theme.colorScheme.error : null,
+                    color: isFavorite ? AppColors.favorite : null,
                     onPressed: () =>
                         ref.read(favoritesProvider.notifier).toggle(twister.id),
                   ),

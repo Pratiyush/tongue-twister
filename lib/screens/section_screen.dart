@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../models/language_section.dart';
 import '../models/twister.dart';
 import '../providers/twister_providers.dart';
+import '../theme/app_theme.dart';
 import '../widgets/twister_card.dart';
 import 'twister_detail_screen.dart';
 
@@ -38,64 +39,66 @@ class _SectionScreenState extends ConsumerState<SectionScreen> {
     final section = widget.section;
     final visible = _filter(ref.watch(sectionTwistersProvider(section)));
 
-    return Scaffold(
-      appBar: AppBar(title: Text('${section.flag}  ${section.title}')),
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
-            child: TextField(
-              decoration: const InputDecoration(
-                prefixIcon: Icon(Icons.search),
-                hintText: 'Search twisters',
-                border: OutlineInputBorder(),
-                isDense: true,
-              ),
-              onChanged: (value) => setState(() => _query = value),
-            ),
-          ),
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            child: Row(
-              children: [
-                ChoiceChip(
-                  label: const Text('All'),
-                  selected: _difficulty == null,
-                  onSelected: (_) => setState(() => _difficulty = null),
+    return SectionTheme(
+      section: section,
+      child: Scaffold(
+        appBar: AppBar(title: Text('${section.flag}  ${section.title}')),
+        body: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
+              child: TextField(
+                decoration: const InputDecoration(
+                  prefixIcon: Icon(Icons.search),
+                  hintText: 'Search twisters',
+                  isDense: true,
                 ),
-                for (final level in Difficulty.values) ...[
-                  const SizedBox(width: 8),
-                  ChoiceChip(
-                    label: Text(level.label),
-                    selected: _difficulty == level,
-                    onSelected: (selected) =>
-                        setState(() => _difficulty = selected ? level : null),
-                  ),
-                ],
-              ],
+                onChanged: (value) => setState(() => _query = value),
+              ),
             ),
-          ),
-          Expanded(
-            child: visible.isEmpty
-                ? const Center(child: Text('No twisters match.'))
-                : ListView.builder(
-                    padding: const EdgeInsets.fromLTRB(12, 0, 12, 24),
-                    itemCount: visible.length,
-                    itemBuilder: (context, index) => TwisterCard(
-                      twister: visible[index],
-                      onTap: () => Navigator.of(context).push(
-                        MaterialPageRoute<void>(
-                          builder: (_) => TwisterDetailScreen(
-                            twisters: visible,
-                            initialIndex: index,
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              child: Row(
+                children: [
+                  ChoiceChip(
+                    label: const Text('All'),
+                    selected: _difficulty == null,
+                    onSelected: (_) => setState(() => _difficulty = null),
+                  ),
+                  for (final level in Difficulty.values) ...[
+                    const SizedBox(width: 8),
+                    ChoiceChip(
+                      label: Text(level.label),
+                      selected: _difficulty == level,
+                      onSelected: (selected) =>
+                          setState(() => _difficulty = selected ? level : null),
+                    ),
+                  ],
+                ],
+              ),
+            ),
+            Expanded(
+              child: visible.isEmpty
+                  ? const Center(child: Text('No twisters match.'))
+                  : ListView.builder(
+                      padding: const EdgeInsets.fromLTRB(12, 0, 12, 24),
+                      itemCount: visible.length,
+                      itemBuilder: (context, index) => TwisterCard(
+                        twister: visible[index],
+                        onTap: () => Navigator.of(context).push(
+                          MaterialPageRoute<void>(
+                            builder: (_) => TwisterDetailScreen(
+                              twisters: visible,
+                              initialIndex: index,
+                            ),
                           ),
                         ),
                       ),
                     ),
-                  ),
-          ),
-        ],
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../providers/favorites_provider.dart';
+import '../theme/app_theme.dart';
 import '../widgets/twister_card.dart';
 import 'twister_detail_screen.dart';
 
@@ -31,14 +32,17 @@ class FavoritesScreen extends ConsumerWidget {
           : ListView.builder(
               padding: const EdgeInsets.all(12),
               itemCount: favorites.length,
-              itemBuilder: (context, index) => TwisterCard(
-                twister: favorites[index],
-                showSection: true,
-                onTap: () => Navigator.of(context).push(
-                  MaterialPageRoute<void>(
-                    builder: (_) => TwisterDetailScreen(
-                      twisters: favorites,
-                      initialIndex: index,
+              itemBuilder: (context, index) => SectionTheme(
+                section: favorites[index].section,
+                child: TwisterCard(
+                  twister: favorites[index],
+                  showSection: true,
+                  onTap: () => Navigator.of(context).push(
+                    MaterialPageRoute<void>(
+                      builder: (_) => TwisterDetailScreen(
+                        twisters: favorites,
+                        initialIndex: index,
+                      ),
                     ),
                   ),
                 ),
