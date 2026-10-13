@@ -41,74 +41,82 @@ class TwisterCard extends ConsumerWidget {
       clipBehavior: Clip.antiAlias,
       child: InkWell(
         onTap: onTap,
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(16, 12, 4, 12),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      twister.text,
-                      maxLines: 3,
-                      overflow: TextOverflow.ellipsis,
-                      style: theme.textTheme.titleMedium,
-                    ),
-                    if (showPronunciation &&
-                        twister.transliteration != null) ...[
-                      const SizedBox(height: 4),
+        child: Container(
+          decoration: BoxDecoration(
+            border: Border(
+              left: BorderSide(color: theme.colorScheme.primary, width: 4),
+            ),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(16, 12, 4, 12),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
                       Text(
-                        twister.transliteration!,
-                        maxLines: 2,
+                        twister.text,
+                        maxLines: 3,
                         overflow: TextOverflow.ellipsis,
-                        style: theme.textTheme.bodySmall?.copyWith(
-                          fontStyle: FontStyle.italic,
-                          color: theme.colorScheme.onSurfaceVariant,
+                        style: theme.textTheme.titleMedium,
+                      ),
+                      if (showPronunciation &&
+                          twister.transliteration != null) ...[
+                        const SizedBox(height: 4),
+                        Text(
+                          twister.transliteration!,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style: theme.textTheme.bodySmall?.copyWith(
+                            fontStyle: FontStyle.italic,
+                            color: theme.colorScheme.onSurfaceVariant,
+                          ),
                         ),
+                      ],
+                      const SizedBox(height: 8),
+                      Wrap(
+                        spacing: 8,
+                        crossAxisAlignment: WrapCrossAlignment.center,
+                        children: [
+                          if (showSection)
+                            Text(
+                              '${twister.section.flag} ${twister.section.shortLabel}',
+                              style: theme.textTheme.labelSmall,
+                            ),
+                          DifficultyBadge(twister.difficulty),
+                          if (practiced > 0)
+                            Text(
+                              'Practised $practiced×',
+                              style: theme.textTheme.labelSmall?.copyWith(
+                                color: theme.colorScheme.primary,
+                              ),
+                            ),
+                        ],
                       ),
                     ],
-                    const SizedBox(height: 8),
-                    Wrap(
-                      spacing: 8,
-                      crossAxisAlignment: WrapCrossAlignment.center,
-                      children: [
-                        if (showSection)
-                          Text(
-                            '${twister.section.flag} ${twister.section.shortLabel}',
-                            style: theme.textTheme.labelSmall,
-                          ),
-                        DifficultyBadge(twister.difficulty),
-                        if (practiced > 0)
-                          Text(
-                            'Practised $practiced×',
-                            style: theme.textTheme.labelSmall?.copyWith(
-                              color: theme.colorScheme.primary,
-                            ),
-                          ),
-                      ],
+                  ),
+                ),
+                Column(
+                  children: [
+                    SpeakIconButton(twister: twister),
+                    IconButton(
+                      tooltip: isFavorite
+                          ? 'Remove from favourites'
+                          : 'Add to favourites',
+                      icon: Icon(
+                        isFavorite ? Icons.favorite : Icons.favorite_border,
+                      ),
+                      color: isFavorite ? AppColors.favorite : null,
+                      onPressed: () => ref
+                          .read(favoritesProvider.notifier)
+                          .toggle(twister.id),
                     ),
                   ],
                 ),
-              ),
-              Column(
-                children: [
-                  SpeakIconButton(twister: twister),
-                  IconButton(
-                    tooltip: isFavorite
-                        ? 'Remove from favourites'
-                        : 'Add to favourites',
-                    icon: Icon(
-                      isFavorite ? Icons.favorite : Icons.favorite_border,
-                    ),
-                    color: isFavorite ? AppColors.favorite : null,
-                    onPressed: () =>
-                        ref.read(favoritesProvider.notifier).toggle(twister.id),
-                  ),
-                ],
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

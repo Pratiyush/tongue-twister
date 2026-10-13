@@ -19,7 +19,7 @@ A Flutter app (iOS and Android) for practising tongue twisters in four sections:
 - **Surprise me** opens a random twister.
 - Swipe left and right on the practice screen to move between twisters.
 - **Settings**: light, dark or system theme; default speaking speed; repeat-challenge length (2–5×); show or hide pronunciation and meanings; a voice check that shows which language voices are installed, with a test button for each; reset progress; clear favourites.
-- Each language has its own colours: royal blue for British English, crimson for American, saffron for Hindi and gold for German. Difficulty badges use traffic-light colours, and light and dark themes are both supported.
+- Each language has its own colours: royal blue for British English, crimson for American, saffron for Hindi, and black and gold for German. Language screens get a gradient header and the twister appears on a matching gradient card, on neutral backgrounds. Difficulty badges use traffic-light colours, and light and dark themes are both supported.
 - Custom app icon on iOS and Android, including an Android adaptive icon.
 
 ## Download
@@ -46,6 +46,8 @@ git tag v1.0.1 && git push origin v1.0.1
 <p>
   <img src="docs/screenshots/1_home_dark.png" width="200" alt="Home, dark mode">
   <img src="docs/screenshots/5_settings.png" width="200" alt="Settings">
+  <img src="docs/screenshots/3_detail_hindi_dark.png" width="200" alt="Practice screen, Hindi, dark mode">
+  <img src="docs/screenshots/6_detail_british.png" width="200" alt="Practice screen, British English">
 </p>
 
 ## Architecture

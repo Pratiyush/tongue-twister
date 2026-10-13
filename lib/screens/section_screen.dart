@@ -42,7 +42,7 @@ class _SectionScreenState extends ConsumerState<SectionScreen> {
     return SectionTheme(
       section: section,
       child: Scaffold(
-        appBar: AppBar(title: Text('${section.flag}  ${section.title}')),
+        appBar: SectionAppBar(section: section),
         body: Column(
           children: [
             Padding(

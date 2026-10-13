@@ -80,8 +80,8 @@ class _TwisterDetailScreenState extends ConsumerState<TwisterDetailScreen> {
       child: SectionTheme(
         section: twister.section,
         child: Scaffold(
-          appBar: AppBar(
-            title: Text('${twister.section.flag}  ${twister.section.title}'),
+          appBar: SectionAppBar(
+            section: twister.section,
             actions: [
               IconButton(
                 tooltip: isFavorite
@@ -156,18 +156,29 @@ class _TwisterPage extends ConsumerWidget {
           const SizedBox(height: 24),
           Container(
             width: double.infinity,
-            padding: const EdgeInsets.all(20),
+            padding: const EdgeInsets.fromLTRB(20, 16, 20, 22),
             decoration: BoxDecoration(
-              color: theme.colorScheme.primaryContainer,
+              gradient: twister.section.headerGradient,
               borderRadius: BorderRadius.circular(24),
             ),
-            child: SelectableText(
-              twister.text,
-              style: theme.textTheme.headlineSmall?.copyWith(
-                height: 1.4,
-                fontWeight: FontWeight.w600,
-                color: theme.colorScheme.onPrimaryContainer,
-              ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Icon(
+                  Icons.format_quote_rounded,
+                  size: 36,
+                  color: twister.section.accent,
+                ),
+                const SizedBox(height: 4),
+                SelectableText(
+                  twister.text,
+                  style: theme.textTheme.headlineSmall?.copyWith(
+                    height: 1.4,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.white,
+                  ),
+                ),
+              ],
             ),
           ),
           if (settings.showPronunciation &&
@@ -185,8 +196,10 @@ class _TwisterPage extends ConsumerWidget {
           if (twister.tip != null) ...[
             const SizedBox(height: 24),
             Card(
-              color: theme.colorScheme.surfaceContainerHighest,
-              elevation: 0,
+              color: theme.colorScheme.primaryContainer.withValues(alpha: 0.5),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16),
+              ),
               child: Padding(
                 padding: const EdgeInsets.all(12),
                 child: Row(
@@ -197,7 +210,14 @@ class _TwisterPage extends ConsumerWidget {
                       color: theme.colorScheme.primary,
                     ),
                     const SizedBox(width: 12),
-                    Expanded(child: Text(twister.tip!)),
+                    Expanded(
+                      child: Text(
+                        twister.tip!,
+                        style: theme.textTheme.bodyMedium?.copyWith(
+                          color: theme.colorScheme.onPrimaryContainer,
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),
