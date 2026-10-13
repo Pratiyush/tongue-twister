@@ -75,17 +75,38 @@ jobs:
 
   release:
     name: Publish GitHub Release
-    if: startsWith(github.ref, 'refs/tags/v')
+    # Tags publish that version; pushes to the default branch publish a
+    # numbered build, so the "latest release" download link always works.
+    if: >-
+      startsWith(github.ref, 'refs/tags/v') ||
+      (github.event_name != 'pull_request' &&
+       github.ref == format('refs/heads/{0}', github.event.repository.default_branch))
     needs: [android, ios]
     runs-on: ubuntu-latest
     permissions:
       contents: write
     steps:
+      - uses: actions/checkout@v4
+      - name: Work out release tag
+        id: meta
+        run: |
+          if [[ "$GITHUB_REF" == refs/tags/* ]]; then
+            echo "tag=${GITHUB_REF_NAME}" >> "$GITHUB_OUTPUT"
+            echo "name=Tongue Twisters ${GITHUB_REF_NAME}" >> "$GITHUB_OUTPUT"
+          else
+            version=$(grep -E '^version:' pubspec.yaml | sed -E 's/version: *([^+]+).*/\1/')
+            echo "tag=v${version}-build${GITHUB_RUN_NUMBER}" >> "$GITHUB_OUTPUT"
+            echo "name=Tongue Twisters ${version} (build ${GITHUB_RUN_NUMBER})" >> "$GITHUB_OUTPUT"
+          fi
       - uses: actions/download-artifact@v4
         with:
           merge-multiple: true
       - uses: softprops/action-gh-release@v2
         with:
+          tag_name: ${{ steps.meta.outputs.tag }}
+          name: ${{ steps.meta.outputs.name }}
+          target_commitish: ${{ github.sha }}
+          make_latest: true
           files: |
             tongue-twisters.apk
             tongue-twisters-unsigned.ipa

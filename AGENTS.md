@@ -92,5 +92,5 @@ docs/screenshots/           README images
 
 - Android: `AndroidManifest.xml` declares the `android.intent.action.TTS_SERVICE` query, which Android 11+ needs. Release builds use the debug signing key.
 - iOS: `flutter_tts` plays through the silent switch (`IosTextToSpeechAudioCategory.playback`).
-- CI (`.github/workflows/build.yml`): analyze and test, then a release APK (Ubuntu) and an unsigned IPA (macOS). Tags `v*` publish both to GitHub Releases. Bump `version:` in `pubspec.yaml` and `appVersion` in `settings_screen.dart` together.
+- CI (`.github/workflows/build.yml`): analyze and test, then a release APK (Ubuntu) and an unsigned IPA (macOS). Every push to the default branch publishes a GitHub Release `v<version>-build<run>` with both files, and `v*` tags publish that version. The stable download link is `releases/latest/download/tongue-twisters.apk`. Bump `version:` in `pubspec.yaml` and `appVersion` in `settings_screen.dart` together.
 - Launcher icons: edit `assets/icon/*.png`, then run `dart run flutter_launcher_icons`. Afterwards, **revert any change it makes to `ios/Runner.xcodeproj/project.pbxproj`**; it's a known bug in the tool.

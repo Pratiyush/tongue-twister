@@ -24,13 +24,11 @@ A Flutter app (iOS and Android) for practising tongue twisters in four sections:
 
 ## Download
 
-Every push builds the app in **GitHub Actions** (the *Build* workflow). Download `tongue-twisters-android` or `tongue-twisters-ios` from a run's **Artifacts** section.
+**Android APK (latest):** https://github.com/Pratiyush/tongue-twister/releases/latest/download/tongue-twisters.apk
 
-Pushing a version tag publishes both files to the repo's **Releases** page:
+All builds are listed at https://github.com/Pratiyush/tongue-twister/releases.
 
-```sh
-git tag v1.0.1 && git push origin v1.0.1
-```
+Every push to the default branch runs the *Build* workflow in GitHub Actions: tests, then the Android APK and iOS app. If everything passes, it publishes a numbered release (`v1.0.0-build5`, …) with both files. Pushing a `v*` tag publishes that exact version instead.
 
 | File | How to install |
 | --- | --- |
