@@ -1,10 +1,15 @@
 import 'dart:async';
 
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tongue_twister/models/language_section.dart';
+import 'package:tongue_twister/providers/preferences_provider.dart';
 import 'package:tongue_twister/providers/favorites_provider.dart';
 import 'package:tongue_twister/providers/practice_provider.dart';
+import 'package:tongue_twister/providers/settings_provider.dart';
 import 'package:tongue_twister/providers/speech_provider.dart';
 import 'package:tongue_twister/providers/twister_providers.dart';
 
@@ -86,7 +91,7 @@ void main() {
       final twister = container.read(twisterByIdProvider('us-woodchuck'))!;
       final controller = container.read(speechControllerProvider.notifier);
 
-      controller.setSpeed(PlaybackSpeed.slow);
+      container.read(settingsProvider.notifier).setSpeed(PlaybackSpeed.slow);
       final result = await controller.speak(twister, times: 3);
 
       expect(result, SpeakResult.done);
@@ -128,6 +133,78 @@ void main() {
       expect(await pending, SpeakResult.stopped);
       expect(engine.spoken, hasLength(1));
       expect(container.read(speechControllerProvider).speakingId, isNull);
+    });
+  });
+
+  group('settings', () {
+    test('defaults when nothing is saved', () async {
+      final container = await createContainer();
+      addTearDown(container.dispose);
+      final s = container.read(settingsProvider);
+      expect(s.themeMode, ThemeMode.system);
+      expect(s.speed, PlaybackSpeed.normal);
+      expect(s.repeatCount, 3);
+      expect(s.showPronunciation, isTrue);
+      expect(s.showMeaning, isTrue);
+    });
+
+    test('changes persist and reload', () async {
+      final container = await createContainer();
+      final n = container.read(settingsProvider.notifier);
+      n.setThemeMode(ThemeMode.dark);
+      n.setSpeed(PlaybackSpeed.fast);
+      n.setRepeatCount(5);
+      n.setShowMeaning(false);
+      container.dispose();
+
+      final prefs = await SharedPreferences.getInstance();
+      final reloaded = ProviderContainer(
+        overrides: [sharedPreferencesProvider.overrideWithValue(prefs)],
+      );
+      addTearDown(reloaded.dispose);
+      final s = reloaded.read(settingsProvider);
+      expect(s.themeMode, ThemeMode.dark);
+      expect(s.speed, PlaybackSpeed.fast);
+      expect(s.repeatCount, 5);
+      expect(s.showMeaning, isFalse);
+    });
+
+    test('clamps repeat count and ignores unknown saved values', () async {
+      final container = await createContainer(
+        prefs: {
+          'settings.theme_mode': 'neon',
+          'settings.speed': 'ludicrous',
+          'settings.repeat_count': 99,
+        },
+      );
+      addTearDown(container.dispose);
+      final s = container.read(settingsProvider);
+      expect(s.themeMode, ThemeMode.system);
+      expect(s.speed, PlaybackSpeed.normal);
+      expect(s.repeatCount, AppSettings.maxRepeats);
+
+      container.read(settingsProvider.notifier).setRepeatCount(0);
+      expect(
+        container.read(settingsProvider).repeatCount,
+        AppSettings.minRepeats,
+      );
+    });
+
+    test('clearing favourites and progress', () async {
+      final container = await createContainer(
+        prefs: {
+          'favorite_twister_ids': ['gb-red-lorry'],
+          'practice_counts': '{"gb-red-lorry":4}',
+        },
+      );
+      addTearDown(container.dispose);
+      container.read(favoritesProvider.notifier).clearAll();
+      container.read(practiceProvider.notifier).clearAll();
+      expect(container.read(favoritesProvider), isEmpty);
+      expect(container.read(practiceProvider), isEmpty);
+      final prefs = await SharedPreferences.getInstance();
+      expect(prefs.containsKey('favorite_twister_ids'), isFalse);
+      expect(prefs.containsKey('practice_counts'), isFalse);
     });
   });
 }

@@ -2,6 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 
 import '../models/twister.dart';
+import 'settings_provider.dart';
 
 /// Thin wrapper over the platform text-to-speech engine so it can be faked
 /// in tests.
@@ -49,36 +50,15 @@ final speechEngineProvider = Provider<SpeechEngine>((ref) {
   return engine;
 });
 
-enum PlaybackSpeed {
-  slow('Slow', 0.25),
-  normal('Normal', 0.45),
-  fast('Fast', 0.65);
-
-  const PlaybackSpeed(this.label, this.rate);
-  final String label;
-
-  /// flutter_tts rate: 0.0–1.0, where 0.5 is roughly natural speed.
-  final double rate;
-}
-
 enum SpeakResult { done, stopped, languageUnavailable }
 
 class SpeechState {
-  const SpeechState({this.speakingId, this.speed = PlaybackSpeed.normal});
+  const SpeechState({this.speakingId});
 
   /// Id of the twister currently being spoken, if any.
   final String? speakingId;
-  final PlaybackSpeed speed;
 
   bool isSpeaking(String id) => speakingId == id;
-
-  SpeechState copyWith({
-    String? Function()? speakingId,
-    PlaybackSpeed? speed,
-  }) => SpeechState(
-    speakingId: speakingId != null ? speakingId() : this.speakingId,
-    speed: speed ?? this.speed,
-  );
 }
 
 class SpeechController extends Notifier<SpeechState> {
@@ -90,39 +70,54 @@ class SpeechController extends Notifier<SpeechState> {
 
   SpeechEngine get _engine => ref.read(speechEngineProvider);
 
-  void setSpeed(PlaybackSpeed speed) => state = state.copyWith(speed: speed);
-
   /// Speaks [twister] in its section's accent, [times] times in a row.
-  Future<SpeakResult> speak(Twister twister, {int times = 1}) async {
+  Future<SpeakResult> speak(Twister twister, {int times = 1}) => speakText(
+    twister.id,
+    twister.text,
+    twister.section.ttsLocale,
+    times: times,
+  );
+
+  /// Speaks arbitrary [text] in [locale]; [id] marks what is playing.
+  Future<SpeakResult> speakText(
+    String id,
+    String text,
+    String locale, {
+    int times = 1,
+  }) async {
     final session = ++_session;
     await _engine.stop();
 
-    final locale = twister.section.ttsLocale;
     if (!await _engine.isLanguageAvailable(locale)) {
-      if (session == _session) state = state.copyWith(speakingId: () => null);
+      if (session == _session) state = const SpeechState();
       return SpeakResult.languageUnavailable;
     }
 
-    state = state.copyWith(speakingId: () => twister.id);
+    state = SpeechState(speakingId: id);
     await _engine.setLanguage(locale);
-    await _engine.setSpeechRate(state.speed.rate);
+    await _engine.setSpeechRate(ref.read(settingsProvider).speed.rate);
 
     for (var i = 0; i < times; i++) {
       if (session != _session) return SpeakResult.stopped;
-      await _engine.speak(twister.text);
+      await _engine.speak(text);
     }
 
     if (session != _session) return SpeakResult.stopped;
-    state = state.copyWith(speakingId: () => null);
+    state = const SpeechState();
     return SpeakResult.done;
   }
 
   Future<void> stop() async {
     _session++;
-    state = state.copyWith(speakingId: () => null);
+    state = const SpeechState();
     await _engine.stop();
   }
 }
 
 final speechControllerProvider =
     NotifierProvider<SpeechController, SpeechState>(SpeechController.new);
+
+/// Whether the device has a text-to-speech voice for a locale.
+final voiceAvailableProvider = FutureProvider.autoDispose.family<bool, String>(
+  (ref, locale) => ref.watch(speechEngineProvider).isLanguageAvailable(locale),
+);

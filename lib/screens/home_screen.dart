@@ -8,6 +8,7 @@ import '../providers/practice_provider.dart';
 import '../providers/twister_providers.dart';
 import 'favorites_screen.dart';
 import 'section_screen.dart';
+import 'settings_screen.dart';
 import 'twister_detail_screen.dart';
 
 class HomeScreen extends ConsumerWidget {
@@ -39,6 +40,13 @@ class HomeScreen extends ConsumerWidget {
             icon: const Icon(Icons.favorite_outline),
             onPressed: () => Navigator.of(context).push(
               MaterialPageRoute<void>(builder: (_) => const FavoritesScreen()),
+            ),
+          ),
+          IconButton(
+            tooltip: 'Settings',
+            icon: const Icon(Icons.settings_outlined),
+            onPressed: () => Navigator.of(context).push(
+              MaterialPageRoute<void>(builder: (_) => const SettingsScreen()),
             ),
           ),
         ],

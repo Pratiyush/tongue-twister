@@ -36,6 +36,11 @@ class PracticeNotifier extends Notifier<Map<String, int>> {
         .read(sharedPreferencesProvider)
         .setString(_practiceKey, jsonEncode(state));
   }
+
+  void clearAll() {
+    state = const {};
+    ref.read(sharedPreferencesProvider).remove(_practiceKey);
+  }
 }
 
 final practiceProvider = NotifierProvider<PracticeNotifier, Map<String, int>>(

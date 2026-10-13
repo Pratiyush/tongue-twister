@@ -18,11 +18,28 @@ A Flutter app (iOS and Android) for practising tongue twisters in four sections:
 - **Search** and **difficulty filters** (easy, medium, hard) in each section.
 - **Surprise me** opens a random twister.
 - Swipe left and right on the practice screen to move between twisters.
-- Light and dark themes.
+- **Settings**: light, dark or system theme; default speaking speed; repeat-challenge length (2–5×); show or hide pronunciation and meanings; a voice check that shows which language voices are installed, with a test button for each; reset progress; clear favourites.
+- Custom app icon on iOS and Android, including an Android adaptive icon.
+
+## Download
+
+Every push builds the app in **GitHub Actions** (the *Build* workflow). Download `tongue-twisters-android` or `tongue-twisters-ios` from a run's **Artifacts** section.
+
+Pushing a version tag publishes both files to the repo's **Releases** page:
+
+```sh
+git tag v1.0.1 && git push origin v1.0.1
+```
+
+| File | How to install |
+| --- | --- |
+| `tongue-twisters.apk` | Open it on an Android phone and allow "install unknown apps". It is signed with the debug key, which is fine for sideloading. Use your own key before publishing to Google Play. |
+| `tongue-twisters-unsigned.ipa` | iOS requires signing. Sign and install it with Sideloadly or AltStore using your Apple ID, or run `flutter run --release` from a Mac with Xcode. App Store or TestFlight distribution needs an Apple Developer account. |
 
 <p>
   <img src="docs/screenshots/1_section_british.png" width="260" alt="British English list">
   <img src="docs/screenshots/2_detail_british.png" width="260" alt="Practice screen">
+  <img src="docs/screenshots/3_settings.png" width="260" alt="Settings">
 </p>
 
 ## Architecture
@@ -39,8 +56,9 @@ lib/
     twister_providers.dart  catalogue, per-section lists, lookup by id
     favorites_provider.dart FavoritesNotifier (persisted)
     practice_provider.dart  PracticeNotifier (persisted counts), section progress
-    speech_provider.dart    SpeechEngine (flutter_tts wrapper) and SpeechController
-  screens/                  home, section list, practice detail, favourites
+    settings_provider.dart  SettingsNotifier: theme, speed, repeats, display (persisted)
+    speech_provider.dart    SpeechEngine (flutter_tts wrapper), SpeechController, voice check
+  screens/                  home, section list, practice detail, favourites, settings
   widgets/                  twister card, difficulty badge, speak button
 ```
 
@@ -52,7 +70,7 @@ Add a `Twister(...)` entry to the matching file in `lib/data/`. Give it a unique
 
 To add a new language, add a value to `LanguageSection` with its TTS locale, create a data file, and include it in `TwisterRepository.forSection`.
 
-## Running
+## Running locally
 
 ```sh
 flutter pub get
@@ -65,4 +83,10 @@ flutter analyze
 
 Playback uses the voices installed on the device. iOS ships with en-GB, en-US, hi-IN and de-DE voices. On Android, the Google speech engine may need the Hindi or German voice data downloaded (Settings → System → Languages → Text-to-speech). If a voice is missing, the app says so instead of failing silently.
 
+The Settings screen shows which voices are installed and lets you test each one.
+
 The Android manifest declares the `TTS_SERVICE` query required on Android 11 and later.
+
+## App icon
+
+The source images are in `assets/icon/`. After changing them, regenerate the platform icons with `dart run flutter_launcher_icons`. If that tool changes `ios/Runner.xcodeproj/project.pbxproj`, revert that file; it's a known bug in the tool.

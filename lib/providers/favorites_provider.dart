@@ -22,6 +22,11 @@ class FavoritesNotifier extends Notifier<Set<String>> {
         .read(sharedPreferencesProvider)
         .setStringList(_favoritesKey, next.toList());
   }
+
+  void clearAll() {
+    state = const {};
+    ref.read(sharedPreferencesProvider).remove(_favoritesKey);
+  }
 }
 
 final favoritesProvider = NotifierProvider<FavoritesNotifier, Set<String>>(

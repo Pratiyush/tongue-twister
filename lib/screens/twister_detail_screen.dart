@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../models/twister.dart';
 import '../providers/favorites_provider.dart';
 import '../providers/practice_provider.dart';
+import '../providers/settings_provider.dart';
 import '../providers/speech_provider.dart';
 import '../widgets/difficulty_badge.dart';
 import '../widgets/speak_button.dart';
@@ -128,6 +129,7 @@ class _TwisterPage extends ConsumerWidget {
     final practiced = ref.watch(
       practiceProvider.select((c) => c[twister.id] ?? 0),
     );
+    final settings = ref.watch(settingsProvider);
 
     return SingleChildScrollView(
       padding: const EdgeInsets.fromLTRB(24, 16, 24, 24),
@@ -152,14 +154,15 @@ class _TwisterPage extends ConsumerWidget {
             twister.text,
             style: theme.textTheme.headlineSmall?.copyWith(height: 1.4),
           ),
-          if (twister.transliteration != null) ...[
+          if (settings.showPronunciation &&
+              twister.transliteration != null) ...[
             const SizedBox(height: 16),
             _LabeledText(
               label: 'Pronunciation',
               text: twister.transliteration!,
             ),
           ],
-          if (twister.translation != null) ...[
+          if (settings.showMeaning && twister.translation != null) ...[
             const SizedBox(height: 16),
             _LabeledText(label: 'Meaning', text: twister.translation!),
           ],
@@ -224,8 +227,10 @@ class _PracticeControls extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final speech = ref.watch(speechControllerProvider);
-    final speaking = speech.isSpeaking(twister.id);
+    final speaking = ref.watch(
+      speechControllerProvider.select((s) => s.isSpeaking(twister.id)),
+    );
+    final settings = ref.watch(settingsProvider);
 
     return SafeArea(
       top: false,
@@ -238,11 +243,10 @@ class _PracticeControls extends ConsumerWidget {
                 for (final speed in PlaybackSpeed.values)
                   ButtonSegment(value: speed, label: Text(speed.label)),
               ],
-              selected: {speech.speed},
+              selected: {settings.speed},
               showSelectedIcon: false,
-              onSelectionChanged: (selection) => ref
-                  .read(speechControllerProvider.notifier)
-                  .setSpeed(selection.first),
+              onSelectionChanged: (selection) =>
+                  ref.read(settingsProvider.notifier).setSpeed(selection.first),
             ),
             const SizedBox(height: 12),
             Row(
@@ -259,9 +263,14 @@ class _PracticeControls extends ConsumerWidget {
                   child: OutlinedButton.icon(
                     onPressed: speaking
                         ? null
-                        : () => speakTwister(context, ref, twister, times: 3),
+                        : () => speakTwister(
+                            context,
+                            ref,
+                            twister,
+                            times: settings.repeatCount,
+                          ),
                     icon: const Icon(Icons.repeat),
-                    label: const Text('3× in a row'),
+                    label: Text('${settings.repeatCount}× in a row'),
                   ),
                 ),
               ],

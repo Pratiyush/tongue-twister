@@ -43,7 +43,9 @@ class FakeSpeechEngine implements SpeechEngine {
   Future<void> stop() async {
     stops++;
     final pending = gate;
-    if (_speaking && pending != null && !pending.isCompleted) pending.complete();
+    if (_speaking && pending != null && !pending.isCompleted) {
+      pending.complete();
+    }
   }
 }
 

@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../models/twister.dart';
 import '../providers/favorites_provider.dart';
 import '../providers/practice_provider.dart';
+import '../providers/settings_provider.dart';
 import 'difficulty_badge.dart';
 import 'speak_button.dart';
 
@@ -31,6 +32,10 @@ class TwisterCard extends ConsumerWidget {
       practiceProvider.select((c) => c[twister.id] ?? 0),
     );
 
+    final showPronunciation = ref.watch(
+      settingsProvider.select((s) => s.showPronunciation),
+    );
+
     return Card(
       clipBehavior: Clip.antiAlias,
       child: InkWell(
@@ -50,7 +55,8 @@ class TwisterCard extends ConsumerWidget {
                       overflow: TextOverflow.ellipsis,
                       style: theme.textTheme.titleMedium,
                     ),
-                    if (twister.transliteration != null) ...[
+                    if (showPronunciation &&
+                        twister.transliteration != null) ...[
                       const SizedBox(height: 4),
                       Text(
                         twister.transliteration!,
