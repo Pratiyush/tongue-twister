@@ -83,4 +83,48 @@ const twistersDe = <Twister>[
     difficulty: Difficulty.medium,
     tip: 'Practise the soft "ch" (ich-Laut) in dicht, Fichten and tüchtig.',
   ),
+  Twister(
+    id: 'de-kirschkerne',
+    section: _s,
+    text: 'Kleine Kinder können keine kleinen Kirschkerne knacken.',
+    translation: "Little children can't crack little cherry stones.",
+    difficulty: Difficulty.easy,
+  ),
+  Twister(
+    id: 'de-ameisen',
+    section: _s,
+    text: 'Acht alte Ameisen aßen am Abend Ananas.',
+    translation: 'Eight old ants ate pineapple in the evening.',
+    difficulty: Difficulty.easy,
+    tip: 'Note the ß in "aßen", a long, sharp "s".',
+  ),
+  Twister(
+    id: 'de-bierbrauer',
+    section: _s,
+    text:
+        'Bierbrauer Bauer braut braunes Bier, '
+        'braunes Bier braut Bierbrauer Bauer.',
+    translation:
+        'Brewer Bauer brews brown beer; brown beer is brewed by brewer Bauer.',
+    difficulty: Difficulty.medium,
+  ),
+  Twister(
+    id: 'de-hemden',
+    section: _s,
+    text: 'Hinter Hermann Hannes Haus hängen hundert Hemden raus.',
+    translation: "Behind Hermann Hanne's house, a hundred shirts hang out.",
+    difficulty: Difficulty.medium,
+    tip: 'Breathe out a clear German "h" on every word.',
+  ),
+  Twister(
+    id: 'de-whiskeymixer',
+    section: _s,
+    text:
+        'Der Whiskeymixer mixt den Whiskey mit dem Whiskeymixer. '
+        'Mit dem Whiskeymixer mixt der Whiskeymixer den Whiskey.',
+    translation:
+        'The whiskey mixer mixes the whiskey with the whiskey mixer. '
+        'With the whiskey mixer, the whiskey mixer mixes the whiskey.',
+    difficulty: Difficulty.hard,
+  ),
 ];

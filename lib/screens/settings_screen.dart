@@ -8,6 +8,7 @@ import '../providers/settings_provider.dart';
 import '../providers/speech_provider.dart';
 
 const appVersion = '1.0.0';
+const appCredit = 'Made with ❤️ by Pratiyush Kumar Singh';
 
 /// A short phrase used to test each language's voice.
 String _sampleFor(LanguageSection section) => switch (section) {
@@ -194,11 +195,13 @@ class SettingsScreen extends ConsumerWidget {
           ListTile(
             leading: const Icon(Icons.info_outline),
             title: const Text('Tongue Twisters'),
-            subtitle: const Text('Version $appVersion'),
+            subtitle: const Text('Version $appVersion\n$appCredit'),
+            isThreeLine: true,
             onTap: () => showLicensePage(
               context: context,
               applicationName: 'Tongue Twisters',
               applicationVersion: appVersion,
+              applicationLegalese: appCredit,
             ),
           ),
         ],

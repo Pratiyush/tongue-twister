@@ -84,4 +84,49 @@ const twistersHi = <Twister>[
         'Pinku holds the ripe tree, Pinku holds the ripe papaya.',
     difficulty: Difficulty.hard,
   ),
+  Twister(
+    id: 'hi-neeli-rel',
+    section: _s,
+    text: 'नीली रेल, लाल रेल।',
+    transliteration: 'Neeli rel, laal rel.',
+    translation: 'Blue train, red train.',
+    difficulty: Difficulty.easy,
+    tip:
+        'The Hindi cousin of "red lorry, yellow lorry". Say it ten times fast.',
+  ),
+  Twister(
+    id: 'hi-jo-hansega',
+    section: _s,
+    text: 'जो हँसेगा वो फँसेगा, जो फँसेगा वो हँसेगा।',
+    transliteration: 'Jo hansega vo phansega, jo phansega vo hansega.',
+    translation: 'Whoever laughs gets caught; whoever gets caught laughs.',
+    difficulty: Difficulty.easy,
+  ),
+  Twister(
+    id: 'hi-daali-daali',
+    section: _s,
+    text:
+        'डाली डाली पे नज़र डाली, किसी ने अच्छी डाली, '
+        'किसी ने बुरी डाली।',
+    transliteration:
+        'Daali daali pe nazar daali, kisi ne achchhi daali, '
+        'kisi ne buri daali.',
+    translation:
+        'I cast a glance at every branch; someone put in a good one, '
+        'someone put in a bad one.',
+    difficulty: Difficulty.medium,
+    tip: 'डाली means both "branch" and "cast" or "put"; the fun is the double meaning.',
+  ),
+  Twister(
+    id: 'hi-marham',
+    section: _s,
+    text: 'मर हम भी गए मरहम के लिए, मरहम न मिला हम दम से गए।',
+    transliteration:
+        'Mar ham bhi gaye marham ke liye, marham na mila ham dam se gaye.',
+    translation:
+        'We nearly died looking for ointment; we found no ointment '
+        'and lost our breath.',
+    difficulty: Difficulty.hard,
+    tip: '"मर हम" (we died) sounds just like "मरहम" (ointment).',
+  ),
 ];

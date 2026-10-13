@@ -6,8 +6,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../models/language_section.dart';
 import '../providers/favorites_provider.dart';
 import '../providers/practice_provider.dart';
+import '../providers/recommendation_provider.dart';
 import '../providers/twister_providers.dart';
 import '../theme/app_theme.dart';
+import '../widgets/difficulty_badge.dart';
 import 'favorites_screen.dart';
 import 'section_screen.dart';
 import 'settings_screen.dart';
@@ -43,6 +45,8 @@ class HomeScreen extends ConsumerWidget {
         padding: const EdgeInsets.fromLTRB(16, 4, 16, 32),
         children: [
           const _Hero(),
+          const SizedBox(height: 16),
+          const _RecommendationCard(),
           for (final group in SectionGroup.values) ...[
             Padding(
               padding: const EdgeInsets.only(top: 24, bottom: 6, left: 4),
@@ -56,6 +60,16 @@ class HomeScreen extends ConsumerWidget {
             for (final section in group.sections)
               _SectionCard(section: section),
           ],
+          Padding(
+            padding: const EdgeInsets.only(top: 32),
+            child: Text(
+              appCredit,
+              textAlign: TextAlign.center,
+              style: theme.textTheme.bodySmall?.copyWith(
+                color: theme.colorScheme.onSurfaceVariant,
+              ),
+            ),
+          ),
         ],
       ),
     );
@@ -256,6 +270,97 @@ class _SectionCard extends ConsumerWidget {
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class _RecommendationCard extends ConsumerWidget {
+  const _RecommendationCard();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final recommendation = ref.watch(recommendationProvider);
+    if (recommendation == null) return const SizedBox.shrink();
+    final twister = recommendation.twister;
+
+    return SectionTheme(
+      section: twister.section,
+      child: Builder(
+        builder: (context) {
+          final theme = Theme.of(context);
+          final scheme = theme.colorScheme;
+          return Card(
+            margin: EdgeInsets.zero,
+            clipBehavior: Clip.antiAlias,
+            child: InkWell(
+              onTap: () {
+                final list = ref.read(sectionTwistersProvider(twister.section));
+                Navigator.of(context).push(
+                  MaterialPageRoute<void>(
+                    builder: (_) => TwisterDetailScreen(
+                      twisters: list,
+                      initialIndex: list.indexOf(twister),
+                    ),
+                  ),
+                );
+              },
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.auto_awesome,
+                          size: 18,
+                          color: scheme.primary,
+                        ),
+                        const SizedBox(width: 6),
+                        Expanded(
+                          child: Text(
+                            'Recommended for you',
+                            style: theme.textTheme.labelLarge?.copyWith(
+                              color: scheme.primary,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                        ),
+                        Text(twister.section.flag),
+                        const SizedBox(width: 8),
+                        DifficultyBadge(twister.difficulty),
+                      ],
+                    ),
+                    const SizedBox(height: 10),
+                    Text(
+                      twister.text,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: theme.textTheme.titleMedium?.copyWith(
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    const SizedBox(height: 6),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            recommendation.reason,
+                            style: theme.textTheme.bodySmall?.copyWith(
+                              color: scheme.onSurfaceVariant,
+                            ),
+                          ),
+                        ),
+                        Icon(Icons.arrow_forward, color: scheme.primary),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          );
+        },
       ),
     );
   }

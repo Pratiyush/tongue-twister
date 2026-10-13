@@ -76,4 +76,42 @@ const twistersEnUs = <Twister>[
     text: 'Eleven benevolent elephants.',
     difficulty: Difficulty.easy,
   ),
+  Twister(
+    id: 'us-skunk-stump',
+    section: _s,
+    text:
+        'A skunk sat on a stump and thunk the stump stunk, '
+        'but the stump thunk the skunk stunk.',
+    difficulty: Difficulty.medium,
+    tip: '"Thunk" is playful American slang for "thought".',
+  ),
+  Twister(
+    id: 'us-pad-kid',
+    section: _s,
+    text: 'Pad kid poured curd pulled cod.',
+    difficulty: Difficulty.hard,
+    tip:
+        'MIT researchers called this one of the hardest tongue twisters '
+        'in English; many people stop after a few tries.',
+  ),
+  Twister(
+    id: 'us-two-witches',
+    section: _s,
+    text:
+        'If two witches were watching two watches, '
+        'which witch would watch which watch?',
+    difficulty: Difficulty.medium,
+  ),
+  Twister(
+    id: 'us-canner',
+    section: _s,
+    text: 'Can you can a can as a canner can can a can?',
+    difficulty: Difficulty.medium,
+  ),
+  Twister(
+    id: 'us-clam-cram',
+    section: _s,
+    text: 'How can a clam cram in a clean cream can?',
+    difficulty: Difficulty.easy,
+  ),
 ];

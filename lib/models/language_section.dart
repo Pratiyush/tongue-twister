@@ -54,6 +54,14 @@ enum LanguageSection {
   final String ttsLocale;
   final SectionGroup group;
 
+  /// Plain English name, used in sentences.
+  String get englishName => switch (this) {
+    LanguageSection.englishUK => 'British English',
+    LanguageSection.englishUS => 'American English',
+    LanguageSection.hindi => 'Hindi',
+    LanguageSection.german => 'German',
+  };
+
   /// Short label shown on chips and list headers.
   String get shortLabel => switch (this) {
     LanguageSection.englishUK => 'UK',

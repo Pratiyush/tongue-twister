@@ -6,9 +6,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tongue_twister/models/language_section.dart';
+import 'package:tongue_twister/models/twister.dart';
 import 'package:tongue_twister/providers/preferences_provider.dart';
 import 'package:tongue_twister/providers/favorites_provider.dart';
 import 'package:tongue_twister/providers/practice_provider.dart';
+import 'package:tongue_twister/providers/recommendation_provider.dart';
 import 'package:tongue_twister/providers/settings_provider.dart';
 import 'package:tongue_twister/providers/speech_provider.dart';
 import 'package:tongue_twister/providers/twister_providers.dart';
@@ -205,6 +207,54 @@ void main() {
       final prefs = await SharedPreferences.getInstance();
       expect(prefs.containsKey('favorite_twister_ids'), isFalse);
       expect(prefs.containsKey('practice_counts'), isFalse);
+    });
+  });
+
+  group('recommendation', () {
+    test('a new user starts with the first easy twister', () async {
+      final container = await createContainer();
+      addTearDown(container.dispose);
+      final rec = container.read(recommendationProvider)!;
+      expect(rec.twister.id, 'gb-seashells');
+      expect(rec.reason, contains('start'));
+    });
+
+    test(
+      'prefers untried twisters in the language the user practises',
+      () async {
+        final container = await createContainer(
+          prefs: {'practice_counts': '{"de-fischers-fritz":3}'},
+        );
+        addTearDown(container.dispose);
+        final rec = container.read(recommendationProvider)!;
+        expect(rec.twister.section, LanguageSection.german);
+        expect(rec.twister.difficulty, Difficulty.easy);
+        expect(rec.twister.id, 'de-zehn-ziegen');
+        expect(rec.reason, contains('German'));
+      },
+    );
+
+    test('updates as soon as the suggestion is practised', () async {
+      final container = await createContainer();
+      addTearDown(container.dispose);
+      final first = container.read(recommendationProvider)!.twister;
+      container.read(practiceProvider.notifier).recordAttempt(first.id);
+      final next = container.read(recommendationProvider)!.twister;
+      expect(next.id, isNot(first.id));
+      expect(next.section, first.section);
+    });
+
+    test('once everything is tried, revises the least practised', () async {
+      final container = await createContainer();
+      addTearDown(container.dispose);
+      final notifier = container.read(practiceProvider.notifier);
+      for (final t in container.read(allTwistersProvider)) {
+        notifier.recordAttempt(t.id);
+        if (t.id != 'hi-marham') notifier.recordAttempt(t.id);
+      }
+      final rec = container.read(recommendationProvider)!;
+      expect(rec.twister.id, 'hi-marham');
+      expect(rec.reason, contains('revise'));
     });
   });
 }

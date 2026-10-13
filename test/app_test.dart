@@ -16,6 +16,7 @@ void main() {
 
     expect(find.text('English'), findsOneWidget);
     expect(find.text('British English'), findsOneWidget);
+    await tester.scrollUntilVisible(find.text('American English'), 200);
     expect(find.text('American English'), findsOneWidget);
     await tester.scrollUntilVisible(find.text('हिन्दी · Hindi'), 200);
     expect(find.text('हिन्दी · Hindi'), findsOneWidget);
@@ -134,5 +135,25 @@ void main() {
       engine.spoken.where((t) => t.startsWith('Fischers Fritz')),
       hasLength(4),
     );
+  });
+
+  testWidgets('home recommends a twister and shows the credit', (tester) async {
+    final container = await createContainer();
+    addTearDown(container.dispose);
+    await tester.pumpWidget(buildApp(container));
+
+    expect(find.text('Recommended for you'), findsOneWidget);
+    await tester.tap(find.text('Recommended for you'));
+    await tester.pumpAndSettle();
+    expect(find.text('She sells seashells by the seashore.'), findsOneWidget);
+    expect(find.text('I said it!'), findsOneWidget);
+
+    await tester.pageBack();
+    await tester.pumpAndSettle();
+    await tester.scrollUntilVisible(
+      find.text('Made with ❤️ by Pratiyush Kumar Singh'),
+      300,
+    );
+    expect(find.text('Made with ❤️ by Pratiyush Kumar Singh'), findsOneWidget);
   });
 }

@@ -35,7 +35,7 @@ lib/
   app.dart                  MaterialApp; theme mode comes from settings
   models/                   LanguageSection, Twister, Difficulty (pure data)
   data/                     twisters_<locale>.dart catalogues and TwisterRepository
-  providers/                all Riverpod state (see below)
+  providers/                all Riverpod state (see below); recommendation_provider.dart picks "Recommended for you"
   screens/                  home, section list, practice detail, favourites, settings
   widgets/                  TwisterCard, DifficultyBadge, speak button helpers
   theme/app_theme.dart      every colour: brand, per-section accents, difficulty, buildTheme()
@@ -81,6 +81,10 @@ docs/screenshots/           README images
 2. Add `accent` and `accentDeep` in `SectionColors`, and a sample phrase in `settings_screen.dart` `_sampleFor`.
 3. Create `lib/data/twisters_<locale>.dart` and include it in `TwisterRepository.forSection`.
 4. Extend `test/data_test.dart`. All `switch` expressions over `LanguageSection` are exhaustive, so the analyzer points at every place to update.
+
+## App credit
+
+The home screen footer and Settings → About show "Made with ❤️ by Pratiyush Kumar Singh" (`appCredit` in `settings_screen.dart`). Keep it.
 
 ## Testing
 

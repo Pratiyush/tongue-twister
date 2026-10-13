@@ -73,4 +73,38 @@ const twistersEnGb = <Twister>[
     text: 'Fred fed Ted bread, and Ted fed Fred bread.',
     difficulty: Difficulty.easy,
   ),
+  Twister(
+    id: 'gb-swan-swam',
+    section: _s,
+    text:
+        'Swan swam over the sea. Swim, swan, swim! '
+        'Swan swam back again. Well swum, swan!',
+    difficulty: Difficulty.easy,
+  ),
+  Twister(
+    id: 'gb-thrush-throat',
+    section: _s,
+    text: "Thirty-three thousand feathers on a thrush's throat.",
+    difficulty: Difficulty.hard,
+    tip: 'Keep every "th" soft and voiceless; don\'t let it slip into "f".',
+  ),
+  Twister(
+    id: 'gb-lesser-leather',
+    section: _s,
+    text: 'Lesser leather never weathered wetter weather better.',
+    difficulty: Difficulty.hard,
+  ),
+  Twister(
+    id: 'gb-thistle-sticks',
+    section: _s,
+    text: 'Six thick thistle sticks.',
+    difficulty: Difficulty.medium,
+    tip: 'The thistle is the national flower of Scotland.',
+  ),
+  Twister(
+    id: 'gb-flying-fish',
+    section: _s,
+    text: 'Freshly fried flying fish.',
+    difficulty: Difficulty.easy,
+  ),
 ];
