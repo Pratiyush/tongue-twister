@@ -267,6 +267,9 @@ class _PracticeControls extends ConsumerWidget {
       speechControllerProvider.select((s) => s.isSpeaking(twister.id)),
     );
     final settings = ref.watch(settingsProvider);
+    final (successBackground, successForeground) = AppColors.success(
+      Theme.of(context).brightness,
+    );
 
     return SafeArea(
       top: false,
@@ -314,9 +317,13 @@ class _PracticeControls extends ConsumerWidget {
             const SizedBox(height: 8),
             SizedBox(
               width: double.infinity,
-              child: FilledButton.tonalIcon(
+              child: FilledButton.icon(
+                style: FilledButton.styleFrom(
+                  backgroundColor: successBackground,
+                  foregroundColor: successForeground,
+                ),
                 onPressed: onSaidIt,
-                icon: const Icon(Icons.record_voice_over),
+                icon: const Icon(Icons.check_circle_outline),
                 label: const Text('I said it!'),
               ),
             ),

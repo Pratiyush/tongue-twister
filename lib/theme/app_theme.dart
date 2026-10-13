@@ -11,6 +11,13 @@ abstract final class AppColors {
   /// Filled heart for favourites, the same in every section.
   static const favorite = Color(0xFFE5395B);
 
+  /// "I said it!" button: a success green, the same in every section so it
+  /// stands apart from the section-coloured Listen button.
+  static (Color background, Color foreground) success(Brightness brightness) =>
+      brightness == Brightness.dark
+      ? (const Color(0xFF4ADE80), const Color(0xFF052E16))
+      : (const Color(0xFF15803D), Colors.white);
+
   static const heroGradient = LinearGradient(
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,

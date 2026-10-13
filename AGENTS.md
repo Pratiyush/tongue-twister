@@ -61,6 +61,7 @@ docs/screenshots/           README images
 
 - Every colour lives in `lib/theme/app_theme.dart`. Screens use `Theme.of(context).colorScheme` and the `SectionColors` / `DifficultyColors` extensions. Don't hard-code hex values in widgets; plain `Colors.white` on gradients is fine.
 - Screens belonging to one section wrap their content in `SectionTheme(section: ...)` and use `SectionAppBar`. Each section's button and chip colours are a hand-picked `AccentPalette` per brightness, chosen for contrast (at least 4.5:1 for text). Don't go back to `ColorScheme.fromSeed` alone: it tinted every surface and turned saffron and gold into muddy brown and olive.
+- The "I said it!" button uses `AppColors.success` (green) in every section, so it stays distinct from the section-coloured Listen button.
 - Surfaces are neutral greys in both modes (`_scheme` in `app_theme.dart`). Colour belongs to accents only: buttons, chips, headers, the twister card gradient and list-card stripes.
 - Build text styles from `theme.textTheme.*.copyWith(...)`, not bare `TextStyle(...)`, so typography and font fallback stay consistent.
 - Every layout must work at 360 dp width in light and dark mode. Long Hindi and German lines must wrap or ellipsize, never overflow.
