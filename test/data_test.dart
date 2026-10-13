@@ -10,6 +10,16 @@ void main() {
     expect(ids.toSet().length, ids.length);
   });
 
+  test('every section has at least 25 twisters', () {
+    for (final section in LanguageSection.values) {
+      expect(
+        repo.forSection(section).length,
+        greaterThanOrEqualTo(25),
+        reason: section.name,
+      );
+    }
+  });
+
   test('every section has twisters filed under the right section', () {
     for (final section in LanguageSection.values) {
       final twisters = repo.forSection(section);

@@ -41,12 +41,23 @@ jobs:
           channel: stable
           cache: true
       - run: flutter pub get
+      # One small APK per processor type, plus a universal APK that runs
+      # everywhere (kept so the old download link still works).
+      - run: flutter build apk --release --split-per-abi
+      - name: Collect per-processor APKs
+        run: |
+          mkdir -p dist
+          out=build/app/outputs/flutter-apk
+          cp "$out/app-arm64-v8a-release.apk"   dist/tongue-twisters-arm64-v8a.apk
+          cp "$out/app-armeabi-v7a-release.apk" dist/tongue-twisters-armeabi-v7a.apk
+          cp "$out/app-x86_64-release.apk"      dist/tongue-twisters-x86_64.apk
       - run: flutter build apk --release
-      - run: mv build/app/outputs/flutter-apk/app-release.apk tongue-twisters.apk
+      - run: cp build/app/outputs/flutter-apk/app-release.apk dist/tongue-twisters.apk
+      - run: ls -lh dist
       - uses: actions/upload-artifact@v4
         with:
           name: tongue-twisters-android
-          path: tongue-twisters.apk
+          path: dist/*.apk
 
   ios:
     name: iOS app (unsigned)
@@ -107,7 +118,17 @@ jobs:
           name: ${{ steps.meta.outputs.name }}
           target_commitish: ${{ github.sha }}
           make_latest: true
+          body: |
+            **Which Android file?**
+            - `tongue-twisters-arm64-v8a.apk`: almost every phone from the last ~8 years (start here)
+            - `tongue-twisters-armeabi-v7a.apk`: older 32-bit phones
+            - `tongue-twisters-x86_64.apk`: emulators and Chromebooks
+            - `tongue-twisters.apk`: universal, works everywhere but is larger
+
+            `tongue-twisters-unsigned.ipa` is the iOS build; sign it (Sideloadly, AltStore or Xcode) before installing.
+
+            Made with ❤️ by Pratiyush Kumar Singh
           files: |
-            tongue-twisters.apk
+            tongue-twisters*.apk
             tongue-twisters-unsigned.ipa
           generate_release_notes: true

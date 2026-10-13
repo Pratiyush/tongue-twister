@@ -73,6 +73,7 @@ docs/screenshots/           README images
 - `id` is a stable, unique kebab-case key prefixed by section (`gb-`, `us-`, `hi-`, `de-`). Never rename an existing id: favourites and practice counts are stored by id.
 - Hindi: `text` in Devanagari, plus `transliteration` (romanised) and `translation` (English). German: `translation` required. English: use regional vocabulary for the section (lorry/biscuit vs. buggy/woodchuck).
 - `tip` is optional: a short pronunciation hint or cultural note.
+- Every section has at least 25 twisters; don't drop below that.
 - `test/data_test.dart` enforces these rules. Extend it when adding a rule.
 
 ## Adding a language
@@ -96,5 +97,5 @@ The home screen footer and Settings → About show "Made with ❤️ by Pratiyus
 
 - Android: `AndroidManifest.xml` declares the `android.intent.action.TTS_SERVICE` query, which Android 11+ needs. Release builds use the debug signing key.
 - iOS: `flutter_tts` plays through the silent switch (`IosTextToSpeechAudioCategory.playback`).
-- CI (`.github/workflows/build.yml`): analyze and test, then a release APK (Ubuntu) and an unsigned IPA (macOS). Every push to the default branch publishes a GitHub Release `v<version>-build<run>` with both files, and `v*` tags publish that version. The stable download link is `releases/latest/download/tongue-twisters.apk`. Bump `version:` in `pubspec.yaml` and `appVersion` in `settings_screen.dart` together.
+- CI (`.github/workflows/build.yml`): analyze and test, then a release APK (Ubuntu) and an unsigned IPA (macOS). Every push to the default branch publishes a GitHub Release `v<version>-build<run>` with both files, and `v*` tags publish that version. Android ships as per-processor APKs (`tongue-twisters-arm64-v8a.apk`, `-armeabi-v7a`, `-x86_64`) plus the universal `tongue-twisters.apk`; stable links are `releases/latest/download/<file>`. Bump `version:` in `pubspec.yaml` and `appVersion` in `settings_screen.dart` together.
 - Launcher icons: edit `assets/icon/*.png`, then run `dart run flutter_launcher_icons`. Afterwards, **revert any change it makes to `ios/Runner.xcodeproj/project.pbxproj`**; it's a known bug in the tool.

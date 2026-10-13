@@ -4,10 +4,10 @@ A Flutter app (iOS and Android) for practising tongue twisters in four sections:
 
 | Section | Voice | Twisters | Notes |
 | --- | --- | --- | --- |
-| 🇬🇧 British English | `en-GB` | 15 | British vocabulary (lorry, biscuits) and pronunciation tips |
-| 🇺🇸 American English | `en-US` | 15 | American classics (woodchuck, buggy bumpers, unique New York) |
-| 🇮🇳 Hindi | `hi-IN` | 11 | Devanagari text, romanised pronunciation and English meaning |
-| 🇩🇪 German | `de-DE` | 15 | Zungenbrecher with English meaning |
+| 🇬🇧 British English | `en-GB` | 25 | British vocabulary (lorry, biscuits) and pronunciation tips |
+| 🇺🇸 American English | `en-US` | 25 | American classics (woodchuck, buggy bumpers, unique New York) |
+| 🇮🇳 Hindi | `hi-IN` | 25 | Devanagari text, romanised pronunciation and English meaning |
+| 🇩🇪 German | `de-DE` | 25 | Zungenbrecher with English meaning |
 
 ## Features
 
@@ -25,7 +25,16 @@ A Flutter app (iOS and Android) for practising tongue twisters in four sections:
 
 ## Download
 
-**Android APK (latest):** https://github.com/Pratiyush/tongue-twister/releases/latest/download/tongue-twisters.apk
+**Android APK (latest):** most phones should use the small 64-bit build:
+
+| Your phone | Download |
+| --- | --- |
+| Almost any phone from the last ~8 years (64-bit ARM) | [tongue-twisters-arm64-v8a.apk](https://github.com/Pratiyush/tongue-twister/releases/latest/download/tongue-twisters-arm64-v8a.apk) |
+| Older 32-bit phones | [tongue-twisters-armeabi-v7a.apk](https://github.com/Pratiyush/tongue-twister/releases/latest/download/tongue-twisters-armeabi-v7a.apk) |
+| Emulators and Chromebooks (x86_64) | [tongue-twisters-x86_64.apk](https://github.com/Pratiyush/tongue-twister/releases/latest/download/tongue-twisters-x86_64.apk) |
+| Not sure: universal, works everywhere, larger | [tongue-twisters.apk](https://github.com/Pratiyush/tongue-twister/releases/latest/download/tongue-twisters.apk) |
+
+If the 64-bit file says "App not installed", use the universal one.
 
 All builds are listed at https://github.com/Pratiyush/tongue-twister/releases.
 
