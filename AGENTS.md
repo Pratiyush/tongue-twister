@@ -15,6 +15,10 @@ Guidance for AI coding agents (and humans) working on this repository.
 
 Stack: Flutter (stable, pinned in `.github/workflows/build.yml`), Dart 3, `flutter_riverpod` 3, `flutter_tts`, `shared_preferences`. No code generation.
 
+## Second app: `german_words/`
+
+`german_words/` is a separate Flutter app called **Wortschatz**: German vocabulary with flashcards, spelling and the Hive, Der Die Das and Fallee games, built on words from the lernle deck. It has its own `pubspec.yaml`, tests and CI workflow (`.github/workflows/german-words.yml`), and the root `analysis_options.yaml` excludes it. Run its commands from inside that folder. It follows the same Riverpod, persistence and `SpeechEngine` conventions as this app. See `german_words/README.md`.
+
 ## Commands
 
 ```sh

@@ -1,0 +1,78 @@
+name: Wortschatz (german_words)
+
+on:
+  push:
+    branches: ['**']
+    paths: ['german_words/**', '.github/workflows/german-words.yml']
+  pull_request:
+    paths: ['german_words/**', '.github/workflows/german-words.yml']
+  workflow_dispatch:
+
+env:
+  FLUTTER_VERSION: '3.47.7'
+
+defaults:
+  run:
+    working-directory: german_words
+
+jobs:
+  test:
+    name: Analyze and test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: stable
+          cache: true
+      - run: flutter pub get
+      - run: dart format --output=none --set-exit-if-changed lib test tool
+      - run: flutter analyze
+      - run: flutter test
+
+  android:
+    name: Android APK
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: stable
+          cache: true
+      - run: flutter pub get
+      - run: flutter build apk --release
+      - run: cp build/app/outputs/flutter-apk/app-release.apk wortschatz.apk
+      - uses: actions/upload-artifact@v4
+        with:
+          name: wortschatz-android
+          path: german_words/wortschatz.apk
+
+  ios:
+    name: iOS app (unsigned)
+    needs: test
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: stable
+          cache: true
+      - run: flutter pub get
+      - run: flutter build ios --release --no-codesign
+      - name: Package unsigned IPA
+        run: |
+          mkdir -p Payload
+          cp -R build/ios/iphoneos/Runner.app Payload/
+          zip -qr wortschatz-unsigned.ipa Payload
+      - uses: actions/upload-artifact@v4
+        with:
+          name: wortschatz-ios
+          path: german_words/wortschatz-unsigned.ipa
