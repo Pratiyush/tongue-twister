@@ -31,7 +31,7 @@
   "heroTitle": "Annoda la lingua!",
   "heroSubtitle": "Ascolta una voce madrelingua, poi ripeti sempre più veloce.",
   "heroStatRatio": "{done}/{total}",
-  "heroStatPractised": "esercitati",
+  "heroStatPractised": "provati",
   "heroStatFavourites": "preferiti",
   "surpriseMe": "Sorprendimi",
   "sectionProgress": "{practised, plural, one{{practised} su {total} esercitato} other{{practised} su {total} esercitati}}",

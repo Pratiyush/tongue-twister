@@ -38,7 +38,7 @@ class AppLocalizationsTa extends AppLocalizations {
   String get settingsTitle => 'அமைப்புகள்';
 
   @override
-  String get actionListen => 'கேள்';
+  String get actionListen => 'கேளுங்கள்';
 
   @override
   String get actionStop => 'நிறுத்து';
@@ -366,7 +366,7 @@ class AppLocalizationsTa extends AppLocalizations {
   String get dialogCancel => 'ரத்துசெய்';
 
   @override
-  String get dialogClear => 'அழி';
+  String get dialogClear => 'அழிக்கவும்';
 
   @override
   String get settingsAbout => 'ஆப் பற்றி';

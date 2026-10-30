@@ -100,7 +100,7 @@ class AppLocalizationsUr extends AppLocalizations {
   String get speedFast => 'تیز';
 
   @override
-  String get heroTitle => 'زبان کو مروڑیں!';
+  String get heroTitle => 'زبان کو الجھائیں!';
 
   @override
   String get heroSubtitle =>

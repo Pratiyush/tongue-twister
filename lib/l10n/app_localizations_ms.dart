@@ -211,7 +211,7 @@ class AppLocalizationsMs extends AppLocalizations {
   }
 
   @override
-  String get saidIt => 'Saya dah sebut!';
+  String get saidIt => 'Saya sudah sebut!';
 
   @override
   String get practiseFirstTry =>

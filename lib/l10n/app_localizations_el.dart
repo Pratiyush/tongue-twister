@@ -216,7 +216,7 @@ class AppLocalizationsEl extends AppLocalizations {
       'Η πρώτη προσπάθεια καταγράφηκε. Τώρα πιο γρήγορα!';
 
   @override
-  String get practiseThreeTimes => 'Τρεις φορές! Η γλώσσα σου ζεσταίνεται.';
+  String get practiseThreeTimes => 'Τρεις φορές! Η γλώσσα σου παίρνει μπρος.';
 
   @override
   String get practiseTenTimes => 'Δέκα φορές. Αυτόν τον κατέκτησες!';

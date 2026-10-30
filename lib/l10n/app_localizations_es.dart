@@ -218,7 +218,8 @@ class AppLocalizationsEs extends AppLocalizations {
   String get practiseFirstTry => 'Primer intento anotado. ¡Ahora más rápido!';
 
   @override
-  String get practiseThreeTimes => '¡Tres veces! Tu lengua ya está calentando.';
+  String get practiseThreeTimes =>
+      '¡Tres veces! Tu lengua ya está tomando ritmo.';
 
   @override
   String get practiseTenTimes => 'Diez veces. ¡Este ya lo dominas!';
@@ -310,7 +311,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get settingsVoicesHelp =>
-      'Los trabalenguas usan grabaciones de hablantes nativos. La voz de texto a voz de tu móvil solo se usa si falta una grabación. Si un idioma aparece como no instalado, añádelo en los ajustes de texto a voz de tu móvil.';
+      'Los trabalenguas usan grabaciones de hablantes nativos. La voz de texto a voz de tu teléfono solo se usa si falta una grabación. Si un idioma aparece como no instalado, añádelo en los ajustes de texto a voz de tu teléfono.';
 
   @override
   String get voiceInstalled => 'Instalada';
@@ -390,7 +391,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get adFreeWatch => '24 horas sin anuncios';
 
   @override
-  String get adFreeWatchHelp => 'Mira un vídeo corto';
+  String get adFreeWatchHelp => 'Mira un video corto';
 
   @override
   String adFreeActive(String time) {
@@ -404,5 +405,5 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get adFreeUnavailable =>
-      'Ahora no hay ningún vídeo. Inténtalo más tarde.';
+      'Ahora no hay ningún video. Inténtalo más tarde.';
 }

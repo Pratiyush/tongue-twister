@@ -212,7 +212,7 @@ class AppLocalizationsPt extends AppLocalizations {
   }
 
   @override
-  String get saidIt => 'Eu falei!';
+  String get saidIt => 'Consegui!';
 
   @override
   String get practiseFirstTry =>
@@ -615,7 +615,7 @@ class AppLocalizationsPtPt extends AppLocalizationsPt {
   }
 
   @override
-  String get saidIt => 'Já disse!';
+  String get saidIt => 'Consegui!';
 
   @override
   String get practiseFirstTry =>

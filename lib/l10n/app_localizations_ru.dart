@@ -283,7 +283,7 @@ class AppLocalizationsRu extends AppLocalizations {
       other: 'Звучит $count раза подряд',
       many: 'Звучит $count раз подряд',
       few: 'Звучит $count раза подряд',
-      one: 'Звучит $count раз подряд',
+      one: 'Звучит $count раз',
     );
     return '$_temp0';
   }

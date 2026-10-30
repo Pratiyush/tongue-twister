@@ -100,7 +100,7 @@ class AppLocalizationsBg extends AppLocalizations {
   String get speedFast => 'Бързо';
 
   @override
-  String get heroTitle => 'Развържи си езика!';
+  String get heroTitle => 'Заплети си езика!';
 
   @override
   String get heroSubtitle =>

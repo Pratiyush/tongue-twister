@@ -51,7 +51,7 @@
   "repeatInARow": "{count, plural, other{{count}× στη σειρά}}",
   "saidIt": "Το είπα!",
   "practiseFirstTry": "Η πρώτη προσπάθεια καταγράφηκε. Τώρα πιο γρήγορα!",
-  "practiseThreeTimes": "Τρεις φορές! Η γλώσσα σου ζεσταίνεται.",
+  "practiseThreeTimes": "Τρεις φορές! Η γλώσσα σου παίρνει μπρος.",
   "practiseTenTimes": "Δέκα φορές. Αυτόν τον κατέκτησες!",
   "practisedCountToast": "{count, plural, =1{Μπράβο! Τον είπες μία φορά.} other{Μπράβο! Τον είπες {count} φορές.}}",
   "noVoiceForLocale": "Δεν υπάρχει φωνή {locale} στη συσκευή. Πρόσθεσε μία στις ρυθμίσεις κειμένου σε ομιλία.",

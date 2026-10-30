@@ -100,7 +100,7 @@ class AppLocalizationsTh extends AppLocalizations {
   String get speedFast => 'เร็ว';
 
   @override
-  String get heroTitle => 'มาลิ้นพันกันเถอะ!';
+  String get heroTitle => 'ท้าทายลิ้นของคุณ!';
 
   @override
   String get heroSubtitle => 'ฟังเสียงเจ้าของภาษา แล้วพูดตามให้เร็วขึ้นทุกรอบ';

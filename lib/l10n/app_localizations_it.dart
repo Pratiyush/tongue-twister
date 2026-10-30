@@ -112,7 +112,7 @@ class AppLocalizationsIt extends AppLocalizations {
   }
 
   @override
-  String get heroStatPractised => 'esercitati';
+  String get heroStatPractised => 'provati';
 
   @override
   String get heroStatFavourites => 'preferiti';

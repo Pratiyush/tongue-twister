@@ -21,7 +21,10 @@ class Language {
   /// BCP 47 tag, as the player's pick is stored: 'de', 'pt-BR', 'zh-Hant'.
   final String tag;
 
-  /// An emoji flag.
+  /// An emoji flag. None carries religious text, and none is one that iOS
+  /// hides in some regions. A language may share a flag with another when
+  /// most of its speakers live in that country (Tamil and Hindi both use
+  /// 🇮🇳); the native name tells them apart.
   final String flag;
 
   /// The language's name in itself ("Deutsch"), as the picker lists it.
@@ -95,12 +98,12 @@ const languages = <Language>[
   Language('hr', '🇭🇷', 'Hrvatski', 'Croatian'),
   Language('bg', '🇧🇬', 'Български', 'Bulgarian'),
   Language('he', '🇮🇱', 'עברית', 'Hebrew', rtl: true),
-  Language('ar', '🇸🇦', 'العربية', 'Arabic', rtl: true),
+  Language('ar', '🇪🇬', 'العربية', 'Arabic', rtl: true),
   Language('fa', '🇮🇷', 'فارسی', 'Persian', rtl: true),
   Language('ur', '🇵🇰', 'اردو', 'Urdu', rtl: true),
   Language('hi', '🇮🇳', 'हिन्दी', 'Hindi'),
   Language('bn', '🇧🇩', 'বাংলা', 'Bengali'),
-  Language('ta', '🇱🇰', 'தமிழ்', 'Tamil'),
+  Language('ta', '🇮🇳', 'தமிழ்', 'Tamil'),
   Language('th', '🇹🇭', 'ไทย', 'Thai'),
   Language('vi', '🇻🇳', 'Tiếng Việt', 'Vietnamese'),
   Language('id', '🇮🇩', 'Bahasa Indonesia', 'Indonesian'),
@@ -109,7 +112,7 @@ const languages = <Language>[
   Language('ja', '🇯🇵', '日本語', 'Japanese'),
   Language('ko', '🇰🇷', '한국어', 'Korean'),
   Language('zh-Hans', '🇨🇳', '简体中文', 'Chinese (Simplified)', arb: 'zh'),
-  Language('zh-Hant', '🇹🇼', '繁體中文', 'Chinese (Traditional)'),
+  Language('zh-Hant', '🇭🇰', '繁體中文', 'Chinese (Traditional)'),
   Language('sw', '🇰🇪', 'Kiswahili', 'Swahili'),
 ];
 

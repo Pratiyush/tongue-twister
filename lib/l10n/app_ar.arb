@@ -51,7 +51,7 @@
   "repeatInARow": "{count, plural, zero{{count}× متتالية} one{{count}× متتالية} two{{count}× متتالية} few{{count}× متتالية} many{{count}× متتالية} other{{count}× متتالية}}",
   "saidIt": "قلتها!",
   "practiseFirstTry": "سُجّلت المحاولة الأولى. الآن قلها أسرع!",
-  "practiseThreeTimes": "ثلاث مرات! لسانك بدأ يسخن.",
+  "practiseThreeTimes": "ثلاث مرات! لسانك بدأ ينطلق.",
   "practiseTenTimes": "عشر مرات. لقد أتقنت هذه!",
   "practisedCountToast": "{count, plural, zero{رائع! تمرّنت {count} مرة.} one{رائع! تمرّنت مرة واحدة.} two{رائع! تمرّنت مرتين.} few{رائع! تمرّنت {count} مرات.} many{رائع! تمرّنت {count} مرة.} other{رائع! تمرّنت {count} مرة.}}",
   "noVoiceForLocale": "لا يوجد صوت {locale} على هذا الجهاز. أضِفه من إعدادات تحويل النص إلى كلام في النظام.",

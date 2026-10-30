@@ -51,7 +51,7 @@
   "repeatInARow": "{count, plural, one{{count}× seguidas} other{{count}× seguidas}}",
   "saidIt": "¡Lo dije!",
   "practiseFirstTry": "Primer intento anotado. ¡Ahora más rápido!",
-  "practiseThreeTimes": "¡Tres veces! Tu lengua ya está calentando.",
+  "practiseThreeTimes": "¡Tres veces! Tu lengua ya está tomando ritmo.",
   "practiseTenTimes": "Diez veces. ¡Este ya lo dominas!",
   "practisedCountToast": "{count, plural, =1{¡Genial! Practicado una vez.} other{¡Genial! Practicado {count} veces.}}",
   "noVoiceForLocale": "No hay voz {locale} en este dispositivo. Añade una en los ajustes de texto a voz.",
@@ -74,7 +74,7 @@
   "showMeaning": "Mostrar significado",
   "showMeaningHelp": "Traducción al inglés para hindi y alemán",
   "settingsVoices": "Voces",
-  "settingsVoicesHelp": "Los trabalenguas usan grabaciones de hablantes nativos. La voz de texto a voz de tu móvil solo se usa si falta una grabación. Si un idioma aparece como no instalado, añádelo en los ajustes de texto a voz de tu móvil.",
+  "settingsVoicesHelp": "Los trabalenguas usan grabaciones de hablantes nativos. La voz de texto a voz de tu teléfono solo se usa si falta una grabación. Si un idioma aparece como no instalado, añádelo en los ajustes de texto a voz de tu teléfono.",
   "voiceInstalled": "Instalada",
   "voiceNotInstalled": "No instalada",
   "voiceUnknown": "Desconocida",
@@ -98,8 +98,8 @@
   "privacyChoicesHelp": "Cambia tu consentimiento de anuncios",
   "settingsAds": "Anuncios",
   "adFreeWatch": "24 horas sin anuncios",
-  "adFreeWatchHelp": "Mira un vídeo corto",
+  "adFreeWatchHelp": "Mira un video corto",
   "adFreeActive": "Sin anuncios hasta {time}",
   "adFreeThanks": "¡Gracias! Sin anuncios hasta {time}.",
-  "adFreeUnavailable": "Ahora no hay ningún vídeo. Inténtalo más tarde."
+  "adFreeUnavailable": "Ahora no hay ningún video. Inténtalo más tarde."
 }

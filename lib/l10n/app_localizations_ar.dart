@@ -227,7 +227,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get practiseFirstTry => 'سُجّلت المحاولة الأولى. الآن قلها أسرع!';
 
   @override
-  String get practiseThreeTimes => 'ثلاث مرات! لسانك بدأ يسخن.';
+  String get practiseThreeTimes => 'ثلاث مرات! لسانك بدأ ينطلق.';
 
   @override
   String get practiseTenTimes => 'عشر مرات. لقد أتقنت هذه!';

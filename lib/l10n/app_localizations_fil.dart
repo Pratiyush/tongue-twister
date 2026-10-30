@@ -217,7 +217,7 @@ class AppLocalizationsFil extends AppLocalizations {
   String get practiseFirstTry => 'Naitala ang unang subok. Bilisan mo na!';
 
   @override
-  String get practiseThreeTimes => 'Tatlong beses! Umiinit na ang dila mo.';
+  String get practiseThreeTimes => 'Tatlong beses! Nasasanay na ang dila mo.';
 
   @override
   String get practiseTenTimes => 'Sampung beses. Gamay mo na ito!';
@@ -272,7 +272,7 @@ class AppLocalizationsFil extends AppLocalizations {
       count,
       locale: localeName,
       other: 'Pinapatugtog nang $count beses nang sunod-sunod',
-      one: 'Pinapatugtog nang $count beses nang sunod-sunod',
+      one: 'Pinapatugtog nang isang beses',
     );
     return '$_temp0';
   }

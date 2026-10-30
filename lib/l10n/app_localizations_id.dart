@@ -167,7 +167,7 @@ class AppLocalizationsId extends AppLocalizations {
   }
 
   @override
-  String get searchTwistersHint => 'Cari tongue twister';
+  String get searchTwistersHint => 'Cari kalimat';
 
   @override
   String get filterAll => 'Semua';

@@ -100,7 +100,7 @@ class AppLocalizationsHr extends AppLocalizations {
   String get speedFast => 'Brzo';
 
   @override
-  String get heroTitle => 'Razvezi jezik!';
+  String get heroTitle => 'Zapetljaj jezik!';
 
   @override
   String get heroSubtitle =>

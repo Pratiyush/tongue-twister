@@ -40,7 +40,7 @@
   "recommendStarter": "{level, select, easy{Yang mudah untuk memulai} medium{Yang sedang untuk memulai} hard{Yang sulit untuk memulai} other{Pilihan bagus untuk memulai}}",
   "recommendPractisedLanguage": "{level, select, easy{Kalimat mudah baru berbahasa {language}, bahasa latihanmu} medium{Kalimat baru tingkat sedang berbahasa {language}, bahasa latihanmu} hard{Kalimat sulit baru berbahasa {language}, bahasa latihanmu} other{Kalimat baru berbahasa {language}, bahasa latihanmu}}",
   "recommendNewLanguage": "Coba hal baru dalam bahasa {language}",
-  "searchTwistersHint": "Cari tongue twister",
+  "searchTwistersHint": "Cari kalimat",
   "filterAll": "Semua",
   "noTwistersMatch": "Tidak ada yang cocok.",
   "favouritesEmpty": "Ketuk ♡ di kalimat mana pun untuk menyimpannya di sini.",

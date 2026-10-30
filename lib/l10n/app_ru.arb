@@ -64,7 +64,7 @@
   "settingsPlayback": "Воспроизведение",
   "settingsSpeakingSpeed": "Скорость речи",
   "settingsRepeatChallenge": "Повтор подряд",
-  "settingsRepeatSubtitle": "{count, plural, one{Звучит {count} раз подряд} few{Звучит {count} раза подряд} many{Звучит {count} раз подряд} other{Звучит {count} раза подряд}}",
+  "settingsRepeatSubtitle": "{count, plural, one{Звучит {count} раз} few{Звучит {count} раза подряд} many{Звучит {count} раз подряд} other{Звучит {count} раза подряд}}",
   "repeatCountValue": "{count}×",
   "fewerRepeats": "Меньше повторов",
   "moreRepeats": "Больше повторов",

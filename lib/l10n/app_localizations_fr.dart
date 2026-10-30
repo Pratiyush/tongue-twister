@@ -100,7 +100,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get speedFast => 'Rapide';
 
   @override
-  String get heroTitle => 'Délie ta langue !';
+  String get heroTitle => 'Emmêle ta langue !';
 
   @override
   String get heroSubtitle =>

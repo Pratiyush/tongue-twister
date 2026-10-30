@@ -113,7 +113,7 @@ class AppLocalizationsSw extends AppLocalizations {
   }
 
   @override
-  String get heroStatPractised => 'umefanya';
+  String get heroStatPractised => 'vimezoezwa';
 
   @override
   String get heroStatFavourites => 'vipendwa';
@@ -126,8 +126,8 @@ class AppLocalizationsSw extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       practised,
       locale: localeName,
-      other: '$practised kati ya $total umefanya',
-      one: '$practised kati ya $total umefanya',
+      other: '$practised kati ya $total vimezoezwa',
+      one: '$practised kati ya $total vimezoezwa',
     );
     return '$_temp0';
   }
@@ -184,8 +184,8 @@ class AppLocalizationsSw extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'Umefanya $count×',
-      one: 'Umefanya $count×',
+      other: 'Mazoezi $count×',
+      one: 'Mazoezi $count×',
     );
     return '$_temp0';
   }

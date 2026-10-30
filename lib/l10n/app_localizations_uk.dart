@@ -281,7 +281,7 @@ class AppLocalizationsUk extends AppLocalizations {
       other: 'Звучить $count рази поспіль',
       many: 'Звучить $count разів поспіль',
       few: 'Звучить $count рази поспіль',
-      one: 'Звучить $count раз поспіль',
+      one: 'Звучить $count раз',
     );
     return '$_temp0';
   }
