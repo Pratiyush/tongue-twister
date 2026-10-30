@@ -5,6 +5,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:tongue_twister/l10n/app_localizations.dart';
+import 'package:tongue_twister/l10n/l10n_ext.dart';
 import 'package:tongue_twister/models/language_section.dart';
 import 'package:tongue_twister/models/twister.dart';
 import 'package:tongue_twister/providers/preferences_provider.dart';
@@ -295,12 +297,14 @@ void main() {
   });
 
   group('recommendation', () {
+    final en = lookupAppLocalizations(const Locale('en'));
+
     test('a new user starts with the first easy twister', () async {
       final container = await createContainer();
       addTearDown(container.dispose);
       final rec = container.read(recommendationProvider)!;
       expect(rec.twister.id, 'gb-seashells');
-      expect(rec.reason, contains('start'));
+      expect(rec.describe(en), contains('start'));
     });
 
     test(
@@ -314,7 +318,7 @@ void main() {
         expect(rec.twister.section, LanguageSection.german);
         expect(rec.twister.difficulty, Difficulty.easy);
         expect(rec.twister.id, 'de-zehn-ziegen');
-        expect(rec.reason, contains('German'));
+        expect(rec.describe(en), contains('German'));
       },
     );
 
@@ -338,7 +342,7 @@ void main() {
       }
       final rec = container.read(recommendationProvider)!;
       expect(rec.twister.id, 'hi-marham');
-      expect(rec.reason, contains('revise'));
+      expect(rec.describe(en), contains('revise'));
     });
   });
 }

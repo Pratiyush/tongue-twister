@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../l10n/app_localizations.dart';
 import '../models/twister.dart';
 import '../providers/speech_provider.dart';
 
@@ -23,8 +24,8 @@ Future<void> speakTwister(
       ..showSnackBar(
         SnackBar(
           content: Text(
-            'No ${twister.section.ttsLocale} voice on this device. '
-            'Add one in your system text-to-speech settings.',
+            AppLocalizations.of(context)
+                .noVoiceForLocale(twister.section.ttsLocale),
           ),
         ),
       );
@@ -41,8 +42,9 @@ class SpeakIconButton extends ConsumerWidget {
     final speaking = ref.watch(
       speechControllerProvider.select((s) => s.isSpeaking(twister.id)),
     );
+    final l = AppLocalizations.of(context);
     return IconButton(
-      tooltip: speaking ? 'Stop' : 'Listen',
+      tooltip: speaking ? l.actionStop : l.actionListen,
       icon: Icon(
         speaking ? Icons.stop_circle_outlined : Icons.volume_up_outlined,
       ),

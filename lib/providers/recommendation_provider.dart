@@ -5,13 +5,30 @@ import '../models/twister.dart';
 import 'practice_provider.dart';
 import 'twister_providers.dart';
 
+/// Why a twister was suggested. The widget turns it into a sentence with
+/// `Recommendation.describe` in `lib/l10n/l10n_ext.dart`, filling in the
+/// twister's difficulty and language.
+enum RecommendationReason {
+  /// Everything has been tried; this is the least-practised twister.
+  revise,
+
+  /// Nothing has been practised yet; an easy one to begin with.
+  starter,
+
+  /// Untried, in a language the user already practises.
+  practisedLanguage,
+
+  /// Untried, in a language the user hasn't practised yet.
+  newLanguage,
+}
+
 class Recommendation {
   const Recommendation(this.twister, this.reason);
 
   final Twister twister;
 
   /// Short explanation shown under the suggestion.
-  final String reason;
+  final RecommendationReason reason;
 }
 
 /// Suggests what to practise next, based on the user's practice history.
@@ -45,19 +62,14 @@ final recommendationProvider = Provider<Recommendation?>((ref) {
 
   if (untried.isEmpty) {
     final least = all.reduce((a, b) => count(b) < count(a) ? b : a);
-    return Recommendation(
-      least,
-      'Time to revise: your least-practised twister',
-    );
+    return Recommendation(least, RecommendationReason.revise);
   }
 
   final pick = untried.first;
-  final level = pick.difficulty.label.toLowerCase();
   final reason = sectionScore.values.every((s) => s == 0)
-      ? 'A good $level one to start with'
+      ? RecommendationReason.starter
       : sectionScore[pick.section]! > 0
-      ? 'New $level twister in ${pick.section.englishName}, '
-            'a language you practise'
-      : 'Try something new in ${pick.section.englishName}';
+      ? RecommendationReason.practisedLanguage
+      : RecommendationReason.newLanguage;
   return Recommendation(pick, reason);
 });

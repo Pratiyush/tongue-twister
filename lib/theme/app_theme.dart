@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../l10n/app_localizations.dart';
+import '../l10n/l10n_ext.dart';
 import '../models/language_section.dart';
 import '../models/twister.dart';
 
@@ -337,7 +339,9 @@ class SectionAppBar extends StatelessWidget implements PreferredSizeWidget {
       titleTextStyle: theme.appBarTheme.titleTextStyle?.copyWith(
         color: Colors.white,
       ),
-      title: Text('${section.flag}  ${section.title}'),
+      title: Text(
+        '${section.flag}  ${section.title(AppLocalizations.of(context))}',
+      ),
       actions: actions,
     );
   }

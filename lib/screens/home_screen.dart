@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../ads/ads.dart';
+import '../l10n/app_localizations.dart';
+import '../l10n/l10n_ext.dart';
 import '../models/language_section.dart';
 import '../providers/favorites_provider.dart';
 import '../providers/practice_provider.dart';
@@ -22,6 +24,7 @@ class HomeScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l = AppLocalizations.of(context);
     final theme = Theme.of(context);
     final settings = ref.watch(settingsProvider);
     return Scaffold(
@@ -29,17 +32,17 @@ class HomeScreen extends ConsumerWidget {
           ? const BannerAdBar()
           : null,
       appBar: AppBar(
-        title: const Text('Tongue Twisters'),
+        title: Text(l.appTitle),
         actions: [
           IconButton(
-            tooltip: 'Favourites',
+            tooltip: l.favouritesTitle,
             icon: const Icon(Icons.favorite_outline),
             onPressed: () => Navigator.of(context).push(
               MaterialPageRoute<void>(builder: (_) => const FavoritesScreen()),
             ),
           ),
           IconButton(
-            tooltip: 'Settings',
+            tooltip: l.settingsTitle,
             icon: const Icon(Icons.settings_outlined),
             onPressed: () => Navigator.of(context).push(
               MaterialPageRoute<void>(builder: (_) => const SettingsScreen()),
@@ -63,7 +66,7 @@ class HomeScreen extends ConsumerWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 24, bottom: 6, left: 4),
                 child: Text(
-                  group.label,
+                  group.label(l),
                   style: theme.textTheme.titleLarge?.copyWith(
                     fontWeight: FontWeight.w700,
                   ),
@@ -75,7 +78,7 @@ class HomeScreen extends ConsumerWidget {
           Padding(
             padding: const EdgeInsets.only(top: 32),
             child: Text(
-              appCredit,
+              l.appCredit(appCreditName),
               textAlign: TextAlign.center,
               style: theme.textTheme.bodySmall?.copyWith(
                 color: theme.colorScheme.onSurfaceVariant,
@@ -107,6 +110,7 @@ class _Hero extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l = AppLocalizations.of(context);
     final theme = Theme.of(context);
     final visible = ref.watch(visibleTwistersProvider);
     final counts = ref.watch(practiceProvider);
@@ -124,7 +128,7 @@ class _Hero extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Twist your tongue!',
+            l.heroTitle,
             style: theme.textTheme.headlineSmall?.copyWith(
               color: Colors.white,
               fontWeight: FontWeight.w800,
@@ -132,15 +136,18 @@ class _Hero extends ConsumerWidget {
           ),
           const SizedBox(height: 6),
           Text(
-            'Listen to a native voice, then say it faster each time.',
+            l.heroSubtitle,
             style: theme.textTheme.bodyMedium?.copyWith(color: Colors.white70),
           ),
           const SizedBox(height: 16),
           Row(
             children: [
-              _Stat(value: '$practised/$total', label: 'practised'),
+              _Stat(
+                value: l.heroStatRatio(practised, total),
+                label: l.heroStatPractised,
+              ),
               const SizedBox(width: 24),
-              _Stat(value: '$favourites', label: 'favourites'),
+              _Stat(value: '$favourites', label: l.heroStatFavourites),
             ],
           ),
           const SizedBox(height: 16),
@@ -152,7 +159,7 @@ class _Hero extends ConsumerWidget {
             ),
             onPressed: () => _openRandom(context, ref),
             icon: const Icon(Icons.shuffle),
-            label: const Text('Surprise me'),
+            label: Text(l.surpriseMe),
           ),
         ],
       ),
@@ -195,6 +202,7 @@ class _SectionCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l = AppLocalizations.of(context);
     final theme = Theme.of(context);
     final total = ref.watch(sectionTwistersProvider(section)).length;
     final practiced = ref.watch(sectionProgressProvider(section));
@@ -235,7 +243,7 @@ class _SectionCard extends ConsumerWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          section.title,
+                          section.title(l),
                           style: theme.textTheme.titleMedium?.copyWith(
                             color: Colors.white,
                             fontWeight: FontWeight.w700,
@@ -243,7 +251,7 @@ class _SectionCard extends ConsumerWidget {
                         ),
                         const SizedBox(height: 2),
                         Text(
-                          section.subtitle,
+                          section.subtitle(l),
                           style: theme.textTheme.bodySmall?.copyWith(
                             color: Colors.white.withValues(alpha: 0.85),
                           ),
@@ -260,7 +268,7 @@ class _SectionCard extends ConsumerWidget {
                         ),
                         const SizedBox(height: 4),
                         Text(
-                          '$practiced of $total practised',
+                          l.sectionProgress(practiced, total),
                           style: theme.textTheme.labelSmall?.copyWith(
                             color: Colors.white.withValues(alpha: 0.9),
                           ),
@@ -300,6 +308,7 @@ class _RecommendationCard extends ConsumerWidget {
       section: twister.section,
       child: Builder(
         builder: (context) {
+          final l = AppLocalizations.of(context);
           final theme = Theme.of(context);
           final scheme = theme.colorScheme;
           return Card(
@@ -332,7 +341,7 @@ class _RecommendationCard extends ConsumerWidget {
                         const SizedBox(width: 6),
                         Expanded(
                           child: Text(
-                            'Recommended for you',
+                            l.recommendedTitle,
                             style: theme.textTheme.labelLarge?.copyWith(
                               color: scheme.primary,
                               fontWeight: FontWeight.w700,
@@ -358,7 +367,7 @@ class _RecommendationCard extends ConsumerWidget {
                       children: [
                         Expanded(
                           child: Text(
-                            recommendation.reason,
+                            recommendation.describe(l),
                             style: theme.textTheme.bodySmall?.copyWith(
                               color: scheme.onSurfaceVariant,
                             ),

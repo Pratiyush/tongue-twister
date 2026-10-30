@@ -88,14 +88,14 @@ docs/screenshots/           README images
 
 ## Adding a language
 
-1. Add a value to `LanguageSection` (id, title, subtitle, flag, `ttsLocale`, group), and to `SectionGroup` if it needs a new heading.
+1. Add a value to `LanguageSection` (id, `nativeName`, `nativeSubtitle`, flag, `ttsLocale`, group), and to `SectionGroup` if it needs a new heading. Add its language name to `lib/l10n/app_en.arb` and the switches in `lib/l10n/l10n_ext.dart`.
 2. Add `accent` and `accentDeep` in `SectionColors`, and a sample phrase in `settings_screen.dart` `_sampleFor`.
 3. Create `lib/data/twisters_<locale>.dart` and include it in `TwisterRepository.forSection`.
 4. Extend `test/data_test.dart`. All `switch` expressions over `LanguageSection` are exhaustive, so the analyzer points at every place to update.
 
 ## App credit
 
-The home screen footer and Settings → About show "Made with ❤️ by Pratiyush Kumar Singh" (`appCredit` in `settings_screen.dart`). Keep it.
+The home screen footer and Settings → About show "Made with ❤️ by Pratiyush Kumar Singh": the `appCredit` ARB key filled with `appCreditName` from `settings_screen.dart`. Keep it; the name is never translated.
 
 ## Testing
 

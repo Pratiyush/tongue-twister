@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../l10n/app_localizations.dart';
+import '../l10n/l10n_ext.dart';
 import '../models/twister.dart';
 import '../providers/favorites_provider.dart';
 import '../providers/practice_provider.dart';
@@ -53,11 +55,12 @@ class _TwisterDetailScreenState extends ConsumerState<TwisterDetailScreen> {
   void _recordAttempt() {
     ref.read(practiceProvider.notifier).recordAttempt(_current.id);
     final count = ref.read(practiceProvider)[_current.id] ?? 0;
+    final l = AppLocalizations.of(context);
     final message = switch (count) {
-      1 => 'First try logged. Now say it faster!',
-      3 => 'Three times! Your tongue is warming up.',
-      10 => 'Ten times. You have mastered this one!',
-      _ => 'Nice! Practised $count times.',
+      1 => l.practiseFirstTry,
+      3 => l.practiseThreeTimes,
+      10 => l.practiseTenTimes,
+      _ => l.practisedCountToast(count),
     };
     ScaffoldMessenger.of(context)
       ..hideCurrentSnackBar()
@@ -68,6 +71,7 @@ class _TwisterDetailScreenState extends ConsumerState<TwisterDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context);
     final twister = _current;
     final isFavorite = ref.watch(
       favoritesProvider.select((ids) => ids.contains(twister.id)),
@@ -85,8 +89,8 @@ class _TwisterDetailScreenState extends ConsumerState<TwisterDetailScreen> {
             actions: [
               IconButton(
                 tooltip: isFavorite
-                    ? 'Remove from favourites'
-                    : 'Add to favourites',
+                    ? l.removeFromFavourites
+                    : l.addToFavourites,
                 icon: Icon(isFavorite ? Icons.favorite : Icons.favorite_border),
                 color: isFavorite ? AppColors.favorite : null,
                 onPressed: () =>
@@ -109,7 +113,7 @@ class _TwisterDetailScreenState extends ConsumerState<TwisterDetailScreen> {
                 Padding(
                   padding: const EdgeInsets.only(bottom: 4),
                   child: Text(
-                    '${_index + 1} / ${widget.twisters.length} · swipe for more',
+                    l.pagerSwipeHint(_index + 1, widget.twisters.length),
                     style: Theme.of(context).textTheme.labelSmall,
                   ),
                 ),
@@ -144,6 +148,7 @@ class _TwisterPageState extends ConsumerState<_TwisterPage> {
 
   @override
   Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context);
     final twister = widget.twister;
     final theme = Theme.of(context);
     final practiced = ref.watch(
@@ -176,7 +181,7 @@ class _TwisterPageState extends ConsumerState<_TwisterPage> {
                   const Spacer(),
                   if (practiced > 0)
                     Text(
-                      'Practised $practiced×',
+                      l.practisedTimes(practiced),
                       style: theme.textTheme.labelMedium?.copyWith(
                         color: theme.colorScheme.primary,
                       ),
@@ -215,13 +220,13 @@ class _TwisterPageState extends ConsumerState<_TwisterPage> {
                   twister.transliteration != null) ...[
                 const SizedBox(height: 16),
                 _LabeledText(
-                  label: 'Pronunciation',
+                  label: l.pronunciationLabel,
                   text: twister.transliteration!,
                 ),
               ],
               if (settings.showMeaning && twister.translation != null) ...[
                 const SizedBox(height: 16),
-                _LabeledText(label: 'Meaning', text: twister.translation!),
+                _LabeledText(label: l.meaningLabel, text: twister.translation!),
               ],
               if (twister.tip != null) ...[
                 const SizedBox(height: 24),
@@ -300,6 +305,7 @@ class _PracticeControls extends ConsumerWidget {
     final speaking = ref.watch(
       speechControllerProvider.select((s) => s.isSpeaking(twister.id)),
     );
+    final l = AppLocalizations.of(context);
     final settings = ref.watch(settingsProvider);
     final (successBackground, successForeground) = AppColors.success(
       Theme.of(context).brightness,
@@ -314,7 +320,7 @@ class _PracticeControls extends ConsumerWidget {
             SegmentedButton<PlaybackSpeed>(
               segments: [
                 for (final speed in PlaybackSpeed.values)
-                  ButtonSegment(value: speed, label: Text(speed.label)),
+                  ButtonSegment(value: speed, label: Text(speed.label(l))),
               ],
               selected: {settings.speed},
               showSelectedIcon: false,
@@ -328,7 +334,7 @@ class _PracticeControls extends ConsumerWidget {
                   child: FilledButton.icon(
                     onPressed: () => speakTwister(context, ref, twister),
                     icon: Icon(speaking ? Icons.stop : Icons.volume_up),
-                    label: Text(speaking ? 'Stop' : 'Listen'),
+                    label: Text(speaking ? l.actionStop : l.actionListen),
                   ),
                 ),
                 const SizedBox(width: 8),
@@ -343,7 +349,7 @@ class _PracticeControls extends ConsumerWidget {
                             times: settings.repeatCount,
                           ),
                     icon: const Icon(Icons.repeat),
-                    label: Text('${settings.repeatCount}× in a row'),
+                    label: Text(l.repeatInARow(settings.repeatCount)),
                   ),
                 ),
               ],
@@ -358,7 +364,7 @@ class _PracticeControls extends ConsumerWidget {
                 ),
                 onPressed: onSaidIt,
                 icon: const Icon(Icons.check_circle_outline),
-                label: const Text('I said it!'),
+                label: Text(l.saidIt),
               ),
             ),
           ],
