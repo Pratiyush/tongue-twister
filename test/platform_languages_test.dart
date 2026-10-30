@@ -28,15 +28,17 @@ void main() {
       dotAll: true,
     ).firstMatch(plist);
     expect(array, isNotNull);
-    final apple = _strings(array!.group(1)!, RegExp(r'<string>([^<]*)</string>'));
+    final apple = _strings(
+      array!.group(1)!,
+      RegExp(r'<string>([^<]*)</string>'),
+    );
     expect(apple.toSet().length, apple.length);
     expect(apple.toSet(), tags.toSet());
   });
 
   test('locales_config.xml lists every UI language once', () {
-    final xml = File(
-      'android/app/src/main/res/xml/locales_config.xml',
-    ).readAsStringSync();
+    final xml = File('android/app/src/main/res/xml/locales_config.xml')
+        .readAsStringSync();
     final android = _strings(xml, RegExp(r'<locale\s+android:name="([^"]+)"'));
     expect(android.toSet().length, android.length);
     expect(android.toSet(), {for (final t in tags) _androidLegacy[t] ?? t});

@@ -296,6 +296,16 @@ void main() {
     });
   });
 
+  test('section titles keep the native name, once in its own language', () {
+    final en = lookupAppLocalizations(const Locale('en'));
+    final de = lookupAppLocalizations(const Locale('de'));
+    final hi = lookupAppLocalizations(const Locale('hi'));
+    expect(LanguageSection.german.title(en), 'Deutsch · German');
+    expect(LanguageSection.german.title(de), 'Deutsch');
+    expect(LanguageSection.hindi.title(hi), 'हिन्दी');
+    expect(LanguageSection.hindi.title(de), startsWith('हिन्दी · '));
+  });
+
   group('recommendation', () {
     final en = lookupAppLocalizations(const Locale('en'));
 

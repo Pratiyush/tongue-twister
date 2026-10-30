@@ -16,11 +16,16 @@ extension LanguageSectionL10n on LanguageSection {
   };
 
   /// Card and app-bar title; the native name is never translated
-  /// ("हिन्दी · Hindi").
+  /// ("हिन्दी · Hindi"). In the section's own UI language the native name
+  /// stands alone, not "Deutsch · Deutsch".
   String title(AppLocalizations l) => switch (nativeName) {
+    final native? when _isUiLanguage(l) => native,
     final native? => l.sectionTitleNative(native, languageName(l)),
     null => languageName(l),
   };
+
+  bool _isUiLanguage(AppLocalizations l) =>
+      ttsLocale.split('-').first == l.localeName.split('_').first;
 
   /// Tagline under the title.
   String subtitle(AppLocalizations l) => switch (this) {

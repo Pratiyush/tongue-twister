@@ -23,7 +23,11 @@ void main() {
     final language = languageFor(locale);
 
     test('$locale has its row in the language table', () {
-      expect(language, isNotNull, reason: 'add $locale to lib/l10n/languages.dart');
+      expect(
+        language,
+        isNotNull,
+        reason: 'add $locale to lib/l10n/languages.dart',
+      );
     });
     if (language == null) continue;
 
