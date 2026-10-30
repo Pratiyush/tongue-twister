@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../ads/ads.dart';
 import '../models/language_section.dart';
 import '../providers/favorites_provider.dart';
 import '../providers/practice_provider.dart';
@@ -57,7 +58,9 @@ class SettingsScreen extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(title: const Text('Settings')),
       body: ListView(
-        padding: const EdgeInsets.only(bottom: 24),
+        padding: EdgeInsets.only(
+          bottom: 24 + MediaQuery.paddingOf(context).bottom,
+        ),
         children: [
           const _Header('Appearance'),
           Padding(
@@ -84,6 +87,35 @@ class SettingsScreen extends ConsumerWidget {
               onSelectionChanged: (s) => notifier.setThemeMode(s.first),
             ),
           ),
+
+          const _Header('Languages'),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 0, 16, 4),
+            child: Text(
+              'Choose the languages you want to learn. '
+              'Hidden languages disappear from the home screen.',
+              style: theme.textTheme.bodySmall?.copyWith(
+                color: theme.colorScheme.onSurfaceVariant,
+              ),
+            ),
+          ),
+          for (final section in LanguageSection.values)
+            CheckboxListTile(
+              secondary: Text(
+                section.flag,
+                style: const TextStyle(fontSize: 28),
+              ),
+              title: Text(section.title),
+              subtitle: Text(section.subtitle),
+              value: settings.isVisible(section),
+              // The last visible language can't be hidden.
+              onChanged:
+                  settings.isVisible(section) &&
+                      settings.hiddenSections.length ==
+                          LanguageSection.values.length - 1
+                  ? null
+                  : (on) => notifier.setSectionVisible(section, on ?? true),
+            ),
 
           const _Header('Playback'),
           ListTile(
@@ -149,7 +181,8 @@ class SettingsScreen extends ConsumerWidget {
           Padding(
             padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
             child: Text(
-              'Twisters are read by your phone\'s text-to-speech voices. '
+              'Twisters play recordings by native speakers. Your phone\'s '
+              'text-to-speech voice is used only when a recording is missing. '
               'If a language is missing, install it in your system settings '
               '(Android: Settings → System → Languages → Text-to-speech; '
               'iOS: Settings → Accessibility → Spoken Content → Voices).',
@@ -159,7 +192,7 @@ class SettingsScreen extends ConsumerWidget {
             ),
           ),
           for (final section in LanguageSection.values)
-            _VoiceTile(section: section),
+            if (settings.isVisible(section)) _VoiceTile(section: section),
 
           const _Header('Your data'),
           ListTile(
@@ -204,6 +237,15 @@ class SettingsScreen extends ConsumerWidget {
               applicationLegalese: appCredit,
             ),
           ),
+          // Required by Google's consent rules wherever consent applies
+          // (EEA, UK, Switzerland).
+          if (ref.watch(privacyOptionsRequiredProvider).value ?? false)
+            ListTile(
+              leading: const Icon(Icons.privacy_tip_outlined),
+              title: const Text('Privacy choices'),
+              subtitle: const Text('Change your ad consent'),
+              onTap: showPrivacyOptions,
+            ),
         ],
       ),
     );

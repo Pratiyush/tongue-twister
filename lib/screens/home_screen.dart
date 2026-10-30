@@ -3,10 +3,12 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../ads/ads.dart';
 import '../models/language_section.dart';
 import '../providers/favorites_provider.dart';
 import '../providers/practice_provider.dart';
 import '../providers/recommendation_provider.dart';
+import '../providers/settings_provider.dart';
 import '../providers/twister_providers.dart';
 import '../theme/app_theme.dart';
 import '../widgets/difficulty_badge.dart';
@@ -21,7 +23,11 @@ class HomeScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
+    final settings = ref.watch(settingsProvider);
     return Scaffold(
+      bottomNavigationBar: ref.watch(adsSupportedProvider)
+          ? const BannerAdBar()
+          : null,
       appBar: AppBar(
         title: const Text('Tongue Twisters'),
         actions: [
@@ -42,24 +48,30 @@ class HomeScreen extends ConsumerWidget {
         ],
       ),
       body: ListView(
-        padding: const EdgeInsets.fromLTRB(16, 4, 16, 32),
+        padding: EdgeInsets.fromLTRB(
+          16,
+          4,
+          16,
+          32 + MediaQuery.paddingOf(context).bottom,
+        ),
         children: [
           const _Hero(),
           const SizedBox(height: 16),
           const _RecommendationCard(),
-          for (final group in SectionGroup.values) ...[
-            Padding(
-              padding: const EdgeInsets.only(top: 24, bottom: 6, left: 4),
-              child: Text(
-                group.label,
-                style: theme.textTheme.titleLarge?.copyWith(
-                  fontWeight: FontWeight.w700,
+          for (final group in SectionGroup.values)
+            if (group.sections.any(settings.isVisible)) ...[
+              Padding(
+                padding: const EdgeInsets.only(top: 24, bottom: 6, left: 4),
+                child: Text(
+                  group.label,
+                  style: theme.textTheme.titleLarge?.copyWith(
+                    fontWeight: FontWeight.w700,
+                  ),
                 ),
               ),
-            ),
-            for (final section in group.sections)
-              _SectionCard(section: section),
-          ],
+              for (final section in group.sections)
+                if (settings.isVisible(section)) _SectionCard(section: section),
+            ],
           Padding(
             padding: const EdgeInsets.only(top: 32),
             child: Text(
@@ -80,7 +92,7 @@ class _Hero extends ConsumerWidget {
   const _Hero();
 
   void _openRandom(BuildContext context, WidgetRef ref) {
-    final all = ref.read(allTwistersProvider);
+    final all = ref.read(visibleTwistersProvider);
     final pick = all[Random().nextInt(all.length)];
     final sectionList = ref.read(sectionTwistersProvider(pick.section));
     Navigator.of(context).push(
@@ -96,10 +108,10 @@ class _Hero extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
-    final practised = ref.watch(
-      practiceProvider.select((c) => c.values.where((n) => n > 0).length),
-    );
-    final total = ref.watch(allTwistersProvider).length;
+    final visible = ref.watch(visibleTwistersProvider);
+    final counts = ref.watch(practiceProvider);
+    final practised = visible.where((t) => (counts[t.id] ?? 0) > 0).length;
+    final total = visible.length;
     final favourites = ref.watch(favoritesProvider.select((f) => f.length));
 
     return Container(

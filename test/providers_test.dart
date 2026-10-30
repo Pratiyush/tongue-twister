@@ -214,6 +214,47 @@ void main() {
       expect(s.showMeaning, isFalse);
     });
 
+    test('hidden languages persist, filter twisters and keep one', () async {
+      final container = await createContainer();
+      final n = container.read(settingsProvider.notifier);
+      n.setSectionVisible(LanguageSection.hindi, false);
+      n.setSectionVisible(LanguageSection.german, false);
+      n.setSectionVisible(LanguageSection.englishUS, false);
+      // Hiding the last visible language is refused.
+      n.setSectionVisible(LanguageSection.englishUK, false);
+
+      final visible = container.read(visibleTwistersProvider);
+      expect(visible, isNotEmpty);
+      expect(
+        visible.every((t) => t.section == LanguageSection.englishUK),
+        isTrue,
+      );
+      expect(
+        container.read(recommendationProvider)!.twister.section,
+        LanguageSection.englishUK,
+      );
+      container.dispose();
+
+      final prefs = await SharedPreferences.getInstance();
+      final reloaded = ProviderContainer(
+        overrides: [sharedPreferencesProvider.overrideWithValue(prefs)],
+      );
+      addTearDown(reloaded.dispose);
+      expect(reloaded.read(settingsProvider).hiddenSections, {
+        LanguageSection.hindi,
+        LanguageSection.german,
+        LanguageSection.englishUS,
+      });
+
+      reloaded
+          .read(settingsProvider.notifier)
+          .setSectionVisible(LanguageSection.hindi, true);
+      expect(
+        reloaded.read(settingsProvider).isVisible(LanguageSection.hindi),
+        isTrue,
+      );
+    });
+
     test('clamps repeat count and ignores unknown saved values', () async {
       final container = await createContainer(
         prefs: {

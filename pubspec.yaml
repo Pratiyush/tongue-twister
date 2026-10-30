@@ -39,6 +39,7 @@ dependencies:
   shared_preferences: ^2.5.6
   just_audio: ^0.10.6
   audio_session: ^0.2.4
+  google_mobile_ads: ^9.2.0
 
 dev_dependencies:
   flutter_test:
@@ -101,7 +102,7 @@ flutter:
 flutter_launcher_icons:
   image_path: assets/icon/icon.png
   android: true
-  adaptive_icon_background: "#E4572E"
+  adaptive_icon_background: "#6D28D9"
   adaptive_icon_foreground: assets/icon/icon_foreground.png
   ios: true
   remove_alpha_ios: true

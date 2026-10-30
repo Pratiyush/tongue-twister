@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../ads/ads.dart';
 import '../models/language_section.dart';
 import '../models/twister.dart';
 import '../providers/twister_providers.dart';
@@ -42,6 +43,9 @@ class _SectionScreenState extends ConsumerState<SectionScreen> {
     return SectionTheme(
       section: section,
       child: Scaffold(
+        bottomNavigationBar: ref.watch(adsSupportedProvider)
+            ? const BannerAdBar()
+            : null,
         appBar: SectionAppBar(section: section),
         body: Column(
           children: [
@@ -82,7 +86,12 @@ class _SectionScreenState extends ConsumerState<SectionScreen> {
               child: visible.isEmpty
                   ? const Center(child: Text('No twisters match.'))
                   : ListView.builder(
-                      padding: const EdgeInsets.fromLTRB(12, 0, 12, 24),
+                      padding: EdgeInsets.fromLTRB(
+                        12,
+                        0,
+                        12,
+                        24 + MediaQuery.paddingOf(context).bottom,
+                      ),
                       itemCount: visible.length,
                       itemBuilder: (context, index) => TwisterCard(
                         twister: visible[index],

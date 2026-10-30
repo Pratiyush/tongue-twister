@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../models/language_section.dart';
 import 'preferences_provider.dart';
 
 enum PlaybackSpeed {
@@ -25,6 +26,7 @@ class AppSettings {
     this.repeatCount = 3,
     this.showPronunciation = true,
     this.showMeaning = true,
+    this.hiddenSections = const {},
   });
 
   static const minRepeats = 2;
@@ -42,18 +44,26 @@ class AppSettings {
   /// Show English meanings for Hindi and German twisters.
   final bool showMeaning;
 
+  /// Languages the user chose not to learn. Stored as hidden rather than
+  /// shown, so a newly added language appears by default.
+  final Set<LanguageSection> hiddenSections;
+
+  bool isVisible(LanguageSection section) => !hiddenSections.contains(section);
+
   AppSettings copyWith({
     ThemeMode? themeMode,
     PlaybackSpeed? speed,
     int? repeatCount,
     bool? showPronunciation,
     bool? showMeaning,
+    Set<LanguageSection>? hiddenSections,
   }) => AppSettings(
     themeMode: themeMode ?? this.themeMode,
     speed: speed ?? this.speed,
     repeatCount: repeatCount ?? this.repeatCount,
     showPronunciation: showPronunciation ?? this.showPronunciation,
     showMeaning: showMeaning ?? this.showMeaning,
+    hiddenSections: hiddenSections ?? this.hiddenSections,
   );
 }
 
@@ -62,6 +72,7 @@ const _speedKey = 'settings.speed';
 const _repeatKey = 'settings.repeat_count';
 const _pronunciationKey = 'settings.show_pronunciation';
 const _meaningKey = 'settings.show_meaning';
+const _hiddenSectionsKey = 'settings.hidden_sections';
 
 T _byName<T extends Enum>(List<T> values, String? name, T fallback) =>
     values.where((v) => v.name == name).firstOrNull ?? fallback;
@@ -89,6 +100,10 @@ class SettingsNotifier extends Notifier<AppSettings> {
       showPronunciation:
           prefs.getBool(_pronunciationKey) ?? defaults.showPronunciation,
       showMeaning: prefs.getBool(_meaningKey) ?? defaults.showMeaning,
+      hiddenSections: {
+        for (final id in prefs.getStringList(_hiddenSectionsKey) ?? const [])
+          ...LanguageSection.values.where((s) => s.id == id),
+      },
     );
   }
 
@@ -116,6 +131,21 @@ class SettingsNotifier extends Notifier<AppSettings> {
   void setShowMeaning(bool value) {
     state = state.copyWith(showMeaning: value);
     ref.read(sharedPreferencesProvider).setBool(_meaningKey, value);
+  }
+
+  /// Shows or hides a language. At least one language always stays visible.
+  void setSectionVisible(LanguageSection section, bool visible) {
+    final hidden = {...state.hiddenSections};
+    if (visible) {
+      hidden.remove(section);
+    } else {
+      hidden.add(section);
+      if (hidden.length == LanguageSection.values.length) return;
+    }
+    state = state.copyWith(hiddenSections: hidden);
+    ref.read(sharedPreferencesProvider).setStringList(_hiddenSectionsKey, [
+      for (final s in hidden) s.id,
+    ]);
   }
 }
 

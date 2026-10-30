@@ -30,7 +30,12 @@ class FavoritesScreen extends ConsumerWidget {
               ),
             )
           : ListView.builder(
-              padding: const EdgeInsets.all(12),
+              padding: EdgeInsets.fromLTRB(
+                12,
+                12,
+                12,
+                12 + MediaQuery.paddingOf(context).bottom,
+              ),
               itemCount: favorites.length,
               itemBuilder: (context, index) => SectionTheme(
                 section: favorites[index].section,

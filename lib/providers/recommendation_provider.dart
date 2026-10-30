@@ -20,7 +20,7 @@ class Recommendation {
 /// most, easiest first. Once everything has been tried, the
 /// least-practised twister comes back for revision.
 final recommendationProvider = Provider<Recommendation?>((ref) {
-  final all = ref.watch(allTwistersProvider);
+  final all = ref.watch(visibleTwistersProvider);
   final counts = ref.watch(practiceProvider);
   if (all.isEmpty) return null;
 

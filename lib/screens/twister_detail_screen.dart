@@ -122,108 +122,131 @@ class _TwisterDetailScreenState extends ConsumerState<TwisterDetailScreen> {
   }
 }
 
-class _TwisterPage extends ConsumerWidget {
+class _TwisterPage extends ConsumerStatefulWidget {
   const _TwisterPage({required this.twister});
 
   final Twister twister;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<_TwisterPage> createState() => _TwisterPageState();
+}
+
+class _TwisterPageState extends ConsumerState<_TwisterPage> {
+  // Long twisters push the tip below the fold; a visible scrollbar shows
+  // there is more to read.
+  final _scroll = ScrollController();
+
+  @override
+  void dispose() {
+    _scroll.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final twister = widget.twister;
     final theme = Theme.of(context);
     final practiced = ref.watch(
       practiceProvider.select((c) => c[twister.id] ?? 0),
     );
     final settings = ref.watch(settingsProvider);
 
-    return SingleChildScrollView(
-      padding: const EdgeInsets.fromLTRB(24, 16, 24, 24),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              DifficultyBadge(twister.difficulty),
-              const Spacer(),
-              if (practiced > 0)
-                Text(
-                  'Practised $practiced×',
-                  style: theme.textTheme.labelMedium?.copyWith(
-                    color: theme.colorScheme.primary,
-                  ),
-                ),
-            ],
-          ),
-          const SizedBox(height: 24),
-          Container(
-            width: double.infinity,
-            padding: const EdgeInsets.fromLTRB(20, 16, 20, 22),
-            decoration: BoxDecoration(
-              gradient: twister.section.headerGradient,
-              borderRadius: BorderRadius.circular(24),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+    return Scrollbar(
+      controller: _scroll,
+      thumbVisibility: true,
+      child: SingleChildScrollView(
+        controller: _scroll,
+        padding: const EdgeInsets.fromLTRB(24, 16, 24, 24),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
               children: [
-                Icon(
-                  Icons.format_quote_rounded,
-                  size: 36,
-                  color: twister.section.accent,
-                ),
-                const SizedBox(height: 4),
-                SelectableText(
-                  twister.text,
-                  style: theme.textTheme.headlineSmall?.copyWith(
-                    height: 1.4,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.white,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          if (settings.showPronunciation &&
-              twister.transliteration != null) ...[
-            const SizedBox(height: 16),
-            _LabeledText(
-              label: 'Pronunciation',
-              text: twister.transliteration!,
-            ),
-          ],
-          if (settings.showMeaning && twister.translation != null) ...[
-            const SizedBox(height: 16),
-            _LabeledText(label: 'Meaning', text: twister.translation!),
-          ],
-          if (twister.tip != null) ...[
-            const SizedBox(height: 24),
-            Card(
-              color: theme.colorScheme.primaryContainer.withValues(alpha: 0.5),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(16),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(12),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Icon(
-                      Icons.lightbulb_outline,
+                DifficultyBadge(twister.difficulty),
+                const Spacer(),
+                if (practiced > 0)
+                  Text(
+                    'Practised $practiced×',
+                    style: theme.textTheme.labelMedium?.copyWith(
                       color: theme.colorScheme.primary,
                     ),
-                    const SizedBox(width: 12),
-                    Expanded(
-                      child: Text(
-                        twister.tip!,
-                        style: theme.textTheme.bodyMedium?.copyWith(
-                          color: theme.colorScheme.onPrimaryContainer,
-                        ),
-                      ),
+                  ),
+              ],
+            ),
+            const SizedBox(height: 24),
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.fromLTRB(20, 16, 20, 22),
+              decoration: BoxDecoration(
+                gradient: twister.section.headerGradient,
+                borderRadius: BorderRadius.circular(24),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Icon(
+                    Icons.format_quote_rounded,
+                    size: 36,
+                    color: twister.section.accent,
+                  ),
+                  const SizedBox(height: 4),
+                  SelectableText(
+                    twister.text,
+                    style: theme.textTheme.headlineSmall?.copyWith(
+                      height: 1.4,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.white,
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
+            if (settings.showPronunciation &&
+                twister.transliteration != null) ...[
+              const SizedBox(height: 16),
+              _LabeledText(
+                label: 'Pronunciation',
+                text: twister.transliteration!,
+              ),
+            ],
+            if (settings.showMeaning && twister.translation != null) ...[
+              const SizedBox(height: 16),
+              _LabeledText(label: 'Meaning', text: twister.translation!),
+            ],
+            if (twister.tip != null) ...[
+              const SizedBox(height: 24),
+              Card(
+                color: theme.colorScheme.primaryContainer.withValues(
+                  alpha: 0.5,
+                ),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(12),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Icon(
+                        Icons.lightbulb_outline,
+                        color: theme.colorScheme.primary,
+                      ),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: Text(
+                          twister.tip!,
+                          style: theme.textTheme.bodyMedium?.copyWith(
+                            color: theme.colorScheme.onPrimaryContainer,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
           ],
-        ],
+        ),
       ),
     );
   }
