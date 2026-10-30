@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
+import 'rewarded.dart';
+
 /// Banner ad unit ids. The defaults are Google's public test units, which
 /// always serve test ads. Release builds pass real ids with
 /// `--dart-define=ADMOB_BANNER_ANDROID=... --dart-define=ADMOB_BANNER_IOS=...`.
@@ -86,13 +88,13 @@ class _BannerAdBarState extends ConsumerState<BannerAdBar> {
   bool _loaded = false;
   bool _requested = false;
 
-  Future<void> _load(int width) async {
+  void _load() {
     _requested = true;
-    final size = await AdSize.getLargeAnchoredAdaptiveBannerAdSize(width);
-    if (size == null || !mounted) return;
     _ad = BannerAd(
       adUnitId: Platform.isAndroid ? _bannerAndroid : _bannerIos,
-      size: size,
+      // The standard 320×50 banner: the large adaptive size took ~7% of the
+      // screen on a 6.8" phone.
+      size: AdSize.banner,
       request: const AdRequest(),
       listener: BannerAdListener(
         onAdLoaded: (_) {
@@ -115,17 +117,20 @@ class _BannerAdBarState extends ConsumerState<BannerAdBar> {
   @override
   Widget build(BuildContext context) {
     final ready = ref.watch(adsReadyProvider).value ?? false;
-    if (ready && !_requested) {
-      _load(MediaQuery.sizeOf(context).width.truncate());
-    }
-    final ad = _ad;
+    ref.watch(adFreeProvider);
+    final adFree = ref.read(adFreeProvider.notifier).isActive();
+    if (ready && !adFree && !_requested) _load();
+    final ad = adFree ? null : _ad;
     return SafeArea(
       top: false,
       child: ad != null && _loaded
-          ? SizedBox(
-              width: ad.size.width.toDouble(),
-              height: ad.size.height.toDouble(),
-              child: AdWidget(ad: ad),
+          ? Center(
+              heightFactor: 1,
+              child: SizedBox(
+                width: ad.size.width.toDouble(),
+                height: ad.size.height.toDouble(),
+                child: AdWidget(ad: ad),
+              ),
             )
           : const SizedBox.shrink(),
     );

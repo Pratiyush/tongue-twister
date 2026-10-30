@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
 
 import '../ads/ads.dart';
+import '../ads/rewarded.dart';
 import '../l10n/app_localizations.dart';
 import '../l10n/l10n_ext.dart';
 import '../l10n/languages.dart';
@@ -50,6 +52,12 @@ class SettingsScreen extends ConsumerWidget {
       ),
     );
     return result ?? false;
+  }
+
+  /// "Fri 14:30" in the UI language's own format.
+  String _formatUntil(BuildContext context, DateTime until) {
+    final locale = Localizations.localeOf(context).toLanguageTag();
+    return DateFormat.E(locale).add_jm().format(until);
   }
 
   void _toast(BuildContext context, String message) {
@@ -266,6 +274,39 @@ class SettingsScreen extends ConsumerWidget {
               applicationLegalese: l.appCredit(appCreditName),
             ),
           ),
+          if (ref.watch(adsReadyProvider).value ?? false) ...[
+            _Header(l.settingsAds),
+            Builder(
+              builder: (context) {
+                final untilAt = ref.watch(adFreeProvider);
+                final adFree = ref.read(adFreeProvider.notifier);
+                String until() => _formatUntil(
+                  context,
+                  ref.read(adFreeProvider) ?? untilAt ?? DateTime.now(),
+                );
+                return adFree.isActive()
+                    ? ListTile(
+                        leading: const Icon(Icons.check_circle_outline),
+                        title: Text(l.adFreeActive(until())),
+                      )
+                    : ListTile(
+                        leading: const Icon(Icons.ondemand_video_outlined),
+                        title: Text(l.adFreeWatch),
+                        subtitle: Text(l.adFreeWatchHelp),
+                        onTap: () async {
+                          final earned = await adFree.watchVideo();
+                          if (!context.mounted) return;
+                          _toast(
+                            context,
+                            earned
+                                ? l.adFreeThanks(until())
+                                : l.adFreeUnavailable,
+                          );
+                        },
+                      );
+              },
+            ),
+          ],
           // Required by Google's consent rules wherever consent applies
           // (EEA, UK, Switzerland).
           if (ref.watch(privacyOptionsRequiredProvider).value ?? false)

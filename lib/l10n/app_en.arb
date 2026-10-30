@@ -492,5 +492,39 @@
   "privacyChoicesHelp": "Change your ad consent",
   "@privacyChoicesHelp": {
     "description": "Subtitle of 'Privacy choices'. Max ~40 chars."
+  },
+  "settingsAds": "Ads",
+  "@settingsAds": {
+    "description": "Settings section header for ad options. Max ~16 chars."
+  },
+  "adFreeWatch": "Go ad-free for 24 hours",
+  "@adFreeWatch": {
+    "description": "Settings row: watch one video to hide all ads for a day. Max ~32 chars."
+  },
+  "adFreeWatchHelp": "Watch one short video",
+  "@adFreeWatchHelp": {
+    "description": "Subtitle under 'Go ad-free for 24 hours'. Max ~32 chars."
+  },
+  "adFreeActive": "Ad-free until {time}",
+  "@adFreeActive": {
+    "description": "Settings row while ads are off; {time} is a weekday + time like 'Fri 14:30'. Max ~32 chars.",
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "adFreeThanks": "Thanks! No ads until {time}.",
+  "@adFreeThanks": {
+    "description": "Snackbar after the video was watched; {time} like 'Fri 14:30'. Max ~48 chars.",
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "adFreeUnavailable": "No video available right now. Try again later.",
+  "@adFreeUnavailable": {
+    "description": "Snackbar when no rewarded video could load or it was closed early. Max ~60 chars."
   }
 }

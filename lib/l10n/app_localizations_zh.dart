@@ -371,6 +371,29 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get privacyChoicesHelp => '更改广告同意设置';
+
+  @override
+  String get settingsAds => 'Ads';
+
+  @override
+  String get adFreeWatch => 'Go ad-free for 24 hours';
+
+  @override
+  String get adFreeWatchHelp => 'Watch one short video';
+
+  @override
+  String adFreeActive(String time) {
+    return 'Ad-free until $time';
+  }
+
+  @override
+  String adFreeThanks(String time) {
+    return 'Thanks! No ads until $time.';
+  }
+
+  @override
+  String get adFreeUnavailable =>
+      'No video available right now. Try again later.';
 }
 
 /// The translations for Chinese, using the Han script (`zh_Hant`).

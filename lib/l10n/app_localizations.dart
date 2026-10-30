@@ -747,6 +747,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Change your ad consent'**
   String get privacyChoicesHelp;
+
+  /// Settings section header for ad options. Max ~16 chars.
+  ///
+  /// In en, this message translates to:
+  /// **'Ads'**
+  String get settingsAds;
+
+  /// Settings row: watch one video to hide all ads for a day. Max ~32 chars.
+  ///
+  /// In en, this message translates to:
+  /// **'Go ad-free for 24 hours'**
+  String get adFreeWatch;
+
+  /// Subtitle under 'Go ad-free for 24 hours'. Max ~32 chars.
+  ///
+  /// In en, this message translates to:
+  /// **'Watch one short video'**
+  String get adFreeWatchHelp;
+
+  /// Settings row while ads are off; {time} is a weekday + time like 'Fri 14:30'. Max ~32 chars.
+  ///
+  /// In en, this message translates to:
+  /// **'Ad-free until {time}'**
+  String adFreeActive(String time);
+
+  /// Snackbar after the video was watched; {time} like 'Fri 14:30'. Max ~48 chars.
+  ///
+  /// In en, this message translates to:
+  /// **'Thanks! No ads until {time}.'**
+  String adFreeThanks(String time);
+
+  /// Snackbar when no rewarded video could load or it was closed early. Max ~60 chars.
+  ///
+  /// In en, this message translates to:
+  /// **'No video available right now. Try again later.'**
+  String get adFreeUnavailable;
 }
 
 class _AppLocalizationsDelegate

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../ads/interstitial.dart';
 import '../l10n/app_localizations.dart';
 import '../l10n/l10n_ext.dart';
 import '../models/twister.dart';
@@ -54,6 +55,7 @@ class _TwisterDetailScreenState extends ConsumerState<TwisterDetailScreen> {
 
   void _recordAttempt() {
     ref.read(practiceProvider.notifier).recordAttempt(_current.id);
+    ref.read(interstitialProvider.notifier).onPractised();
     final count = ref.read(practiceProvider)[_current.id] ?? 0;
     final l = AppLocalizations.of(context);
     final message = switch (count) {
@@ -79,7 +81,9 @@ class _TwisterDetailScreenState extends ConsumerState<TwisterDetailScreen> {
 
     return PopScope(
       onPopInvokedWithResult: (didPop, _) {
-        if (didPop) ref.read(speechControllerProvider.notifier).stop();
+        if (!didPop) return;
+        ref.read(speechControllerProvider.notifier).stop();
+        ref.read(interstitialProvider.notifier).onLeftPractice();
       },
       child: SectionTheme(
         section: twister.section,
