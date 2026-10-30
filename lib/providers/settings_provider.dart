@@ -27,6 +27,7 @@ class AppSettings {
     this.showPronunciation = true,
     this.showMeaning = true,
     this.hiddenSections = const {},
+    this.language,
   });
 
   static const minRepeats = 2;
@@ -50,6 +51,10 @@ class AppSettings {
 
   bool isVisible(LanguageSection section) => !hiddenSections.contains(section);
 
+  /// The UI language the user picked (a BCP 47 tag from
+  /// `lib/l10n/languages.dart`), or null to follow the device.
+  final String? language;
+
   AppSettings copyWith({
     ThemeMode? themeMode,
     PlaybackSpeed? speed,
@@ -57,6 +62,7 @@ class AppSettings {
     bool? showPronunciation,
     bool? showMeaning,
     Set<LanguageSection>? hiddenSections,
+    String? Function()? language,
   }) => AppSettings(
     themeMode: themeMode ?? this.themeMode,
     speed: speed ?? this.speed,
@@ -64,6 +70,7 @@ class AppSettings {
     showPronunciation: showPronunciation ?? this.showPronunciation,
     showMeaning: showMeaning ?? this.showMeaning,
     hiddenSections: hiddenSections ?? this.hiddenSections,
+    language: language != null ? language() : this.language,
   );
 }
 
@@ -73,6 +80,7 @@ const _repeatKey = 'settings.repeat_count';
 const _pronunciationKey = 'settings.show_pronunciation';
 const _meaningKey = 'settings.show_meaning';
 const _hiddenSectionsKey = 'settings.hidden_sections';
+const _languageKey = 'settings.language';
 
 T _byName<T extends Enum>(List<T> values, String? name, T fallback) =>
     values.where((v) => v.name == name).firstOrNull ?? fallback;
@@ -104,6 +112,7 @@ class SettingsNotifier extends Notifier<AppSettings> {
         for (final id in prefs.getStringList(_hiddenSectionsKey) ?? const [])
           ...LanguageSection.values.where((s) => s.id == id),
       },
+      language: prefs.getString(_languageKey),
     );
   }
 
@@ -131,6 +140,15 @@ class SettingsNotifier extends Notifier<AppSettings> {
   void setShowMeaning(bool value) {
     state = state.copyWith(showMeaning: value);
     ref.read(sharedPreferencesProvider).setBool(_meaningKey, value);
+  }
+
+  /// Sets the UI language by tag; null follows the device.
+  void setLanguage(String? tag) {
+    state = state.copyWith(language: () => tag);
+    final prefs = ref.read(sharedPreferencesProvider);
+    tag == null
+        ? prefs.remove(_languageKey)
+        : prefs.setString(_languageKey, tag);
   }
 
   /// Shows or hides a language. At least one language always stays visible.

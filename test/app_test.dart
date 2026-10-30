@@ -111,11 +111,15 @@ void main() {
     expect(app.themeMode, ThemeMode.dark);
 
     await tester.scrollUntilVisible(find.byTooltip('More repeats'), 200);
+    await tester.ensureVisible(find.byTooltip('More repeats'));
+    await tester.pumpAndSettle();
     await tester.tap(find.byTooltip('More repeats'));
     await tester.pump();
     expect(container.read(settingsProvider).repeatCount, 4);
 
     await tester.scrollUntilVisible(find.text('Show meaning'), 200);
+    await tester.ensureVisible(find.text('Show meaning'));
+    await tester.pumpAndSettle();
     await tester.tap(find.text('Show meaning'));
     await tester.pump();
     expect(container.read(settingsProvider).showMeaning, isFalse);

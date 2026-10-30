@@ -1,0 +1,16 @@
+{
+  "@@locale": "en",
+  "@@x-translator-notes": "Tongue Twisters is a friendly app for practising tongue twisters in British English, American English, Hindi and German. Tone: warm, short, casual; address the user informally where the language allows. The twisters themselves are never translated. Keep the brand name 'Tongue Twisters' in Latin letters. Keep emoji and {placeholders} exactly. Prefer short words: most strings sit on buttons, chips or one-line list rows on a 360 dp wide phone.",
+
+  "appTitle": "Tongue Twisters",
+  "@appTitle": {"description": "Brand name, app bar title. Do NOT translate."},
+
+  "settingsLanguage": "App language",
+  "@settingsLanguage": {"description": "Settings row and screen title for choosing the UI language. Max ~20 chars."},
+  "languageSystemDefault": "System default",
+  "@languageSystemDefault": {"description": "First option in the language list: follow the phone's language. Max ~20 chars."},
+  "languageFollowsDevice": "Follows your device · {language}",
+  "@languageFollowsDevice": {"description": "Subtitle under 'System default'; {language} is a flag + language name like '🇩🇪 Deutsch'.", "placeholders": {"language": {"type": "String"}}},
+  "languageSearchHint": "Search languages",
+  "@languageSearchHint": {"description": "Hint text in the search box on the language list. Max ~24 chars."}
+}

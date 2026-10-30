@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../ads/ads.dart';
+import '../l10n/app_localizations.dart';
+import '../l10n/languages.dart';
 import '../models/language_section.dart';
 import '../providers/favorites_provider.dart';
 import '../providers/practice_provider.dart';
 import '../providers/settings_provider.dart';
 import '../providers/speech_provider.dart';
+import 'language_screen.dart';
 
 const appVersion = '1.0.0';
 const appCredit = 'Made with ❤️ by Pratiyush Kumar Singh';
@@ -62,6 +65,28 @@ class SettingsScreen extends ConsumerWidget {
           bottom: 24 + MediaQuery.paddingOf(context).bottom,
         ),
         children: [
+          Builder(
+            builder: (context) {
+              final l = AppLocalizations.of(context);
+              final tag = settings.language;
+              final picked = tag == null ? null : languageForTag(tag);
+              return ListTile(
+                leading: const Icon(Icons.translate),
+                title: Text(l.settingsLanguage),
+                subtitle: Text(
+                  picked == null
+                      ? l.languageSystemDefault
+                      : '${picked.flag} ${picked.name}',
+                ),
+                trailing: const Icon(Icons.chevron_right),
+                onTap: () => Navigator.of(context).push(
+                  MaterialPageRoute<void>(
+                    builder: (_) => const LanguageScreen(),
+                  ),
+                ),
+              );
+            },
+          ),
           const _Header('Appearance'),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
