@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tongue Twisters Tracker</title>
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--ink:#16181d;--mute:#5d6470;--line:#e3e6eb;
+--done:#1f8a4c;--doing:#b26a00;--todo:#5d6470;--block:#c62828;--accent:#2b5bd7;}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1115;--card:#171a21;--ink:#e8eaee;--mute:#9aa1ad;--line:#2a2f3a;--done:#4cc27e;--doing:#f0a63a;--todo:#9aa1ad;--block:#ff6b6b;--accent:#7ea2ff;}}
+:root[data-theme="dark"]{--bg:#0f1115;--card:#171a21;--ink:#e8eaee;--mute:#9aa1ad;--line:#2a2f3a;--done:#4cc27e;--doing:#f0a63a;--todo:#9aa1ad;--block:#ff6b6b;--accent:#7ea2ff;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+main{max-width:1100px;margin:0 auto;padding:24px 16px 64px}
+h1{font-size:26px;margin:0 0 4px}h2{font-size:18px;margin:32px 0 10px}
+.sub{color:var(--mute);margin:0 0 20px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.kpi b{display:block;font-size:24px}.kpi span{color:var(--mute);font-size:13px}
+.bar{height:8px;background:var(--line);border-radius:4px;overflow:hidden;margin-top:14px}
+.bar i{display:block;height:100%;background:var(--done)}
+.wrap{overflow-x:auto;background:var(--card);border:1px solid var(--line);border-radius:10px}
+table{border-collapse:collapse;width:100%;min-width:720px}
+th,td{text-align:left;vertical-align:top;padding:9px 12px;border-bottom:1px solid var(--line)}
+th{font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--mute)}
+tr:last-child td{border-bottom:0}
+td:first-child{width:118px}
+.pill{display:inline-block;font-size:12px;font-weight:600;padding:2px 8px;border-radius:999px;border:1px solid currentColor;cursor:pointer;user-select:none;white-space:nowrap}
+.done{color:var(--done)}.doing{color:var(--doing)}.todo{color:var(--todo)}.block{color:var(--block)}
+.who{font-size:12px;color:var(--mute);white-space:nowrap}
+.why{color:var(--mute);font-size:13px}
+code{font:12.5px ui-monospace,Menlo,monospace;background:var(--line);padding:1px 5px;border-radius:4px}
+.legend{color:var(--mute);font-size:13px;margin:6px 0 0}
+footer{color:var(--mute);font-size:13px;margin-top:32px}
+</style>
+</head>
+<body>
+<main>
+<h1>Tongue Twisters — road to production</h1>
+<p class="sub">Flutter app, iOS + Android · 100 twisters (25 × en-GB, en-US, hi-IN, de-DE) · audited 30 Oct 2026 on branch <code>feat/elevenlabs-voices</code></p>
+
+<div class="kpis" id="kpis"></div>
+<div class="bar"><i id="barfill"></i></div>
+<p class="legend">Click a status pill to cycle it (to-do → doing → done → blocked). Your changes are saved in this browser only.</p>
+
+<h2>1 · Release blockers (stores will reject without these)</h2>
+<div class="wrap"><table data-group="blockers"><thead><tr><th>Status</th><th>Item</th><th>Why it matters</th><th>Next step</th><th>Owner</th></tr></thead><tbody>
+<tr data-id="b1" data-s="todo"><td></td><td>Real Android release signing</td><td class="why">Release APKs are signed with the debug key. Play Console refuses debug-signed uploads.</td><td>Create an upload keystore, store it as GitHub secrets, wire <code>signingConfigs.release</code> in <code>android/app/build.gradle.kts</code>, enrol in Play App Signing.</td><td class="who">You (keystore) → Claude</td></tr>
+<tr data-id="b2" data-s="todo"><td></td><td>Build an AAB, not only APKs</td><td class="why">Google Play accepts only Android App Bundles for new apps.</td><td>Add <code>flutter build appbundle --release</code> to CI and upload <code>app-release.aab</code> as an artifact.</td><td class="who">Claude</td></tr>
+<tr data-id="b3" data-s="todo"><td></td><td>Auto-increment build number</td><td class="why"><code>pubspec.yaml</code> is fixed at <code>1.0.0+1</code>. Both stores reject a second upload with the same build number.</td><td>Pass <code>--build-number=${{ github.run_number }}</code> in CI.</td><td class="who">Claude</td></tr>
+<tr data-id="b4" data-s="todo"><td></td><td>iOS signing and TestFlight</td><td class="why">CI ships an unsigned IPA, which only works for sideloading.</td><td>Apple Developer account ($99/yr), then fastlane match or Xcode Cloud to upload to TestFlight.</td><td class="who">You (account)</td></tr>
+<tr data-id="b5" data-s="todo"><td></td><td>Privacy policy URL + in-app link</td><td class="why">Required by both stores even when no data is collected. Settings has no privacy link today.</td><td>One-page policy ("no data collected, all stored on device") on GitHub Pages; add a Privacy row in Settings → About.</td><td class="who">Claude</td></tr>
+<tr data-id="b6" data-s="todo"><td></td><td>Proper default branch</td><td class="why">The default branch is a cloud-session name, <code>ccr-04cfe7e6-91epu0</code>; releases publish from it. A stale branch <code>ccr-2e469caf-rz0xog</code> (closed Wortschatz PR) is still there.</td><td>Rename default branch to <code>main</code>, update CI triggers, delete the stale branch.</td><td class="who">You (approve) → Claude</td></tr>
+<tr data-id="b7" data-s="todo"><td></td><td>ElevenLabs commercial licence</td><td class="why">The free tier allows non-commercial use only and requires attribution. A store app needs a paid plan (Starter or higher) when the clips are generated.</td><td>Generate the clips on a paid plan and keep the invoice. ~6,000 characters in total, so one month of Starter is enough.</td><td class="who">You</td></tr>
+<tr data-id="b8" data-s="todo"><td></td><td>Data safety, content rating, age/target audience</td><td class="why">Play Console forms: Data safety ("no data collected"), IARC questionnaire, target audience. If you target under-13s, the Families policy applies.</td><td>Fill in Play Console and App Store Connect. Recommendation: target 13+ to stay out of Families review.</td><td class="who">You</td></tr>
+<tr data-id="b9" data-s="todo"><td></td><td>Store listing assets</td><td class="why">The README screenshots exist, but the stores need specific sizes plus a 1024×500 feature graphic and copy.</td><td>Phone screenshots (1080×1920 / 6.7″ and 6.5″ iOS), feature graphic, short + full description, keywords.</td><td class="who">Claude drafts, you approve</td></tr>
+<tr data-id="b10" data-s="todo"><td></td><td>iOS bundle name</td><td class="why"><code>CFBundleName</code> is <code>tongue_twister</code>. It shows in some system UI and in App Store Connect.</td><td>Set it to "Tongue Twisters".</td><td class="who">Claude</td></tr>
+</tbody></table></div>
+
+<h2>2 · Native voices (ElevenLabs) — replaces device TTS</h2>
+<div class="wrap"><table data-group="voice"><thead><tr><th>Status</th><th>Item</th><th>Why it matters</th><th>Next step</th><th>Owner</th></tr></thead><tbody>
+<tr data-id="v1" data-s="done"><td></td><td>Clip generator <code>tool/generate_voices.dart</code></td><td class="why">Uses the app's own twister data and a <code>manifest.json</code>, so editing a twister or swapping a voice regenerates only that clip. The API key never ships in the app.</td><td>—</td><td class="who">Claude</td></tr>
+<tr data-id="v2" data-s="done"><td></td><td>App plays bundled clip, falls back to TTS</td><td class="why"><code>ClipPlayer</code> (just_audio) plays the clip. Slow/normal/fast map to 0.75/1.0/1.25× with pitch kept. 3× repeat and stop work. Covered by 3 new tests; 29/29 pass.</td><td>—</td><td class="who">Claude</td></tr>
+<tr data-id="v3" data-s="done"><td></td><td>Stale-clip guard in tests</td><td class="why">If someone edits a twister's text without regenerating, <code>data_test.dart</code> fails, so the app can't say an old version.</td><td>—</td><td class="who">Claude</td></tr>
+<tr data-id="v4" data-s="done"><td></td><td>API key on this Mac</td><td class="why">Needed to search voices and generate. No key was found, and Claude must not handle it in chat.</td><td>Put <code>ELEVENLABS_API_KEY=…</code> in <code>repo/.env</code> (gitignored), or use Keychain.</td><td class="who">You</td></tr>
+<tr data-id="v5" data-s="done"><td></td><td>Pick native male voices</td><td class="why">Shortlisted from the Voice Library, male only. My picks: Daniel (GB), Brian (US), Viraj (Hindi, 531K users), Theo Teacher (German). They are already set in <code>tool/voices.json</code>.</td><td>Listen in <code>voices.html</code> and confirm or swap. Then add the Hindi and German voices to My Voices.</td><td class="who">You (by ear)</td></tr>
+<tr data-id="v6" data-s="doing"><td></td><td>Generate 100 clips + QC</td><td class="why">Generated in one pass: 5,700 characters, 6 MB, about 6 minutes of audio. A local Whisper check matched 97 of 100. Three need a listen: <code>hi-oont-ooncha</code> (heard "ओंट", not "ऊँट"), <code>gb-sixth-sheikh</code> ("sixth" may come out as "six"), <code>hi-chatai-chatni</code> ("पे" heard as "भे").</td><td>Listen to those 3. Re-record only the bad ones (~45 characters each).</td><td class="who">Claude + you</td></tr>
+<tr data-id="v7" data-s="todo"><td></td><td>Merge <code>feat/elevenlabs-voices</code></td><td class="why">Nothing is committed or pushed yet.</td><td>Commit, open a PR, and let CI build an APK to test on a phone.</td><td class="who">You (approve)</td></tr>
+</tbody></table></div>
+
+<h2>3 · Improvements, ranked by impact ÷ effort</h2>
+<div class="wrap"><table data-group="improve"><thead><tr><th>Status</th><th>Idea</th><th>Why it matters</th><th>How</th><th>Effort</th></tr></thead><tbody>
+<tr data-id="i1" data-s="todo"><td></td><td>Karaoke word highlight</td><td class="why">Learners follow along word by word. This is the biggest perceived-quality gain from the new voices.</td><td>The ElevenLabs <code>/with-timestamps</code> endpoint returns character timings. Save them next to each mp3 and highlight in sync with playback.</td><td class="who">S–M</td></tr>
+<tr data-id="i2" data-s="todo"><td></td><td>Record yourself &amp; compare</td><td class="why">"I said it!" is an honour system. Hearing your own attempt next to the native one is the core practice loop.</td><td>Use the mic (the <code>record</code> package) for an A/B playback screen. Keep everything on the device; nothing is uploaded.</td><td class="who">M</td></tr>
+<tr data-id="i3" data-s="todo"><td></td><td>Speed challenge with a timer</td><td class="why">Gives a reason to come back: "3× in 6.2 s, your best is 5.8 s".</td><td>Time the run, store the best per twister, and show the native speaker's clip length as a target.</td><td class="who">S</td></tr>
+<tr data-id="i4" data-s="todo"><td></td><td>Accuracy scoring</td><td class="why">Objective feedback on what you actually said.</td><td>On-device speech-to-text (<code>speech_to_text</code>), then word-level diff against the twister. Hindi recognition quality varies, so start with English and German.</td><td class="who">M–L</td></tr>
+<tr data-id="i5" data-s="todo"><td></td><td>Daily streak + gentle reminder</td><td class="why">Drives retention in practice apps.</td><td>Count the days in a row with ≥1 attempt; add an optional local notification.</td><td class="who">S</td></tr>
+<tr data-id="i6" data-s="todo"><td></td><td>Localise the app UI</td><td class="why">The UI is English-only. Your other apps ship ~40 languages, and Hindi/German learners would expect at least those UI languages.</td><td><code>flutter_localizations</code> + ARB files; start with en/hi/de, then scale.</td><td class="who">M</td></tr>
+<tr data-id="i7" data-s="todo"><td></td><td>More sections</td><td class="why">Spanish, French and Japanese twisters are popular. With ElevenLabs, a new language now costs content, not voice engineering.</td><td>Follow "Adding a language" in AGENTS.md, and only add authentic twisters.</td><td class="who">M each</td></tr>
+<tr data-id="i8" data-s="todo"><td></td><td>Smaller clips</td><td class="why">100 × ~60 KB ≈ 6 MB at 128 kbps. Speech sounds identical at 64 kbps.</td><td>Switch <code>output_format</code> to <code>mp3_44100_64</code>, which roughly halves the size.</td><td class="who">XS</td></tr>
+<tr data-id="i9" data-s="todo"><td></td><td>Screen-reader labels</td><td class="why">Icon buttons (listen, favourite, 3×) need semantic labels for TalkBack/VoiceOver; Apple review checks this more and more.</td><td>Run an a11y pass and add <code>Semantics</code>/<code>tooltip</code> to icon buttons.</td><td class="who">S</td></tr>
+</tbody></table></div>
+
+<footer>Source of truth for the code: <code>AGENTS.md</code>. This page is a planning view; regenerate or edit it as items land.</footer>
+</main>
+<script>
+const ORDER=['todo','doing','done','block'],LABEL={todo:'To do',doing:'Doing',done:'Done',block:'Blocked'};
+let saved={};try{saved=JSON.parse(localStorage.getItem('tt-tracker')||'{}')}catch(e){}
+function render(){
+  const rows=[...document.querySelectorAll('tr[data-id]')],count={todo:0,doing:0,done:0,block:0};
+  rows.forEach(r=>{const s=saved[r.dataset.id]||r.dataset.s;count[s]++;
+    r.cells[0].innerHTML=`<span class="pill ${s}" role="button" tabindex="0">${LABEL[s]}</span>`;});
+  const total=rows.length;
+  document.getElementById('kpis').innerHTML=
+    `<div class="kpi"><b>${count.done}/${total}</b><span>done</span></div>`+
+    `<div class="kpi"><b class="block">${count.block}</b><span>blocked on you</span></div>`+
+    `<div class="kpi"><b>${document.querySelectorAll('[data-group=blockers] tr[data-id]').length}</b><span>store blockers</span></div>`+
+    `<div class="kpi"><b>100</b><span>clips to generate</span></div>`;
+  document.getElementById('barfill').style.width=(count.done/total*100)+'%';
+}
+document.addEventListener('click',e=>{const p=e.target.closest('.pill');if(!p)return;
+  const r=p.closest('tr'),cur=saved[r.dataset.id]||r.dataset.s;
+  saved[r.dataset.id]=ORDER[(ORDER.indexOf(cur)+1)%ORDER.length];
+  try{localStorage.setItem('tt-tracker',JSON.stringify(saved))}catch(e){}render();});
+document.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.classList.contains('pill'))e.target.click();});
+render();
+</script>
+</body>
+</html>

@@ -4,15 +4,18 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'preferences_provider.dart';
 
 enum PlaybackSpeed {
-  slow('Slow', 0.25),
-  normal('Normal', 0.45),
-  fast('Fast', 0.65);
+  slow('Slow', 0.25, 0.75),
+  normal('Normal', 0.45, 1.0),
+  fast('Fast', 0.65, 1.25);
 
-  const PlaybackSpeed(this.label, this.rate);
+  const PlaybackSpeed(this.label, this.rate, this.clipSpeed);
   final String label;
 
   /// flutter_tts rate: 0.0–1.0, where 0.5 is roughly natural speed.
   final double rate;
+
+  /// Playback-rate multiplier for recorded voice clips (pitch is kept).
+  final double clipSpeed;
 }
 
 class AppSettings {

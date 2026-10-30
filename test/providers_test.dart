@@ -136,6 +136,49 @@ void main() {
       expect(engine.spoken, hasLength(1));
       expect(container.read(speechControllerProvider).speakingId, isNull);
     });
+
+    test('prefers the recorded clip at the chosen speed', () async {
+      final engine = FakeSpeechEngine(unavailable: {'hi-IN'});
+      final clips = FakeClipPlayer(clips: {clipAssetFor('hi-kachcha-papad')});
+      final container = await createContainer(engine: engine, clips: clips);
+      addTearDown(container.dispose);
+      final twister = container.read(twisterByIdProvider('hi-kachcha-papad'))!;
+
+      container.read(settingsProvider.notifier).setSpeed(PlaybackSpeed.fast);
+      final result = await container
+          .read(speechControllerProvider.notifier)
+          .speak(twister, times: 3);
+
+      expect(result, SpeakResult.done);
+      expect(
+        clips.played,
+        List.filled(3, (
+          'assets/audio/hi-kachcha-papad.mp3',
+          PlaybackSpeed.fast.clipSpeed,
+        )),
+      );
+      expect(engine.spoken, isEmpty);
+    });
+
+    test('stop interrupts a clip repeat loop', () async {
+      final clips = FakeClipPlayer(clips: {clipAssetFor('de-blaukraut')})
+        ..gate = Completer<void>();
+      final container = await createContainer(clips: clips);
+      addTearDown(container.dispose);
+      final twister = container.read(twisterByIdProvider('de-blaukraut'))!;
+      final controller = container.read(speechControllerProvider.notifier);
+
+      final pending = controller.speak(twister, times: 3);
+      await pumpEventQueue();
+      expect(
+        container.read(speechControllerProvider).isSpeaking(twister.id),
+        isTrue,
+      );
+
+      await controller.stop();
+      expect(await pending, SpeakResult.stopped);
+      expect(clips.played, hasLength(1));
+    });
   });
 
   group('settings', () {

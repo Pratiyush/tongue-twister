@@ -13,7 +13,17 @@ Guidance for AI coding agents (and humans) working on this repository.
 | Hindi | `hindi` | `hi-IN` |
 | German | `german` | `de-DE` |
 
-Stack: Flutter (stable, pinned in `.github/workflows/build.yml`), Dart 3, `flutter_riverpod` 3, `flutter_tts`, `shared_preferences`. No code generation.
+Stack: Flutter (stable, pinned in `.github/workflows/build.yml`), Dart 3, `flutter_riverpod` 3, `just_audio`, `flutter_tts`, `shared_preferences`. No code generation.
+
+## Voice clips (ElevenLabs)
+
+Each twister plays a pre-recorded native-speaker clip from `assets/audio/<id>.mp3`, generated with ElevenLabs. Twisters without a clip fall back to device text-to-speech. The API key never ships in the app.
+
+- Voices and settings: `tool/voices.json` (one native voice per section).
+- Generate: `dart run tool/generate_voices.dart` (key from `ELEVENLABS_API_KEY` or a gitignored `.env`). It only regenerates clips whose text, voice or model changed, and deletes orphans.
+- Find a native voice: `--find hi-IN`, then `--use hi-IN <owner> <voice_id> <name>`.
+- `assets/audio/manifest.json` records what each clip says; `test/data_test.dart` fails if a twister's text no longer matches its clip. **After editing a twister's text, regenerate.**
+- `SpeechController.speak` plays clips via `ClipPlayer` (`clipPlayerProvider`); tests use `FakeClipPlayer`. Speed comes from `PlaybackSpeed.clipSpeed` (0.75 / 1.0 / 1.25, pitch kept).
 
 ## Commands
 

@@ -49,9 +49,43 @@ class FakeSpeechEngine implements SpeechEngine {
   }
 }
 
+/// Records clip playback instead of decoding audio.
+class FakeClipPlayer implements ClipPlayer {
+  FakeClipPlayer({this.clips = const {}});
+
+  final Set<String> clips;
+  final played = <(String, double)>[];
+  int stops = 0;
+
+  /// When set, `play` waits on this until `stop` is called.
+  Completer<void>? gate;
+  bool _playing = false;
+
+  @override
+  Future<Set<String>> availableClips() async => clips;
+
+  @override
+  Future<void> play(String asset, double speed) async {
+    played.add((asset, speed));
+    _playing = true;
+    await gate?.future;
+    _playing = false;
+  }
+
+  @override
+  Future<void> stop() async {
+    stops++;
+    final pending = gate;
+    if (_playing && pending != null && !pending.isCompleted) {
+      pending.complete();
+    }
+  }
+}
+
 Future<ProviderContainer> createContainer({
   Map<String, Object> prefs = const {},
   SpeechEngine? engine,
+  ClipPlayer? clips,
 }) async {
   SharedPreferences.setMockInitialValues(prefs);
   final instance = await SharedPreferences.getInstance();
@@ -59,6 +93,7 @@ Future<ProviderContainer> createContainer({
     overrides: [
       sharedPreferencesProvider.overrideWithValue(instance),
       speechEngineProvider.overrideWithValue(engine ?? FakeSpeechEngine()),
+      clipPlayerProvider.overrideWithValue(clips ?? FakeClipPlayer()),
     ],
   );
   return container;
