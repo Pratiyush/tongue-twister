@@ -16,7 +16,7 @@ class AppLocalizationsPl extends AppLocalizations {
   String get settingsLanguage => 'Język aplikacji';
 
   @override
-  String get languageSystemDefault => 'Domyślny systemu';
+  String get languageSystemDefault => 'Język systemu';
 
   @override
   String languageFollowsDevice(String language) {
@@ -76,7 +76,7 @@ class AppLocalizationsPl extends AppLocalizations {
   String get sectionShortUS => 'USA';
 
   @override
-  String get sectionSubtitleUK => 'Lorries, biscuits i porządna herbatka';
+  String get sectionSubtitleUK => 'Ciężarówki, herbatniki i porządna herbata';
 
   @override
   String get sectionSubtitleUS => 'Świstaki, wózki i Unique New York';
@@ -91,13 +91,13 @@ class AppLocalizationsPl extends AppLocalizations {
   String get difficultyHard => 'Trudny';
 
   @override
-  String get speedSlow => 'Wolna';
+  String get speedSlow => 'Wolne';
 
   @override
-  String get speedNormal => 'Normalna';
+  String get speedNormal => 'Normalne';
 
   @override
-  String get speedFast => 'Szybka';
+  String get speedFast => 'Szybkie';
 
   @override
   String get heroTitle => 'Połam sobie język!';
@@ -137,7 +137,8 @@ class AppLocalizationsPl extends AppLocalizations {
   String get recommendedTitle => 'Polecane dla ciebie';
 
   @override
-  String get recommendRevise => 'Czas na powtórkę: twój najrzadziej ćwiczony';
+  String get recommendRevise =>
+      'Czas na powtórkę: najrzadziej ćwiczony łamaniec';
 
   @override
   String recommendStarter(String level) {
@@ -153,10 +154,10 @@ class AppLocalizationsPl extends AppLocalizations {
   @override
   String recommendPractisedLanguage(String level, String language) {
     String _temp0 = intl.Intl.selectLogic(level, {
-      'easy': 'Nowy, łatwy, w języku, który ćwiczysz: $language',
-      'medium': 'Nowy, średni, w języku, który ćwiczysz: $language',
-      'hard': 'Nowy, trudny, w języku, który ćwiczysz: $language',
-      'other': 'Nowy w języku, który ćwiczysz: $language',
+      'easy': 'Nowy łatwy łamaniec w ćwiczonym języku: $language',
+      'medium': 'Nowy średni łamaniec w ćwiczonym języku: $language',
+      'hard': 'Nowy trudny łamaniec w ćwiczonym języku: $language',
+      'other': 'Nowy łamaniec w ćwiczonym języku: $language',
     });
     return '$_temp0';
   }
@@ -194,7 +195,7 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String pagerSwipeHint(int current, int total) {
-    return '$current / $total · przesuń po więcej';
+    return '$current / $total · przesuń dalej';
   }
 
   @override
@@ -243,7 +244,7 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String noVoiceForLocale(String locale) {
-    return 'Brak głosu $locale na tym urządzeniu. Dodaj go w systemowych ustawieniach zamiany tekstu na mowę.';
+    return 'Brak głosu $locale na tym urządzeniu. Dodaj go w ustawieniach przetwarzania tekstu na mowę.';
   }
 
   @override
@@ -318,13 +319,13 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get settingsVoicesHelp =>
-      'Łamańce odtwarzają nagrania native speakerów. Systemowy głos zamiany tekstu na mowę jest używany tylko wtedy, gdy brakuje nagrania. Jeśli brakuje języka, zainstaluj go w ustawieniach systemu (Android: Ustawienia → System → Języki → Zamiana tekstu na mowę; iOS: Ustawienia → Dostępność → Treść mówiona → Głosy).';
+      'Łamańce odtwarzamy z nagrań native speakerów. Głos syntezatora mowy w telefonie jest używany tylko wtedy, gdy brakuje nagrania. Jeśli język nie jest zainstalowany, dodaj go w ustawieniach przetwarzania tekstu na mowę w telefonie.';
 
   @override
   String get voiceInstalled => 'Zainstalowany';
 
   @override
-  String get voiceNotInstalled => 'Brak';
+  String get voiceNotInstalled => 'Niezainstalowany';
 
   @override
   String get voiceUnknown => 'Nieznany';
@@ -386,7 +387,7 @@ class AppLocalizationsPl extends AppLocalizations {
   }
 
   @override
-  String get privacyChoices => 'Prywatność';
+  String get privacyChoices => 'Ustawienia prywatności';
 
   @override
   String get privacyChoicesHelp => 'Zmień zgodę na reklamy';

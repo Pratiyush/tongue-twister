@@ -76,7 +76,7 @@ class AppLocalizationsUk extends AppLocalizations {
   String get sectionShortUS => 'US';
 
   @override
-  String get sectionSubtitleUK => 'Lorries, biscuits і чашечка доброго чаю';
+  String get sectionSubtitleUK => 'Вантажівки, печиво й чашечка доброго чаю';
 
   @override
   String get sectionSubtitleUS => 'Бабаки, коляски й Unique New York';
@@ -91,13 +91,13 @@ class AppLocalizationsUk extends AppLocalizations {
   String get difficultyHard => 'Складно';
 
   @override
-  String get speedSlow => 'Повільно';
+  String get speedSlow => 'Повільна';
 
   @override
-  String get speedNormal => 'Звичайно';
+  String get speedNormal => 'Звичайна';
 
   @override
-  String get speedFast => 'Швидко';
+  String get speedFast => 'Швидка';
 
   @override
   String get heroTitle => 'Поламай язика!';
@@ -136,7 +136,7 @@ class AppLocalizationsUk extends AppLocalizations {
   String get recommendedTitle => 'Рекомендуємо тобі';
 
   @override
-  String get recommendRevise => 'Час повторити: твоя найменш опрацьована';
+  String get recommendRevise => 'Час повторити: цю ти опрацьовуєш найрідше';
 
   @override
   String recommendStarter(String level) {
@@ -152,10 +152,10 @@ class AppLocalizationsUk extends AppLocalizations {
   @override
   String recommendPractisedLanguage(String level, String language) {
     String _temp0 = intl.Intl.selectLogic(level, {
-      'easy': 'Нова легка, мова вже знайома: $language',
-      'medium': 'Нова середня, мова вже знайома: $language',
-      'hard': 'Нова складна, мова вже знайома: $language',
-      'other': 'Нова, мова вже знайома: $language',
+      'easy': 'Нова легка — мовою, яку ти вивчаєш: $language',
+      'medium': 'Нова середня — мовою, яку ти вивчаєш: $language',
+      'hard': 'Нова складна — мовою, яку ти вивчаєш: $language',
+      'other': 'Нова — мовою, яку ти вивчаєш: $language',
     });
     return '$_temp0';
   }
@@ -216,7 +216,7 @@ class AppLocalizationsUk extends AppLocalizations {
   }
 
   @override
-  String get saidIt => 'Сказано!';
+  String get saidIt => 'Вийшло!';
 
   @override
   String get practiseFirstTry => 'Першу спробу зараховано. Тепер швидше!';
@@ -317,7 +317,7 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get settingsVoicesHelp =>
-      'Скоромовки звучать у записах носіїв мови. Синтез мовлення телефона вмикається, лише якщо запису немає. Якщо мови бракує, встанови її в системних налаштуваннях (Android: Налаштування → Система → Мови → Синтез мовлення; iOS: Параметри → Доступність → Усний контент → Голоси).';
+      'Скоромовки звучать у записах носіїв мови. Синтез мовлення телефона вмикається, лише якщо запису немає. Якщо мову не встановлено, додай її в налаштуваннях синтезу мовлення на телефоні.';
 
   @override
   String get voiceInstalled => 'Встановлено';

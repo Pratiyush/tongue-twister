@@ -20,7 +20,7 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String languageFollowsDevice(String language) {
-    return 'Come il tuo dispositivo · $language';
+    return 'Segue il dispositivo · $language';
   }
 
   @override
@@ -104,7 +104,7 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get heroSubtitle =>
-      'Ascolta una voce madrelingua, poi ripetilo sempre più veloce.';
+      'Ascolta una voce madrelingua, poi ripeti sempre più veloce.';
 
   @override
   String heroStatRatio(int done, int total) {
@@ -135,15 +135,15 @@ class AppLocalizationsIt extends AppLocalizations {
   String get recommendedTitle => 'Consigliato per te';
 
   @override
-  String get recommendRevise => 'Ora di ripassare: il tuo meno esercitato';
+  String get recommendRevise => 'Ripassa il tuo scioglilingua meno esercitato';
 
   @override
   String recommendStarter(String level) {
     String _temp0 = intl.Intl.selectLogic(level, {
-      'easy': 'Uno facile per iniziare',
-      'medium': 'Uno medio per iniziare',
-      'hard': 'Uno difficile per iniziare',
-      'other': 'Uno buono per iniziare',
+      'easy': 'Uno scioglilingua facile per iniziare',
+      'medium': 'Uno scioglilingua medio per iniziare',
+      'hard': 'Uno scioglilingua difficile per iniziare',
+      'other': 'Un buon scioglilingua per iniziare',
     });
     return '$_temp0';
   }
@@ -152,7 +152,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String recommendPractisedLanguage(String level, String language) {
     String _temp0 = intl.Intl.selectLogic(level, {
       'easy': 'Nuovo e facile in $language, che già eserciti',
-      'medium': 'Nuovo e medio in $language, che già eserciti',
+      'medium': 'Nuovo, di media difficoltà, in $language, che già eserciti',
       'hard': 'Nuovo e difficile in $language, che già eserciti',
       'other': 'Nuovo in $language, che già eserciti',
     });
@@ -213,7 +213,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get saidIt => 'L\'ho detto!';
 
   @override
-  String get practiseFirstTry => 'Primo tentativo fatto. Ora più veloce!';
+  String get practiseFirstTry => 'Primo tentativo registrato. Ora più veloce!';
 
   @override
   String get practiseThreeTimes => 'Tre volte! La tua lingua si sta scaldando.';
@@ -263,7 +263,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get settingsSpeakingSpeed => 'Velocità di lettura';
 
   @override
-  String get settingsRepeatChallenge => 'Sfida ripetizione';
+  String get settingsRepeatChallenge => 'Sfida di ripetizione';
 
   @override
   String settingsRepeatSubtitle(int count) {
@@ -308,7 +308,7 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get settingsVoicesHelp =>
-      'Gli scioglilingua sono registrazioni di madrelingua. La sintesi vocale del telefono si usa solo se manca una registrazione. Se manca una lingua, installala nelle impostazioni di sistema (Android: Impostazioni → Sistema → Lingue → Sintesi vocale; iOS: Impostazioni → Accessibilità → Contenuto letto → Voci).';
+      'Gli scioglilingua usano registrazioni di madrelingua. La sintesi vocale del telefono si usa solo se manca una registrazione. Se una lingua risulta non installata, aggiungila nelle impostazioni di sintesi vocale del telefono.';
 
   @override
   String get voiceInstalled => 'Installata';
@@ -317,7 +317,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get voiceNotInstalled => 'Non installata';
 
   @override
-  String get voiceUnknown => 'Sconosciuto';
+  String get voiceUnknown => 'Sconosciuta';
 
   @override
   String get voiceChecking => 'Controllo…';

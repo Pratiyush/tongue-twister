@@ -134,14 +134,15 @@ class AppLocalizationsHu extends AppLocalizations {
   String get recommendedTitle => 'Neked ajánljuk';
 
   @override
-  String get recommendRevise => 'Ideje ismételni: a legkevésbé gyakorolt';
+  String get recommendRevise =>
+      'Ideje ismételni: a legkevésbé gyakorolt nyelvtörőd';
 
   @override
   String recommendStarter(String level) {
     String _temp0 = intl.Intl.selectLogic(level, {
-      'easy': 'Egy könnyű kezdésnek',
-      'medium': 'Egy közepes kezdésnek',
-      'hard': 'Egy nehéz kezdésnek',
+      'easy': 'Egy jó könnyű kezdésnek',
+      'medium': 'Egy jó közepes kezdésnek',
+      'hard': 'Egy jó nehéz kezdésnek',
       'other': 'Egy jó kezdésnek',
     });
     return '$_temp0';
@@ -150,10 +151,10 @@ class AppLocalizationsHu extends AppLocalizations {
   @override
   String recommendPractisedLanguage(String level, String language) {
     String _temp0 = intl.Intl.selectLogic(level, {
-      'easy': 'Új könnyű, már gyakorolt nyelv: $language',
-      'medium': 'Új közepes, már gyakorolt nyelv: $language',
-      'hard': 'Új nehéz, már gyakorolt nyelv: $language',
-      'other': 'Új, már gyakorolt nyelv: $language',
+      'easy': 'Új könnyű nyelvtörő egy általad gyakorolt nyelven: $language',
+      'medium': 'Új közepes nyelvtörő egy általad gyakorolt nyelven: $language',
+      'hard': 'Új nehéz nyelvtörő egy általad gyakorolt nyelven: $language',
+      'other': 'Új nyelvtörő egy általad gyakorolt nyelven: $language',
     });
     return '$_temp0';
   }
@@ -261,7 +262,7 @@ class AppLocalizationsHu extends AppLocalizations {
   String get settingsSpeakingSpeed => 'Beszédtempó';
 
   @override
-  String get settingsRepeatChallenge => 'Ismétlő kihívás';
+  String get settingsRepeatChallenge => 'Ismétléses kihívás';
 
   @override
   String settingsRepeatSubtitle(int count) {
@@ -306,7 +307,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get settingsVoicesHelp =>
-      'A nyelvtörők anyanyelvi beszélők felvételei. A telefon szövegfelolvasó hangja csak akkor szól, ha hiányzik a felvétel. Ha egy nyelv hiányzik, telepítsd a rendszerbeállításokban (Android: Beállítások → Rendszer → Nyelvek → Szövegfelolvasó; iOS: Beállítások → Kisegítő lehetőségek → Felolvasott tartalom → Hangok).';
+      'A nyelvtörőket anyanyelvi beszélők felvételéről hallod. A telefonod szövegfelolvasó hangja csak akkor szól, ha hiányzik a felvétel. Ha egy nyelv nincs telepítve, add hozzá a telefonod szövegfelolvasási beállításaiban.';
 
   @override
   String get voiceInstalled => 'Telepítve';

@@ -20,7 +20,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String languageFollowsDevice(String language) {
-    return 'Como tu dispositivo · $language';
+    return 'Según tu dispositivo · $language';
   }
 
   @override
@@ -290,7 +290,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get moreRepeats => 'Más repeticiones';
 
   @override
-  String get settingsDisplay => 'Pantalla';
+  String get settingsDisplay => 'Visualización';
 
   @override
   String get showPronunciation => 'Mostrar pronunciación';
@@ -310,7 +310,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get settingsVoicesHelp =>
-      'Los trabalenguas son grabaciones de hablantes nativos. La voz de texto a voz de tu móvil solo se usa si falta una grabación. Si falta un idioma, instálalo en los ajustes del sistema (Android: Ajustes → Sistema → Idiomas → Síntesis de voz; iOS: Ajustes → Accesibilidad → Contenido leído → Voces).';
+      'Los trabalenguas usan grabaciones de hablantes nativos. La voz de texto a voz de tu móvil solo se usa si falta una grabación. Si un idioma aparece como no instalado, añádelo en los ajustes de texto a voz de tu móvil.';
 
   @override
   String get voiceInstalled => 'Instalada';
@@ -319,7 +319,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get voiceNotInstalled => 'No instalada';
 
   @override
-  String get voiceUnknown => 'Desconocido';
+  String get voiceUnknown => 'Desconocida';
 
   @override
   String get voiceChecking => 'Comprobando…';
@@ -378,7 +378,7 @@ class AppLocalizationsEs extends AppLocalizations {
   }
 
   @override
-  String get privacyChoices => 'Privacidad';
+  String get privacyChoices => 'Opciones de privacidad';
 
   @override
   String get privacyChoicesHelp => 'Cambia tu consentimiento de anuncios';

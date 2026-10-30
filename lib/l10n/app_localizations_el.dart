@@ -41,7 +41,7 @@ class AppLocalizationsEl extends AppLocalizations {
   String get actionListen => 'Άκουσε';
 
   @override
-  String get actionStop => 'Διακοπή';
+  String get actionStop => 'Σταμάτα';
 
   @override
   String get addToFavourites => 'Προσθήκη στα αγαπημένα';
@@ -151,10 +151,10 @@ class AppLocalizationsEl extends AppLocalizations {
   @override
   String recommendPractisedLanguage(String level, String language) {
     String _temp0 = intl.Intl.selectLogic(level, {
-      'easy': 'Νέος εύκολος, γνωστή γλώσσα: $language',
-      'medium': 'Νέος μέτριος, γνωστή γλώσσα: $language',
-      'hard': 'Νέος δύσκολος, γνωστή γλώσσα: $language',
-      'other': 'Νέος, γνωστή γλώσσα: $language',
+      'easy': 'Νέος εύκολος σε γλώσσα που εξασκείς: $language',
+      'medium': 'Νέος μέτριος σε γλώσσα που εξασκείς: $language',
+      'hard': 'Νέος δύσκολος σε γλώσσα που εξασκείς: $language',
+      'other': 'Νέος γλωσσοδέτης σε γλώσσα που εξασκείς: $language',
     });
     return '$_temp0';
   }
@@ -213,7 +213,7 @@ class AppLocalizationsEl extends AppLocalizations {
 
   @override
   String get practiseFirstTry =>
-      'Η πρώτη προσπάθεια μετράει. Τώρα πιο γρήγορα!';
+      'Η πρώτη προσπάθεια καταγράφηκε. Τώρα πιο γρήγορα!';
 
   @override
   String get practiseThreeTimes => 'Τρεις φορές! Η γλώσσα σου ζεσταίνεται.';
@@ -226,15 +226,15 @@ class AppLocalizationsEl extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'Μπράβο! $count φορές εξάσκηση.',
-      one: 'Μπράβο! Μία φορά εξάσκηση.',
+      other: 'Μπράβο! Τον είπες $count φορές.',
+      one: 'Μπράβο! Τον είπες μία φορά.',
     );
     return '$_temp0';
   }
 
   @override
   String noVoiceForLocale(String locale) {
-    return 'Δεν υπάρχει φωνή $locale στη συσκευή. Πρόσθεσε μία στις ρυθμίσεις ομιλίας του συστήματος.';
+    return 'Δεν υπάρχει φωνή $locale στη συσκευή. Πρόσθεσε μία στις ρυθμίσεις κειμένου σε ομιλία.';
   }
 
   @override
@@ -270,7 +270,7 @@ class AppLocalizationsEl extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'Τον παίζει $count φορές στη σειρά',
+      other: 'Παίζει $count φορές στη σειρά',
       one: 'Παίζει τον γλωσσοδέτη μία φορά',
     );
     return '$_temp0';
@@ -307,16 +307,16 @@ class AppLocalizationsEl extends AppLocalizations {
 
   @override
   String get settingsVoicesHelp =>
-      'Οι γλωσσοδέτες είναι ηχογραφήσεις φυσικών ομιλητών. Η συνθετική φωνή του κινητού σου χρησιμοποιείται μόνο αν λείπει ηχογράφηση. Αν λείπει μια γλώσσα, εγκατάστησέ τη στις ρυθμίσεις (Android: Ρυθμίσεις → Σύστημα → Γλώσσες → Μετατροπή κειμένου σε ομιλία· iOS: Ρυθμίσεις → Προσβασιμότητα → Εκφωνούμενο περιεχόμενο → Φωνές).';
+      'Οι γλωσσοδέτες ακούγονται από ηχογραφήσεις φυσικών ομιλητών. Η συνθετική φωνή του κινητού σου χρησιμοποιείται μόνο αν λείπει ηχογράφηση. Αν μια γλώσσα φαίνεται μη εγκατεστημένη, πρόσθεσέ τη στις ρυθμίσεις μετατροπής κειμένου σε ομιλία στο κινητό.';
 
   @override
   String get voiceInstalled => 'Εγκατεστημένη';
 
   @override
-  String get voiceNotInstalled => 'Δεν υπάρχει';
+  String get voiceNotInstalled => 'Μη εγκατεστημένη';
 
   @override
-  String get voiceUnknown => 'Άγνωστο';
+  String get voiceUnknown => 'Άγνωστη';
 
   @override
   String get voiceChecking => 'Έλεγχος…';

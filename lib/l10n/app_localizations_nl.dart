@@ -91,7 +91,7 @@ class AppLocalizationsNl extends AppLocalizations {
   String get difficultyHard => 'Moeilijk';
 
   @override
-  String get speedSlow => 'Traag';
+  String get speedSlow => 'Langzaam';
 
   @override
   String get speedNormal => 'Normaal';
@@ -239,7 +239,7 @@ class AppLocalizationsNl extends AppLocalizations {
   }
 
   @override
-  String get settingsAppearance => 'Weergave';
+  String get settingsAppearance => 'Uiterlijk';
 
   @override
   String get themeSystem => 'Systeem';
@@ -289,7 +289,7 @@ class AppLocalizationsNl extends AppLocalizations {
   String get moreRepeats => 'Meer herhalingen';
 
   @override
-  String get settingsDisplay => 'Tonen';
+  String get settingsDisplay => 'Weergave';
 
   @override
   String get showPronunciation => 'Uitspraak tonen';
@@ -309,7 +309,7 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get settingsVoicesHelp =>
-      'Tongbrekers spelen opnames van moedertaalsprekers af. De tekst-naar-spraakstem van je telefoon wordt alleen gebruikt als een opname ontbreekt. Ontbreekt een taal? Installeer die in je systeeminstellingen (Android: Instellingen → Systeem → Talen → Tekst-naar-spraak; iOS: Instellingen → Toegankelijkheid → Gesproken materiaal → Stemmen).';
+      'Tongbrekers spelen opnames van moedertaalsprekers af. De tekst-naar-spraakstem van je telefoon wordt alleen gebruikt als een opname ontbreekt. Staat er bij een taal ‘Ontbreekt’? Voeg die dan toe in de tekst-naar-spraakinstellingen van je telefoon.';
 
   @override
   String get voiceInstalled => 'Geïnstalleerd';

@@ -211,7 +211,7 @@ class AppLocalizationsSv extends AppLocalizations {
   String get saidIt => 'Jag sa det!';
 
   @override
-  String get practiseFirstTry => 'Första försöket loggat. Säg den snabbare nu!';
+  String get practiseFirstTry => 'Första försöket klart. Säg den snabbare nu!';
 
   @override
   String get practiseThreeTimes => 'Tre gånger! Tungan börjar bli varm.';
@@ -306,7 +306,7 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get settingsVoicesHelp =>
-      'Tungvrickarna spelar inspelningar av modersmålstalare. Telefonens text till tal-röst används bara när en inspelning saknas. Saknas ett språk, installera det i systeminställningarna (Android: Inställningar → System → Språk → Text till tal; iOS: Inställningar → Hjälpmedel → Uppläst innehåll → Röster).';
+      'Tungvrickarna är inspelade av modersmålstalare. Telefonens text till tal-röst används bara när en inspelning saknas. Om ett språk visas som inte installerat lägger du till det i telefonens inställningar för text till tal.';
 
   @override
   String get voiceInstalled => 'Installerad';
@@ -334,7 +334,7 @@ class AppLocalizationsSv extends AppLocalizations {
   String get settingsYourData => 'Dina data';
 
   @override
-  String get resetProgress => 'Nollställ övningar';
+  String get resetProgress => 'Nollställ övningsframsteg';
 
   @override
   String get resetProgressTitle => 'Nollställa framstegen?';
@@ -344,7 +344,7 @@ class AppLocalizationsSv extends AppLocalizations {
       'Alla övningsräknare sätts tillbaka till noll.';
 
   @override
-  String get resetProgressDone => 'Övningar nollställda';
+  String get resetProgressDone => 'Övningsframsteg nollställda';
 
   @override
   String get clearFavourites => 'Rensa favoriter';

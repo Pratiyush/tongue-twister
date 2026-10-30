@@ -76,7 +76,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get sectionShortUS => 'US';
 
   @override
-  String get sectionSubtitleUK => 'Lorries, biscuits и чашечка хорошего чая';
+  String get sectionSubtitleUK => 'Грузовики, печенье и чашечка хорошего чая';
 
   @override
   String get sectionSubtitleUS => 'Сурки, коляски и Unique New York';
@@ -91,13 +91,13 @@ class AppLocalizationsRu extends AppLocalizations {
   String get difficultyHard => 'Сложно';
 
   @override
-  String get speedSlow => 'Медленно';
+  String get speedSlow => 'Медленная';
 
   @override
-  String get speedNormal => 'Обычно';
+  String get speedNormal => 'Обычная';
 
   @override
-  String get speedFast => 'Быстро';
+  String get speedFast => 'Быстрая';
 
   @override
   String get heroTitle => 'Поломай язык!';
@@ -138,7 +138,7 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get recommendRevise =>
-      'Пора повторить: твоя самая редкая скороговорка';
+      'Пора повторить: эту ты отрабатываешь реже всего';
 
   @override
   String recommendStarter(String level) {
@@ -154,10 +154,10 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String recommendPractisedLanguage(String level, String language) {
     String _temp0 = intl.Intl.selectLogic(level, {
-      'easy': 'Новая лёгкая, язык уже знаком: $language',
-      'medium': 'Новая средняя, язык уже знаком: $language',
-      'hard': 'Новая сложная, язык уже знаком: $language',
-      'other': 'Новая, язык уже знаком: $language',
+      'easy': 'Новая лёгкая — на языке, который ты учишь: $language',
+      'medium': 'Новая средняя — на языке, который ты учишь: $language',
+      'hard': 'Новая сложная — на языке, который ты учишь: $language',
+      'other': 'Новая — на языке, который ты учишь: $language',
     });
     return '$_temp0';
   }
@@ -218,7 +218,7 @@ class AppLocalizationsRu extends AppLocalizations {
   }
 
   @override
-  String get saidIt => 'Сказано!';
+  String get saidIt => 'Получилось!';
 
   @override
   String get practiseFirstTry => 'Первая попытка засчитана. Теперь быстрее!';
@@ -319,7 +319,7 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get settingsVoicesHelp =>
-      'Скороговорки звучат в записи носителей языка. Синтез речи телефона используется, только если записи нет. Если языка нет, установи его в системных настройках (Android: Настройки → Система → Языки → Синтез речи; iOS: Настройки → Универсальный доступ → Устный контент → Голоса).';
+      'Скороговорки звучат в записи носителей языка. Синтез речи телефона используется, только если записи нет. Если язык не установлен, добавь его в настройках синтеза речи на телефоне.';
 
   @override
   String get voiceInstalled => 'Установлен';

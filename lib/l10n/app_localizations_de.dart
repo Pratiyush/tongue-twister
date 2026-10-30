@@ -272,7 +272,7 @@ class AppLocalizationsDe extends AppLocalizations {
       count,
       locale: localeName,
       other: '$count-mal am Stück abspielen',
-      one: 'Spielt ihn einmal ab',
+      one: 'Einmal abspielen',
     );
     return '$_temp0';
   }
@@ -308,7 +308,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get settingsVoicesHelp =>
-      'Die Zungenbrecher sind Aufnahmen von Muttersprachlern. Die Sprachausgabe deines Handys springt nur ein, wenn eine Aufnahme fehlt. Fehlt eine Sprache, installiere sie in den Systemeinstellungen (Android: Einstellungen → System → Sprachen → Sprachausgabe; iOS: Einstellungen → Bedienungshilfen → Gesprochene Inhalte → Stimmen).';
+      'Die Zungenbrecher sind Aufnahmen von Muttersprachlern. Die Sprachausgabe deines Handys springt nur ein, wenn eine Aufnahme fehlt. Steht bei einer Sprache „Nicht installiert“, füge sie in den Sprachausgabe-Einstellungen deines Handys hinzu.';
 
   @override
   String get voiceInstalled => 'Installiert';

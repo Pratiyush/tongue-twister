@@ -141,10 +141,10 @@ class AppLocalizationsPt extends AppLocalizations {
   @override
   String recommendStarter(String level) {
     String _temp0 = intl.Intl.selectLogic(level, {
-      'easy': 'Um fácil para começar',
-      'medium': 'Um médio para começar',
-      'hard': 'Um difícil para começar',
-      'other': 'Um bom para começar',
+      'easy': 'Um trava-língua fácil para começar',
+      'medium': 'Um trava-língua médio para começar',
+      'hard': 'Um trava-língua difícil para começar',
+      'other': 'Um bom trava-língua para começar',
     });
     return '$_temp0';
   }
@@ -153,7 +153,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String recommendPractisedLanguage(String level, String language) {
     String _temp0 = intl.Intl.selectLogic(level, {
       'easy': 'Novo e fácil em $language, que você já pratica',
-      'medium': 'Novo e médio em $language, que você já pratica',
+      'medium': 'Novo, de nível médio, em $language, que você já pratica',
       'hard': 'Novo e difícil em $language, que você já pratica',
       'other': 'Novo em $language, que você já pratica',
     });
@@ -311,7 +311,7 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get settingsVoicesHelp =>
-      'Os trava-línguas tocam gravações de falantes nativos. A voz de texto para fala do seu celular só é usada quando falta uma gravação. Se faltar um idioma, instale-o nas configurações do sistema (Android: Configurações → Sistema → Idiomas → Conversão de texto em voz; iOS: Ajustes → Acessibilidade → Conteúdo Falado → Vozes).';
+      'Os trava-línguas tocam gravações de falantes nativos. A voz de texto para fala do celular só é usada quando falta uma gravação. Se um idioma aparecer como não instalado, adicione-o nas configurações de texto para fala do celular.';
 
   @override
   String get voiceInstalled => 'Instalada';
@@ -320,7 +320,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get voiceNotInstalled => 'Não instalada';
 
   @override
-  String get voiceUnknown => 'Desconhecido';
+  String get voiceUnknown => 'Desconhecida';
 
   @override
   String get voiceChecking => 'Verificando…';
@@ -396,7 +396,7 @@ class AppLocalizationsPtPt extends AppLocalizationsPt {
   String get settingsLanguage => 'Idioma da app';
 
   @override
-  String get languageSystemDefault => 'Predefinição';
+  String get languageSystemDefault => 'Idioma do sistema';
 
   @override
   String languageFollowsDevice(String language) {
@@ -521,10 +521,10 @@ class AppLocalizationsPtPt extends AppLocalizationsPt {
   @override
   String recommendStarter(String level) {
     String _temp0 = intl.Intl.selectLogic(level, {
-      'easy': 'Um fácil para começar',
-      'medium': 'Um médio para começar',
-      'hard': 'Um difícil para começar',
-      'other': 'Um bom para começar',
+      'easy': 'Um trava-línguas fácil para começar',
+      'medium': 'Um trava-línguas médio para começar',
+      'hard': 'Um trava-línguas difícil para começar',
+      'other': 'Um bom trava-línguas para começar',
     });
     return '$_temp0';
   }
@@ -533,7 +533,7 @@ class AppLocalizationsPtPt extends AppLocalizationsPt {
   String recommendPractisedLanguage(String level, String language) {
     String _temp0 = intl.Intl.selectLogic(level, {
       'easy': 'Novo e fácil em $language, que já praticas',
-      'medium': 'Novo e médio em $language, que já praticas',
+      'medium': 'Novo, de nível médio, em $language, que já praticas',
       'hard': 'Novo e difícil em $language, que já praticas',
       'other': 'Novo em $language, que já praticas',
     });
@@ -691,7 +691,7 @@ class AppLocalizationsPtPt extends AppLocalizationsPt {
 
   @override
   String get settingsVoicesHelp =>
-      'Os trava-línguas usam gravações de falantes nativos. A voz de texto para voz do teu telemóvel só é usada quando falta uma gravação. Se faltar um idioma, instala-o nas definições do sistema (Android: Definições → Sistema → Idiomas → Conversão de texto em voz; iOS: Definições → Acessibilidade → Conteúdo enunciado → Vozes).';
+      'Os trava-línguas usam gravações de falantes nativos. A voz sintetizada do teu telemóvel só é usada quando falta uma gravação. Se um idioma aparecer como não instalado, adiciona-o nas definições de texto para voz do telemóvel.';
 
   @override
   String get voiceInstalled => 'Instalada';
@@ -700,7 +700,7 @@ class AppLocalizationsPtPt extends AppLocalizationsPt {
   String get voiceNotInstalled => 'Não instalada';
 
   @override
-  String get voiceUnknown => 'Desconhecido';
+  String get voiceUnknown => 'Desconhecida';
 
   @override
   String get voiceChecking => 'A verificar…';

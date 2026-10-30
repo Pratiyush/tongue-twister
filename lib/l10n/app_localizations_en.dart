@@ -304,7 +304,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get settingsVoicesHelp =>
-      'Twisters play recordings by native speakers. Your phone\'s text-to-speech voice is used only when a recording is missing. If a language is missing, install it in your system settings (Android: Settings → System → Languages → Text-to-speech; iOS: Settings → Accessibility → Spoken Content → Voices).';
+      'Twisters play recordings by native speakers. Your phone\'s text-to-speech voice is used only when a recording is missing. If a language shows as not installed, add it in your phone\'s text-to-speech settings.';
 
   @override
   String get voiceInstalled => 'Installed';

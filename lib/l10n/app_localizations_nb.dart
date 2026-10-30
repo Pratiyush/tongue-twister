@@ -104,7 +104,7 @@ class AppLocalizationsNb extends AppLocalizations {
 
   @override
   String get heroSubtitle =>
-      'Hør på en innfødt stemme, og si den raskere hver gang.';
+      'Hør på en morsmålstaler, og si den raskere hver gang.';
 
   @override
   String heroStatRatio(int done, int total) {
@@ -305,7 +305,7 @@ class AppLocalizationsNb extends AppLocalizations {
 
   @override
   String get settingsVoicesHelp =>
-      'Tungekrøllene spiller opptak av innfødte. Telefonens tekst-til-tale-stemme brukes bare når et opptak mangler. Mangler et språk, installer det i systeminnstillingene (Android: Innstillinger → System → Språk → Tekst-til-tale; iOS: Innstillinger → Tilgjengelighet → Opplest innhold → Stemmer).';
+      'Tungekrøllene er spilt inn av morsmålstalere. Telefonens tekst-til-tale-stemme brukes bare når et opptak mangler. Står et språk som ikke installert, legger du det til i telefonens innstillinger for tekst-til-tale.';
 
   @override
   String get voiceInstalled => 'Installert';

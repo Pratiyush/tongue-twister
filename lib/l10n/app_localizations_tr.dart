@@ -70,7 +70,7 @@ class AppLocalizationsTr extends AppLocalizations {
   }
 
   @override
-  String get sectionShortUK => 'UK';
+  String get sectionShortUK => 'BK';
 
   @override
   String get sectionShortUS => 'ABD';
@@ -104,7 +104,7 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get heroSubtitle =>
-      'Anadil konuşanını dinle, sonra her seferinde daha hızlı söyle.';
+      'Ana dili konuşan birini dinle, sonra her seferinde daha hızlı söyle.';
 
   @override
   String heroStatRatio(int done, int total) {
@@ -118,7 +118,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get heroStatFavourites => 'favori';
 
   @override
-  String get surpriseMe => 'Şaşırt beni';
+  String get surpriseMe => 'Beni şaşırt';
 
   @override
   String sectionProgress(int practised, int total) {
@@ -264,7 +264,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get settingsSpeakingSpeed => 'Konuşma hızı';
 
   @override
-  String get settingsRepeatChallenge => 'Tekrar meydan okuması';
+  String get settingsRepeatChallenge => 'Tekrar mücadelesi';
 
   @override
   String settingsRepeatSubtitle(int count) {
@@ -289,14 +289,14 @@ class AppLocalizationsTr extends AppLocalizations {
   String get moreRepeats => 'Daha çok tekrar';
 
   @override
-  String get settingsDisplay => 'Ekran';
+  String get settingsDisplay => 'Gösterim';
 
   @override
   String get showPronunciation => 'Okunuşu göster';
 
   @override
   String get showPronunciationHelp =>
-      'Hintçe tekerlemelerin altında Latin harfleri';
+      'Hintçe tekerlemelerin altında Latin yazısı';
 
   @override
   String get showMeaning => 'Anlamı göster';
@@ -309,7 +309,7 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get settingsVoicesHelp =>
-      'Tekerlemeler anadil konuşanların kayıtlarıyla çalınır. Telefonunun metin okuma sesi yalnızca kayıt eksikse kullanılır. Bir dil eksikse onu sistem ayarlarından yükle (Android: Ayarlar → Sistem → Diller → Metin okuma çıkışı; iOS: Ayarlar → Erişilebilirlik → Seslendirilen İçerik → Sesler).';
+      'Tekerlemeler, ana dili konuşanların kayıtlarıyla çalınır. Telefonunun metin okuma sesi yalnızca kayıt yoksa kullanılır. Bir dil yüklü değil görünüyorsa telefonunun metin okuma ayarlarından ekle.';
 
   @override
   String get voiceInstalled => 'Yüklü';
@@ -337,7 +337,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get settingsYourData => 'Verilerin';
 
   @override
-  String get resetProgress => 'İlerlemeyi sıfırla';
+  String get resetProgress => 'Çalışma ilerlemesini sıfırla';
 
   @override
   String get resetProgressTitle => 'İlerleme sıfırlansın mı?';
@@ -346,7 +346,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get resetProgressBody => 'Tüm çalışma sayaçları sıfırlanacak.';
 
   @override
-  String get resetProgressDone => 'İlerleme sıfırlandı';
+  String get resetProgressDone => 'Çalışma ilerlemesi sıfırlandı';
 
   @override
   String get clearFavourites => 'Favorileri temizle';

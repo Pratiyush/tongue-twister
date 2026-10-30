@@ -76,7 +76,7 @@ class AppLocalizationsCs extends AppLocalizations {
   String get sectionShortUS => 'US';
 
   @override
-  String get sectionSubtitleUK => 'Lorries, biscuits a pořádný šálek čaje';
+  String get sectionSubtitleUK => 'Náklaďáky, sušenky a pořádný šálek čaje';
 
   @override
   String get sectionSubtitleUS => 'Svišti, kočárky a Unique New York';
@@ -134,7 +134,7 @@ class AppLocalizationsCs extends AppLocalizations {
   String get recommendedTitle => 'Doporučeno pro tebe';
 
   @override
-  String get recommendRevise => 'Čas zopakovat: tvůj nejméně procvičený';
+  String get recommendRevise => 'Zopakuj si: tvůj nejméně procvičený jazykolam';
 
   @override
   String recommendStarter(String level) {
@@ -150,10 +150,10 @@ class AppLocalizationsCs extends AppLocalizations {
   @override
   String recommendPractisedLanguage(String level, String language) {
     String _temp0 = intl.Intl.selectLogic(level, {
-      'easy': 'Nový snadný, jazyk už znáš: $language',
-      'medium': 'Nový střední, jazyk už znáš: $language',
-      'hard': 'Nový těžký, jazyk už znáš: $language',
-      'other': 'Nový jazykolam, jazyk už znáš: $language',
+      'easy': 'Nový snadný jazykolam v jazyce, co procvičuješ: $language',
+      'medium': 'Nový střední jazykolam v jazyce, co procvičuješ: $language',
+      'hard': 'Nový těžký jazykolam v jazyce, co procvičuješ: $language',
+      'other': 'Nový jazykolam v jazyce, co procvičuješ: $language',
     });
     return '$_temp0';
   }
@@ -170,7 +170,7 @@ class AppLocalizationsCs extends AppLocalizations {
   String get filterAll => 'Vše';
 
   @override
-  String get noTwistersMatch => 'Nic nenalezeno.';
+  String get noTwistersMatch => 'Žádné jazykolamy nenalezeny.';
 
   @override
   String get favouritesEmpty => 'Klepni na ♡ u jazykolamu a uložíš si ho sem.';
@@ -305,7 +305,7 @@ class AppLocalizationsCs extends AppLocalizations {
 
   @override
   String get settingsVoicesHelp =>
-      'Jazykolamy hrají nahrávky rodilých mluvčích. Hlas převodu textu na řeč v telefonu se použije, jen když nahrávka chybí. Pokud jazyk chybí, nainstaluj ho v nastavení systému (Android: Nastavení → Systém → Jazyky → Převod textu na řeč; iOS: Nastavení → Zpřístupnění → Mluvený obsah → Hlasy).';
+      'Jazykolamy přehráváme z nahrávek rodilých mluvčích. Hlas převodu textu na řeč v telefonu se použije, jen když nahrávka chybí. Pokud jazyk není nainstalovaný, přidej ho v nastavení převodu textu na řeč v telefonu.';
 
   @override
   String get voiceInstalled => 'Nainstalováno';
@@ -372,7 +372,7 @@ class AppLocalizationsCs extends AppLocalizations {
   }
 
   @override
-  String get privacyChoices => 'Ochrana soukromí';
+  String get privacyChoices => 'Nastavení soukromí';
 
   @override
   String get privacyChoicesHelp => 'Změnit souhlas s reklamami';

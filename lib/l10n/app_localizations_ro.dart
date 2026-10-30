@@ -164,17 +164,17 @@ class AppLocalizationsRo extends AppLocalizations {
   }
 
   @override
-  String get searchTwistersHint => 'Caută frământări';
+  String get searchTwistersHint => 'Caută frământări de limbă';
 
   @override
   String get filterAll => 'Toate';
 
   @override
-  String get noTwistersMatch => 'Niciun rezultat.';
+  String get noTwistersMatch => 'Nicio frământare de limbă găsită.';
 
   @override
   String get favouritesEmpty =>
-      'Atinge ♡ la o frământare ca s-o păstrezi aici.';
+      'Atinge ♡ la o frământare de limbă ca s-o păstrezi aici.';
 
   @override
   String practisedTimes(int count) {
@@ -233,7 +233,7 @@ class AppLocalizationsRo extends AppLocalizations {
 
   @override
   String noVoiceForLocale(String locale) {
-    return 'Nu există voce $locale pe dispozitiv. Adaug-o în setările de sistem pentru vorbire.';
+    return 'Nu există voce $locale pe dispozitiv. Adaug-o din setările text în vorbire ale sistemului.';
   }
 
   @override
@@ -262,7 +262,7 @@ class AppLocalizationsRo extends AppLocalizations {
   String get settingsSpeakingSpeed => 'Viteza vorbirii';
 
   @override
-  String get settingsRepeatChallenge => 'Repetă la rând';
+  String get settingsRepeatChallenge => 'Provocare de repetare';
 
   @override
   String settingsRepeatSubtitle(int count) {
@@ -271,7 +271,7 @@ class AppLocalizationsRo extends AppLocalizations {
       locale: localeName,
       other: 'O redă de $count de ori la rând',
       few: 'O redă de $count ori la rând',
-      one: 'Redă frământarea o dată',
+      one: 'Redă frământarea de limbă o dată',
     );
     return '$_temp0';
   }
@@ -295,7 +295,7 @@ class AppLocalizationsRo extends AppLocalizations {
 
   @override
   String get showPronunciationHelp =>
-      'Transcriere latină sub frământările în hindi';
+      'Transcriere sub frământările de limbă hindi';
 
   @override
   String get showMeaning => 'Arată sensul';
@@ -308,7 +308,7 @@ class AppLocalizationsRo extends AppLocalizations {
 
   @override
   String get settingsVoicesHelp =>
-      'Frământările se redau din înregistrări ale vorbitorilor nativi. Vocea sintetică a telefonului e folosită doar când lipsește o înregistrare. Dacă lipsește o limbă, instaleaz-o din setările de sistem (Android: Setări → Sistem → Limbi → Transformarea textului în vorbire; iOS: Configurări → Accesibilitate → Conținut vorbit → Voci).';
+      'Frământările de limbă se redau din înregistrări ale vorbitorilor nativi. Vocea sintetică a telefonului e folosită doar când lipsește o înregistrare. Dacă o limbă apare ca neinstalată, adaug-o din setările text în vorbire ale telefonului.';
 
   @override
   String get voiceInstalled => 'Instalată';
@@ -317,7 +317,7 @@ class AppLocalizationsRo extends AppLocalizations {
   String get voiceNotInstalled => 'Neinstalată';
 
   @override
-  String get voiceUnknown => 'Necunoscut';
+  String get voiceUnknown => 'Necunoscută';
 
   @override
   String get voiceChecking => 'Se verifică…';
@@ -356,7 +356,7 @@ class AppLocalizationsRo extends AppLocalizations {
 
   @override
   String get clearFavouritesBody =>
-      'Toate frământările vor fi eliminate din favorite.';
+      'Toate frământările de limbă vor fi eliminate din favorite.';
 
   @override
   String get clearFavouritesDone => 'Favorite golite';
@@ -365,7 +365,7 @@ class AppLocalizationsRo extends AppLocalizations {
   String get dialogCancel => 'Anulează';
 
   @override
-  String get dialogClear => 'Golește';
+  String get dialogClear => 'Șterge';
 
   @override
   String get settingsAbout => 'Despre';

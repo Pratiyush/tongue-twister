@@ -20,7 +20,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String languageFollowsDevice(String language) {
-    return 'Comme ton appareil · $language';
+    return 'Suit ton appareil · $language';
   }
 
   @override
@@ -132,7 +132,7 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String get recommendedTitle => 'Pour toi';
+  String get recommendedTitle => 'Recommandé pour toi';
 
   @override
   String get recommendRevise => 'À réviser : ton virelangue le moins pratiqué';
@@ -140,10 +140,10 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String recommendStarter(String level) {
     String _temp0 = intl.Intl.selectLogic(level, {
-      'easy': 'Un facile pour commencer',
-      'medium': 'Un moyen pour commencer',
-      'hard': 'Un difficile pour commencer',
-      'other': 'Un bon pour commencer',
+      'easy': 'Un virelangue facile pour commencer',
+      'medium': 'Un virelangue moyen pour commencer',
+      'hard': 'Un virelangue difficile pour commencer',
+      'other': 'Un bon virelangue pour commencer',
     });
     return '$_temp0';
   }
@@ -151,10 +151,10 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String recommendPractisedLanguage(String level, String language) {
     String _temp0 = intl.Intl.selectLogic(level, {
-      'easy': 'Nouveau et facile, dans ta langue : $language',
-      'medium': 'Nouveau et moyen, dans ta langue : $language',
-      'hard': 'Nouveau et difficile, dans ta langue : $language',
-      'other': 'Nouveau, dans ta langue : $language',
+      'easy': 'Facile et nouveau, langue déjà pratiquée : $language',
+      'medium': 'Moyen et nouveau, langue déjà pratiquée : $language',
+      'hard': 'Difficile et nouveau, langue déjà pratiquée : $language',
+      'other': 'Nouveau, langue déjà pratiquée : $language',
     });
     return '$_temp0';
   }
@@ -264,7 +264,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settingsSpeakingSpeed => 'Vitesse de parole';
 
   @override
-  String get settingsRepeatChallenge => 'Défi répétition';
+  String get settingsRepeatChallenge => 'Défi de répétition';
 
   @override
   String settingsRepeatSubtitle(int count) {
@@ -292,7 +292,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settingsDisplay => 'Affichage';
 
   @override
-  String get showPronunciation => 'Voir la prononciation';
+  String get showPronunciation => 'Afficher la prononciation';
 
   @override
   String get showPronunciationHelp =>
@@ -309,7 +309,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get settingsVoicesHelp =>
-      'Les virelangues sont des enregistrements de locuteurs natifs. La synthèse vocale de ton téléphone ne sert que si un enregistrement manque. Si une langue manque, installe-la dans les réglages système (Android : Paramètres → Système → Langues → Synthèse vocale ; iOS : Réglages → Accessibilité → Contenu énoncé → Voix).';
+      'Les virelangues utilisent des enregistrements de locuteurs natifs. La synthèse vocale de ton téléphone ne sert que si un enregistrement manque. Si une langue apparaît comme non installée, ajoute-la dans les réglages de synthèse vocale du téléphone.';
 
   @override
   String get voiceInstalled => 'Installée';
@@ -318,7 +318,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get voiceNotInstalled => 'Non installée';
 
   @override
-  String get voiceUnknown => 'Inconnu';
+  String get voiceUnknown => 'Inconnue';
 
   @override
   String get voiceChecking => 'Vérification…';
@@ -340,7 +340,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get resetProgress => 'Réinitialiser la progression';
 
   @override
-  String get resetProgressTitle => 'Réinitialiser ?';
+  String get resetProgressTitle => 'Réinitialiser la progression ?';
 
   @override
   String get resetProgressBody =>
@@ -377,8 +377,8 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String get privacyChoices => 'Confidentialité';
+  String get privacyChoices => 'Choix de confidentialité';
 
   @override
-  String get privacyChoicesHelp => 'Modifier ton consentement pub';
+  String get privacyChoicesHelp => 'Modifier ton consentement aux pubs';
 }

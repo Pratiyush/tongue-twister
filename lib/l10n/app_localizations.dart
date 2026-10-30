@@ -616,10 +616,10 @@ abstract class AppLocalizations {
   /// **'Voices'**
   String get settingsVoices;
 
-  /// Help paragraph under 'Voices' in Settings. Translate the Android/iOS menu paths using the phone's own menu names in your language if you know them. Max ~350 chars.
+  /// Help paragraph under 'Voices' in Settings. Deliberately no menu path: say 'your phone's text-to-speech settings' in the words your language's phones use. Max ~250 chars.
   ///
   /// In en, this message translates to:
-  /// **'Twisters play recordings by native speakers. Your phone\'s text-to-speech voice is used only when a recording is missing. If a language is missing, install it in your system settings (Android: Settings → System → Languages → Text-to-speech; iOS: Settings → Accessibility → Spoken Content → Voices).'**
+  /// **'Twisters play recordings by native speakers. Your phone\'s text-to-speech voice is used only when a recording is missing. If a language shows as not installed, add it in your phone\'s text-to-speech settings.'**
   String get settingsVoicesHelp;
 
   /// Voice status: the phone has a voice for this language. Max ~16 chars.

@@ -131,17 +131,17 @@ class AppLocalizationsFi extends AppLocalizations {
   }
 
   @override
-  String get recommendedTitle => 'Suositeltu sinulle';
+  String get recommendedTitle => 'Suositus sinulle';
 
   @override
-  String get recommendRevise => 'Kertauksen aika: vähiten harjoittelemasi';
+  String get recommendRevise => 'Kertaa vähiten harjoittelemasi kielenvääntäjä';
 
   @override
   String recommendStarter(String level) {
     String _temp0 = intl.Intl.selectLogic(level, {
-      'easy': 'Helppo aloitukseen',
-      'medium': 'Keskitason aloitukseen',
-      'hard': 'Vaikea aloitukseen',
+      'easy': 'Hyvä helppo aloitukseen',
+      'medium': 'Hyvä keskitason aloitukseen',
+      'hard': 'Hyvä vaikea aloitukseen',
       'other': 'Hyvä aloitukseen',
     });
     return '$_temp0';
@@ -150,10 +150,10 @@ class AppLocalizationsFi extends AppLocalizations {
   @override
   String recommendPractisedLanguage(String level, String language) {
     String _temp0 = intl.Intl.selectLogic(level, {
-      'easy': 'Uusi helppo, tuttu kieli: $language',
-      'medium': 'Uusi keskitason, tuttu kieli: $language',
-      'hard': 'Uusi vaikea, tuttu kieli: $language',
-      'other': 'Uusi, tuttu kieli: $language',
+      'easy': 'Uusi helppo harjoittelemastasi kielestä: $language',
+      'medium': 'Uusi keskitason harjoittelemastasi kielestä: $language',
+      'hard': 'Uusi vaikea harjoittelemastasi kielestä: $language',
+      'other': 'Uusi harjoittelemastasi kielestä: $language',
     });
     return '$_temp0';
   }
@@ -188,7 +188,7 @@ class AppLocalizationsFi extends AppLocalizations {
 
   @override
   String pagerSwipeHint(int current, int total) {
-    return '$current / $total · pyyhkäise lisää';
+    return '$current / $total · lisää pyyhkäisemällä';
   }
 
   @override
@@ -268,7 +268,7 @@ class AppLocalizationsFi extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'Toistaa sen $count kertaa putkeen',
+      other: 'Toistaa $count kertaa putkeen',
       one: 'Toistaa kielenvääntäjän kerran',
     );
     return '$_temp0';
@@ -292,7 +292,8 @@ class AppLocalizationsFi extends AppLocalizations {
   String get showPronunciation => 'Näytä ääntäminen';
 
   @override
-  String get showPronunciationHelp => 'Latinalainen teksti hindin alla';
+  String get showPronunciationHelp =>
+      'Hindin kielenvääntäjät latinalaisin kirjaimin';
 
   @override
   String get showMeaning => 'Näytä merkitys';
@@ -305,7 +306,7 @@ class AppLocalizationsFi extends AppLocalizations {
 
   @override
   String get settingsVoicesHelp =>
-      'Kielenkääntäjät soivat syntyperäisten puhujien äänityksinä. Puhelimen tekstistä puheeksi -ääntä käytetään vain, jos äänitys puuttuu. Jos kieli puuttuu, asenna se järjestelmäasetuksista (Android: Asetukset → Järjestelmä → Kielet → Tekstistä puheeksi; iOS: Asetukset → Käyttöapu → Puhuttu sisältö → Äänet).';
+      'Kielenvääntäjät toistetaan syntyperäisten puhujien äänityksinä. Puhelimen tekstistä puheeksi -ääntä käytetään vain, jos äänitys puuttuu. Jos kieli näkyy asentamattomana, lisää se puhelimen tekstistä puheeksi -asetuksista.';
 
   @override
   String get voiceInstalled => 'Asennettu';

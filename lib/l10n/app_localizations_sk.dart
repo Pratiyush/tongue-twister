@@ -76,7 +76,7 @@ class AppLocalizationsSk extends AppLocalizations {
   String get sectionShortUS => 'US';
 
   @override
-  String get sectionSubtitleUK => 'Lorries, biscuits a poriadna šálka čaju';
+  String get sectionSubtitleUK => 'Kamióny, sušienky a poriadna šálka čaju';
 
   @override
   String get sectionSubtitleUS => 'Svište, kočíky a Unique New York';
@@ -104,7 +104,7 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get heroSubtitle =>
-      'Vypočuj si rodeného hovoriaceho a potom to hovor stále rýchlejšie.';
+      'Vypočuj si rodeného hovorcu a potom to hovor stále rýchlejšie.';
 
   @override
   String heroStatRatio(int done, int total) {
@@ -134,7 +134,8 @@ class AppLocalizationsSk extends AppLocalizations {
   String get recommendedTitle => 'Odporúčané pre teba';
 
   @override
-  String get recommendRevise => 'Čas zopakovať: tvoj najmenej precvičený';
+  String get recommendRevise =>
+      'Zopakuj si: tvoj najmenej precvičený jazykolam';
 
   @override
   String recommendStarter(String level) {
@@ -150,10 +151,10 @@ class AppLocalizationsSk extends AppLocalizations {
   @override
   String recommendPractisedLanguage(String level, String language) {
     String _temp0 = intl.Intl.selectLogic(level, {
-      'easy': 'Nový ľahký, jazyk už poznáš: $language',
-      'medium': 'Nový stredný, jazyk už poznáš: $language',
-      'hard': 'Nový ťažký, jazyk už poznáš: $language',
-      'other': 'Nový jazykolam, jazyk už poznáš: $language',
+      'easy': 'Nový ľahký jazykolam v jazyku, čo precvičuješ: $language',
+      'medium': 'Nový stredný jazykolam v jazyku, čo precvičuješ: $language',
+      'hard': 'Nový ťažký jazykolam v jazyku, čo precvičuješ: $language',
+      'other': 'Nový jazykolam v jazyku, čo precvičuješ: $language',
     });
     return '$_temp0';
   }
@@ -170,7 +171,7 @@ class AppLocalizationsSk extends AppLocalizations {
   String get filterAll => 'Všetky';
 
   @override
-  String get noTwistersMatch => 'Nič sa nenašlo.';
+  String get noTwistersMatch => 'Žiadne jazykolamy sa nenašli.';
 
   @override
   String get favouritesEmpty => 'Ťukni na ♡ pri jazykolame a uložíš si ho sem.';
@@ -305,7 +306,7 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get settingsVoicesHelp =>
-      'Jazykolamy prehrávajú nahrávky rodených hovoriacich. Hlas prevodu textu na reč v telefóne sa použije, len keď nahrávka chýba. Ak jazyk chýba, nainštaluj ho v nastaveniach systému (Android: Nastavenia → Systém → Jazyky → Prevod textu na reč; iOS: Nastavenia → Prístupnosť → Hovorený obsah → Hlasy).';
+      'Jazykolamy prehrávame z nahrávok rodených hovorcov. Hlas prevodu textu na reč v telefóne sa použije, len keď nahrávka chýba. Ak jazyk nie je nainštalovaný, pridaj ho v nastaveniach prevodu textu na reč v telefóne.';
 
   @override
   String get voiceInstalled => 'Nainštalovaný';
@@ -372,7 +373,7 @@ class AppLocalizationsSk extends AppLocalizations {
   }
 
   @override
-  String get privacyChoices => 'Ochrana súkromia';
+  String get privacyChoices => 'Nastavenia súkromia';
 
   @override
   String get privacyChoicesHelp => 'Zmeniť súhlas s reklamami';

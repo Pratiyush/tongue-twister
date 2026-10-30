@@ -104,7 +104,7 @@ class AppLocalizationsDa extends AppLocalizations {
 
   @override
   String get heroSubtitle =>
-      'Lyt til en indfødt stemme, og sig den hurtigere hver gang.';
+      'Lyt til en modersmålstaler, og sig den hurtigere hver gang.';
 
   @override
   String heroStatRatio(int done, int total) {
@@ -170,7 +170,7 @@ class AppLocalizationsDa extends AppLocalizations {
   String get filterAll => 'Alle';
 
   @override
-  String get noTwistersMatch => 'Ingen tungebrækkere passer.';
+  String get noTwistersMatch => 'Ingen tungebrækkere fundet.';
 
   @override
   String get favouritesEmpty =>
@@ -307,7 +307,7 @@ class AppLocalizationsDa extends AppLocalizations {
 
   @override
   String get settingsVoicesHelp =>
-      'Tungebrækkerne afspiller optagelser af indfødte talere. Telefonens tekst til tale-stemme bruges kun, når en optagelse mangler. Mangler et sprog, så installér det i systemindstillingerne (Android: Indstillinger → System → Sprog → Tekst til tale; iOS: Indstillinger → Tilgængelighed → Oplæst indhold → Stemmer).';
+      'Tungebrækkerne er indtalt af modersmålstalere. Telefonens tekst til tale-stemme bruges kun, når en optagelse mangler. Står et sprog som ikke installeret, så tilføj det i telefonens indstillinger for tekst til tale.';
 
   @override
   String get voiceInstalled => 'Installeret';
