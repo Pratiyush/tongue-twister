@@ -14,7 +14,7 @@ keys = {k for k in en if not k.startswith('@')}
 
 def placeholders(s):
     # Top-level {name} and the selector of {name, plural|select, ...}.
-    return set(re.findall(r'\{(\w+)(?:\}|,\s*(?:plural|select))', s))
+    return set(re.findall(r'\{([A-Za-z_][A-Za-z0-9_]*)(?:\}|,\s*(?:plural|select))', s))
 
 problems = []
 for path in sorted(glob.glob(f'{L10N}/app_*.arb')):
