@@ -379,25 +379,25 @@ class AppLocalizationsSk extends AppLocalizations {
   String get privacyChoicesHelp => 'Zmeniť súhlas s reklamami';
 
   @override
-  String get settingsAds => 'Ads';
+  String get settingsAds => 'Reklamy';
 
   @override
-  String get adFreeWatch => 'Go ad-free for 24 hours';
+  String get adFreeWatch => '24 hodín bez reklám';
 
   @override
-  String get adFreeWatchHelp => 'Watch one short video';
+  String get adFreeWatchHelp => 'Pozri si jedno krátke video';
 
   @override
   String adFreeActive(String time) {
-    return 'Ad-free until $time';
+    return 'Bez reklám do $time';
   }
 
   @override
   String adFreeThanks(String time) {
-    return 'Thanks! No ads until $time.';
+    return 'Vďaka! Žiadne reklamy do $time.';
   }
 
   @override
   String get adFreeUnavailable =>
-      'No video available right now. Try again later.';
+      'Teraz nie je k dispozícii žiadne video. Skús to neskôr.';
 }

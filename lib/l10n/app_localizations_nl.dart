@@ -382,25 +382,25 @@ class AppLocalizationsNl extends AppLocalizations {
   String get privacyChoicesHelp => 'Wijzig je advertentietoestemming';
 
   @override
-  String get settingsAds => 'Ads';
+  String get settingsAds => 'Advertenties';
 
   @override
-  String get adFreeWatch => 'Go ad-free for 24 hours';
+  String get adFreeWatch => '24 uur zonder advertenties';
 
   @override
-  String get adFreeWatchHelp => 'Watch one short video';
+  String get adFreeWatchHelp => 'Bekijk één korte video';
 
   @override
   String adFreeActive(String time) {
-    return 'Ad-free until $time';
+    return 'Advertentievrij tot $time';
   }
 
   @override
   String adFreeThanks(String time) {
-    return 'Thanks! No ads until $time.';
+    return 'Bedankt! Geen advertenties tot $time.';
   }
 
   @override
   String get adFreeUnavailable =>
-      'No video available right now. Try again later.';
+      'Nu geen video beschikbaar. Probeer het later opnieuw.';
 }

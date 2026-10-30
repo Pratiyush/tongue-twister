@@ -95,5 +95,11 @@
   "settingsAbout": "О приложении",
   "aboutVersion": "Версия {version}",
   "privacyChoices": "Конфиденциальность",
-  "privacyChoicesHelp": "Изменить согласие на рекламу"
+  "privacyChoicesHelp": "Изменить согласие на рекламу",
+  "settingsAds": "Реклама",
+  "adFreeWatch": "24 часа без рекламы",
+  "adFreeWatchHelp": "Посмотри одно короткое видео",
+  "adFreeActive": "Без рекламы до {time}",
+  "adFreeThanks": "Спасибо! Без рекламы до {time}.",
+  "adFreeUnavailable": "Сейчас нет доступного видео. Попробуй позже."
 }

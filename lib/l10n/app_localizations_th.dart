@@ -76,7 +76,7 @@ class AppLocalizationsTh extends AppLocalizations {
   String get sectionShortUS => 'US';
 
   @override
-  String get sectionSubtitleUK => 'Lorries, biscuits และชาร้อนสักถ้วย';
+  String get sectionSubtitleUK => 'Lorries, biscuits และชาดีๆ สักถ้วย';
 
   @override
   String get sectionSubtitleUS => 'วูดชัก รถเข็นเด็ก และ Unique New York';
@@ -159,11 +159,11 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String recommendNewLanguage(String language) {
-    return 'ลองอะไรใหม่ๆ: $language';
+    return 'ลองอะไรใหม่ๆ ในภาษา$language';
   }
 
   @override
-  String get searchTwistersHint => 'ค้นหาประโยคลิ้นพัน';
+  String get searchTwistersHint => 'ค้นหาประโยคลิ้นพันกัน';
 
   @override
   String get filterAll => 'ทั้งหมด';
@@ -266,6 +266,7 @@ class AppLocalizationsTh extends AppLocalizations {
       count,
       locale: localeName,
       other: 'เล่นประโยค $count ครั้งติดกัน',
+      one: 'เล่นประโยคครั้งเดียว',
     );
     return '$_temp0';
   }
@@ -301,7 +302,7 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String get settingsVoicesHelp =>
-      'ประโยคต่างๆ เล่นจากเสียงบันทึกของเจ้าของภาษา เสียงแปลงข้อความเป็นเสียงพูดของโทรศัพท์จะใช้เฉพาะเมื่อไม่มีเสียงบันทึก หากไม่มีภาษาใด ให้ติดตั้งในการตั้งค่าระบบ (Android: การตั้งค่า → ระบบ → ภาษา → การอ่านออกเสียงข้อความ; iOS: การตั้งค่า → การช่วยการเข้าถึง → เนื้อหาที่พูด → เสียง)';
+      'ประโยคลิ้นพันกันเล่นจากเสียงบันทึกของเจ้าของภาษา เสียงแปลงข้อความเป็นเสียงพูดของโทรศัพท์จะใช้เฉพาะเมื่อไม่มีเสียงบันทึก หากภาษาใดแสดงว่ายังไม่ติดตั้ง ให้เพิ่มในการตั้งค่าแปลงข้อความเป็นเสียงพูดของโทรศัพท์';
 
   @override
   String get voiceInstalled => 'ติดตั้งแล้ว';
@@ -373,25 +374,24 @@ class AppLocalizationsTh extends AppLocalizations {
   String get privacyChoicesHelp => 'เปลี่ยนความยินยอมเรื่องโฆษณา';
 
   @override
-  String get settingsAds => 'Ads';
+  String get settingsAds => 'โฆษณา';
 
   @override
-  String get adFreeWatch => 'Go ad-free for 24 hours';
+  String get adFreeWatch => 'ปิดโฆษณา 24 ชั่วโมง';
 
   @override
-  String get adFreeWatchHelp => 'Watch one short video';
+  String get adFreeWatchHelp => 'ดูวิดีโอสั้น 1 คลิป';
 
   @override
   String adFreeActive(String time) {
-    return 'Ad-free until $time';
+    return 'ไม่มีโฆษณาถึง $time';
   }
 
   @override
   String adFreeThanks(String time) {
-    return 'Thanks! No ads until $time.';
+    return 'ขอบคุณ! ไม่มีโฆษณาจนถึง $time';
   }
 
   @override
-  String get adFreeUnavailable =>
-      'No video available right now. Try again later.';
+  String get adFreeUnavailable => 'ตอนนี้ยังไม่มีวิดีโอ ลองใหม่ภายหลังนะ';
 }

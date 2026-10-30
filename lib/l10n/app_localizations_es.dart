@@ -384,25 +384,25 @@ class AppLocalizationsEs extends AppLocalizations {
   String get privacyChoicesHelp => 'Cambia tu consentimiento de anuncios';
 
   @override
-  String get settingsAds => 'Ads';
+  String get settingsAds => 'Anuncios';
 
   @override
-  String get adFreeWatch => 'Go ad-free for 24 hours';
+  String get adFreeWatch => '24 horas sin anuncios';
 
   @override
-  String get adFreeWatchHelp => 'Watch one short video';
+  String get adFreeWatchHelp => 'Mira un vídeo corto';
 
   @override
   String adFreeActive(String time) {
-    return 'Ad-free until $time';
+    return 'Sin anuncios hasta $time';
   }
 
   @override
   String adFreeThanks(String time) {
-    return 'Thanks! No ads until $time.';
+    return '¡Gracias! Sin anuncios hasta $time.';
   }
 
   @override
   String get adFreeUnavailable =>
-      'No video available right now. Try again later.';
+      'Ahora no hay ningún vídeo. Inténtalo más tarde.';
 }

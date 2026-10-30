@@ -175,7 +175,7 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get favouritesEmpty =>
-      'Докосни ♡ при скоропоговорка, за да я запазиш тук.';
+      'Докосни ♡ на скоропоговорка, за да я запазиш тук.';
 
   @override
   String practisedTimes(int count) {
@@ -308,7 +308,7 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get settingsVoicesHelp =>
-      'Скоропоговорките са записи на носители на езика. Гласът за синтез на реч на телефона се ползва само когато липсва запис. Ако липсва език, инсталирай го в системните настройки (Android: Настройки → Система → Езици → Синтез на реч; iOS: Настройки → Достъпност → Изговорено съдържание → Гласове).';
+      'Скоропоговорките се пускат от записи на носители на езика. Гласът за синтез на реч на телефона се ползва само когато липсва запис. Ако език се показва като неинсталиран, добави го в настройките за синтез на реч на телефона си.';
 
   @override
   String get voiceInstalled => 'Инсталиран';
@@ -382,25 +382,24 @@ class AppLocalizationsBg extends AppLocalizations {
   String get privacyChoicesHelp => 'Промени съгласието за реклами';
 
   @override
-  String get settingsAds => 'Ads';
+  String get settingsAds => 'Реклами';
 
   @override
-  String get adFreeWatch => 'Go ad-free for 24 hours';
+  String get adFreeWatch => 'Без реклами за 24 часа';
 
   @override
-  String get adFreeWatchHelp => 'Watch one short video';
+  String get adFreeWatchHelp => 'Гледай едно кратко видео';
 
   @override
   String adFreeActive(String time) {
-    return 'Ad-free until $time';
+    return 'Без реклами до $time';
   }
 
   @override
   String adFreeThanks(String time) {
-    return 'Thanks! No ads until $time.';
+    return 'Благодаря! Без реклами до $time.';
   }
 
   @override
-  String get adFreeUnavailable =>
-      'No video available right now. Try again later.';
+  String get adFreeUnavailable => 'В момента няма видео. Опитай пак по-късно.';
 }

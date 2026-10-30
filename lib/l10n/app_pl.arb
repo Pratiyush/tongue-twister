@@ -95,5 +95,11 @@
   "settingsAbout": "Informacje",
   "aboutVersion": "Wersja {version}",
   "privacyChoices": "Ustawienia prywatności",
-  "privacyChoicesHelp": "Zmień zgodę na reklamy"
+  "privacyChoicesHelp": "Zmień zgodę na reklamy",
+  "settingsAds": "Reklamy",
+  "adFreeWatch": "24 godziny bez reklam",
+  "adFreeWatchHelp": "Obejrzyj jeden krótki film",
+  "adFreeActive": "Bez reklam do {time}",
+  "adFreeThanks": "Dzięki! Bez reklam do {time}.",
+  "adFreeUnavailable": "Teraz nie ma żadnego filmu. Spróbuj później."
 }

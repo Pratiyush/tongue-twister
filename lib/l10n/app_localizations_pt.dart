@@ -385,27 +385,27 @@ class AppLocalizationsPt extends AppLocalizations {
   String get privacyChoicesHelp => 'Altere seu consentimento de anúncios';
 
   @override
-  String get settingsAds => 'Ads';
+  String get settingsAds => 'Anúncios';
 
   @override
-  String get adFreeWatch => 'Go ad-free for 24 hours';
+  String get adFreeWatch => '24 horas sem anúncios';
 
   @override
-  String get adFreeWatchHelp => 'Watch one short video';
+  String get adFreeWatchHelp => 'Assista a um vídeo curto';
 
   @override
   String adFreeActive(String time) {
-    return 'Ad-free until $time';
+    return 'Sem anúncios até $time';
   }
 
   @override
   String adFreeThanks(String time) {
-    return 'Thanks! No ads until $time.';
+    return 'Valeu! Sem anúncios até $time.';
   }
 
   @override
   String get adFreeUnavailable =>
-      'No video available right now. Try again later.';
+      'Nenhum vídeo disponível agora. Tente de novo mais tarde.';
 }
 
 /// The translations for Portuguese, as used in Portugal (`pt_PT`).
@@ -786,4 +786,27 @@ class AppLocalizationsPtPt extends AppLocalizationsPt {
 
   @override
   String get privacyChoicesHelp => 'Altera o teu consentimento de anúncios';
+
+  @override
+  String get settingsAds => 'Anúncios';
+
+  @override
+  String get adFreeWatch => '24 horas sem anúncios';
+
+  @override
+  String get adFreeWatchHelp => 'Vê um vídeo curto';
+
+  @override
+  String adFreeActive(String time) {
+    return 'Sem anúncios até $time';
+  }
+
+  @override
+  String adFreeThanks(String time) {
+    return 'Obrigado! Sem anúncios até $time.';
+  }
+
+  @override
+  String get adFreeUnavailable =>
+      'Nenhum vídeo disponível agora. Tenta mais tarde.';
 }

@@ -95,5 +95,11 @@
   "settingsAbout": "Σχετικά",
   "aboutVersion": "Έκδοση {version}",
   "privacyChoices": "Επιλογές απορρήτου",
-  "privacyChoicesHelp": "Άλλαξε τη συναίνεση για διαφημίσεις"
+  "privacyChoicesHelp": "Άλλαξε τη συναίνεση για διαφημίσεις",
+  "settingsAds": "Διαφημίσεις",
+  "adFreeWatch": "24 ώρες χωρίς διαφημίσεις",
+  "adFreeWatchHelp": "Δες ένα σύντομο βίντεο",
+  "adFreeActive": "Χωρίς διαφημίσεις έως {time}",
+  "adFreeThanks": "Ευχαριστούμε! Χωρίς διαφημίσεις έως {time}.",
+  "adFreeUnavailable": "Δεν υπάρχει βίντεο τώρα. Δοκίμασε ξανά αργότερα."
 }

@@ -151,17 +151,17 @@ class AppLocalizationsFa extends AppLocalizations {
   @override
   String recommendPractisedLanguage(String level, String language) {
     String _temp0 = intl.Intl.selectLogic(level, {
-      'easy': 'آسان و تازه، از زبانی که تمرین می‌کنی: $language',
-      'medium': 'متوسط و تازه، از زبانی که تمرین می‌کنی: $language',
-      'hard': 'سخت و تازه، از زبانی که تمرین می‌کنی: $language',
-      'other': 'تازه، از زبانی که تمرین می‌کنی: $language',
+      'easy': 'زبان‌پیچ آسان تازه به $language، زبانی که تمرین می‌کنی',
+      'medium': 'زبان‌پیچ متوسط تازه به $language، زبانی که تمرین می‌کنی',
+      'hard': 'زبان‌پیچ سخت تازه به $language، زبانی که تمرین می‌کنی',
+      'other': 'زبان‌پیچ تازه به $language، زبانی که تمرین می‌کنی',
     });
     return '$_temp0';
   }
 
   @override
   String recommendNewLanguage(String language) {
-    return 'یه چیز تازه امتحان کن: $language';
+    return 'یه چیز تازه به $language امتحان کن';
   }
 
   @override
@@ -294,7 +294,7 @@ class AppLocalizationsFa extends AppLocalizations {
   String get showPronunciation => 'نمایش تلفظ';
 
   @override
-  String get showPronunciationHelp => 'متن لاتین زیر زبان‌پیچ‌های هندی';
+  String get showPronunciationHelp => 'آوانویسی لاتین زیر زبان‌پیچ‌های هندی';
 
   @override
   String get showMeaning => 'نمایش معنی';
@@ -307,7 +307,7 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get settingsVoicesHelp =>
-      'زبان‌پیچ‌ها با صدای ضبط‌شده‌ی گوینده‌های بومی پخش می‌شن. صدای تبدیل متن به گفتار گوشی فقط وقتی استفاده می‌شه که ضبطی نباشه. اگه زبانی نیست، از تنظیمات سیستم نصبش کن (Android: تنظیمات ← سیستم ← زبان‌ها ← تبدیل متن به گفتار؛ iOS: تنظیمات ← دسترس‌پذیری ← محتوای گفتاری ← صداها).';
+      'زبان‌پیچ‌ها با صدای ضبط‌شده‌ی گوینده‌های بومی پخش می‌شن. صدای تبدیل متن به گفتار گوشی فقط وقتی استفاده می‌شه که ضبطی نباشه. اگه زبانی «نصب نشده» نشون داده می‌شه، از تنظیمات تبدیل متن به گفتار گوشیت اضافه‌اش کن.';
 
   @override
   String get voiceInstalled => 'نصب‌شده';
@@ -338,7 +338,7 @@ class AppLocalizationsFa extends AppLocalizations {
   String get resetProgress => 'بازنشانی پیشرفت تمرین';
 
   @override
-  String get resetProgressTitle => 'پیشرفت بازنشانی شود؟';
+  String get resetProgressTitle => 'پیشرفت بازنشانی بشه؟';
 
   @override
   String get resetProgressBody => 'همه‌ی شمارنده‌های تمرین صفر می‌شن.';
@@ -350,7 +350,7 @@ class AppLocalizationsFa extends AppLocalizations {
   String get clearFavourites => 'پاک کردن علاقه‌مندی‌ها';
 
   @override
-  String get clearFavouritesTitle => 'علاقه‌مندی‌ها پاک شوند؟';
+  String get clearFavouritesTitle => 'علاقه‌مندی‌ها پاک بشن؟';
 
   @override
   String get clearFavouritesBody =>
@@ -380,25 +380,24 @@ class AppLocalizationsFa extends AppLocalizations {
   String get privacyChoicesHelp => 'رضایت تبلیغات رو تغییر بده';
 
   @override
-  String get settingsAds => 'Ads';
+  String get settingsAds => 'تبلیغات';
 
   @override
-  String get adFreeWatch => 'Go ad-free for 24 hours';
+  String get adFreeWatch => '۲۴ ساعت بدون تبلیغات';
 
   @override
-  String get adFreeWatchHelp => 'Watch one short video';
+  String get adFreeWatchHelp => 'یه ویدیوی کوتاه ببین';
 
   @override
   String adFreeActive(String time) {
-    return 'Ad-free until $time';
+    return 'بدون تبلیغات تا $time';
   }
 
   @override
   String adFreeThanks(String time) {
-    return 'Thanks! No ads until $time.';
+    return 'مرسی! تا $time تبلیغی نمی‌بینی.';
   }
 
   @override
-  String get adFreeUnavailable =>
-      'No video available right now. Try again later.';
+  String get adFreeUnavailable => 'الان ویدیویی نیست. بعداً دوباره امتحان کن.';
 }

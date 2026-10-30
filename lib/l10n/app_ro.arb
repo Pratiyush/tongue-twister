@@ -95,5 +95,11 @@
   "settingsAbout": "Despre",
   "aboutVersion": "Versiunea {version}",
   "privacyChoices": "Opțiuni de confidențialitate",
-  "privacyChoicesHelp": "Schimbă acordul pentru reclame"
+  "privacyChoicesHelp": "Schimbă acordul pentru reclame",
+  "settingsAds": "Reclame",
+  "adFreeWatch": "24 de ore fără reclame",
+  "adFreeWatchHelp": "Urmărește un videoclip scurt",
+  "adFreeActive": "Fără reclame până la {time}",
+  "adFreeThanks": "Mersi! Fără reclame până la {time}.",
+  "adFreeUnavailable": "Niciun videoclip disponibil acum. Încearcă mai târziu."
 }

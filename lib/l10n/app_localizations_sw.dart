@@ -20,7 +20,7 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String languageFollowsDevice(String language) {
-    return 'Kama kifaa · $language';
+    return 'Inafuata kifaa chako · $language';
   }
 
   @override
@@ -44,10 +44,10 @@ class AppLocalizationsSw extends AppLocalizations {
   String get actionStop => 'Simamisha';
 
   @override
-  String get addToFavourites => 'Ongeza kwa vipendwa';
+  String get addToFavourites => 'Ongeza kwenye vipendwa';
 
   @override
-  String get removeFromFavourites => 'Ondoa kwa vipendwa';
+  String get removeFromFavourites => 'Ondoa kwenye vipendwa';
 
   @override
   String get languageBritishEnglish => 'Kiingereza (UK)';
@@ -217,10 +217,10 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get practiseFirstTry =>
-      'Jaribio la kwanza limerekodiwa. Sasa haraka zaidi!';
+      'Jaribio la kwanza limerekodiwa. Sasa kiseme haraka!';
 
   @override
-  String get practiseThreeTimes => 'Mara tatu! Ulimi wako unapata joto.';
+  String get practiseThreeTimes => 'Mara tatu! Ulimi wako unaanza kuchangamka.';
 
   @override
   String get practiseTenTimes => 'Mara kumi. Umekimudu hiki!';
@@ -312,7 +312,7 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get settingsVoicesHelp =>
-      'Vitanza ndimi vinachezwa kutoka kwa rekodi za wazawa. Sauti ya simu yako ya maandishi kuwa sauti hutumika tu rekodi inapokosekana. Lugha ikikosekana, isakinishe kwenye mipangilio ya mfumo (Android: Mipangilio → Mfumo → Lugha → Kusoma maandishi kwa sauti; iOS: Settings → Accessibility → Spoken Content → Voices).';
+      'Vitanza ndimi vinachezwa kutoka kwa rekodi za wazawa. Sauti ya simu yako ya maandishi kuwa sauti hutumika tu rekodi inapokosekana. Lugha ikionyesha haijasakinishwa, iongeze kwenye mipangilio ya maandishi kuwa sauti ya simu yako.';
 
   @override
   String get voiceInstalled => 'Imesakinishwa';
@@ -340,7 +340,7 @@ class AppLocalizationsSw extends AppLocalizations {
   String get settingsYourData => 'Data yako';
 
   @override
-  String get resetProgress => 'Weka upya maendeleo';
+  String get resetProgress => 'Weka upya maendeleo ya mazoezi';
 
   @override
   String get resetProgressTitle => 'Weka upya maendeleo?';
@@ -385,25 +385,24 @@ class AppLocalizationsSw extends AppLocalizations {
   String get privacyChoicesHelp => 'Badilisha idhini ya matangazo';
 
   @override
-  String get settingsAds => 'Ads';
+  String get settingsAds => 'Matangazo';
 
   @override
-  String get adFreeWatch => 'Go ad-free for 24 hours';
+  String get adFreeWatch => 'Saa 24 bila matangazo';
 
   @override
-  String get adFreeWatchHelp => 'Watch one short video';
+  String get adFreeWatchHelp => 'Tazama video moja fupi';
 
   @override
   String adFreeActive(String time) {
-    return 'Ad-free until $time';
+    return 'Bila matangazo hadi $time';
   }
 
   @override
   String adFreeThanks(String time) {
-    return 'Thanks! No ads until $time.';
+    return 'Asante! Hakuna matangazo hadi $time.';
   }
 
   @override
-  String get adFreeUnavailable =>
-      'No video available right now. Try again later.';
+  String get adFreeUnavailable => 'Hakuna video kwa sasa. Jaribu tena baadaye.';
 }

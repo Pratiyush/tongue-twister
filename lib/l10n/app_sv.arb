@@ -95,5 +95,11 @@
   "settingsAbout": "Om",
   "aboutVersion": "Version {version}",
   "privacyChoices": "Integritetsval",
-  "privacyChoicesHelp": "Ändra ditt annonssamtycke"
+  "privacyChoicesHelp": "Ändra ditt annonssamtycke",
+  "settingsAds": "Annonser",
+  "adFreeWatch": "24 timmar utan annonser",
+  "adFreeWatchHelp": "Titta på en kort video",
+  "adFreeActive": "Annonsfritt till {time}",
+  "adFreeThanks": "Tack! Inga annonser till {time}.",
+  "adFreeUnavailable": "Ingen video tillgänglig just nu. Försök igen senare."
 }

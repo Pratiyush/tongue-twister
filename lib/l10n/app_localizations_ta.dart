@@ -38,16 +38,16 @@ class AppLocalizationsTa extends AppLocalizations {
   String get settingsTitle => 'அமைப்புகள்';
 
   @override
-  String get actionListen => 'கேட்க';
+  String get actionListen => 'கேள்';
 
   @override
   String get actionStop => 'நிறுத்து';
 
   @override
-  String get addToFavourites => 'பிடித்தவையில் சேர்';
+  String get addToFavourites => 'பிடித்தவற்றில் சேர்';
 
   @override
-  String get removeFromFavourites => 'பிடித்தவையிலிருந்து நீக்கு';
+  String get removeFromFavourites => 'பிடித்தவற்றிலிருந்து நீக்கு';
 
   @override
   String get languageBritishEnglish => 'பிரிட்டிஷ் ஆங்கிலம்';
@@ -104,7 +104,7 @@ class AppLocalizationsTa extends AppLocalizations {
 
   @override
   String get heroSubtitle =>
-      'தாய்மொழிக் குரலைக் கேளுங்கள், பிறகு ஒவ்வொரு முறையும் வேகமாகச் சொல்லுங்கள்.';
+      'தாய்மொழியாளர் குரலைக் கேட்டு, ஒவ்வொரு முறையும் வேகமாகச் சொல்லுங்கள்.';
 
   @override
   String heroStatRatio(int done, int total) {
@@ -135,7 +135,8 @@ class AppLocalizationsTa extends AppLocalizations {
   String get recommendedTitle => 'உங்களுக்கான பரிந்துரை';
 
   @override
-  String get recommendRevise => 'மீண்டும் பயிலும் நேரம்: குறைவாகப் பயின்றது';
+  String get recommendRevise =>
+      'மீண்டும் பயிலும் நேரம்: மிகக் குறைவாகப் பயின்றது';
 
   @override
   String recommendStarter(String level) {
@@ -165,7 +166,7 @@ class AppLocalizationsTa extends AppLocalizations {
   }
 
   @override
-  String get searchTwistersHint => 'ட்விஸ்டர்களைத் தேடுக';
+  String get searchTwistersHint => 'டங் ட்விஸ்டர் தேடுக';
 
   @override
   String get filterAll => 'எல்லாம்';
@@ -174,7 +175,7 @@ class AppLocalizationsTa extends AppLocalizations {
   String get noTwistersMatch => 'எதுவும் பொருந்தவில்லை.';
 
   @override
-  String get favouritesEmpty => 'சேமிக்க எந்த ட்விஸ்டரிலும் ♡ தட்டுங்கள்.';
+  String get favouritesEmpty => 'சேமிக்க எந்த டங் ட்விஸ்டரிலும் ♡ தட்டுங்கள்.';
 
   @override
   String practisedTimes(int count) {
@@ -189,7 +190,7 @@ class AppLocalizationsTa extends AppLocalizations {
 
   @override
   String pagerSwipeHint(int current, int total) {
-    return '$current / $total · மேலும் ஸ்வைப் செய்க';
+    return '$current / $total · மேலும் காண ஸ்வைப் செய்க';
   }
 
   @override
@@ -213,7 +214,8 @@ class AppLocalizationsTa extends AppLocalizations {
   String get saidIt => 'சொல்லிவிட்டேன்!';
 
   @override
-  String get practiseFirstTry => 'முதல் முயற்சி பதிவானது. இப்போது வேகமாக!';
+  String get practiseFirstTry =>
+      'முதல் முயற்சி பதிவானது. இப்போது இன்னும் வேகமாக!';
 
   @override
   String get practiseThreeTimes => 'மூன்று முறை! நாக்கு சூடாகிறது.';
@@ -263,15 +265,15 @@ class AppLocalizationsTa extends AppLocalizations {
   String get settingsSpeakingSpeed => 'பேச்சு வேகம்';
 
   @override
-  String get settingsRepeatChallenge => 'மீண்டும் சொல் சவால்';
+  String get settingsRepeatChallenge => 'தொடர் சவால்';
 
   @override
   String settingsRepeatSubtitle(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'ட்விஸ்டரைத் தொடர்ந்து $count முறை இயக்கும்',
-      one: 'ட்விஸ்டரை $count முறை இயக்கும்',
+      other: 'டங் ட்விஸ்டரைத் தொடர்ந்து $count முறை இயக்கும்',
+      one: 'டங் ட்விஸ்டரை $count முறை இயக்கும்',
     );
     return '$_temp0';
   }
@@ -294,7 +296,8 @@ class AppLocalizationsTa extends AppLocalizations {
   String get showPronunciation => 'உச்சரிப்பைக் காட்டு';
 
   @override
-  String get showPronunciationHelp => 'இந்தி ட்விஸ்டர்களின் கீழ் ரோமன் எழுத்து';
+  String get showPronunciationHelp =>
+      'இந்தி டங் ட்விஸ்டர்களின் கீழ் ரோமன் எழுத்து';
 
   @override
   String get showMeaning => 'பொருளைக் காட்டு';
@@ -307,13 +310,13 @@ class AppLocalizationsTa extends AppLocalizations {
 
   @override
   String get settingsVoicesHelp =>
-      'ட்விஸ்டர்கள் தாய்மொழியாளர்களின் பதிவுகளில் ஒலிக்கும். பதிவு இல்லாதபோது மட்டுமே ஃபோனின் உரையிலிருந்து பேச்சு குரல் பயன்படும். ஒரு மொழி இல்லையெனில், சிஸ்டம் அமைப்புகளில் நிறுவுங்கள் (Android: அமைப்புகள் → சிஸ்டம் → மொழிகள் → உரையிலிருந்து பேச்சு; iOS: அமைப்புகள் → அணுகல்தன்மை → பேசப்படும் உள்ளடக்கம் → குரல்கள்).';
+      'டங் ட்விஸ்டர்கள் தாய்மொழியாளர்களின் பதிவுகளில் ஒலிக்கும். பதிவு இல்லாதபோது மட்டுமே ஃபோனின் உரையிலிருந்து பேச்சு குரல் பயன்படும். ஒரு மொழி \"நிறுவப்படவில்லை\" எனக் காட்டினால், ஃபோனின் உரையிலிருந்து பேச்சு அமைப்புகளில் சேர்க்கவும்.';
 
   @override
   String get voiceInstalled => 'நிறுவப்பட்டது';
 
   @override
-  String get voiceNotInstalled => 'நிறுவவில்லை';
+  String get voiceNotInstalled => 'நிறுவப்படவில்லை';
 
   @override
   String get voiceUnknown => 'தெரியவில்லை';
@@ -347,14 +350,14 @@ class AppLocalizationsTa extends AppLocalizations {
   String get resetProgressDone => 'முன்னேற்றம் மீட்டமைக்கப்பட்டது';
 
   @override
-  String get clearFavourites => 'பிடித்தவையை அழி';
+  String get clearFavourites => 'பிடித்தவற்றை அழி';
 
   @override
-  String get clearFavouritesTitle => 'பிடித்தவையை அழிக்கவா?';
+  String get clearFavouritesTitle => 'பிடித்தவற்றை அழிக்கவா?';
 
   @override
   String get clearFavouritesBody =>
-      'எல்லா ட்விஸ்டர்களும் பிடித்தவையிலிருந்து நீக்கப்படும்.';
+      'எல்லா டங் ட்விஸ்டர்களும் பிடித்தவற்றிலிருந்து நீக்கப்படும்.';
 
   @override
   String get clearFavouritesDone => 'பிடித்தவை அழிக்கப்பட்டன';
@@ -366,7 +369,7 @@ class AppLocalizationsTa extends AppLocalizations {
   String get dialogClear => 'அழி';
 
   @override
-  String get settingsAbout => 'அறிமுகம்';
+  String get settingsAbout => 'ஆப் பற்றி';
 
   @override
   String aboutVersion(String version) {
@@ -380,25 +383,25 @@ class AppLocalizationsTa extends AppLocalizations {
   String get privacyChoicesHelp => 'விளம்பர ஒப்புதலை மாற்றுக';
 
   @override
-  String get settingsAds => 'Ads';
+  String get settingsAds => 'விளம்பரங்கள்';
 
   @override
-  String get adFreeWatch => 'Go ad-free for 24 hours';
+  String get adFreeWatch => '24 மணிநேரம் விளம்பரமின்றி';
 
   @override
-  String get adFreeWatchHelp => 'Watch one short video';
+  String get adFreeWatchHelp => 'ஒரு சிறிய வீடியோ பாருங்கள்';
 
   @override
   String adFreeActive(String time) {
-    return 'Ad-free until $time';
+    return '$time வரை விளம்பரமில்லை';
   }
 
   @override
   String adFreeThanks(String time) {
-    return 'Thanks! No ads until $time.';
+    return 'நன்றி! $time வரை விளம்பரங்கள் இல்லை.';
   }
 
   @override
   String get adFreeUnavailable =>
-      'No video available right now. Try again later.';
+      'இப்போது வீடியோ இல்லை. பிறகு மீண்டும் முயலுங்கள்.';
 }

@@ -95,5 +95,11 @@
   "settingsAbout": "O aplikaci",
   "aboutVersion": "Verze {version}",
   "privacyChoices": "Nastavení soukromí",
-  "privacyChoicesHelp": "Změnit souhlas s reklamami"
+  "privacyChoicesHelp": "Změnit souhlas s reklamami",
+  "settingsAds": "Reklamy",
+  "adFreeWatch": "24 hodin bez reklam",
+  "adFreeWatchHelp": "Zhlédni jedno krátké video",
+  "adFreeActive": "Bez reklam do {time}",
+  "adFreeThanks": "Díky! Žádné reklamy do {time}.",
+  "adFreeUnavailable": "Teď není k dispozici žádné video. Zkus to později."
 }

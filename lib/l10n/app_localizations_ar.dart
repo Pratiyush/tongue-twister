@@ -28,7 +28,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String appCredit(String name) {
-    return 'صُنع بـ ❤️ بواسطة $name';
+    return 'صُنع بـ ❤️ على يد $name';
   }
 
   @override
@@ -103,7 +103,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get heroTitle => 'حرّك لسانك!';
 
   @override
-  String get heroSubtitle => 'استمع إلى صوت أصلي، ثم قلها أسرع في كل مرة.';
+  String get heroSubtitle => 'استمع إلى متحدث أصلي، ثم قلها أسرع في كل مرة.';
 
   @override
   String heroStatRatio(int done, int total) {
@@ -111,7 +111,7 @@ class AppLocalizationsAr extends AppLocalizations {
   }
 
   @override
-  String get heroStatPractised => 'أُنجزت';
+  String get heroStatPractised => 'تمرّنت عليها';
 
   @override
   String get heroStatFavourites => 'مفضلة';
@@ -124,12 +124,12 @@ class AppLocalizationsAr extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       practised,
       locale: localeName,
-      other: 'أُنجز $practised من $total',
-      many: 'أُنجز $practised من $total',
-      few: 'أُنجز $practised من $total',
-      two: 'أُنجز $practised من $total',
-      one: 'أُنجز $practised من $total',
-      zero: 'أُنجز $practised من $total',
+      other: 'تمرّنت على $practised من $total',
+      many: 'تمرّنت على $practised من $total',
+      few: 'تمرّنت على $practised من $total',
+      two: 'تمرّنت على $practised من $total',
+      one: 'تمرّنت على $practised من $total',
+      zero: 'تمرّنت على $practised من $total',
     );
     return '$_temp0';
   }
@@ -154,21 +154,21 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String recommendPractisedLanguage(String level, String language) {
     String _temp0 = intl.Intl.selectLogic(level, {
-      'easy': 'جملة سهلة جديدة بلغة تتمرن عليها: $language',
-      'medium': 'جملة متوسطة جديدة بلغة تتمرن عليها: $language',
-      'hard': 'جملة صعبة جديدة بلغة تتمرن عليها: $language',
-      'other': 'جملة جديدة بلغة تتمرن عليها: $language',
+      'easy': 'جملة سهلة جديدة في $language، لغة تتمرّن عليها',
+      'medium': 'جملة متوسطة جديدة في $language، لغة تتمرّن عليها',
+      'hard': 'جملة صعبة جديدة في $language، لغة تتمرّن عليها',
+      'other': 'جملة جديدة في $language، لغة تتمرّن عليها',
     });
     return '$_temp0';
   }
 
   @override
   String recommendNewLanguage(String language) {
-    return 'جرّب شيئًا جديدًا: $language';
+    return 'جرّب شيئًا جديدًا في $language';
   }
 
   @override
-  String get searchTwistersHint => 'ابحث في الجمل';
+  String get searchTwistersHint => 'ابحث في جمل صعبة النطق';
 
   @override
   String get filterAll => 'الكل';
@@ -177,7 +177,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get noTwistersMatch => 'لا توجد نتائج.';
 
   @override
-  String get favouritesEmpty => 'اضغط ♡ على أي جملة لحفظها هنا.';
+  String get favouritesEmpty => 'اضغط ♡ على أي جملة صعبة النطق لحفظها هنا.';
 
   @override
   String practisedTimes(int count) {
@@ -326,7 +326,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get settingsVoicesHelp =>
-      'تُشغَّل الجمل بتسجيلات لمتحدثين أصليين. يُستخدم صوت تحويل النص إلى كلام في هاتفك فقط عند غياب التسجيل. إذا كانت لغة ما غير موجودة، فثبّتها من إعدادات النظام (Android: الإعدادات ← النظام ← اللغات ← تحويل النص إلى كلام؛ iOS: الإعدادات ← تسهيلات الاستخدام ← المحتوى المنطوق ← الأصوات).';
+      'تُشغَّل الجمل بتسجيلات لمتحدثين أصليين. لا يُستخدم صوت تحويل النص إلى كلام في هاتفك إلا عند غياب التسجيل. إذا ظهرت لغة على أنها غير مثبّتة، فأضِفها من إعدادات تحويل النص إلى كلام في هاتفك.';
 
   @override
   String get voiceInstalled => 'مثبّت';
@@ -398,25 +398,24 @@ class AppLocalizationsAr extends AppLocalizations {
   String get privacyChoicesHelp => 'غيّر موافقتك على الإعلانات';
 
   @override
-  String get settingsAds => 'Ads';
+  String get settingsAds => 'الإعلانات';
 
   @override
-  String get adFreeWatch => 'Go ad-free for 24 hours';
+  String get adFreeWatch => 'بلا إعلانات لمدة 24 ساعة';
 
   @override
-  String get adFreeWatchHelp => 'Watch one short video';
+  String get adFreeWatchHelp => 'شاهد فيديو قصيرًا واحدًا';
 
   @override
   String adFreeActive(String time) {
-    return 'Ad-free until $time';
+    return 'بلا إعلانات حتى $time';
   }
 
   @override
   String adFreeThanks(String time) {
-    return 'Thanks! No ads until $time.';
+    return 'شكرًا! لا إعلانات حتى $time.';
   }
 
   @override
-  String get adFreeUnavailable =>
-      'No video available right now. Try again later.';
+  String get adFreeUnavailable => 'لا يوجد فيديو متاح الآن. حاول لاحقًا.';
 }

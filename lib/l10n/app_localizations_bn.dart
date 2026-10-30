@@ -44,10 +44,10 @@ class AppLocalizationsBn extends AppLocalizations {
   String get actionStop => 'থামাও';
 
   @override
-  String get addToFavourites => 'প্রিয়তে যোগ করো';
+  String get addToFavourites => 'প্রিয় তালিকায় যোগ করো';
 
   @override
-  String get removeFromFavourites => 'প্রিয় থেকে সরাও';
+  String get removeFromFavourites => 'প্রিয় তালিকা থেকে সরাও';
 
   @override
   String get languageBritishEnglish => 'ব্রিটিশ ইংরেজি';
@@ -135,7 +135,8 @@ class AppLocalizationsBn extends AppLocalizations {
   String get recommendedTitle => 'তোমার জন্য প্রস্তাব';
 
   @override
-  String get recommendRevise => 'ঝালিয়ে নাও: সবচেয়ে কম অনুশীলন করা টুইস্টার';
+  String get recommendRevise =>
+      'ঝালিয়ে নাও: সবচেয়ে কম অনুশীলন করা টাং টুইস্টার';
 
   @override
   String recommendStarter(String level) {
@@ -151,10 +152,10 @@ class AppLocalizationsBn extends AppLocalizations {
   @override
   String recommendPractisedLanguage(String level, String language) {
     String _temp0 = intl.Intl.selectLogic(level, {
-      'easy': 'নতুন সহজ টুইস্টার, যে ভাষা অনুশীলন করছ: $language',
-      'medium': 'নতুন মাঝারি টুইস্টার, যে ভাষা অনুশীলন করছ: $language',
-      'hard': 'নতুন কঠিন টুইস্টার, যে ভাষা অনুশীলন করছ: $language',
-      'other': 'নতুন টুইস্টার, যে ভাষা অনুশীলন করছ: $language',
+      'easy': 'নতুন সহজ টাং টুইস্টার, তোমার অনুশীলনের ভাষা $language',
+      'medium': 'নতুন মাঝারি টাং টুইস্টার, তোমার অনুশীলনের ভাষা $language',
+      'hard': 'নতুন কঠিন টাং টুইস্টার, তোমার অনুশীলনের ভাষা $language',
+      'other': 'নতুন টাং টুইস্টার, তোমার অনুশীলনের ভাষা $language',
     });
     return '$_temp0';
   }
@@ -165,16 +166,17 @@ class AppLocalizationsBn extends AppLocalizations {
   }
 
   @override
-  String get searchTwistersHint => 'টুইস্টার খোঁজো';
+  String get searchTwistersHint => 'টাং টুইস্টার খোঁজো';
 
   @override
   String get filterAll => 'সব';
 
   @override
-  String get noTwistersMatch => 'কোনো টুইস্টার মেলেনি।';
+  String get noTwistersMatch => 'কোনো টাং টুইস্টার মেলেনি।';
 
   @override
-  String get favouritesEmpty => 'যেকোনো টুইস্টারে ♡ চাপো, এখানে রাখা থাকবে।';
+  String get favouritesEmpty =>
+      'যেকোনো টাং টুইস্টার-এ ♡ চাপো, এখানে রাখা থাকবে।';
 
   @override
   String practisedTimes(int count) {
@@ -213,7 +215,7 @@ class AppLocalizationsBn extends AppLocalizations {
   String get saidIt => 'বলে ফেলেছি!';
 
   @override
-  String get practiseFirstTry => 'প্রথম চেষ্টা লেখা হলো। এবার আরও দ্রুত!';
+  String get practiseFirstTry => 'প্রথম চেষ্টা হয়ে গেল। এবার আরও দ্রুত বলো!';
 
   @override
   String get practiseThreeTimes => 'তিনবার! জিভ গরম হচ্ছে।';
@@ -270,8 +272,8 @@ class AppLocalizationsBn extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'টুইস্টার পরপর $count বার বাজে',
-      one: 'টুইস্টার $count বার বাজে',
+      other: 'টাং টুইস্টার পরপর $count বার বাজে',
+      one: 'টাং টুইস্টার $count বার বাজে',
     );
     return '$_temp0';
   }
@@ -294,7 +296,7 @@ class AppLocalizationsBn extends AppLocalizations {
   String get showPronunciation => 'উচ্চারণ দেখাও';
 
   @override
-  String get showPronunciationHelp => 'হিন্দি টুইস্টারের নিচে রোমান হরফে লেখা';
+  String get showPronunciationHelp => 'হিন্দি টাং টুইস্টার-এর নিচে রোমান হরফে';
 
   @override
   String get showMeaning => 'অর্থ দেখাও';
@@ -307,10 +309,10 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get settingsVoicesHelp =>
-      'টুইস্টারগুলো মাতৃভাষীদের রেকর্ডিংয়ে বাজে। রেকর্ডিং না থাকলে তবেই ফোনের টেক্সট-টু-স্পিচ ভয়েস ব্যবহার হয়। কোনো ভাষা না থাকলে সিস্টেম সেটিংসে ইনস্টল করো (Android: সেটিংস → সিস্টেম → ভাষা → টেক্সট-টু-স্পিচ; iOS: সেটিংস → অ্যাক্সেসিবিলিটি → কথ্য কন্টেন্ট → ভয়েস)।';
+      'টাং টুইস্টার মাতৃভাষীদের রেকর্ডিংয়ে বাজে। রেকর্ডিং না থাকলে তবেই ফোনের টেক্সট-টু-স্পিচ ভয়েস ব্যবহার হয়। কোনো ভাষা \"ইনস্টল নেই\" দেখালে, ফোনের টেক্সট-টু-স্পিচ সেটিংসে সেটা যোগ করো।';
 
   @override
-  String get voiceInstalled => 'ইনস্টল করা';
+  String get voiceInstalled => 'ইনস্টল আছে';
 
   @override
   String get voiceNotInstalled => 'ইনস্টল নেই';
@@ -354,7 +356,7 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get clearFavouritesBody =>
-      'সব টুইস্টার তোমার প্রিয় তালিকা থেকে সরানো হবে।';
+      'সব টাং টুইস্টার তোমার প্রিয় তালিকা থেকে সরানো হবে।';
 
   @override
   String get clearFavouritesDone => 'প্রিয় তালিকা মোছা হয়েছে';
@@ -380,25 +382,24 @@ class AppLocalizationsBn extends AppLocalizations {
   String get privacyChoicesHelp => 'বিজ্ঞাপনের সম্মতি বদলাও';
 
   @override
-  String get settingsAds => 'Ads';
+  String get settingsAds => 'বিজ্ঞাপন';
 
   @override
-  String get adFreeWatch => 'Go ad-free for 24 hours';
+  String get adFreeWatch => '২৪ ঘণ্টা বিজ্ঞাপন ছাড়া';
 
   @override
-  String get adFreeWatchHelp => 'Watch one short video';
+  String get adFreeWatchHelp => 'একটা ছোট ভিডিও দেখো';
 
   @override
   String adFreeActive(String time) {
-    return 'Ad-free until $time';
+    return '$time পর্যন্ত বিজ্ঞাপন নেই';
   }
 
   @override
   String adFreeThanks(String time) {
-    return 'Thanks! No ads until $time.';
+    return 'ধন্যবাদ! $time পর্যন্ত কোনো বিজ্ঞাপন নেই।';
   }
 
   @override
-  String get adFreeUnavailable =>
-      'No video available right now. Try again later.';
+  String get adFreeUnavailable => 'এখন কোনো ভিডিও নেই। পরে আবার চেষ্টা করো।';
 }

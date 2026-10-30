@@ -95,5 +95,11 @@
   "settingsAbout": "Om",
   "aboutVersion": "Version {version}",
   "privacyChoices": "Privatlivsvalg",
-  "privacyChoicesHelp": "Skift dit samtykke til annoncer"
+  "privacyChoicesHelp": "Skift dit samtykke til annoncer",
+  "settingsAds": "Annoncer",
+  "adFreeWatch": "24 timer uden annoncer",
+  "adFreeWatchHelp": "Se én kort video",
+  "adFreeActive": "Uden annoncer indtil {time}",
+  "adFreeThanks": "Tak! Ingen annoncer indtil {time}.",
+  "adFreeUnavailable": "Ingen video lige nu. Prøv igen senere."
 }

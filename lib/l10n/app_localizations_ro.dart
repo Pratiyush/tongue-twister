@@ -382,25 +382,25 @@ class AppLocalizationsRo extends AppLocalizations {
   String get privacyChoicesHelp => 'Schimbă acordul pentru reclame';
 
   @override
-  String get settingsAds => 'Ads';
+  String get settingsAds => 'Reclame';
 
   @override
-  String get adFreeWatch => 'Go ad-free for 24 hours';
+  String get adFreeWatch => '24 de ore fără reclame';
 
   @override
-  String get adFreeWatchHelp => 'Watch one short video';
+  String get adFreeWatchHelp => 'Urmărește un videoclip scurt';
 
   @override
   String adFreeActive(String time) {
-    return 'Ad-free until $time';
+    return 'Fără reclame până la $time';
   }
 
   @override
   String adFreeThanks(String time) {
-    return 'Thanks! No ads until $time.';
+    return 'Mersi! Fără reclame până la $time.';
   }
 
   @override
   String get adFreeUnavailable =>
-      'No video available right now. Try again later.';
+      'Niciun videoclip disponibil acum. Încearcă mai târziu.';
 }

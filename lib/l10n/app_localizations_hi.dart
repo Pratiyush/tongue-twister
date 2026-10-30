@@ -103,8 +103,7 @@ class AppLocalizationsHi extends AppLocalizations {
   String get heroTitle => 'ज़बान घुमाओ!';
 
   @override
-  String get heroSubtitle =>
-      'मूल वक्ता की आवाज़ सुनो, फिर हर बार और तेज़ बोलो।';
+  String get heroSubtitle => 'नेटिव स्पीकर से सुनो, फिर हर बार और तेज़ बोलो।';
 
   @override
   String heroStatRatio(int done, int total) {
@@ -135,7 +134,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get recommendedTitle => 'तुम्हारे लिए सुझाव';
 
   @override
-  String get recommendRevise => 'दोहराने का समय: जिसका अभ्यास सबसे कम हुआ';
+  String get recommendRevise =>
+      'दोहराने का समय: सबसे कम अभ्यास वाला टंग ट्विस्टर';
 
   @override
   String recommendStarter(String level) {
@@ -151,10 +151,11 @@ class AppLocalizationsHi extends AppLocalizations {
   @override
   String recommendPractisedLanguage(String level, String language) {
     String _temp0 = intl.Intl.selectLogic(level, {
-      'easy': '$language में नया आसान ट्विस्टर, अभ्यास जारी रखो',
-      'medium': '$language में नया मध्यम ट्विस्टर, अभ्यास जारी रखो',
-      'hard': '$language में नया कठिन ट्विस्टर, अभ्यास जारी रखो',
-      'other': '$language में नया ट्विस्टर, अभ्यास जारी रखो',
+      'easy': 'तुम्हारी अभ्यास वाली भाषा $language में नया आसान टंग ट्विस्टर',
+      'medium':
+          'तुम्हारी अभ्यास वाली भाषा $language में नया मध्यम टंग ट्विस्टर',
+      'hard': 'तुम्हारी अभ्यास वाली भाषा $language में नया कठिन टंग ट्विस्टर',
+      'other': 'तुम्हारी अभ्यास वाली भाषा $language में नया टंग ट्विस्टर',
     });
     return '$_temp0';
   }
@@ -190,7 +191,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String pagerSwipeHint(int current, int total) {
-    return '$current / $total · और के लिए स्वाइप करो';
+    return '$current / $total · स्वाइप करो, और भी हैं';
   }
 
   @override
@@ -235,11 +236,11 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String noVoiceForLocale(String locale) {
-    return 'इस डिवाइस पर $locale आवाज़ नहीं है। सिस्टम की टेक्स्ट-टू-स्पीच सेटिंग्स में जोड़ लो।';
+    return 'इस डिवाइस पर $locale की कोई आवाज़ नहीं है। सिस्टम की टेक्स्ट-टू-स्पीच सेटिंग्स में जोड़ लो।';
   }
 
   @override
-  String get settingsAppearance => 'दिखावट';
+  String get settingsAppearance => 'रंग-रूप';
 
   @override
   String get themeSystem => 'सिस्टम';
@@ -271,8 +272,8 @@ class AppLocalizationsHi extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'ट्विस्टर लगातार $count बार चलता है',
-      one: 'ट्विस्टर $count बार चलता है',
+      other: 'टंग ट्विस्टर लगातार $count बार चलता है',
+      one: 'टंग ट्विस्टर $count बार चलता है',
     );
     return '$_temp0';
   }
@@ -296,7 +297,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get showPronunciationHelp =>
-      'हिंदी ट्विस्टर के नीचे रोमन में लिखा पाठ';
+      'हिंदी टंग ट्विस्टर के नीचे रोमन लिपि में';
 
   @override
   String get showMeaning => 'अर्थ दिखाओ';
@@ -309,7 +310,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get settingsVoicesHelp =>
-      'टंग ट्विस्टर मूल वक्ताओं की रिकॉर्डिंग में चलते हैं। फ़ोन की टेक्स्ट-टू-स्पीच आवाज़ सिर्फ़ तब इस्तेमाल होती है जब रिकॉर्डिंग न हो। अगर कोई भाषा नहीं है, तो उसे सिस्टम सेटिंग्स में इंस्टॉल करो (Android: सेटिंग्स → सिस्टम → भाषाएँ → टेक्स्ट-टू-स्पीच; iOS: सेटिंग्स → ऐक्सेसिबिलिटी → बोली गई सामग्री → आवाज़ें)।';
+      'टंग ट्विस्टर नेटिव स्पीकर्स की रिकॉर्डिंग में चलते हैं। फ़ोन की टेक्स्ट-टू-स्पीच आवाज़ सिर्फ़ तब इस्तेमाल होती है जब रिकॉर्डिंग न हो। अगर कोई भाषा \"इंस्टॉल नहीं\" दिखे, तो उसे अपने फ़ोन की टेक्स्ट-टू-स्पीच सेटिंग्स में जोड़ लो।';
 
   @override
   String get voiceInstalled => 'इंस्टॉल है';
@@ -330,7 +331,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String testVoice(String language) {
-    return 'आवाज़ जाँचो: $language';
+    return '$language की आवाज़ टेस्ट करो';
   }
 
   @override
@@ -382,25 +383,25 @@ class AppLocalizationsHi extends AppLocalizations {
   String get privacyChoicesHelp => 'विज्ञापन की सहमति बदलो';
 
   @override
-  String get settingsAds => 'Ads';
+  String get settingsAds => 'विज्ञापन';
 
   @override
-  String get adFreeWatch => 'Go ad-free for 24 hours';
+  String get adFreeWatch => '24 घंटे बिना विज्ञापन';
 
   @override
-  String get adFreeWatchHelp => 'Watch one short video';
+  String get adFreeWatchHelp => 'एक छोटा वीडियो देखो';
 
   @override
   String adFreeActive(String time) {
-    return 'Ad-free until $time';
+    return '$time तक कोई विज्ञापन नहीं';
   }
 
   @override
   String adFreeThanks(String time) {
-    return 'Thanks! No ads until $time.';
+    return 'शुक्रिया! $time तक कोई विज्ञापन नहीं।';
   }
 
   @override
   String get adFreeUnavailable =>
-      'No video available right now. Try again later.';
+      'अभी कोई वीडियो नहीं है। थोड़ी देर बाद फिर कोशिश करो।';
 }

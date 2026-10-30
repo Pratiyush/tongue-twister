@@ -100,7 +100,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get speedFast => '빠르게';
 
   @override
-  String get heroTitle => '혀를 꼬아 보자!';
+  String get heroTitle => '혀를 꼬아 봐요!';
 
   @override
   String get heroSubtitle => '원어민 목소리를 듣고, 매번 더 빠르게 말해 보세요.';
@@ -130,7 +130,7 @@ class AppLocalizationsKo extends AppLocalizations {
   }
 
   @override
-  String get recommendedTitle => '추천';
+  String get recommendedTitle => '맞춤 추천';
 
   @override
   String get recommendRevise => '복습할 때예요: 가장 적게 연습한 잰말놀이';
@@ -138,10 +138,10 @@ class AppLocalizationsKo extends AppLocalizations {
   @override
   String recommendStarter(String level) {
     String _temp0 = intl.Intl.selectLogic(level, {
-      'easy': '시작하기 좋은 쉬운 문장',
-      'medium': '시작하기 좋은 보통 문장',
-      'hard': '시작하기 좋은 어려운 문장',
-      'other': '시작하기 좋은 문장',
+      'easy': '시작하기 좋은 쉬운 잰말놀이',
+      'medium': '시작하기 좋은 보통 잰말놀이',
+      'hard': '시작하기 좋은 어려운 잰말놀이',
+      'other': '시작하기 좋은 잰말놀이',
     });
     return '$_temp0';
   }
@@ -149,10 +149,10 @@ class AppLocalizationsKo extends AppLocalizations {
   @override
   String recommendPractisedLanguage(String level, String language) {
     String _temp0 = intl.Intl.selectLogic(level, {
-      'easy': '연습 중인 $language의 새로운 쉬운 문장',
-      'medium': '연습 중인 $language의 새로운 보통 문장',
-      'hard': '연습 중인 $language의 새로운 어려운 문장',
-      'other': '연습 중인 $language의 새로운 문장',
+      'easy': '연습 중인 $language의 새 쉬운 잰말놀이',
+      'medium': '연습 중인 $language의 새 보통 잰말놀이',
+      'hard': '연습 중인 $language의 새 어려운 잰말놀이',
+      'other': '연습 중인 $language의 새 잰말놀이',
     });
     return '$_temp0';
   }
@@ -169,17 +169,17 @@ class AppLocalizationsKo extends AppLocalizations {
   String get filterAll => '전체';
 
   @override
-  String get noTwistersMatch => '일치하는 문장이 없어요.';
+  String get noTwistersMatch => '맞는 잰말놀이가 없어요.';
 
   @override
-  String get favouritesEmpty => '문장의 ♡를 탭하면 여기에 저장돼요.';
+  String get favouritesEmpty => '잰말놀이의 ♡를 탭하면 여기에 저장돼요.';
 
   @override
   String practisedTimes(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count× 연습함',
+      other: '$count번 연습함',
     );
     return '$_temp0';
   }
@@ -200,7 +200,7 @@ class AppLocalizationsKo extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count× 연속',
+      other: '$count번 연속',
     );
     return '$_temp0';
   }
@@ -215,7 +215,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get practiseThreeTimes => '세 번째! 혀가 풀리고 있어요.';
 
   @override
-  String get practiseTenTimes => '열 번! 이 문장은 완벽히 익혔어요!';
+  String get practiseTenTimes => '열 번! 이제 완벽하게 익혔어요!';
 
   @override
   String practisedCountToast(int count) {
@@ -265,8 +265,8 @@ class AppLocalizationsKo extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '문장을 $count번 연속 재생',
-      one: '문장을 한 번 재생',
+      other: '잰말놀이를 $count번 연속 재생',
+      one: '잰말놀이를 한 번 재생',
     );
     return '$_temp0';
   }
@@ -289,7 +289,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get showPronunciation => '발음 표시';
 
   @override
-  String get showPronunciationHelp => '힌디어 문장 아래 로마자 표기';
+  String get showPronunciationHelp => '힌디어 잰말놀이 아래 로마자 표기';
 
   @override
   String get showMeaning => '뜻 표시';
@@ -302,7 +302,7 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get settingsVoicesHelp =>
-      '문장은 원어민의 녹음으로 재생돼요. 녹음이 없을 때만 휴대폰의 텍스트 음성 변환을 사용해요. 언어가 없다면 시스템 설정에서 설치하세요(Android: 설정 → 시스템 → 언어 → 텍스트 음성 변환 출력, iOS: 설정 → 손쉬운 사용 → 콘텐츠 말하기 → 음성).';
+      '잰말놀이는 원어민 녹음으로 재생돼요. 휴대폰의 텍스트 음성 변환 음성은 녹음이 없을 때만 사용해요. 언어가 \'설치 안 됨\'으로 표시되면 휴대폰의 텍스트 음성 변환 설정에서 추가해 주세요.';
 
   @override
   String get voiceInstalled => '설치됨';
@@ -357,7 +357,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get dialogCancel => '취소';
 
   @override
-  String get dialogClear => '비우기';
+  String get dialogClear => '지우기';
 
   @override
   String get settingsAbout => '정보';
@@ -368,31 +368,30 @@ class AppLocalizationsKo extends AppLocalizations {
   }
 
   @override
-  String get privacyChoices => '개인정보 선택';
+  String get privacyChoices => '개인정보 설정';
 
   @override
   String get privacyChoicesHelp => '광고 동의 변경';
 
   @override
-  String get settingsAds => 'Ads';
+  String get settingsAds => '광고';
 
   @override
-  String get adFreeWatch => 'Go ad-free for 24 hours';
+  String get adFreeWatch => '24시간 광고 없이 이용';
 
   @override
-  String get adFreeWatchHelp => 'Watch one short video';
+  String get adFreeWatchHelp => '짧은 동영상 1개 보기';
 
   @override
   String adFreeActive(String time) {
-    return 'Ad-free until $time';
+    return '$time까지 광고 없음';
   }
 
   @override
   String adFreeThanks(String time) {
-    return 'Thanks! No ads until $time.';
+    return '고마워요! $time까지 광고가 없어요.';
   }
 
   @override
-  String get adFreeUnavailable =>
-      'No video available right now. Try again later.';
+  String get adFreeUnavailable => '지금은 볼 수 있는 동영상이 없어요. 나중에 다시 해 보세요.';
 }

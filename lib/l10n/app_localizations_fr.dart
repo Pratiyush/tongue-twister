@@ -383,25 +383,25 @@ class AppLocalizationsFr extends AppLocalizations {
   String get privacyChoicesHelp => 'Modifier ton consentement aux pubs';
 
   @override
-  String get settingsAds => 'Ads';
+  String get settingsAds => 'Publicités';
 
   @override
-  String get adFreeWatch => 'Go ad-free for 24 hours';
+  String get adFreeWatch => '24 heures sans pub';
 
   @override
-  String get adFreeWatchHelp => 'Watch one short video';
+  String get adFreeWatchHelp => 'Regarde une courte vidéo';
 
   @override
   String adFreeActive(String time) {
-    return 'Ad-free until $time';
+    return 'Sans pub jusqu’à $time';
   }
 
   @override
   String adFreeThanks(String time) {
-    return 'Thanks! No ads until $time.';
+    return 'Merci ! Pas de pub jusqu’à $time.';
   }
 
   @override
   String get adFreeUnavailable =>
-      'No video available right now. Try again later.';
+      'Aucune vidéo pour l’instant. Réessaie plus tard.';
 }

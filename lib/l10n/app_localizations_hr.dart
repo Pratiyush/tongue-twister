@@ -239,7 +239,7 @@ class AppLocalizationsHr extends AppLocalizations {
 
   @override
   String noVoiceForLocale(String locale) {
-    return 'Na ovom uređaju nema glasa $locale. Dodaj ga u postavkama pretvaranja teksta u govor.';
+    return 'Na ovom uređaju nema glasa za $locale. Dodaj ga u postavkama pretvaranja teksta u govor.';
   }
 
   @override
@@ -313,7 +313,7 @@ class AppLocalizationsHr extends AppLocalizations {
 
   @override
   String get settingsVoicesHelp =>
-      'Brzalice su snimke izvornih govornika. Glas za pretvaranje teksta u govor na mobitelu koristi se samo kad snimka nedostaje. Ako jezik nedostaje, instaliraj ga u postavkama sustava (Android: Postavke → Sustav → Jezici → Pretvaranje teksta u govor; iOS: Postavke → Pristupačnost → Izgovoreni sadržaj → Glasovi).';
+      'Brzalice puštaju snimke izvornih govornika. Glas za pretvaranje teksta u govor na mobitelu koristi se samo kad snimka nedostaje. Ako jezik piše kao nije instaliran, dodaj ga u postavkama pretvaranja teksta u govor na mobitelu.';
 
   @override
   String get voiceInstalled => 'Instaliran';
@@ -386,25 +386,25 @@ class AppLocalizationsHr extends AppLocalizations {
   String get privacyChoicesHelp => 'Promijeni privolu za oglase';
 
   @override
-  String get settingsAds => 'Ads';
+  String get settingsAds => 'Oglasi';
 
   @override
-  String get adFreeWatch => 'Go ad-free for 24 hours';
+  String get adFreeWatch => '24 sata bez oglasa';
 
   @override
-  String get adFreeWatchHelp => 'Watch one short video';
+  String get adFreeWatchHelp => 'Pogledaj jedan kratki video';
 
   @override
   String adFreeActive(String time) {
-    return 'Ad-free until $time';
+    return 'Bez oglasa do $time';
   }
 
   @override
   String adFreeThanks(String time) {
-    return 'Thanks! No ads until $time.';
+    return 'Hvala! Bez oglasa do $time.';
   }
 
   @override
   String get adFreeUnavailable =>
-      'No video available right now. Try again later.';
+      'Trenutačno nema videa. Pokušaj ponovno kasnije.';
 }

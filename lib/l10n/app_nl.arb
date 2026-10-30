@@ -95,5 +95,11 @@
   "settingsAbout": "Over",
   "aboutVersion": "Versie {version}",
   "privacyChoices": "Privacykeuzes",
-  "privacyChoicesHelp": "Wijzig je advertentietoestemming"
+  "privacyChoicesHelp": "Wijzig je advertentietoestemming",
+  "settingsAds": "Advertenties",
+  "adFreeWatch": "24 uur zonder advertenties",
+  "adFreeWatchHelp": "Bekijk één korte video",
+  "adFreeActive": "Advertentievrij tot {time}",
+  "adFreeThanks": "Bedankt! Geen advertenties tot {time}.",
+  "adFreeUnavailable": "Nu geen video beschikbaar. Probeer het later opnieuw."
 }

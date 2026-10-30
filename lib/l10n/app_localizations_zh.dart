@@ -38,7 +38,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get settingsTitle => '设置';
 
   @override
-  String get actionListen => '听';
+  String get actionListen => '听一听';
 
   @override
   String get actionStop => '停止';
@@ -179,7 +179,7 @@ class AppLocalizationsZh extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '已练 $count×',
+      other: '已练 $count 次',
     );
     return '$_temp0';
   }
@@ -193,14 +193,14 @@ class AppLocalizationsZh extends AppLocalizations {
   String get pronunciationLabel => '读音';
 
   @override
-  String get meaningLabel => '意思';
+  String get meaningLabel => '释义';
 
   @override
   String repeatInARow(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '连续 $count×',
+      other: '连续 $count 次',
     );
     return '$_temp0';
   }
@@ -248,7 +248,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get settingsLanguages => '语言';
 
   @override
-  String get settingsLanguagesHelp => '选择你想学的语言。隐藏的语言不会出现在主屏幕上。';
+  String get settingsLanguagesHelp => '选择你想学的语言。隐藏的语言不会出现在首页上。';
 
   @override
   String get settingsPlayback => '播放';
@@ -291,7 +291,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get showPronunciationHelp => '印地语绕口令下方显示拉丁字母拼写';
 
   @override
-  String get showMeaning => '显示意思';
+  String get showMeaning => '显示释义';
 
   @override
   String get showMeaningHelp => '印地语和德语的英文翻译';
@@ -301,7 +301,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get settingsVoicesHelp =>
-      '绕口令播放的是母语者的录音。只有缺少录音时才会使用手机的文字转语音。如果缺少某种语言，请在系统设置中安装（Android：设置 → 系统 → 语言 → 文字转语音输出；iOS：设置 → 辅助功能 → 朗读内容 → 声音）。';
+      '绕口令播放的是母语者的录音。只有缺少录音时，才会使用手机的文字转语音。如果某种语言显示“未安装”，请在手机的文字转语音设置中添加。';
 
   @override
   String get voiceInstalled => '已安装';
@@ -373,27 +373,26 @@ class AppLocalizationsZh extends AppLocalizations {
   String get privacyChoicesHelp => '更改广告同意设置';
 
   @override
-  String get settingsAds => 'Ads';
+  String get settingsAds => '广告';
 
   @override
-  String get adFreeWatch => 'Go ad-free for 24 hours';
+  String get adFreeWatch => '24 小时无广告';
 
   @override
-  String get adFreeWatchHelp => 'Watch one short video';
+  String get adFreeWatchHelp => '观看一段短视频';
 
   @override
   String adFreeActive(String time) {
-    return 'Ad-free until $time';
+    return '$time 前无广告';
   }
 
   @override
   String adFreeThanks(String time) {
-    return 'Thanks! No ads until $time.';
+    return '谢谢！$time 前不显示广告。';
   }
 
   @override
-  String get adFreeUnavailable =>
-      'No video available right now. Try again later.';
+  String get adFreeUnavailable => '暂时没有可用的视频，请稍后再试。';
 }
 
 /// The translations for Chinese, using the Han script (`zh_Hant`).
@@ -429,7 +428,7 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get settingsTitle => '設定';
 
   @override
-  String get actionListen => '聆聽';
+  String get actionListen => '聽一聽';
 
   @override
   String get actionStop => '停止';
@@ -570,7 +569,7 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '已練 $count×',
+      other: '已練 $count 次',
     );
     return '$_temp0';
   }
@@ -584,14 +583,14 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get pronunciationLabel => '讀音';
 
   @override
-  String get meaningLabel => '意思';
+  String get meaningLabel => '釋義';
 
   @override
   String repeatInARow(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '連續 $count×',
+      other: '連續 $count 次',
     );
     return '$_temp0';
   }
@@ -639,7 +638,7 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get settingsLanguages => '語言';
 
   @override
-  String get settingsLanguagesHelp => '選擇你想學的語言。隱藏的語言不會出現在主畫面上。';
+  String get settingsLanguagesHelp => '選擇你想學的語言。隱藏的語言不會出現在首頁上。';
 
   @override
   String get settingsPlayback => '播放';
@@ -682,7 +681,7 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get showPronunciationHelp => '印地文繞口令下方顯示羅馬拼音';
 
   @override
-  String get showMeaning => '顯示意思';
+  String get showMeaning => '顯示釋義';
 
   @override
   String get showMeaningHelp => '印地文和德文的英文翻譯';
@@ -692,7 +691,7 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get settingsVoicesHelp =>
-      '繞口令播放的是母語人士的錄音。只有缺少錄音時才會使用手機的文字轉語音。如果缺少某種語言，請在系統設定中安裝（Android：設定 → 系統 → 語言 → 文字轉語音輸出；iOS：設定 → 輔助使用 → 語音內容 → 聲音）。';
+      '繞口令播放的是母語人士的錄音。只有缺少錄音時，才會使用手機的文字轉語音。如果某種語言顯示「未安裝」，請到手機的文字轉語音設定中新增。';
 
   @override
   String get voiceInstalled => '已安裝';
@@ -762,4 +761,26 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get privacyChoicesHelp => '變更廣告同意設定';
+
+  @override
+  String get settingsAds => '廣告';
+
+  @override
+  String get adFreeWatch => '24 小時無廣告';
+
+  @override
+  String get adFreeWatchHelp => '觀看一段短影片';
+
+  @override
+  String adFreeActive(String time) {
+    return '$time 前無廣告';
+  }
+
+  @override
+  String adFreeThanks(String time) {
+    return '謝謝！$time 前不會顯示廣告。';
+  }
+
+  @override
+  String get adFreeUnavailable => '目前沒有可播放的影片，請稍後再試。';
 }

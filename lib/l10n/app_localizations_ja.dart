@@ -138,10 +138,10 @@ class AppLocalizationsJa extends AppLocalizations {
   @override
   String recommendStarter(String level) {
     String _temp0 = intl.Intl.selectLogic(level, {
-      'easy': 'まずはこれ：やさしい一つ',
-      'medium': 'まずはこれ：ふつうの一つ',
-      'hard': 'まずはこれ：むずかしい一つ',
-      'other': 'まずはこれ：おすすめの一つ',
+      'easy': 'はじめにおすすめ：やさしい早口言葉',
+      'medium': 'はじめにおすすめ：ふつうの早口言葉',
+      'hard': 'はじめにおすすめ：むずかしい早口言葉',
+      'other': 'はじめにおすすめの早口言葉',
     });
     return '$_temp0';
   }
@@ -179,7 +179,7 @@ class AppLocalizationsJa extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count× 練習済み',
+      other: '$count回練習済み',
     );
     return '$_temp0';
   }
@@ -200,7 +200,7 @@ class AppLocalizationsJa extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count× 連続',
+      other: '$count回連続',
     );
     return '$_temp0';
   }
@@ -266,7 +266,7 @@ class AppLocalizationsJa extends AppLocalizations {
       count,
       locale: localeName,
       other: '$count回連続で再生',
-      one: '1 回だけ再生',
+      one: '1回だけ再生',
     );
     return '$_temp0';
   }
@@ -289,7 +289,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get showPronunciation => '読み方を表示';
 
   @override
-  String get showPronunciationHelp => 'ヒンディー語の下にローマ字表記';
+  String get showPronunciationHelp => 'ヒンディー語の早口言葉にローマ字を表示';
 
   @override
   String get showMeaning => '意味を表示';
@@ -302,7 +302,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get settingsVoicesHelp =>
-      '早口言葉はネイティブ話者の録音で再生されます。録音がない場合だけ、端末のテキスト読み上げ音声を使います。言語が見つからない場合は、システム設定でインストールしてください（Android：設定 → システム → 言語 → テキスト読み上げの出力、iOS：設定 → アクセシビリティ → 読み上げコンテンツ → 声）。';
+      '早口言葉はネイティブ話者の録音で再生されます。スマホのテキスト読み上げ音声は、録音がないときだけ使います。言語が「未インストール」と表示されたら、スマホのテキスト読み上げ設定で追加してください。';
 
   @override
   String get voiceInstalled => 'インストール済み';
@@ -368,31 +368,30 @@ class AppLocalizationsJa extends AppLocalizations {
   }
 
   @override
-  String get privacyChoices => 'プライバシーの選択';
+  String get privacyChoices => 'プライバシー設定';
 
   @override
   String get privacyChoicesHelp => '広告の同意を変更';
 
   @override
-  String get settingsAds => 'Ads';
+  String get settingsAds => '広告';
 
   @override
-  String get adFreeWatch => 'Go ad-free for 24 hours';
+  String get adFreeWatch => '24時間広告なしで使う';
 
   @override
-  String get adFreeWatchHelp => 'Watch one short video';
+  String get adFreeWatchHelp => '短い動画を1本見る';
 
   @override
   String adFreeActive(String time) {
-    return 'Ad-free until $time';
+    return '$timeまで広告なし';
   }
 
   @override
   String adFreeThanks(String time) {
-    return 'Thanks! No ads until $time.';
+    return 'ありがとう！$timeまで広告なし。';
   }
 
   @override
-  String get adFreeUnavailable =>
-      'No video available right now. Try again later.';
+  String get adFreeUnavailable => '今は見られる動画がありません。あとでもう一度お試しください。';
 }

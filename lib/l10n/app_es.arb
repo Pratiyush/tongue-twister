@@ -95,5 +95,11 @@
   "settingsAbout": "Acerca de",
   "aboutVersion": "Versión {version}",
   "privacyChoices": "Opciones de privacidad",
-  "privacyChoicesHelp": "Cambia tu consentimiento de anuncios"
+  "privacyChoicesHelp": "Cambia tu consentimiento de anuncios",
+  "settingsAds": "Anuncios",
+  "adFreeWatch": "24 horas sin anuncios",
+  "adFreeWatchHelp": "Mira un vídeo corto",
+  "adFreeActive": "Sin anuncios hasta {time}",
+  "adFreeThanks": "¡Gracias! Sin anuncios hasta {time}.",
+  "adFreeUnavailable": "Ahora no hay ningún vídeo. Inténtalo más tarde."
 }

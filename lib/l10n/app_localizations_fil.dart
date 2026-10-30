@@ -44,10 +44,10 @@ class AppLocalizationsFil extends AppLocalizations {
   String get actionStop => 'Ihinto';
 
   @override
-  String get addToFavourites => 'Idagdag sa paborito';
+  String get addToFavourites => 'Idagdag sa mga paborito';
 
   @override
-  String get removeFromFavourites => 'Alisin sa paborito';
+  String get removeFromFavourites => 'Alisin sa mga paborito';
 
   @override
   String get languageBritishEnglish => 'Ingles ng Britanya';
@@ -76,7 +76,7 @@ class AppLocalizationsFil extends AppLocalizations {
   String get sectionShortUS => 'US';
 
   @override
-  String get sectionSubtitleUK => 'Lorries, biscuits at isang tasang tsaa';
+  String get sectionSubtitleUK => 'Lorries, biscuits at tamang tasa ng tsaa';
 
   @override
   String get sectionSubtitleUS => 'Woodchucks, buggies at Unique New York';
@@ -104,7 +104,7 @@ class AppLocalizationsFil extends AppLocalizations {
 
   @override
   String get heroSubtitle =>
-      'Pakinggan ang katutubong boses, saka bigkasin nang mas mabilis.';
+      'Makinig sa katutubong boses, saka bigkasin nang pabilis nang pabilis.';
 
   @override
   String heroStatRatio(int done, int total) {
@@ -132,7 +132,7 @@ class AppLocalizationsFil extends AppLocalizations {
   }
 
   @override
-  String get recommendedTitle => 'Para sa iyo';
+  String get recommendedTitle => 'Rekomendado para sa iyo';
 
   @override
   String get recommendRevise => 'Balikan natin: ang pinakakaunting nasanay mo';
@@ -220,7 +220,7 @@ class AppLocalizationsFil extends AppLocalizations {
   String get practiseThreeTimes => 'Tatlong beses! Umiinit na ang dila mo.';
 
   @override
-  String get practiseTenTimes => 'Sampung beses. Kabisado mo na ito!';
+  String get practiseTenTimes => 'Sampung beses. Gamay mo na ito!';
 
   @override
   String practisedCountToast(int count) {
@@ -271,8 +271,8 @@ class AppLocalizationsFil extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'Pinapatugtog nang $count beses nang tuloy-tuloy',
-      one: 'Pinapatugtog nang $count beses',
+      other: 'Pinapatugtog nang $count beses nang sunod-sunod',
+      one: 'Pinapatugtog nang $count beses nang sunod-sunod',
     );
     return '$_temp0';
   }
@@ -308,7 +308,7 @@ class AppLocalizationsFil extends AppLocalizations {
 
   @override
   String get settingsVoicesHelp =>
-      'Mga recording ng katutubong nagsasalita ang pinapatugtog. Ang text-to-speech ng phone mo ay ginagamit lang kapag walang recording. Kung may kulang na wika, i-install ito sa settings ng system (Android: Mga Setting → System → Mga Wika → Output ng text-to-speech; iOS: Settings → Accessibility → Spoken Content → Voices).';
+      'Mga recording ng katutubong nagsasalita ang pinapatugtog. Ang text-to-speech na boses ng phone mo ay ginagamit lang kapag walang recording. Kung may wikang hindi naka-install, idagdag ito sa text-to-speech settings ng phone mo.';
 
   @override
   String get voiceInstalled => 'Naka-install';
@@ -385,22 +385,21 @@ class AppLocalizationsFil extends AppLocalizations {
   String get settingsAds => 'Ads';
 
   @override
-  String get adFreeWatch => 'Go ad-free for 24 hours';
+  String get adFreeWatch => '24 oras na walang ads';
 
   @override
-  String get adFreeWatchHelp => 'Watch one short video';
+  String get adFreeWatchHelp => 'Manood ng isang maikling video';
 
   @override
   String adFreeActive(String time) {
-    return 'Ad-free until $time';
+    return 'Walang ads hanggang $time';
   }
 
   @override
   String adFreeThanks(String time) {
-    return 'Thanks! No ads until $time.';
+    return 'Salamat! Walang ads hanggang $time.';
   }
 
   @override
-  String get adFreeUnavailable =>
-      'No video available right now. Try again later.';
+  String get adFreeUnavailable => 'Walang video ngayon. Subukan ulit mamaya.';
 }

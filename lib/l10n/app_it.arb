@@ -95,5 +95,11 @@
   "settingsAbout": "Info",
   "aboutVersion": "Versione {version}",
   "privacyChoices": "Scelte sulla privacy",
-  "privacyChoicesHelp": "Modifica il consenso per gli annunci"
+  "privacyChoicesHelp": "Modifica il consenso per gli annunci",
+  "settingsAds": "Annunci",
+  "adFreeWatch": "24 ore senza annunci",
+  "adFreeWatchHelp": "Guarda un breve video",
+  "adFreeActive": "Senza annunci fino a {time}",
+  "adFreeThanks": "Grazie! Niente annunci fino a {time}.",
+  "adFreeUnavailable": "Nessun video disponibile ora. Riprova più tardi."
 }

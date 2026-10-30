@@ -95,5 +95,11 @@
   "settingsAbout": "Про застосунок",
   "aboutVersion": "Версія {version}",
   "privacyChoices": "Конфіденційність",
-  "privacyChoicesHelp": "Змінити згоду на рекламу"
+  "privacyChoicesHelp": "Змінити згоду на рекламу",
+  "settingsAds": "Реклама",
+  "adFreeWatch": "24 години без реклами",
+  "adFreeWatchHelp": "Переглянь одне коротке відео",
+  "adFreeActive": "Без реклами до {time}",
+  "adFreeThanks": "Дякуємо! Без реклами до {time}.",
+  "adFreeUnavailable": "Зараз немає доступного відео. Спробуй пізніше."
 }

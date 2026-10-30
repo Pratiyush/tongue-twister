@@ -28,7 +28,7 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String appCredit(String name) {
-    return 'محبت ❤️ سے بنایا: $name';
+    return '$name نے ❤️ سے بنایا';
   }
 
   @override
@@ -104,7 +104,7 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get heroSubtitle =>
-      'مقامی آواز سنیں، پھر ہر بار اسے پہلے سے تیز بولیں۔';
+      'اہلِ زبان کی آواز سنیں، پھر ہر بار اسے پہلے سے تیز بولیں۔';
 
   @override
   String heroStatRatio(int done, int total) {
@@ -118,7 +118,7 @@ class AppLocalizationsUr extends AppLocalizations {
   String get heroStatFavourites => 'پسندیدہ';
 
   @override
-  String get surpriseMe => 'حیران کریں';
+  String get surpriseMe => 'مجھے حیران کریں';
 
   @override
   String sectionProgress(int practised, int total) {
@@ -135,15 +135,16 @@ class AppLocalizationsUr extends AppLocalizations {
   String get recommendedTitle => 'آپ کے لیے تجویز';
 
   @override
-  String get recommendRevise => 'دہرانے کا وقت: آپ کا سب سے کم مشق والا';
+  String get recommendRevise =>
+      'دہرانے کا وقت: آپ کا سب سے کم مشق کیا ٹنگ ٹوئسٹر';
 
   @override
   String recommendStarter(String level) {
     String _temp0 = intl.Intl.selectLogic(level, {
-      'easy': 'شروع کے لیے ایک اچھا آسان',
-      'medium': 'شروع کے لیے ایک اچھا درمیانہ',
-      'hard': 'شروع کے لیے ایک اچھا مشکل',
-      'other': 'شروع کے لیے ایک اچھا انتخاب',
+      'easy': 'شروع کے لیے ایک اچھا آسان ٹنگ ٹوئسٹر',
+      'medium': 'شروع کے لیے ایک اچھا درمیانہ ٹنگ ٹوئسٹر',
+      'hard': 'شروع کے لیے ایک اچھا مشکل ٹنگ ٹوئسٹر',
+      'other': 'شروع کے لیے ایک اچھا ٹنگ ٹوئسٹر',
     });
     return '$_temp0';
   }
@@ -151,17 +152,18 @@ class AppLocalizationsUr extends AppLocalizations {
   @override
   String recommendPractisedLanguage(String level, String language) {
     String _temp0 = intl.Intl.selectLogic(level, {
-      'easy': 'نیا آسان، اس زبان میں جس کی آپ مشق کرتے ہیں: $language',
-      'medium': 'نیا درمیانہ، اس زبان میں جس کی آپ مشق کرتے ہیں: $language',
-      'hard': 'نیا مشکل، اس زبان میں جس کی آپ مشق کرتے ہیں: $language',
-      'other': 'نیا، اس زبان میں جس کی آپ مشق کرتے ہیں: $language',
+      'easy': '$language میں نیا آسان ٹنگ ٹوئسٹر، جس زبان کی آپ مشق کرتے ہیں',
+      'medium':
+          '$language میں نیا درمیانہ ٹنگ ٹوئسٹر، جس زبان کی آپ مشق کرتے ہیں',
+      'hard': '$language میں نیا مشکل ٹنگ ٹوئسٹر، جس زبان کی آپ مشق کرتے ہیں',
+      'other': '$language میں نیا ٹنگ ٹوئسٹر، جس زبان کی آپ مشق کرتے ہیں',
     });
     return '$_temp0';
   }
 
   @override
   String recommendNewLanguage(String language) {
-    return 'کچھ نیا آزمائیں: $language';
+    return '$language میں کچھ نیا آزمائیں';
   }
 
   @override
@@ -228,7 +230,7 @@ class AppLocalizationsUr extends AppLocalizations {
       count,
       locale: localeName,
       other: 'شاباش! $count بار مشق ہو گئی۔',
-      one: 'شاباش! $count بار مشق ہو گئی۔',
+      one: 'شاباش! ایک بار مشق ہو گئی۔',
     );
     return '$_temp0';
   }
@@ -272,7 +274,7 @@ class AppLocalizationsUr extends AppLocalizations {
       count,
       locale: localeName,
       other: 'ٹنگ ٹوئسٹر لگاتار $count بار چلتا ہے',
-      one: 'ٹنگ ٹوئسٹر $count بار چلتا ہے',
+      one: 'ٹنگ ٹوئسٹر ایک بار چلتا ہے',
     );
     return '$_temp0';
   }
@@ -308,7 +310,7 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get settingsVoicesHelp =>
-      'ٹنگ ٹوئسٹر مقامی بولنے والوں کی ریکارڈنگز میں چلتے ہیں۔ فون کی ٹیکسٹ ٹو اسپیچ آواز صرف تب استعمال ہوتی ہے جب ریکارڈنگ نہ ہو۔ اگر کوئی زبان موجود نہیں، تو اسے سسٹم کی ترتیبات میں انسٹال کریں (Android: ترتیبات ← سسٹم ← زبانیں ← ٹیکسٹ ٹو اسپیچ؛ iOS: ترتیبات ← رسائی ← بولا گیا مواد ← آوازیں)۔';
+      'ٹنگ ٹوئسٹر اہلِ زبان کی ریکارڈنگز میں چلتے ہیں۔ فون کی ٹیکسٹ ٹو اسپیچ آواز صرف تب استعمال ہوتی ہے جب ریکارڈنگ نہ ہو۔ اگر کوئی زبان \"انسٹال نہیں\" دکھائے تو اسے اپنے فون کی ٹیکسٹ ٹو اسپیچ ترتیبات میں شامل کریں۔';
 
   @override
   String get voiceInstalled => 'انسٹال ہے';
@@ -367,7 +369,7 @@ class AppLocalizationsUr extends AppLocalizations {
   String get dialogClear => 'صاف کریں';
 
   @override
-  String get settingsAbout => 'تعارف';
+  String get settingsAbout => 'ایپ کے بارے میں';
 
   @override
   String aboutVersion(String version) {
@@ -381,25 +383,25 @@ class AppLocalizationsUr extends AppLocalizations {
   String get privacyChoicesHelp => 'اشتہارات کی رضامندی تبدیل کریں';
 
   @override
-  String get settingsAds => 'Ads';
+  String get settingsAds => 'اشتہارات';
 
   @override
-  String get adFreeWatch => 'Go ad-free for 24 hours';
+  String get adFreeWatch => '24 گھنٹے اشتہارات کے بغیر';
 
   @override
-  String get adFreeWatchHelp => 'Watch one short video';
+  String get adFreeWatchHelp => 'ایک مختصر ویڈیو دیکھیں';
 
   @override
   String adFreeActive(String time) {
-    return 'Ad-free until $time';
+    return '$time تک کوئی اشتہار نہیں';
   }
 
   @override
   String adFreeThanks(String time) {
-    return 'Thanks! No ads until $time.';
+    return 'شکریہ! $time تک کوئی اشتہار نہیں۔';
   }
 
   @override
   String get adFreeUnavailable =>
-      'No video available right now. Try again later.';
+      'ابھی کوئی ویڈیو دستیاب نہیں۔ بعد میں دوبارہ کوشش کریں۔';
 }

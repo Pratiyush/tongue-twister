@@ -28,7 +28,7 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String appCredit(String name) {
-    return 'Làm với ❤️ bởi $name';
+    return 'Làm bằng ❤️ bởi $name';
   }
 
   @override
@@ -50,10 +50,10 @@ class AppLocalizationsVi extends AppLocalizations {
   String get removeFromFavourites => 'Bỏ khỏi yêu thích';
 
   @override
-  String get languageBritishEnglish => 'Tiếng Anh Anh';
+  String get languageBritishEnglish => 'Tiếng Anh-Anh';
 
   @override
-  String get languageAmericanEnglish => 'Tiếng Anh Mỹ';
+  String get languageAmericanEnglish => 'Tiếng Anh-Mỹ';
 
   @override
   String get languageHindi => 'Tiếng Hindi';
@@ -303,7 +303,7 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get settingsVoicesHelp =>
-      'Các câu được phát bằng bản ghi âm của người bản xứ. Giọng chuyển văn bản thành giọng nói của điện thoại chỉ được dùng khi thiếu bản ghi. Nếu thiếu ngôn ngữ nào, hãy cài trong cài đặt hệ thống (Android: Cài đặt → Hệ thống → Ngôn ngữ → Chuyển văn bản thành giọng nói; iOS: Cài đặt → Trợ năng → Nội dung được đọc → Giọng nói).';
+      'Các câu được phát bằng bản ghi âm của người bản xứ. Giọng chuyển văn bản thành giọng nói của điện thoại chỉ được dùng khi thiếu bản ghi. Nếu một ngôn ngữ hiện là chưa cài, hãy thêm trong cài đặt chuyển văn bản thành giọng nói của điện thoại.';
 
   @override
   String get voiceInstalled => 'Đã cài';
@@ -373,28 +373,27 @@ class AppLocalizationsVi extends AppLocalizations {
   String get privacyChoices => 'Lựa chọn quyền riêng tư';
 
   @override
-  String get privacyChoicesHelp => 'Thay đổi đồng ý quảng cáo';
+  String get privacyChoicesHelp => 'Thay đổi sự đồng ý về quảng cáo';
 
   @override
-  String get settingsAds => 'Ads';
+  String get settingsAds => 'Quảng cáo';
 
   @override
-  String get adFreeWatch => 'Go ad-free for 24 hours';
+  String get adFreeWatch => 'Tắt quảng cáo trong 24 giờ';
 
   @override
-  String get adFreeWatchHelp => 'Watch one short video';
+  String get adFreeWatchHelp => 'Xem một video ngắn';
 
   @override
   String adFreeActive(String time) {
-    return 'Ad-free until $time';
+    return 'Không quảng cáo đến $time';
   }
 
   @override
   String adFreeThanks(String time) {
-    return 'Thanks! No ads until $time.';
+    return 'Cảm ơn! Không quảng cáo đến $time.';
   }
 
   @override
-  String get adFreeUnavailable =>
-      'No video available right now. Try again later.';
+  String get adFreeUnavailable => 'Hiện chưa có video. Hãy thử lại sau nhé.';
 }

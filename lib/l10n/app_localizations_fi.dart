@@ -379,25 +379,25 @@ class AppLocalizationsFi extends AppLocalizations {
   String get privacyChoicesHelp => 'Muuta mainossuostumustasi';
 
   @override
-  String get settingsAds => 'Ads';
+  String get settingsAds => 'Mainokset';
 
   @override
-  String get adFreeWatch => 'Go ad-free for 24 hours';
+  String get adFreeWatch => '24 tuntia ilman mainoksia';
 
   @override
-  String get adFreeWatchHelp => 'Watch one short video';
+  String get adFreeWatchHelp => 'Katso yksi lyhyt video';
 
   @override
   String adFreeActive(String time) {
-    return 'Ad-free until $time';
+    return 'Ilman mainoksia $time asti';
   }
 
   @override
   String adFreeThanks(String time) {
-    return 'Thanks! No ads until $time.';
+    return 'Kiitos! Ei mainoksia $time asti.';
   }
 
   @override
   String get adFreeUnavailable =>
-      'No video available right now. Try again later.';
+      'Videota ei ole nyt saatavilla. Yritä myöhemmin uudelleen.';
 }

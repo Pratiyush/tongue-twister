@@ -95,5 +95,11 @@
   "settingsAbout": "Info",
   "aboutVersion": "Version {version}",
   "privacyChoices": "Datenschutzoptionen",
-  "privacyChoicesHelp": "Werbe-Einwilligung ändern"
+  "privacyChoicesHelp": "Werbe-Einwilligung ändern",
+  "settingsAds": "Werbung",
+  "adFreeWatch": "24 Stunden ohne Werbung",
+  "adFreeWatchHelp": "Schau ein kurzes Video",
+  "adFreeActive": "Werbefrei bis {time}",
+  "adFreeThanks": "Danke! Keine Werbung bis {time}.",
+  "adFreeUnavailable": "Gerade kein Video verfügbar. Versuch es später noch mal."
 }

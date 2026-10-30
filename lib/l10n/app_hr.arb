@@ -54,7 +54,7 @@
   "practiseThreeTimes": "Tri puta! Jezik se zagrijava.",
   "practiseTenTimes": "Deset puta. Ova je savladana!",
   "practisedCountToast": "{count, plural, one{Bravo! Vježbano {count} put.} few{Bravo! Vježbano {count} puta.} other{Bravo! Vježbano {count} puta.}}",
-  "noVoiceForLocale": "Na ovom uređaju nema glasa {locale}. Dodaj ga u postavkama pretvaranja teksta u govor.",
+  "noVoiceForLocale": "Na ovom uređaju nema glasa za {locale}. Dodaj ga u postavkama pretvaranja teksta u govor.",
   "settingsAppearance": "Izgled",
   "themeSystem": "Sustav",
   "themeLight": "Svijetla",
@@ -74,7 +74,7 @@
   "showMeaning": "Prikaži značenje",
   "showMeaningHelp": "Engleski prijevod za hindski i njemački",
   "settingsVoices": "Glasovi",
-  "settingsVoicesHelp": "Brzalice su snimke izvornih govornika. Glas za pretvaranje teksta u govor na mobitelu koristi se samo kad snimka nedostaje. Ako jezik nedostaje, instaliraj ga u postavkama sustava (Android: Postavke → Sustav → Jezici → Pretvaranje teksta u govor; iOS: Postavke → Pristupačnost → Izgovoreni sadržaj → Glasovi).",
+  "settingsVoicesHelp": "Brzalice puštaju snimke izvornih govornika. Glas za pretvaranje teksta u govor na mobitelu koristi se samo kad snimka nedostaje. Ako jezik piše kao nije instaliran, dodaj ga u postavkama pretvaranja teksta u govor na mobitelu.",
   "voiceInstalled": "Instaliran",
   "voiceNotInstalled": "Nije instaliran",
   "voiceUnknown": "Nepoznato",
@@ -95,5 +95,11 @@
   "settingsAbout": "O aplikaciji",
   "aboutVersion": "Verzija {version}",
   "privacyChoices": "Postavke privatnosti",
-  "privacyChoicesHelp": "Promijeni privolu za oglase"
+  "privacyChoicesHelp": "Promijeni privolu za oglase",
+  "settingsAds": "Oglasi",
+  "adFreeWatch": "24 sata bez oglasa",
+  "adFreeWatchHelp": "Pogledaj jedan kratki video",
+  "adFreeActive": "Bez oglasa do {time}",
+  "adFreeThanks": "Hvala! Bez oglasa do {time}.",
+  "adFreeUnavailable": "Trenutačno nema videa. Pokušaj ponovno kasnije."
 }

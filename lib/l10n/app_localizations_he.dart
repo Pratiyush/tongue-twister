@@ -141,10 +141,10 @@ class AppLocalizationsHe extends AppLocalizations {
   @override
   String recommendStarter(String level) {
     String _temp0 = intl.Intl.selectLogic(level, {
-      'easy': 'קל וטוב להתחלה',
-      'medium': 'בינוני וטוב להתחלה',
-      'hard': 'קשה וטוב להתחלה',
-      'other': 'טוב להתחלה',
+      'easy': 'שובר לשון קל, טוב להתחלה',
+      'medium': 'שובר לשון בינוני, טוב להתחלה',
+      'hard': 'שובר לשון קשה, טוב להתחלה',
+      'other': 'שובר לשון טוב להתחלה',
     });
     return '$_temp0';
   }
@@ -152,17 +152,17 @@ class AppLocalizationsHe extends AppLocalizations {
   @override
   String recommendPractisedLanguage(String level, String language) {
     String _temp0 = intl.Intl.selectLogic(level, {
-      'easy': 'חדש וקל בשפה שכבר מתרגלים: $language',
-      'medium': 'חדש ובינוני בשפה שכבר מתרגלים: $language',
-      'hard': 'חדש וקשה בשפה שכבר מתרגלים: $language',
-      'other': 'חדש בשפה שכבר מתרגלים: $language',
+      'easy': 'שובר לשון קל וחדש ב$language, שפה שכבר מתרגלים',
+      'medium': 'שובר לשון בינוני וחדש ב$language, שפה שכבר מתרגלים',
+      'hard': 'שובר לשון קשה וחדש ב$language, שפה שכבר מתרגלים',
+      'other': 'שובר לשון חדש ב$language, שפה שכבר מתרגלים',
     });
     return '$_temp0';
   }
 
   @override
   String recommendNewLanguage(String language) {
-    return 'לנסות משהו חדש: $language';
+    return 'לנסות משהו חדש ב$language';
   }
 
   @override
@@ -312,7 +312,7 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get settingsVoicesHelp =>
-      'שוברי הלשון מושמעים בהקלטות של דוברי שפת אם. הקול של הטלפון להמרת טקסט לדיבור משמש רק כשחסרה הקלטה. אם חסרה שפה, אפשר להתקין אותה בהגדרות המערכת (Android: הגדרות ← מערכת ← שפות ← המרת טקסט לדיבור; iOS: הגדרות ← נגישות ← תוכן מוקרא ← קולות).';
+      'שוברי הלשון מושמעים בהקלטות של דוברי שפת אם. הקול של הטלפון להמרת טקסט לדיבור משמש רק כשאין הקלטה. אם שפה מופיעה כ\"לא מותקן\", אפשר להוסיף אותה בהגדרות המרת טקסט לדיבור של הטלפון.';
 
   @override
   String get voiceInstalled => 'מותקן';
@@ -324,7 +324,7 @@ class AppLocalizationsHe extends AppLocalizations {
   String get voiceUnknown => 'לא ידוע';
 
   @override
-  String get voiceChecking => 'בודק…';
+  String get voiceChecking => 'בבדיקה…';
 
   @override
   String voiceStatusLine(String locale, String status) {
@@ -370,7 +370,7 @@ class AppLocalizationsHe extends AppLocalizations {
   String get dialogClear => 'ניקוי';
 
   @override
-  String get settingsAbout => 'מידע';
+  String get settingsAbout => 'אודות';
 
   @override
   String aboutVersion(String version) {
@@ -384,25 +384,25 @@ class AppLocalizationsHe extends AppLocalizations {
   String get privacyChoicesHelp => 'שינוי ההסכמה לפרסומות';
 
   @override
-  String get settingsAds => 'Ads';
+  String get settingsAds => 'פרסומות';
 
   @override
-  String get adFreeWatch => 'Go ad-free for 24 hours';
+  String get adFreeWatch => '24 שעות בלי פרסומות';
 
   @override
-  String get adFreeWatchHelp => 'Watch one short video';
+  String get adFreeWatchHelp => 'צפייה בסרטון קצר אחד';
 
   @override
   String adFreeActive(String time) {
-    return 'Ad-free until $time';
+    return 'בלי פרסומות עד $time';
   }
 
   @override
   String adFreeThanks(String time) {
-    return 'Thanks! No ads until $time.';
+    return 'תודה! אין פרסומות עד $time.';
   }
 
   @override
   String get adFreeUnavailable =>
-      'No video available right now. Try again later.';
+      'אין כרגע סרטון זמין. אפשר לנסות שוב מאוחר יותר.';
 }

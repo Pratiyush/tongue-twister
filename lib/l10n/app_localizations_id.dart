@@ -38,7 +38,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get settingsTitle => 'Setelan';
 
   @override
-  String get actionListen => 'Dengar';
+  String get actionListen => 'Dengarkan';
 
   @override
   String get actionStop => 'Berhenti';
@@ -152,21 +152,22 @@ class AppLocalizationsId extends AppLocalizations {
   @override
   String recommendPractisedLanguage(String level, String language) {
     String _temp0 = intl.Intl.selectLogic(level, {
-      'easy': 'Baru dan mudah dalam $language, bahasa yang kamu latih',
-      'medium': 'Baru dan sedang dalam $language, bahasa yang kamu latih',
-      'hard': 'Baru dan sulit dalam $language, bahasa yang kamu latih',
-      'other': 'Baru dalam $language, bahasa yang kamu latih',
+      'easy': 'Kalimat mudah baru berbahasa $language, bahasa latihanmu',
+      'medium':
+          'Kalimat baru tingkat sedang berbahasa $language, bahasa latihanmu',
+      'hard': 'Kalimat sulit baru berbahasa $language, bahasa latihanmu',
+      'other': 'Kalimat baru berbahasa $language, bahasa latihanmu',
     });
     return '$_temp0';
   }
 
   @override
   String recommendNewLanguage(String language) {
-    return 'Coba hal baru dalam $language';
+    return 'Coba hal baru dalam bahasa $language';
   }
 
   @override
-  String get searchTwistersHint => 'Cari pelintir lidah';
+  String get searchTwistersHint => 'Cari tongue twister';
 
   @override
   String get filterAll => 'Semua';
@@ -176,7 +177,7 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get favouritesEmpty =>
-      'Ketuk ♡ di mana saja untuk menyimpannya di sini.';
+      'Ketuk ♡ di kalimat mana pun untuk menyimpannya di sini.';
 
   @override
   String practisedTimes(int count) {
@@ -214,10 +215,10 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get practiseFirstTry =>
-      'Percobaan pertama dicatat. Sekarang lebih cepat!';
+      'Percobaan pertama dicatat. Ucapkan lebih cepat!';
 
   @override
-  String get practiseThreeTimes => 'Tiga kali! Lidahmu mulai panas.';
+  String get practiseThreeTimes => 'Tiga kali! Lidahmu mulai luwes.';
 
   @override
   String get practiseTenTimes => 'Sepuluh kali. Kamu sudah menguasainya!';
@@ -282,10 +283,10 @@ class AppLocalizationsId extends AppLocalizations {
   }
 
   @override
-  String get fewerRepeats => 'Kurangi ulangan';
+  String get fewerRepeats => 'Kurangi pengulangan';
 
   @override
-  String get moreRepeats => 'Tambah ulangan';
+  String get moreRepeats => 'Tambah pengulangan';
 
   @override
   String get settingsDisplay => 'Tampilan teks';
@@ -307,7 +308,7 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get settingsVoicesHelp =>
-      'Kalimat diputar dari rekaman penutur asli. Suara text-to-speech ponselmu hanya dipakai jika rekaman tidak ada. Jika suatu bahasa tidak ada, pasang di setelan sistem (Android: Setelan → Sistem → Bahasa → Output text-to-speech; iOS: Pengaturan → Aksesibilitas → Konten Lisan → Suara).';
+      'Kalimat diputar dari rekaman penutur asli. Suara text-to-speech ponselmu hanya dipakai jika rekaman tidak ada. Jika suatu bahasa tampil belum terpasang, tambahkan di setelan text-to-speech ponselmu.';
 
   @override
   String get voiceInstalled => 'Terpasang';
@@ -380,25 +381,24 @@ class AppLocalizationsId extends AppLocalizations {
   String get privacyChoicesHelp => 'Ubah persetujuan iklan';
 
   @override
-  String get settingsAds => 'Ads';
+  String get settingsAds => 'Iklan';
 
   @override
-  String get adFreeWatch => 'Go ad-free for 24 hours';
+  String get adFreeWatch => 'Tanpa iklan selama 24 jam';
 
   @override
-  String get adFreeWatchHelp => 'Watch one short video';
+  String get adFreeWatchHelp => 'Tonton satu video pendek';
 
   @override
   String adFreeActive(String time) {
-    return 'Ad-free until $time';
+    return 'Tanpa iklan sampai $time';
   }
 
   @override
   String adFreeThanks(String time) {
-    return 'Thanks! No ads until $time.';
+    return 'Makasih! Tanpa iklan sampai $time.';
   }
 
   @override
-  String get adFreeUnavailable =>
-      'No video available right now. Try again later.';
+  String get adFreeUnavailable => 'Belum ada video sekarang. Coba lagi nanti.';
 }

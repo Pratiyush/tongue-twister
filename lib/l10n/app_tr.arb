@@ -95,5 +95,11 @@
   "settingsAbout": "Hakkında",
   "aboutVersion": "Sürüm {version}",
   "privacyChoices": "Gizlilik seçenekleri",
-  "privacyChoicesHelp": "Reklam iznini değiştir"
+  "privacyChoicesHelp": "Reklam iznini değiştir",
+  "settingsAds": "Reklamlar",
+  "adFreeWatch": "24 saat reklamsız",
+  "adFreeWatchHelp": "Kısa bir video izle",
+  "adFreeActive": "Reklamsız · bitiş: {time}",
+  "adFreeThanks": "Teşekkürler! Reklamsız süre bitişi: {time}.",
+  "adFreeUnavailable": "Şu an video yok. Daha sonra tekrar dene."
 }

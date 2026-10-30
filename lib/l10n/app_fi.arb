@@ -95,5 +95,11 @@
   "settingsAbout": "Tietoja",
   "aboutVersion": "Versio {version}",
   "privacyChoices": "Tietosuojavalinnat",
-  "privacyChoicesHelp": "Muuta mainossuostumustasi"
+  "privacyChoicesHelp": "Muuta mainossuostumustasi",
+  "settingsAds": "Mainokset",
+  "adFreeWatch": "24 tuntia ilman mainoksia",
+  "adFreeWatchHelp": "Katso yksi lyhyt video",
+  "adFreeActive": "Ilman mainoksia {time} asti",
+  "adFreeThanks": "Kiitos! Ei mainoksia {time} asti.",
+  "adFreeUnavailable": "Videota ei ole nyt saatavilla. Yritä myöhemmin uudelleen."
 }

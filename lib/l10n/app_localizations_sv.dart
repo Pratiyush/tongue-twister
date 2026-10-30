@@ -380,25 +380,25 @@ class AppLocalizationsSv extends AppLocalizations {
   String get privacyChoicesHelp => 'Ändra ditt annonssamtycke';
 
   @override
-  String get settingsAds => 'Ads';
+  String get settingsAds => 'Annonser';
 
   @override
-  String get adFreeWatch => 'Go ad-free for 24 hours';
+  String get adFreeWatch => '24 timmar utan annonser';
 
   @override
-  String get adFreeWatchHelp => 'Watch one short video';
+  String get adFreeWatchHelp => 'Titta på en kort video';
 
   @override
   String adFreeActive(String time) {
-    return 'Ad-free until $time';
+    return 'Annonsfritt till $time';
   }
 
   @override
   String adFreeThanks(String time) {
-    return 'Thanks! No ads until $time.';
+    return 'Tack! Inga annonser till $time.';
   }
 
   @override
   String get adFreeUnavailable =>
-      'No video available right now. Try again later.';
+      'Ingen video tillgänglig just nu. Försök igen senare.';
 }
