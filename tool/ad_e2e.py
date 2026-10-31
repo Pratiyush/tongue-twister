@@ -200,13 +200,16 @@ def main():
     if not a.no_install:
         step('Installing the debug build')
         adb('install', '-r', APK)
+    # A fresh device shows a one-time "Viewing full screen" tip over the
+    # first full-screen ad, which swallows taps.
+    adb('shell', 'settings', 'put', 'secure', 'immersive_mode_confirmations',
+        'confirmed', check=False)
     step('Seeding preferences: second launch, 10 practices, English')
     adb('shell', 'am', 'force-stop', PKG)
     adb('shell', 'pm', 'clear', PKG)
     adb('shell', f"run-as {PKG} sh -c 'mkdir -p shared_prefs && "
         "cat > shared_prefs/FlutterSharedPreferences.xml'", stdin=PREFS)
-    adb('shell', 'monkey', '-p', PKG, '-c',
-        'android.intent.category.LAUNCHER', '1')
+    adb('shell', 'am', 'start', '-n', f'{PKG}/.MainActivity')
     wait_for(lambda: PKG in top_activity(), 20, 'the app to start')
 
     answer_consent()
@@ -215,11 +218,9 @@ def main():
     print(f'  ok, {shot("1-banner")}')
 
     step('2/3 Pop-up after 5 practices, on leaving the practice screen')
-    tap(scroll_to(r'British English'))
-    time.sleep(2)
-    if find(r'I said it') is None:  # on the list, not a practice card
-        tap(scroll_to(r'She sells'))
-        time.sleep(2)
+    tap(scroll_to(r'^Recommended for you'))  # opens a practice screen
+    wait_for(lambda: find(r'I said it') is not None, 20,
+             'the practice screen')
     for i in range(5):
         button = find(r'I said it')
         if button is None:
