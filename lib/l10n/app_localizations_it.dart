@@ -382,6 +382,9 @@ class AppLocalizationsIt extends AppLocalizations {
   String get privacyChoicesHelp => 'Modifica il consenso per gli annunci';
 
   @override
+  String get privacyPolicy => 'Informativa sulla privacy';
+
+  @override
   String get settingsAds => 'Annunci';
 
   @override

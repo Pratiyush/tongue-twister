@@ -384,6 +384,9 @@ class AppLocalizationsHe extends AppLocalizations {
   String get privacyChoicesHelp => 'שינוי ההסכמה לפרסומות';
 
   @override
+  String get privacyPolicy => 'מדיניות פרטיות';
+
+  @override
   String get settingsAds => 'פרסומות';
 
   @override

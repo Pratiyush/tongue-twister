@@ -383,6 +383,9 @@ class AppLocalizationsUr extends AppLocalizations {
   String get privacyChoicesHelp => 'اشتہارات کی رضامندی تبدیل کریں';
 
   @override
+  String get privacyPolicy => 'رازداری کی پالیسی';
+
+  @override
   String get settingsAds => 'اشتہارات';
 
   @override

@@ -9,6 +9,7 @@ import '../l10n/l10n_ext.dart';
 import '../l10n/languages.dart';
 import '../models/language_section.dart';
 import '../providers/favorites_provider.dart';
+import '../providers/links_provider.dart';
 import '../providers/practice_provider.dart';
 import '../providers/settings_provider.dart';
 import '../providers/speech_provider.dart';
@@ -273,6 +274,12 @@ class SettingsScreen extends ConsumerWidget {
               applicationVersion: appVersion,
               applicationLegalese: l.appCredit(appCreditName),
             ),
+          ),
+          ListTile(
+            leading: const Icon(Icons.policy_outlined),
+            title: Text(l.privacyPolicy),
+            trailing: const Icon(Icons.open_in_new),
+            onTap: () => ref.read(linkOpenerProvider)(privacyPolicyUrl),
           ),
           if (ref.watch(adsReadyProvider).value ?? false) ...[
             _Header(l.settingsAds),

@@ -380,6 +380,9 @@ class AppLocalizationsDa extends AppLocalizations {
   String get privacyChoicesHelp => 'Skift dit samtykke til annoncer';
 
   @override
+  String get privacyPolicy => 'Privatlivspolitik';
+
+  @override
   String get settingsAds => 'Annoncer';
 
   @override

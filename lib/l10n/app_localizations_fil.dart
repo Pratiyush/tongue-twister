@@ -382,6 +382,9 @@ class AppLocalizationsFil extends AppLocalizations {
   String get privacyChoicesHelp => 'Baguhin ang pahintulot sa ads';
 
   @override
+  String get privacyPolicy => 'Patakaran sa pagkapribado';
+
+  @override
   String get settingsAds => 'Ads';
 
   @override

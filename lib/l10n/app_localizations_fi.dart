@@ -379,6 +379,9 @@ class AppLocalizationsFi extends AppLocalizations {
   String get privacyChoicesHelp => 'Muuta mainossuostumustasi';
 
   @override
+  String get privacyPolicy => 'Tietosuojaseloste';
+
+  @override
   String get settingsAds => 'Mainokset';
 
   @override

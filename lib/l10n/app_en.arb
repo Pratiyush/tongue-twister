@@ -493,6 +493,10 @@
   "@privacyChoicesHelp": {
     "description": "Subtitle of 'Privacy choices'. Max ~40 chars."
   },
+  "privacyPolicy": "Privacy policy",
+  "@privacyPolicy": {
+    "description": "Settings › About row that opens the privacy policy web page. Max ~30 chars."
+  },
   "settingsAds": "Ads",
   "@settingsAds": {
     "description": "Settings section header for ad options. Max ~16 chars."

@@ -385,6 +385,9 @@ class AppLocalizationsPt extends AppLocalizations {
   String get privacyChoicesHelp => 'Altere seu consentimento de anúncios';
 
   @override
+  String get privacyPolicy => 'Política de privacidade';
+
+  @override
   String get settingsAds => 'Anúncios';
 
   @override
@@ -786,6 +789,9 @@ class AppLocalizationsPtPt extends AppLocalizationsPt {
 
   @override
   String get privacyChoicesHelp => 'Altera o teu consentimento de anúncios';
+
+  @override
+  String get privacyPolicy => 'Política de privacidade';
 
   @override
   String get settingsAds => 'Anúncios';

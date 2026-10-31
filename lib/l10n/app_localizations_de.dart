@@ -381,6 +381,9 @@ class AppLocalizationsDe extends AppLocalizations {
   String get privacyChoicesHelp => 'Werbe-Einwilligung ändern';
 
   @override
+  String get privacyPolicy => 'Datenschutzerklärung';
+
+  @override
   String get settingsAds => 'Werbung';
 
   @override

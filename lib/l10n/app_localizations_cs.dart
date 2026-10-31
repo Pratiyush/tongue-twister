@@ -378,6 +378,9 @@ class AppLocalizationsCs extends AppLocalizations {
   String get privacyChoicesHelp => 'Změnit souhlas s reklamami';
 
   @override
+  String get privacyPolicy => 'Zásady ochrany soukromí';
+
+  @override
   String get settingsAds => 'Reklamy';
 
   @override

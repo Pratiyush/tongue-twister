@@ -374,6 +374,9 @@ class AppLocalizationsJa extends AppLocalizations {
   String get privacyChoicesHelp => '広告の同意を変更';
 
   @override
+  String get privacyPolicy => 'プライバシーポリシー';
+
+  @override
   String get settingsAds => '広告';
 
   @override

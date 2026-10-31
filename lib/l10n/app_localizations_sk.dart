@@ -379,6 +379,9 @@ class AppLocalizationsSk extends AppLocalizations {
   String get privacyChoicesHelp => 'Zmeniť súhlas s reklamami';
 
   @override
+  String get privacyPolicy => 'Zásady ochrany súkromia';
+
+  @override
   String get settingsAds => 'Reklamy';
 
   @override

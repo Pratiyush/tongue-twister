@@ -382,6 +382,9 @@ class AppLocalizationsBn extends AppLocalizations {
   String get privacyChoicesHelp => 'বিজ্ঞাপনের সম্মতি বদলাও';
 
   @override
+  String get privacyPolicy => 'গোপনীয়তা নীতি';
+
+  @override
   String get settingsAds => 'বিজ্ঞাপন';
 
   @override

@@ -374,6 +374,9 @@ class AppLocalizationsTh extends AppLocalizations {
   String get privacyChoicesHelp => 'เปลี่ยนความยินยอมเรื่องโฆษณา';
 
   @override
+  String get privacyPolicy => 'นโยบายความเป็นส่วนตัว';
+
+  @override
   String get settingsAds => 'โฆษณา';
 
   @override

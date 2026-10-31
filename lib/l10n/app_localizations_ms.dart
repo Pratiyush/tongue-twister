@@ -382,6 +382,9 @@ class AppLocalizationsMs extends AppLocalizations {
   String get privacyChoicesHelp => 'Tukar persetujuan iklan';
 
   @override
+  String get privacyPolicy => 'Dasar privasi';
+
+  @override
   String get settingsAds => 'Iklan';
 
   @override

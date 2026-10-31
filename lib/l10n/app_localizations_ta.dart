@@ -383,6 +383,9 @@ class AppLocalizationsTa extends AppLocalizations {
   String get privacyChoicesHelp => 'விளம்பர ஒப்புதலை மாற்றுக';
 
   @override
+  String get privacyPolicy => 'தனியுரிமைக் கொள்கை';
+
+  @override
   String get settingsAds => 'விளம்பரங்கள்';
 
   @override

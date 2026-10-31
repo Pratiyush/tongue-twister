@@ -389,6 +389,9 @@ class AppLocalizationsUk extends AppLocalizations {
   String get privacyChoicesHelp => 'Змінити згоду на рекламу';
 
   @override
+  String get privacyPolicy => 'Політика конфіденційності';
+
+  @override
   String get settingsAds => 'Реклама';
 
   @override

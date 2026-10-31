@@ -383,6 +383,9 @@ class AppLocalizationsHi extends AppLocalizations {
   String get privacyChoicesHelp => 'विज्ञापन की सहमति बदलो';
 
   @override
+  String get privacyPolicy => 'निजता नीति';
+
+  @override
   String get settingsAds => 'विज्ञापन';
 
   @override

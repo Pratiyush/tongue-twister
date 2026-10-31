@@ -376,6 +376,9 @@ class AppLocalizationsVi extends AppLocalizations {
   String get privacyChoicesHelp => 'Thay đổi sự đồng ý về quảng cáo';
 
   @override
+  String get privacyPolicy => 'Chính sách quyền riêng tư';
+
+  @override
   String get settingsAds => 'Quảng cáo';
 
   @override

@@ -382,6 +382,9 @@ class AppLocalizationsTr extends AppLocalizations {
   String get privacyChoicesHelp => 'Reklam iznini değiştir';
 
   @override
+  String get privacyPolicy => 'Gizlilik politikası';
+
+  @override
   String get settingsAds => 'Reklamlar';
 
   @override

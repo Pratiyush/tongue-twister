@@ -382,6 +382,9 @@ class AppLocalizationsRo extends AppLocalizations {
   String get privacyChoicesHelp => 'Schimbă acordul pentru reclame';
 
   @override
+  String get privacyPolicy => 'Politica de confidențialitate';
+
+  @override
   String get settingsAds => 'Reclame';
 
   @override

@@ -3,6 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:tongue_twister/models/language_section.dart';
 import 'package:tongue_twister/providers/favorites_provider.dart';
 import 'package:tongue_twister/providers/practice_provider.dart';
+import 'package:tongue_twister/providers/links_provider.dart';
 import 'package:tongue_twister/providers/settings_provider.dart';
 
 import 'helpers.dart';
@@ -95,9 +96,14 @@ void main() {
     tester.view.devicePixelRatio = 3;
     addTearDown(tester.view.reset);
     final engine = FakeSpeechEngine(unavailable: {'hi-IN'});
+    final opened = <Uri>[];
     final container = await createContainer(
       engine: engine,
       prefs: {'practice_counts': '{"de-fischers-fritz":2}'},
+      openLink: (uri) async {
+        opened.add(uri);
+        return true;
+      },
     );
     addTearDown(container.dispose);
     await tester.pumpWidget(buildApp(container));
@@ -139,6 +145,15 @@ void main() {
     await tester.tap(find.text('Clear'));
     await tester.pumpAndSettle();
     expect(container.read(practiceProvider), isEmpty);
+
+    await tester.pump(const Duration(seconds: 5)); // the snackbar goes
+    await tester.pumpAndSettle();
+    await tester.scrollUntilVisible(find.text('Privacy policy'), 200);
+    await tester.ensureVisible(find.text('Privacy policy'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Privacy policy'));
+    await tester.pump();
+    expect(opened, [privacyPolicyUrl]);
 
     // Meaning is hidden and the challenge button follows the repeat count.
     await tester.pageBack();

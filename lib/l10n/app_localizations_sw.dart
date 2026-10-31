@@ -385,6 +385,9 @@ class AppLocalizationsSw extends AppLocalizations {
   String get privacyChoicesHelp => 'Badilisha idhini ya matangazo';
 
   @override
+  String get privacyPolicy => 'Sera ya faragha';
+
+  @override
   String get settingsAds => 'Matangazo';
 
   @override

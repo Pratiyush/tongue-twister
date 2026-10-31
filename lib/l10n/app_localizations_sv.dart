@@ -380,6 +380,9 @@ class AppLocalizationsSv extends AppLocalizations {
   String get privacyChoicesHelp => 'Ändra ditt annonssamtycke';
 
   @override
+  String get privacyPolicy => 'Integritetspolicy';
+
+  @override
   String get settingsAds => 'Annonser';
 
   @override

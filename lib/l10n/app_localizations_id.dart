@@ -381,6 +381,9 @@ class AppLocalizationsId extends AppLocalizations {
   String get privacyChoicesHelp => 'Ubah persetujuan iklan';
 
   @override
+  String get privacyPolicy => 'Kebijakan privasi';
+
+  @override
   String get settingsAds => 'Iklan';
 
   @override

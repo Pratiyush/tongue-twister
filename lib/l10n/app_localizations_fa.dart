@@ -380,6 +380,9 @@ class AppLocalizationsFa extends AppLocalizations {
   String get privacyChoicesHelp => 'رضایت تبلیغات رو تغییر بده';
 
   @override
+  String get privacyPolicy => 'سیاست حریم خصوصی';
+
+  @override
   String get settingsAds => 'تبلیغات';
 
   @override

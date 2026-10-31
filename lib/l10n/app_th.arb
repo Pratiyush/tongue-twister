@@ -96,6 +96,7 @@
   "aboutVersion": "เวอร์ชัน {version}",
   "privacyChoices": "ตัวเลือกความเป็นส่วนตัว",
   "privacyChoicesHelp": "เปลี่ยนความยินยอมเรื่องโฆษณา",
+  "privacyPolicy": "นโยบายความเป็นส่วนตัว",
   "settingsAds": "โฆษณา",
   "adFreeWatch": "ปิดโฆษณา 1 ชั่วโมง",
   "adFreeWatchHelp": "ดูวิดีโอสั้น 1 คลิป",

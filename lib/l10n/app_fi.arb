@@ -96,6 +96,7 @@
   "aboutVersion": "Versio {version}",
   "privacyChoices": "Tietosuojavalinnat",
   "privacyChoicesHelp": "Muuta mainossuostumustasi",
+  "privacyPolicy": "Tietosuojaseloste",
   "settingsAds": "Mainokset",
   "adFreeWatch": "1 tunti ilman mainoksia",
   "adFreeWatchHelp": "Katso yksi lyhyt video",

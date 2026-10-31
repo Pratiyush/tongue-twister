@@ -748,6 +748,12 @@ abstract class AppLocalizations {
   /// **'Change your ad consent'**
   String get privacyChoicesHelp;
 
+  /// Settings › About row that opens the privacy policy web page. Max ~30 chars.
+  ///
+  /// In en, this message translates to:
+  /// **'Privacy policy'**
+  String get privacyPolicy;
+
   /// Settings section header for ad options. Max ~16 chars.
   ///
   /// In en, this message translates to:

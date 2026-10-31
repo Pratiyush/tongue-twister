@@ -386,6 +386,9 @@ class AppLocalizationsHr extends AppLocalizations {
   String get privacyChoicesHelp => 'Promijeni privolu za oglase';
 
   @override
+  String get privacyPolicy => 'Pravila o privatnosti';
+
+  @override
   String get settingsAds => 'Oglasi';
 
   @override

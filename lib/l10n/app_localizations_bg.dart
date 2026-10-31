@@ -382,6 +382,9 @@ class AppLocalizationsBg extends AppLocalizations {
   String get privacyChoicesHelp => 'Промени съгласието за реклами';
 
   @override
+  String get privacyPolicy => 'Политика за поверителност';
+
+  @override
   String get settingsAds => 'Реклами';
 
   @override

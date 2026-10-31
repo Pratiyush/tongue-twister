@@ -380,6 +380,9 @@ class AppLocalizationsHu extends AppLocalizations {
   String get privacyChoicesHelp => 'Hirdetési hozzájárulás módosítása';
 
   @override
+  String get privacyPolicy => 'Adatvédelmi tájékoztató';
+
+  @override
   String get settingsAds => 'Hirdetések';
 
   @override

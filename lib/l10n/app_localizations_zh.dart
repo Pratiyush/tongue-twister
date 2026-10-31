@@ -373,6 +373,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String get privacyChoicesHelp => '更改广告同意设置';
 
   @override
+  String get privacyPolicy => '隐私政策';
+
+  @override
   String get settingsAds => '广告';
 
   @override
@@ -761,6 +764,9 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get privacyChoicesHelp => '變更廣告同意設定';
+
+  @override
+  String get privacyPolicy => '隱私權政策';
 
   @override
   String get settingsAds => '廣告';

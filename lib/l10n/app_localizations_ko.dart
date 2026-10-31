@@ -374,6 +374,9 @@ class AppLocalizationsKo extends AppLocalizations {
   String get privacyChoicesHelp => '광고 동의 변경';
 
   @override
+  String get privacyPolicy => '개인정보 처리방침';
+
+  @override
   String get settingsAds => '광고';
 
   @override

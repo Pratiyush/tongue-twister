@@ -380,6 +380,9 @@ class AppLocalizationsEl extends AppLocalizations {
   String get privacyChoicesHelp => 'Άλλαξε τη συναίνεση για διαφημίσεις';
 
   @override
+  String get privacyPolicy => 'Πολιτική απορρήτου';
+
+  @override
   String get settingsAds => 'Διαφημίσεις';
 
   @override

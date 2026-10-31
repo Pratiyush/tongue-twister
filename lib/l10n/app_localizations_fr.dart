@@ -383,6 +383,9 @@ class AppLocalizationsFr extends AppLocalizations {
   String get privacyChoicesHelp => 'Modifier ton consentement aux pubs';
 
   @override
+  String get privacyPolicy => 'Politique de confidentialité';
+
+  @override
   String get settingsAds => 'Publicités';
 
   @override

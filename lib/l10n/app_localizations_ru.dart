@@ -392,6 +392,9 @@ class AppLocalizationsRu extends AppLocalizations {
   String get privacyChoicesHelp => 'Изменить согласие на рекламу';
 
   @override
+  String get privacyPolicy => 'Политика конфиденциальности';
+
+  @override
   String get settingsAds => 'Реклама';
 
   @override

@@ -378,6 +378,9 @@ class AppLocalizationsNb extends AppLocalizations {
   String get privacyChoicesHelp => 'Endre annonsesamtykket ditt';
 
   @override
+  String get privacyPolicy => 'Personvernerklæring';
+
+  @override
   String get settingsAds => 'Annonser';
 
   @override

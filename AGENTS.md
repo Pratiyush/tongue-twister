@@ -107,7 +107,8 @@ The home screen footer and Settings → About show "Made with ❤️ by Pratiyus
 
 ## Platforms and builds
 
-- Android: `AndroidManifest.xml` declares the `android.intent.action.TTS_SERVICE` query, which Android 11+ needs. Release builds use the debug signing key.
+- Android: `AndroidManifest.xml` declares the `android.intent.action.TTS_SERVICE` query, which Android 11+ needs. Release builds are signed with the upload key from `android/key.properties` (git-ignored; CI writes it from secrets), or the debug key when that file is missing.
+- Privacy policy and support page: `docs/privacy/index.html` and `docs/index.html`, served at `https://pratiyush.github.io/tongue-twisters/` from the `Pratiyush/pratiyush.github.io` repository (changes go in by pull request there). Settings → About links to it (`privacyPolicyUrl` in `lib/providers/links_provider.dart`). When ads, stored data or settings labels change, update both copies. `app-ads.txt` lives at that site's root.
 - iOS: `flutter_tts` plays through the silent switch (`IosTextToSpeechAudioCategory.playback`).
 - CI (`.github/workflows/build.yml`): analyze and test, then a release APK (Ubuntu) and an unsigned IPA (macOS). Every push to the default branch publishes a GitHub Release `v<version>-build<run>` with both files, and `v*` tags publish that version. Android ships as per-processor APKs (`tongue-twisters-arm64-v8a.apk`, `-armeabi-v7a`, `-x86_64`) plus the universal `tongue-twisters.apk`, and `tongue-twisters.aab` for Google Play. Every build uses the CI run number as its build number; stable links are `releases/latest/download/<file>`. Bump `version:` in `pubspec.yaml` and `appVersion` in `settings_screen.dart` together.
 - Launcher icons: edit `assets/icon/*.png`, then run `dart run flutter_launcher_icons`. Afterwards, **revert any change it makes to `ios/Runner.xcodeproj/project.pbxproj`**; it's a known bug in the tool.

@@ -393,6 +393,9 @@ class AppLocalizationsPl extends AppLocalizations {
   String get privacyChoicesHelp => 'Zmień zgodę na reklamy';
 
   @override
+  String get privacyPolicy => 'Polityka prywatności';
+
+  @override
   String get settingsAds => 'Reklamy';
 
   @override

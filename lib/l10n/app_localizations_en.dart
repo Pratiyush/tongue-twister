@@ -378,6 +378,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get privacyChoicesHelp => 'Change your ad consent';
 
   @override
+  String get privacyPolicy => 'Privacy policy';
+
+  @override
   String get settingsAds => 'Ads';
 
   @override
