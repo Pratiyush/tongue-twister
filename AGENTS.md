@@ -33,6 +33,8 @@ dart format lib test          # CI expects formatted code
 flutter analyze               # must report "No issues found!"
 flutter test                  # all tests must pass
 flutter run                   # needs a device or simulator
+flutter build apk --debug && python3 tool/ad_e2e.py [-s SERIAL]
+                              # banner, pop-up and rewarded ad end to end on Android
 ```
 
 Run format, analyze and test before every commit.
