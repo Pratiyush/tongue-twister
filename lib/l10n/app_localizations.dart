@@ -754,10 +754,10 @@ abstract class AppLocalizations {
   /// **'Ads'**
   String get settingsAds;
 
-  /// Settings row: watch one video to hide all ads for a day. Max ~32 chars.
+  /// Settings row: watch one video to hide all ads for an hour. Max ~32 chars.
   ///
   /// In en, this message translates to:
-  /// **'Go ad-free for 24 hours'**
+  /// **'Go ad-free for 1 hour'**
   String get adFreeWatch;
 
   /// Subtitle under 'Go ad-free for 24 hours'. Max ~32 chars.

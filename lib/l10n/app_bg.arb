@@ -97,7 +97,7 @@
   "privacyChoices": "Поверителност",
   "privacyChoicesHelp": "Промени съгласието за реклами",
   "settingsAds": "Реклами",
-  "adFreeWatch": "Без реклами за 24 часа",
+  "adFreeWatch": "Без реклами за 1 час",
   "adFreeWatchHelp": "Гледай едно кратко видео",
   "adFreeActive": "Без реклами до {time}",
   "adFreeThanks": "Благодаря! Без реклами до {time}.",

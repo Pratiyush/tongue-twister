@@ -385,7 +385,7 @@ class AppLocalizationsMs extends AppLocalizations {
   String get settingsAds => 'Iklan';
 
   @override
-  String get adFreeWatch => 'Tanpa iklan selama 24 jam';
+  String get adFreeWatch => 'Tanpa iklan selama 1 jam';
 
   @override
   String get adFreeWatchHelp => 'Tonton satu video pendek';

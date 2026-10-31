@@ -353,14 +353,14 @@ void main() {
     });
   });
 
-  test('a watched video turns ads off for 24 hours and persists', () async {
+  test('a watched video turns ads off for 1 hour and persists', () async {
     final container = await createContainer();
     final adFree = container.read(adFreeProvider.notifier);
     final now = DateTime(2026, 10, 30, 12);
     expect(adFree.isActive(now), isFalse);
     adFree.grant(now);
-    expect(adFree.isActive(now.add(const Duration(hours: 23))), isTrue);
-    expect(adFree.isActive(now.add(const Duration(hours: 24))), isFalse);
+    expect(adFree.isActive(now.add(const Duration(minutes: 59))), isTrue);
+    expect(adFree.isActive(now.add(const Duration(hours: 1))), isFalse);
     container.dispose();
 
     final prefs = await SharedPreferences.getInstance();

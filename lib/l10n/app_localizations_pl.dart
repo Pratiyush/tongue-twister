@@ -396,7 +396,7 @@ class AppLocalizationsPl extends AppLocalizations {
   String get settingsAds => 'Reklamy';
 
   @override
-  String get adFreeWatch => '24 godziny bez reklam';
+  String get adFreeWatch => '1 godzina bez reklam';
 
   @override
   String get adFreeWatchHelp => 'Obejrzyj jeden krótki film';

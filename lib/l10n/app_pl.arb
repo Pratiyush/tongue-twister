@@ -97,7 +97,7 @@
   "privacyChoices": "Ustawienia prywatności",
   "privacyChoicesHelp": "Zmień zgodę na reklamy",
   "settingsAds": "Reklamy",
-  "adFreeWatch": "24 godziny bez reklam",
+  "adFreeWatch": "1 godzina bez reklam",
   "adFreeWatchHelp": "Obejrzyj jeden krótki film",
   "adFreeActive": "Bez reklam do {time}",
   "adFreeThanks": "Dzięki! Bez reklam do {time}.",

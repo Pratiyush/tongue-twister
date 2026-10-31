@@ -97,7 +97,7 @@
   "privacyChoices": "Adatvédelmi beállítások",
   "privacyChoicesHelp": "Hirdetési hozzájárulás módosítása",
   "settingsAds": "Hirdetések",
-  "adFreeWatch": "24 óra hirdetések nélkül",
+  "adFreeWatch": "1 óra hirdetések nélkül",
   "adFreeWatchHelp": "Nézz meg egy rövid videót",
   "adFreeActive": "Hirdetésmentes eddig: {time}",
   "adFreeThanks": "Köszi! Nincs hirdetés eddig: {time}.",

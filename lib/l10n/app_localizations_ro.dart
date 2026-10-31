@@ -385,7 +385,7 @@ class AppLocalizationsRo extends AppLocalizations {
   String get settingsAds => 'Reclame';
 
   @override
-  String get adFreeWatch => '24 de ore fără reclame';
+  String get adFreeWatch => '1 oră fără reclame';
 
   @override
   String get adFreeWatchHelp => 'Urmărește un videoclip scurt';

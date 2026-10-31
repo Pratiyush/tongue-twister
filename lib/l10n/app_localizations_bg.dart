@@ -385,7 +385,7 @@ class AppLocalizationsBg extends AppLocalizations {
   String get settingsAds => 'Реклами';
 
   @override
-  String get adFreeWatch => 'Без реклами за 24 часа';
+  String get adFreeWatch => 'Без реклами за 1 час';
 
   @override
   String get adFreeWatchHelp => 'Гледай едно кратко видео';

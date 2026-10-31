@@ -389,7 +389,7 @@ class AppLocalizationsHr extends AppLocalizations {
   String get settingsAds => 'Oglasi';
 
   @override
-  String get adFreeWatch => '24 sata bez oglasa';
+  String get adFreeWatch => '1 sat bez oglasa';
 
   @override
   String get adFreeWatchHelp => 'Pogledaj jedan kratki video';

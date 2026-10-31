@@ -7,7 +7,7 @@ units, and fails loudly at the first step that doesn't happen:
   1. The banner shows at the bottom of the home screen.
   2. The pop-up (interstitial) shows when leaving a practice screen after
      5 "I said it!" taps, on a second launch with 10 practices in total.
-  3. Settings -> "Go ad-free for 24 hours" plays a rewarded video, saves the
+  3. Settings -> "Go ad-free for 1 hour" plays a rewarded video, saves the
      ad-free time and the banner disappears.
 
 Inside the EEA/UK it answers the consent form with "Do not consent", so ads
@@ -248,7 +248,7 @@ def main():
         fail('Settings button not found on home')
     tap(settings)
     time.sleep(2)
-    tap(scroll_to(r'Go ad-free for 24 hours'))
+    tap(scroll_to(r'Go ad-free for 1 hour'))
     wait_for(lambda: AD_ACTIVITY in top_activity(), 30, 'the rewarded video')
     time.sleep(2)
     print(f'  video playing, {shot("3-rewarded")}')

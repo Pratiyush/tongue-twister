@@ -377,7 +377,7 @@ class AppLocalizationsTh extends AppLocalizations {
   String get settingsAds => 'โฆษณา';
 
   @override
-  String get adFreeWatch => 'ปิดโฆษณา 24 ชั่วโมง';
+  String get adFreeWatch => 'ปิดโฆษณา 1 ชั่วโมง';
 
   @override
   String get adFreeWatchHelp => 'ดูวิดีโอสั้น 1 คลิป';

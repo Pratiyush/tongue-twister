@@ -97,7 +97,7 @@
   "privacyChoices": "Επιλογές απορρήτου",
   "privacyChoicesHelp": "Άλλαξε τη συναίνεση για διαφημίσεις",
   "settingsAds": "Διαφημίσεις",
-  "adFreeWatch": "24 ώρες χωρίς διαφημίσεις",
+  "adFreeWatch": "1 ώρα χωρίς διαφημίσεις",
   "adFreeWatchHelp": "Δες ένα σύντομο βίντεο",
   "adFreeActive": "Χωρίς διαφημίσεις έως {time}",
   "adFreeThanks": "Ευχαριστούμε! Χωρίς διαφημίσεις έως {time}.",

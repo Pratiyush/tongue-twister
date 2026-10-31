@@ -97,7 +97,7 @@
   "privacyChoices": "Lựa chọn quyền riêng tư",
   "privacyChoicesHelp": "Thay đổi sự đồng ý về quảng cáo",
   "settingsAds": "Quảng cáo",
-  "adFreeWatch": "Tắt quảng cáo trong 24 giờ",
+  "adFreeWatch": "Tắt quảng cáo trong 1 giờ",
   "adFreeWatchHelp": "Xem một video ngắn",
   "adFreeActive": "Không quảng cáo đến {time}",
   "adFreeThanks": "Cảm ơn! Không quảng cáo đến {time}.",

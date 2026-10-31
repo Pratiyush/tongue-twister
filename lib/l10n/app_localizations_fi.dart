@@ -382,7 +382,7 @@ class AppLocalizationsFi extends AppLocalizations {
   String get settingsAds => 'Mainokset';
 
   @override
-  String get adFreeWatch => '24 tuntia ilman mainoksia';
+  String get adFreeWatch => '1 tunti ilman mainoksia';
 
   @override
   String get adFreeWatchHelp => 'Katso yksi lyhyt video';

@@ -385,7 +385,7 @@ class AppLocalizationsFil extends AppLocalizations {
   String get settingsAds => 'Ads';
 
   @override
-  String get adFreeWatch => '24 oras na walang ads';
+  String get adFreeWatch => '1 oras na walang ads';
 
   @override
   String get adFreeWatchHelp => 'Manood ng isang maikling video';

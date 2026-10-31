@@ -97,7 +97,7 @@
   "privacyChoices": "Privatlivsvalg",
   "privacyChoicesHelp": "Skift dit samtykke til annoncer",
   "settingsAds": "Annoncer",
-  "adFreeWatch": "24 timer uden annoncer",
+  "adFreeWatch": "1 time uden annoncer",
   "adFreeWatchHelp": "Se én kort video",
   "adFreeActive": "Uden annoncer indtil {time}",
   "adFreeThanks": "Tak! Ingen annoncer indtil {time}.",

@@ -382,7 +382,7 @@ class AppLocalizationsSk extends AppLocalizations {
   String get settingsAds => 'Reklamy';
 
   @override
-  String get adFreeWatch => '24 hodín bez reklám';
+  String get adFreeWatch => '1 hodina bez reklám';
 
   @override
   String get adFreeWatchHelp => 'Pozri si jedno krátke video';

@@ -376,7 +376,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get settingsAds => '广告';
 
   @override
-  String get adFreeWatch => '24 小时无广告';
+  String get adFreeWatch => '1 小时无广告';
 
   @override
   String get adFreeWatchHelp => '观看一段短视频';
@@ -766,7 +766,7 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get settingsAds => '廣告';
 
   @override
-  String get adFreeWatch => '24 小時無廣告';
+  String get adFreeWatch => '1 小時無廣告';
 
   @override
   String get adFreeWatchHelp => '觀看一段短影片';

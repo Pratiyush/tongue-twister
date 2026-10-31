@@ -97,7 +97,7 @@
   "privacyChoices": "Postavke privatnosti",
   "privacyChoicesHelp": "Promijeni privolu za oglase",
   "settingsAds": "Oglasi",
-  "adFreeWatch": "24 sata bez oglasa",
+  "adFreeWatch": "1 sat bez oglasa",
   "adFreeWatchHelp": "Pogledaj jedan kratki video",
   "adFreeActive": "Bez oglasa do {time}",
   "adFreeThanks": "Hvala! Bez oglasa do {time}.",

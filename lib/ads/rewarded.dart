@@ -22,10 +22,10 @@ const _rewardedIos = String.fromEnvironment(
 const _adFreeUntilKey = 'ads.ad_free_until';
 
 /// How long one watched video turns ads off.
-const adFreeFor = Duration(hours: 24);
+const adFreeFor = Duration(hours: 1);
 
 /// When the ad-free period the user earned ends, or null if none was earned.
-/// Settings → "Go ad-free for 24 hours" plays one rewarded video for it.
+/// Settings → "Go ad-free for 1 hour" plays one rewarded video for it.
 class AdFreeNotifier extends Notifier<DateTime?> {
   @override
   DateTime? build() {

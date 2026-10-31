@@ -377,7 +377,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get settingsAds => '광고';
 
   @override
-  String get adFreeWatch => '24시간 광고 없이 이용';
+  String get adFreeWatch => '1시간 광고 없이 이용';
 
   @override
   String get adFreeWatchHelp => '짧은 동영상 1개 보기';

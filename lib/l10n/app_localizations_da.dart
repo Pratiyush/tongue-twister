@@ -383,7 +383,7 @@ class AppLocalizationsDa extends AppLocalizations {
   String get settingsAds => 'Annoncer';
 
   @override
-  String get adFreeWatch => '24 timer uden annoncer';
+  String get adFreeWatch => '1 time uden annoncer';
 
   @override
   String get adFreeWatchHelp => 'Se én kort video';

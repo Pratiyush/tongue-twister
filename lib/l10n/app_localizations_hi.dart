@@ -386,7 +386,7 @@ class AppLocalizationsHi extends AppLocalizations {
   String get settingsAds => 'विज्ञापन';
 
   @override
-  String get adFreeWatch => '24 घंटे बिना विज्ञापन';
+  String get adFreeWatch => '1 घंटा बिना विज्ञापन';
 
   @override
   String get adFreeWatchHelp => 'एक छोटा वीडियो देखो';

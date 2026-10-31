@@ -97,7 +97,7 @@
   "privacyChoices": "Scelte sulla privacy",
   "privacyChoicesHelp": "Modifica il consenso per gli annunci",
   "settingsAds": "Annunci",
-  "adFreeWatch": "24 ore senza annunci",
+  "adFreeWatch": "1 ora senza annunci",
   "adFreeWatchHelp": "Guarda un breve video",
   "adFreeActive": "Senza annunci fino a {time}",
   "adFreeThanks": "Grazie! Niente annunci fino a {time}.",

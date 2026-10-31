@@ -381,7 +381,7 @@ class AppLocalizationsCs extends AppLocalizations {
   String get settingsAds => 'Reklamy';
 
   @override
-  String get adFreeWatch => '24 hodin bez reklam';
+  String get adFreeWatch => '1 hodina bez reklam';
 
   @override
   String get adFreeWatchHelp => 'Zhlédni jedno krátké video';

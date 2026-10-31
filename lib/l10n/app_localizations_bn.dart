@@ -385,7 +385,7 @@ class AppLocalizationsBn extends AppLocalizations {
   String get settingsAds => 'বিজ্ঞাপন';
 
   @override
-  String get adFreeWatch => '২৪ ঘণ্টা বিজ্ঞাপন ছাড়া';
+  String get adFreeWatch => '১ ঘণ্টা বিজ্ঞাপন ছাড়া';
 
   @override
   String get adFreeWatchHelp => 'একটা ছোট ভিডিও দেখো';

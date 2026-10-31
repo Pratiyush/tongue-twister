@@ -383,7 +383,7 @@ class AppLocalizationsSv extends AppLocalizations {
   String get settingsAds => 'Annonser';
 
   @override
-  String get adFreeWatch => '24 timmar utan annonser';
+  String get adFreeWatch => '1 timme utan annonser';
 
   @override
   String get adFreeWatchHelp => 'Titta på en kort video';

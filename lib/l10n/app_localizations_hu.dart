@@ -383,7 +383,7 @@ class AppLocalizationsHu extends AppLocalizations {
   String get settingsAds => 'Hirdetések';
 
   @override
-  String get adFreeWatch => '24 óra hirdetések nélkül';
+  String get adFreeWatch => '1 óra hirdetések nélkül';
 
   @override
   String get adFreeWatchHelp => 'Nézz meg egy rövid videót';

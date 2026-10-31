@@ -392,7 +392,7 @@ class AppLocalizationsUk extends AppLocalizations {
   String get settingsAds => 'Реклама';
 
   @override
-  String get adFreeWatch => '24 години без реклами';
+  String get adFreeWatch => '1 година без реклами';
 
   @override
   String get adFreeWatchHelp => 'Переглянь одне коротке відео';

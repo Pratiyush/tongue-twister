@@ -379,7 +379,7 @@ class AppLocalizationsVi extends AppLocalizations {
   String get settingsAds => 'Quảng cáo';
 
   @override
-  String get adFreeWatch => 'Tắt quảng cáo trong 24 giờ';
+  String get adFreeWatch => 'Tắt quảng cáo trong 1 giờ';
 
   @override
   String get adFreeWatchHelp => 'Xem một video ngắn';

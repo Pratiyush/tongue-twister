@@ -388,7 +388,7 @@ class AppLocalizationsSw extends AppLocalizations {
   String get settingsAds => 'Matangazo';
 
   @override
-  String get adFreeWatch => 'Saa 24 bila matangazo';
+  String get adFreeWatch => 'Saa 1 bila matangazo';
 
   @override
   String get adFreeWatchHelp => 'Tazama video moja fupi';

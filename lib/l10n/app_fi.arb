@@ -97,7 +97,7 @@
   "privacyChoices": "Tietosuojavalinnat",
   "privacyChoicesHelp": "Muuta mainossuostumustasi",
   "settingsAds": "Mainokset",
-  "adFreeWatch": "24 tuntia ilman mainoksia",
+  "adFreeWatch": "1 tunti ilman mainoksia",
   "adFreeWatchHelp": "Katso yksi lyhyt video",
   "adFreeActive": "Ilman mainoksia {time} asti",
   "adFreeThanks": "Kiitos! Ei mainoksia {time} asti.",

@@ -97,7 +97,7 @@
   "privacyChoices": "Конфиденциальность",
   "privacyChoicesHelp": "Изменить согласие на рекламу",
   "settingsAds": "Реклама",
-  "adFreeWatch": "24 часа без рекламы",
+  "adFreeWatch": "1 час без рекламы",
   "adFreeWatchHelp": "Посмотри одно короткое видео",
   "adFreeActive": "Без рекламы до {time}",
   "adFreeThanks": "Спасибо! Без рекламы до {time}.",

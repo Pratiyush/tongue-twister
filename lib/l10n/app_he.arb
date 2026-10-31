@@ -97,7 +97,7 @@
   "privacyChoices": "אפשרויות פרטיות",
   "privacyChoicesHelp": "שינוי ההסכמה לפרסומות",
   "settingsAds": "פרסומות",
-  "adFreeWatch": "24 שעות בלי פרסומות",
+  "adFreeWatch": "שעה אחת בלי פרסומות",
   "adFreeWatchHelp": "צפייה בסרטון קצר אחד",
   "adFreeActive": "בלי פרסומות עד {time}",
   "adFreeThanks": "תודה! אין פרסומות עד {time}.",

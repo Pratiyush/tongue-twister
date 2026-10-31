@@ -386,7 +386,7 @@ class AppLocalizationsTa extends AppLocalizations {
   String get settingsAds => 'விளம்பரங்கள்';
 
   @override
-  String get adFreeWatch => '24 மணிநேரம் விளம்பரமின்றி';
+  String get adFreeWatch => '1 மணிநேரம் விளம்பரமின்றி';
 
   @override
   String get adFreeWatchHelp => 'ஒரு சிறிய வீடியோ பாருங்கள்';

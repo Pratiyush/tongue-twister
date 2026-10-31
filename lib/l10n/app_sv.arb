@@ -97,7 +97,7 @@
   "privacyChoices": "Integritetsval",
   "privacyChoicesHelp": "Ändra ditt annonssamtycke",
   "settingsAds": "Annonser",
-  "adFreeWatch": "24 timmar utan annonser",
+  "adFreeWatch": "1 timme utan annonser",
   "adFreeWatchHelp": "Titta på en kort video",
   "adFreeActive": "Annonsfritt till {time}",
   "adFreeThanks": "Tack! Inga annonser till {time}.",
