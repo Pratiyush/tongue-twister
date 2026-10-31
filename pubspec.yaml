@@ -30,6 +30,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  intl: any
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -37,6 +40,10 @@ dependencies:
   flutter_riverpod: ^3.4.3
   flutter_tts: ^4.2.5
   shared_preferences: ^2.5.6
+  just_audio: ^0.10.6
+  audio_session: ^0.2.4
+  google_mobile_ads: ^9.2.0
+  url_launcher: ^6.3.3
 
 dev_dependencies:
   flutter_test:
@@ -55,11 +62,16 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
+  generate: true
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+
+  # ElevenLabs clips, one per twister (tool/generate_voices.dart).
+  assets:
+    - assets/audio/
 
   # To add assets to your application, add an assets section, like this:
   # assets:
@@ -95,7 +107,7 @@ flutter:
 flutter_launcher_icons:
   image_path: assets/icon/icon.png
   android: true
-  adaptive_icon_background: "#E4572E"
+  adaptive_icon_background: "#6D28D9"
   adaptive_icon_foreground: assets/icon/icon_foreground.png
   ios: true
   remove_alpha_ios: true

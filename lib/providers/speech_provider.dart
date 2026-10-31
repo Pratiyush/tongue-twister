@@ -1,5 +1,8 @@
+import 'package:audio_session/audio_session.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_tts/flutter_tts.dart';
+import 'package:just_audio/just_audio.dart';
 
 import '../models/twister.dart';
 import 'settings_provider.dart';
@@ -50,6 +53,62 @@ final speechEngineProvider = Provider<SpeechEngine>((ref) {
   return engine;
 });
 
+/// Plays the bundled ElevenLabs recordings (`assets/audio/<id>.mp3`).
+abstract class ClipPlayer {
+  /// Asset paths of every bundled clip.
+  Future<Set<String>> availableClips();
+
+  /// Completes when the clip has finished (or was stopped).
+  Future<void> play(String asset, double speed);
+  Future<void> stop();
+}
+
+class JustAudioClipPlayer implements ClipPlayer {
+  final _player = AudioPlayer();
+  bool _configured = false;
+
+  @override
+  Future<Set<String>> availableClips() async {
+    final manifest = await AssetManifest.loadFromAssetBundle(rootBundle);
+    return {
+      for (final asset in manifest.listAssets())
+        if (asset.startsWith('assets/audio/') && asset.endsWith('.mp3')) asset,
+    };
+  }
+
+  @override
+  Future<void> play(String asset, double speed) async {
+    if (!_configured) {
+      // Play through the iOS silent switch, like the TTS engine does.
+      final session = await AudioSession.instance;
+      await session.configure(const AudioSessionConfiguration.speech());
+      _configured = true;
+    }
+    await _player.setAsset(asset);
+    await _player.setSpeed(speed);
+    await _player.play(); // completes when the clip ends or is stopped
+    await _player.stop();
+  }
+
+  @override
+  Future<void> stop() => _player.stop();
+
+  Future<void> dispose() => _player.dispose();
+}
+
+final clipPlayerProvider = Provider<ClipPlayer>((ref) {
+  final player = JustAudioClipPlayer();
+  ref.onDispose(player.dispose);
+  return player;
+});
+
+/// Asset paths of the bundled voice clips.
+final voiceClipsProvider = FutureProvider<Set<String>>(
+  (ref) => ref.watch(clipPlayerProvider).availableClips(),
+);
+
+String clipAssetFor(String twisterId) => 'assets/audio/$twisterId.mp3';
+
 enum SpeakResult { done, stopped, languageUnavailable }
 
 class SpeechState {
@@ -69,14 +128,39 @@ class SpeechController extends Notifier<SpeechState> {
   SpeechState build() => const SpeechState();
 
   SpeechEngine get _engine => ref.read(speechEngineProvider);
+  ClipPlayer get _clips => ref.read(clipPlayerProvider);
 
   /// Speaks [twister] in its section's accent, [times] times in a row.
-  Future<SpeakResult> speak(Twister twister, {int times = 1}) => speakText(
-    twister.id,
-    twister.text,
-    twister.section.ttsLocale,
-    times: times,
-  );
+  ///
+  /// Uses the bundled native-speaker recording when there is one, and the
+  /// device's text-to-speech otherwise.
+  Future<SpeakResult> speak(Twister twister, {int times = 1}) async {
+    final asset = clipAssetFor(twister.id);
+    final clips = await ref.read(voiceClipsProvider.future);
+    if (!clips.contains(asset)) {
+      return speakText(
+        twister.id,
+        twister.text,
+        twister.section.ttsLocale,
+        times: times,
+      );
+    }
+
+    final session = ++_session;
+    await _engine.stop();
+    await _clips.stop();
+    state = SpeechState(speakingId: twister.id);
+    final speed = ref.read(settingsProvider).speed.clipSpeed;
+
+    for (var i = 0; i < times; i++) {
+      if (session != _session) return SpeakResult.stopped;
+      await _clips.play(asset, speed);
+    }
+
+    if (session != _session) return SpeakResult.stopped;
+    state = const SpeechState();
+    return SpeakResult.done;
+  }
 
   /// Speaks arbitrary [text] in [locale]; [id] marks what is playing.
   Future<SpeakResult> speakText(
@@ -87,6 +171,7 @@ class SpeechController extends Notifier<SpeechState> {
   }) async {
     final session = ++_session;
     await _engine.stop();
+    await _clips.stop();
 
     if (!await _engine.isLanguageAvailable(locale)) {
       if (session == _session) state = const SpeechState();
@@ -111,6 +196,7 @@ class SpeechController extends Notifier<SpeechState> {
     _session++;
     state = const SpeechState();
     await _engine.stop();
+    await _clips.stop();
   }
 }
 

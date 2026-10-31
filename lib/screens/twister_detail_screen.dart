@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../ads/interstitial.dart';
+import '../l10n/app_localizations.dart';
+import '../l10n/l10n_ext.dart';
 import '../models/twister.dart';
 import '../providers/favorites_provider.dart';
 import '../providers/practice_provider.dart';
@@ -52,12 +55,14 @@ class _TwisterDetailScreenState extends ConsumerState<TwisterDetailScreen> {
 
   void _recordAttempt() {
     ref.read(practiceProvider.notifier).recordAttempt(_current.id);
+    ref.read(interstitialProvider.notifier).onPractised();
     final count = ref.read(practiceProvider)[_current.id] ?? 0;
+    final l = AppLocalizations.of(context);
     final message = switch (count) {
-      1 => 'First try logged. Now say it faster!',
-      3 => 'Three times! Your tongue is warming up.',
-      10 => 'Ten times. You have mastered this one!',
-      _ => 'Nice! Practised $count times.',
+      1 => l.practiseFirstTry,
+      3 => l.practiseThreeTimes,
+      10 => l.practiseTenTimes,
+      _ => l.practisedCountToast(count),
     };
     ScaffoldMessenger.of(context)
       ..hideCurrentSnackBar()
@@ -68,6 +73,7 @@ class _TwisterDetailScreenState extends ConsumerState<TwisterDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context);
     final twister = _current;
     final isFavorite = ref.watch(
       favoritesProvider.select((ids) => ids.contains(twister.id)),
@@ -75,7 +81,9 @@ class _TwisterDetailScreenState extends ConsumerState<TwisterDetailScreen> {
 
     return PopScope(
       onPopInvokedWithResult: (didPop, _) {
-        if (didPop) ref.read(speechControllerProvider.notifier).stop();
+        if (!didPop) return;
+        ref.read(speechControllerProvider.notifier).stop();
+        ref.read(interstitialProvider.notifier).onLeftPractice();
       },
       child: SectionTheme(
         section: twister.section,
@@ -85,8 +93,8 @@ class _TwisterDetailScreenState extends ConsumerState<TwisterDetailScreen> {
             actions: [
               IconButton(
                 tooltip: isFavorite
-                    ? 'Remove from favourites'
-                    : 'Add to favourites',
+                    ? l.removeFromFavourites
+                    : l.addToFavourites,
                 icon: Icon(isFavorite ? Icons.favorite : Icons.favorite_border),
                 color: isFavorite ? AppColors.favorite : null,
                 onPressed: () =>
@@ -109,7 +117,7 @@ class _TwisterDetailScreenState extends ConsumerState<TwisterDetailScreen> {
                 Padding(
                   padding: const EdgeInsets.only(bottom: 4),
                   child: Text(
-                    '${_index + 1} / ${widget.twisters.length} · swipe for more',
+                    l.pagerSwipeHint(_index + 1, widget.twisters.length),
                     style: Theme.of(context).textTheme.labelSmall,
                   ),
                 ),
@@ -122,108 +130,143 @@ class _TwisterDetailScreenState extends ConsumerState<TwisterDetailScreen> {
   }
 }
 
-class _TwisterPage extends ConsumerWidget {
+class _TwisterPage extends ConsumerStatefulWidget {
   const _TwisterPage({required this.twister});
 
   final Twister twister;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<_TwisterPage> createState() => _TwisterPageState();
+}
+
+class _TwisterPageState extends ConsumerState<_TwisterPage> {
+  // Long twisters push the tip below the fold; a visible scrollbar shows
+  // there is more to read.
+  final _scroll = ScrollController();
+
+  @override
+  void dispose() {
+    _scroll.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context);
+    final twister = widget.twister;
     final theme = Theme.of(context);
     final practiced = ref.watch(
       practiceProvider.select((c) => c[twister.id] ?? 0),
     );
     final settings = ref.watch(settingsProvider);
 
-    return SingleChildScrollView(
-      padding: const EdgeInsets.fromLTRB(24, 16, 24, 24),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
+    // The bottom edge fades so text running past it reads as "scroll for
+    // more" rather than cut off.
+    return ShaderMask(
+      blendMode: BlendMode.dstIn,
+      shaderCallback: (bounds) => const LinearGradient(
+        begin: Alignment.topCenter,
+        end: Alignment.bottomCenter,
+        colors: [Colors.black, Colors.black, Colors.transparent],
+        stops: [0, 0.92, 1],
+      ).createShader(bounds),
+      child: Scrollbar(
+        controller: _scroll,
+        thumbVisibility: true,
+        child: SingleChildScrollView(
+          controller: _scroll,
+          padding: const EdgeInsets.fromLTRB(24, 16, 24, 24),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              DifficultyBadge(twister.difficulty),
-              const Spacer(),
-              if (practiced > 0)
-                Text(
-                  'Practised $practiced×',
-                  style: theme.textTheme.labelMedium?.copyWith(
-                    color: theme.colorScheme.primary,
-                  ),
-                ),
-            ],
-          ),
-          const SizedBox(height: 24),
-          Container(
-            width: double.infinity,
-            padding: const EdgeInsets.fromLTRB(20, 16, 20, 22),
-            decoration: BoxDecoration(
-              gradient: twister.section.headerGradient,
-              borderRadius: BorderRadius.circular(24),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Icon(
-                  Icons.format_quote_rounded,
-                  size: 36,
-                  color: twister.section.accent,
-                ),
-                const SizedBox(height: 4),
-                SelectableText(
-                  twister.text,
-                  style: theme.textTheme.headlineSmall?.copyWith(
-                    height: 1.4,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.white,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          if (settings.showPronunciation &&
-              twister.transliteration != null) ...[
-            const SizedBox(height: 16),
-            _LabeledText(
-              label: 'Pronunciation',
-              text: twister.transliteration!,
-            ),
-          ],
-          if (settings.showMeaning && twister.translation != null) ...[
-            const SizedBox(height: 16),
-            _LabeledText(label: 'Meaning', text: twister.translation!),
-          ],
-          if (twister.tip != null) ...[
-            const SizedBox(height: 24),
-            Card(
-              color: theme.colorScheme.primaryContainer.withValues(alpha: 0.5),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(16),
+              Row(
+                children: [
+                  DifficultyBadge(twister.difficulty),
+                  const Spacer(),
+                  if (practiced > 0)
+                    Text(
+                      l.practisedTimes(practiced),
+                      style: theme.textTheme.labelMedium?.copyWith(
+                        color: theme.colorScheme.primary,
+                      ),
+                    ),
+                ],
               ),
-              child: Padding(
-                padding: const EdgeInsets.all(12),
-                child: Row(
+              const SizedBox(height: 24),
+              Container(
+                width: double.infinity,
+                padding: const EdgeInsets.fromLTRB(20, 16, 20, 22),
+                decoration: BoxDecoration(
+                  gradient: twister.section.headerGradient,
+                  borderRadius: BorderRadius.circular(24),
+                ),
+                child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Icon(
-                      Icons.lightbulb_outline,
-                      color: theme.colorScheme.primary,
+                      Icons.format_quote_rounded,
+                      size: 36,
+                      color: twister.section.accent,
                     ),
-                    const SizedBox(width: 12),
-                    Expanded(
-                      child: Text(
-                        twister.tip!,
-                        style: theme.textTheme.bodyMedium?.copyWith(
-                          color: theme.colorScheme.onPrimaryContainer,
-                        ),
+                    const SizedBox(height: 4),
+                    SelectableText(
+                      twister.text,
+                      style: theme.textTheme.headlineSmall?.copyWith(
+                        height: 1.4,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.white,
                       ),
                     ),
                   ],
                 ),
               ),
-            ),
-          ],
-        ],
+              if (settings.showPronunciation &&
+                  twister.transliteration != null) ...[
+                const SizedBox(height: 16),
+                _LabeledText(
+                  label: l.pronunciationLabel,
+                  text: twister.transliteration!,
+                ),
+              ],
+              if (settings.showMeaning && twister.translation != null) ...[
+                const SizedBox(height: 16),
+                _LabeledText(label: l.meaningLabel, text: twister.translation!),
+              ],
+              if (twister.tip != null) ...[
+                const SizedBox(height: 24),
+                Card(
+                  color: theme.colorScheme.primaryContainer.withValues(
+                    alpha: 0.5,
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(12),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Icon(
+                          Icons.lightbulb_outline,
+                          color: theme.colorScheme.primary,
+                        ),
+                        const SizedBox(width: 12),
+                        Expanded(
+                          child: Text(
+                            twister.tip!,
+                            style: theme.textTheme.bodyMedium?.copyWith(
+                              color: theme.colorScheme.onPrimaryContainer,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ],
+          ),
+        ),
       ),
     );
   }
@@ -266,6 +309,7 @@ class _PracticeControls extends ConsumerWidget {
     final speaking = ref.watch(
       speechControllerProvider.select((s) => s.isSpeaking(twister.id)),
     );
+    final l = AppLocalizations.of(context);
     final settings = ref.watch(settingsProvider);
     final (successBackground, successForeground) = AppColors.success(
       Theme.of(context).brightness,
@@ -280,7 +324,7 @@ class _PracticeControls extends ConsumerWidget {
             SegmentedButton<PlaybackSpeed>(
               segments: [
                 for (final speed in PlaybackSpeed.values)
-                  ButtonSegment(value: speed, label: Text(speed.label)),
+                  ButtonSegment(value: speed, label: Text(speed.label(l))),
               ],
               selected: {settings.speed},
               showSelectedIcon: false,
@@ -294,7 +338,7 @@ class _PracticeControls extends ConsumerWidget {
                   child: FilledButton.icon(
                     onPressed: () => speakTwister(context, ref, twister),
                     icon: Icon(speaking ? Icons.stop : Icons.volume_up),
-                    label: Text(speaking ? 'Stop' : 'Listen'),
+                    label: Text(speaking ? l.actionStop : l.actionListen),
                   ),
                 ),
                 const SizedBox(width: 8),
@@ -309,7 +353,7 @@ class _PracticeControls extends ConsumerWidget {
                             times: settings.repeatCount,
                           ),
                     icon: const Icon(Icons.repeat),
-                    label: Text('${settings.repeatCount}× in a row'),
+                    label: Text(l.repeatInARow(settings.repeatCount)),
                   ),
                 ),
               ],
@@ -324,7 +368,7 @@ class _PracticeControls extends ConsumerWidget {
                 ),
                 onPressed: onSaidIt,
                 icon: const Icon(Icons.check_circle_outline),
-                label: const Text('I said it!'),
+                label: Text(l.saidIt),
               ),
             ),
           ],

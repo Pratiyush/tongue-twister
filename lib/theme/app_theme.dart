@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 
+import '../l10n/app_localizations.dart';
+import '../l10n/l10n_ext.dart';
 import '../models/language_section.dart';
 import '../models/twister.dart';
 
-/// Brand colours. The coral matches the launcher icon.
+/// Brand colours. The violet matches the launcher icon.
 abstract final class AppColors {
-  static const brand = Color(0xFFF2542D);
-  static const brandDeep = Color(0xFFB0236B);
+  static const brand = Color(0xFF7C3AED);
+  static const brandDeep = Color(0xFF3730A3);
 
   /// Filled heart for favourites, the same in every section.
   static const favorite = Color(0xFFE5395B);
@@ -44,16 +46,16 @@ class AccentPalette {
 }
 
 const _brandLight = AccentPalette(
-  primary: Color(0xFFC83C12),
+  primary: Color(0xFF6D28D9),
   onPrimary: Colors.white,
-  container: Color(0xFFFFE3D9),
-  onContainer: Color(0xFF5C1A05),
+  container: Color(0xFFEDE9FE),
+  onContainer: Color(0xFF2E1065),
 );
 const _brandDark = AccentPalette(
-  primary: Color(0xFFFF8A65),
-  onPrimary: Color(0xFF3E0E00),
-  container: Color(0xFF5C2210),
-  onContainer: Color(0xFFFFDBCF),
+  primary: Color(0xFFC4B5FD),
+  onPrimary: Color(0xFF2E1065),
+  container: Color(0xFF3B2470),
+  onContainer: Color(0xFFEDE9FE),
 );
 
 extension SectionColors on LanguageSection {
@@ -337,7 +339,9 @@ class SectionAppBar extends StatelessWidget implements PreferredSizeWidget {
       titleTextStyle: theme.appBarTheme.titleTextStyle?.copyWith(
         color: Colors.white,
       ),
-      title: Text('${section.flag}  ${section.title}'),
+      title: Text(
+        '${section.flag}  ${section.title(AppLocalizations.of(context))}',
+      ),
       actions: actions,
     );
   }

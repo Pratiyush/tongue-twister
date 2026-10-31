@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../l10n/app_localizations.dart';
+import '../l10n/l10n_ext.dart';
 import '../models/twister.dart';
 import '../theme/app_theme.dart';
 import '../providers/favorites_provider.dart';
@@ -25,6 +27,7 @@ class TwisterCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l = AppLocalizations.of(context);
     final theme = Theme.of(context);
     final isFavorite = ref.watch(
       favoritesProvider.select((ids) => ids.contains(twister.id)),
@@ -82,13 +85,13 @@ class TwisterCard extends ConsumerWidget {
                         children: [
                           if (showSection)
                             Text(
-                              '${twister.section.flag} ${twister.section.shortLabel}',
+                              '${twister.section.flag} ${twister.section.shortLabel(l)}',
                               style: theme.textTheme.labelSmall,
                             ),
                           DifficultyBadge(twister.difficulty),
                           if (practiced > 0)
                             Text(
-                              'Practised $practiced×',
+                              l.practisedTimes(practiced),
                               style: theme.textTheme.labelSmall?.copyWith(
                                 color: theme.colorScheme.primary,
                               ),
@@ -103,8 +106,8 @@ class TwisterCard extends ConsumerWidget {
                     SpeakIconButton(twister: twister),
                     IconButton(
                       tooltip: isFavorite
-                          ? 'Remove from favourites'
-                          : 'Add to favourites',
+                          ? l.removeFromFavourites
+                          : l.addToFavourites,
                       icon: Icon(
                         isFavorite ? Icons.favorite : Icons.favorite_border,
                       ),

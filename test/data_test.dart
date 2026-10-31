@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:tongue_twister/data/twister_repository.dart';
 import 'package:tongue_twister/models/language_section.dart';
@@ -54,6 +57,19 @@ void main() {
   test('German twisters have an English meaning', () {
     for (final t in repo.forSection(LanguageSection.german)) {
       expect(t.translation, isNotNull, reason: t.id);
+    }
+  });
+
+  test('every voice clip matches its twister text', () {
+    // Stale clips would say an old version of the twister; rerun
+    // `dart run tool/generate_voices.dart` after editing text.
+    final manifest = jsonDecode(
+      File('assets/audio/manifest.json').readAsStringSync(),
+    ) as Map<String, dynamic>;
+    final byId = {for (final t in repo.all()) t.id: t.text};
+    for (final MapEntry(:key, :value) in manifest.entries) {
+      expect(byId[key], (value as Map)['text'], reason: key);
+      expect(File('assets/audio/$key.mp3').existsSync(), isTrue, reason: key);
     }
   });
 }

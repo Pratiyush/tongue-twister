@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tongue Twisters Tracker</title>
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--ink:#16181d;--mute:#5d6470;--line:#e3e6eb;
+--done:#1f8a4c;--doing:#b26a00;--todo:#5d6470;--block:#c62828;--accent:#2b5bd7;}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1115;--card:#171a21;--ink:#e8eaee;--mute:#9aa1ad;--line:#2a2f3a;--done:#4cc27e;--doing:#f0a63a;--todo:#9aa1ad;--block:#ff6b6b;--accent:#7ea2ff;}}
+:root[data-theme="dark"]{--bg:#0f1115;--card:#171a21;--ink:#e8eaee;--mute:#9aa1ad;--line:#2a2f3a;--done:#4cc27e;--doing:#f0a63a;--todo:#9aa1ad;--block:#ff6b6b;--accent:#7ea2ff;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+main{max-width:1100px;margin:0 auto;padding:24px 16px 64px}
+h1{font-size:26px;margin:0 0 4px}h2{font-size:18px;margin:32px 0 10px}
+.sub{color:var(--mute);margin:0 0 20px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.kpi b{display:block;font-size:24px}.kpi span{color:var(--mute);font-size:13px}
+.bar{height:8px;background:var(--line);border-radius:4px;overflow:hidden;margin-top:14px}
+.bar i{display:block;height:100%;background:var(--done)}
+.wrap{overflow-x:auto;background:var(--card);border:1px solid var(--line);border-radius:10px}
+table{border-collapse:collapse;width:100%;min-width:720px}
+th,td{text-align:left;vertical-align:top;padding:9px 12px;border-bottom:1px solid var(--line)}
+th{font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--mute)}
+tr:last-child td{border-bottom:0}
+td:first-child{width:118px}
+.pill{display:inline-block;font-size:12px;font-weight:600;padding:2px 8px;border-radius:999px;border:1px solid currentColor;cursor:pointer;user-select:none;white-space:nowrap}
+.done{color:var(--done)}.doing{color:var(--doing)}.todo{color:var(--todo)}.block{color:var(--block)}
+.who{font-size:12px;color:var(--mute);white-space:nowrap}
+.why{color:var(--mute);font-size:13px}
+code{font:12.5px ui-monospace,Menlo,monospace;background:var(--line);padding:1px 5px;border-radius:4px}
+.legend{color:var(--mute);font-size:13px;margin:6px 0 0}
+footer{color:var(--mute);font-size:13px;margin-top:32px}
+</style>
+</head>
+<body>
+<main>
+<h1>Tongue Twisters — road to production</h1>
+<p class="sub">Flutter app, iOS + Android · 100 twisters (25 × en-GB, en-US, hi-IN, de-DE) · audited 30 Oct, updated 31 Oct 2026 on branch <code>elevenlabs-voices</code> · 40 UI languages · banner, pop-up and rewarded ads (test ids)</p>
+
+<div class="kpis" id="kpis"></div>
+<div class="bar"><i id="barfill"></i></div>
+<p class="legend">Click a status pill to cycle it (to-do → doing → done → blocked). Your changes are saved in this browser only.</p>
+
+<h2>0 · Next 10 Claude can do now (no input needed unless noted)</h2>
+<div class="wrap"><table data-group="next"><thead><tr><th>#</th><th>Item</th><th>Row</th><th>Effort</th><th>Needs from you</th></tr></thead><tbody>
+<tr><td>1</td><td>✅ CI builds an AAB with an auto-incrementing build number (done 31 Oct, CI green)</td><td>b2, b3</td><td>XS</td><td>—</td></tr>
+<tr><td>2</td><td>✅ iOS app name "Tongue Twisters" everywhere (done 31 Oct, CI green)</td><td>b10</td><td>XS</td><td>—</td></tr>
+<tr><td>3</td><td>✅ Commit iOS pod/SwiftPM files and check the CI IPA (done 31 Oct, CI green)</td><td>b23</td><td>XS</td><td>—</td></tr>
+<tr><td>4</td><td>✅ Privacy policy page (EN + DE) + support page + Settings link (done 31 Oct, live)</td><td>b5</td><td>S</td><td>—</td></tr>
+<tr><td>5</td><td>✅ app-ads.txt: already live at pratiyush.github.io/app-ads.txt (same publisher as the other apps)</td><td>b22</td><td>XS</td><td>Use https://pratiyush.github.io as the store's developer website</td></tr>
+<tr><td>6</td><td>✅ Android release signing: new upload key, CI secrets (done 31 Oct)</td><td>b1</td><td>S</td><td>OK to create the key</td></tr>
+<tr><td>7</td><td>Store listing in 40 languages + fresh violet screenshots</td><td>b9</td><td>M</td><td>Approve English copy</td></tr>
+<tr><td>8</td><td>Data safety / privacy-label answers drafted</td><td>b8</td><td>S</td><td>Paste into consoles</td></tr>
+<tr><td>9</td><td>"Remove ads" purchase (code, behind a flag)</td><td>b17</td><td>M</td><td>Product ids later</td></tr>
+<tr><td>10</td><td>Screen-reader labels pass</td><td>i9</td><td>S</td><td>—</td></tr>
+</tbody></table></div>
+<p class="legend">Only you can do: Apple developer account / TestFlight (b4), ElevenLabs paid-plan licence (b7), default-branch approval (b6), merging PR #2 (v7).</p>
+
+<h2>1 · Release blockers (stores will reject without these)</h2>
+<div class="wrap"><table data-group="blockers"><thead><tr><th>Status</th><th>Item</th><th>Why it matters</th><th>Next step</th><th>Owner</th></tr></thead><tbody>
+<tr data-id="b1" data-s="done"><td></td><td>Real Android release signing</td><td class="why">New upload key just for this app (RSA 4096, valid to 2054, SHA-256 <code>92:EF:99:BE…D3:FC</code>). Keystore in <code>tongue-twister/keys/</code> outside the repo, password in the macOS Keychain (<code>tongue-twister-upload-keystore</code>), both in GitHub secrets <code>ANDROID_KEYSTORE_BASE64</code> / <code>_PASSWORD</code>. Gradle falls back to the debug key without them.</td><td>Back up the keystore and password somewhere safe (password manager). Losing it means a key-reset request to Google.</td><td class="who">Claude ✓ / you: backup</td></tr>
+<tr data-id="b2" data-s="done"><td></td><td>Build an AAB, not only APKs</td><td class="why">Google Play accepts only Android App Bundles for new apps.</td><td>Done 31 Oct: CI builds <code>tongue-twisters.aab</code> (68 MB, run 41) and attaches it to releases. Still signed with the debug key until b1.</td><td class="who">Claude</td></tr>
+<tr data-id="b3" data-s="done"><td></td><td>Auto-increment build number</td><td class="why"><code>pubspec.yaml</code> is fixed at <code>1.0.0+1</code>. Both stores reject a second upload with the same build number.</td><td>Pass <code>--build-number=${{ github.run_number }}</code> in CI.</td><td class="who">Claude</td></tr>
+<tr data-id="b4" data-s="todo"><td></td><td>iOS signing and TestFlight</td><td class="why">CI ships an unsigned IPA, which only works for sideloading.</td><td>Apple Developer account ($99/yr), then fastlane match or Xcode Cloud to upload to TestFlight.</td><td class="who">You (account)</td></tr>
+<tr data-id="b5" data-s="done"><td></td><td>Privacy policy URL + in-app link</td><td class="why">Required by both stores. Since the ads landed, data <em>is</em> collected: AdMob uses the advertising ID, IP and device info, with UMP consent in the EEA/UK. Settings has "Privacy choices" (consent) but no policy link.</td><td>Policy page on GitHub Pages covering AdMob, consent and on-device progress; translated with the store listing; "Privacy policy" row in Settings → About.<br><b>Done:</b> <code>docs/privacy/</code> → https://pratiyush.github.io/tongue-twisters/privacy/ (EN + DE, delete-data anchor <code>#delete-data</code>), support page /tongue-twisters/; Settings row in 40 languages. Live since 31 Oct (site PR #9 merged).</td><td class="who">Claude</td></tr>
+<tr data-id="b6" data-s="todo"><td></td><td>Proper default branch</td><td class="why">The default branch is a cloud-session name, <code>ccr-04cfe7e6-91epu0</code>; releases publish from it. A stale branch <code>ccr-2e469caf-rz0xog</code> (closed Wortschatz PR) is still there.</td><td>Rename default branch to <code>main</code>, update CI triggers, delete the stale branch.</td><td class="who">You (approve) → Claude</td></tr>
+<tr data-id="b7" data-s="todo"><td></td><td>ElevenLabs commercial licence</td><td class="why">The free tier allows non-commercial use only and requires attribution. A store app needs a paid plan (Starter or higher) when the clips are generated.</td><td>Generate the clips on a paid plan and keep the invoice. ~6,000 characters in total, so one month of Starter is enough.</td><td class="who">You</td></tr>
+<tr data-id="b8" data-s="todo"><td></td><td>Data safety, content rating, age/target audience</td><td class="why">Play Console forms: Data safety (now: advertising ID, device and diagnostics data shared with Google for ads), "Contains ads" = yes, App Store privacy labels, IARC questionnaire, target audience. If you target under-13s, the Families policy applies.</td><td>Claude drafts every answer; you paste them into Play Console and App Store Connect. Target 13+ to stay out of Families review (ads are already rated G).</td><td class="who">You</td></tr>
+<tr data-id="b9" data-s="todo"><td></td><td>Store listing assets</td><td class="why">The README screenshots exist, but the stores need specific sizes plus a 1024×500 feature graphic and copy.</td><td>Phone screenshots (1080×1920 / 6.7″ and 6.5″ iOS), feature graphic, short + full description, keywords.</td><td class="who">Claude drafts, you approve</td></tr>
+<tr data-id="b11" data-s="done"><td></td><td>Banner ads (AdMob), muted</td><td class="why">Added: one standard 320×50 banner on home and section lists, never on the practice screen. Muted, G-rated ads only. Google UMP consent form on first launch plus a "Privacy choices" row in Settings. Runs on Google's TEST ids today. Verified on the emulator and the S23: consent form, then a test banner above the nav bar, never on practice. Release needed an R8 keep rule (WorkManager/Room) or it crashed on launch.</td><td>Done: banner live in release builds via the new AdMob units.</td><td class="who">Claude</td></tr>
+<tr data-id="b10" data-s="done"><td></td><td>iOS bundle name</td><td class="why"><code>CFBundleName</code> is <code>tongue_twister</code>. It shows in some system UI and in App Store Connect.</td><td>Set it to "Tongue Twisters".</td><td class="who">Claude</td></tr>
+<tr data-id="b12" data-s="done"><td></td><td>Bottom inset on scrolling lists</td><td class="why">Found on the phone: at full scroll, the last card on each section list and the "Made with ❤️" footer sit under the gesture nav bar.</td><td>Add <code>MediaQuery.paddingOf(context).bottom</code> to the list's bottom padding (home and section lists).</td><td class="who">Claude</td></tr>
+<tr data-id="b13" data-s="done"><td></td><td>Lock to portrait</td><td class="why">The app rotates, and in landscape buttons go under the nav bar and the camera cutout. No layout was designed for landscape.</td><td><code>SystemChrome.setPreferredOrientations([portraitUp])</code> in <code>main.dart</code>, plus <code>UIsupportedInterfaceOrientations</code> on iOS.</td><td class="who">Claude</td></tr>
+<tr data-id="b14" data-s="done"><td></td><td>Tip hidden below the fold</td><td class="why">On long twisters (e.g. de-waschweiber) the tip is off-screen with no hint that the card scrolls.</td><td>Show the tip above the fold (collapse the meaning) or add a scroll fade/hint.</td><td class="who">Claude</td></tr>
+<tr data-id="b15" data-s="done"><td></td><td>Choose languages to learn</td><td class="why">Settings → Languages: untick any language to hide it from home, the totals, Surprise me and the recommendation. All shown by default; the last one can't be hidden. Favourites keep every language.</td><td>—</td><td class="who">—</td></tr>
+<tr data-id="b16" data-s="done"><td></td><td>New brand colour (violet)</td><td class="why">The coral/terracotta looked like Claude's brand. Brand, hero gradient, buttons and the launcher icon are now violet/indigo; section colours still follow each flag.</td><td>Retake README and store screenshots (they still show coral).</td><td class="who">Claude</td></tr>
+<tr data-id="b17" data-s="todo"><td></td><td>"Remove ads" one-time purchase</td><td class="why">A banner on a small learning app earns little (a few dollars a month at low traffic). A one-time remove-ads purchase usually out-earns it per user and keeps fans happy.</td><td>Add <code>in_app_purchase</code>, a non-consumable product in both stores, hide <code>BannerAdBar</code> once owned, restore purchases in Settings.</td><td class="who">You (store products) → Claude</td></tr>
+<tr data-id="b18" data-s="done"><td></td><td>App UI in 40 languages</td><td class="why">40 languages, 102 keys, Settings → App language (System default + search). 4 translation batches, 2 back-translation passes (311 fixes, e.g. Finnish "translator" for tongue twister, ru/uk "I said it!" as "It is said!"), a red-team pass (24 findings: Tamil 🇱🇰→🇮🇳, Arabic 🇸🇦→🇪🇬, zh-Hant 🇹🇼→🇭🇰, Thai/Spanish/Filipino innuendo). <code>tool/check_arb.py</code> + every-screen-every-language test at 360 dp; Android <code>localeConfig</code> + iOS <code>CFBundleLocalizations</code>.</td><td>Native-speaker spot check of 3–5 languages (bn, ta, ms, ar most uncertain); store listings in 40 languages.</td><td class="who">Claude</td></tr>
+<tr data-id="b19" data-s="done"><td></td><td>Interstitial ad, frequency-capped</td><td class="why">Built: only when leaving a practice screen; every 5 practised twisters, ≥3 min apart; never in the first session or before 10 practised; muted; skipped while ad-free. Policy is a pure function with tests. Verified end to end by <code>tool/ad_e2e.py</code> on a fresh private Android 15 emulator (twice) and by hand on a fresh iPhone 17 Pro simulator (iOS 26.5) (EEA consent declined, non-personalised): no ad while practising, the test interstitial opens on Back and closes cleanly.</td><td>Optional: rerun <code>tool/ad_e2e.py</code> on the phone.</td><td class="who">Claude</td></tr>
+<tr data-id="b20" data-s="done"><td></td><td>Rewarded: 1 hour ad-free</td><td class="why">Settings → Ads → "Go ad-free for 1 hour": one rewarded video hides the banner and interstitials for an hour (was 24 h; cut to 1 h on 31 Oct so engaged users watch more often), persisted; Settings then shows "Ad-free until Fri 14:30". Strings in all 40 languages; grant/expiry/persistence tested. Verified end to end by <code>tool/ad_e2e.py</code>: the muted test video plays, the reward is saved, Settings shows "Ad-free until", and the home banner is gone. Same on a fresh iPhone 17 Pro simulator: reward saved in about 12 s, "Ad-free until Sun 8:32 AM", banner gone. On an overloaded emulator, Back during the video triggered an ANR, so the script uses the close button; recheck Back on the phone.</td><td>Optional: try Back during the video on a real phone.</td><td class="who">Claude</td></tr>
+<tr data-id="b21" data-s="done"><td></td><td>Real AdMob ids</td><td class="why">AdMob apps created 31 Oct (publisher <code>pub-5964569110696877</code>): Android <code>~5142784419</code>, iOS <code>~2119046156</code>, each with banner, interstitial and rewarded ("Ad-free hour") units. App ids in the manifest/Info.plist; unit ids in <code>admob.json</code>, passed only to CI release builds. Debug builds keep test ads. Status "Requires review / limited serving" until a store listing is linked.</td><td>After the first store release: AdMob → app → Add shop, to lift limited serving.</td><td class="who">Claude ✓</td></tr>
+<tr data-id="b22" data-s="done"><td></td><td>app-ads.txt</td><td class="why">AdMob limits serving and fill without a verified <code>app-ads.txt</code> on the developer website listed in the store.</td><td>Host <code>google.com, pub-5964569110696877, DIRECT, f08c47fec0942fa0</code> at the root of the developer website listed in the store (same GitHub Pages site as the privacy policy).<br><b>Done:</b> already served at https://pratiyush.github.io/app-ads.txt with this exact line. In the store listing, set the developer website to https://pratiyush.github.io.</td><td class="who">Claude</td></tr>
+<tr data-id="b23" data-s="done"><td></td><td>Commit iOS CocoaPods / SwiftPM files</td><td class="why">The first iOS build with google_mobile_ads changed <code>project.pbxproj</code> and added <code>Podfile.lock</code>; uncommitted, CI and other machines resolve different pod versions.</td><td>Review the diff, commit the lock file and project changes, check the CI IPA job.</td><td class="who">Claude</td></tr>
+<tr data-id="b24" data-s="todo"><td></td><td>Release-build ad test on the phone</td><td class="why">Ads are verified on debug builds on simulators; release (R8) once crashed on missing keep rules. Also check Back during the reward video on real hardware.</td><td>Build release with test ids, run <code>tool/ad_e2e.py</code> logic on the phone when free.</td><td class="who">Claude (phone free)</td></tr>
+</tbody></table></div>
+
+<h2>2 · Native voices (ElevenLabs) — replaces device TTS</h2>
+<div class="wrap"><table data-group="voice"><thead><tr><th>Status</th><th>Item</th><th>Why it matters</th><th>Next step</th><th>Owner</th></tr></thead><tbody>
+<tr data-id="v1" data-s="done"><td></td><td>Clip generator <code>tool/generate_voices.dart</code></td><td class="why">Uses the app's own twister data and a <code>manifest.json</code>, so editing a twister or swapping a voice regenerates only that clip. The API key never ships in the app.</td><td>—</td><td class="who">Claude</td></tr>
+<tr data-id="v2" data-s="done"><td></td><td>App plays bundled clip, falls back to TTS</td><td class="why"><code>ClipPlayer</code> (just_audio) plays the clip. Slow/normal/fast map to 0.75/1.0/1.25× with pitch kept. 3× repeat and stop work. Covered by 3 new tests; 29/29 pass.</td><td>—</td><td class="who">Claude</td></tr>
+<tr data-id="v3" data-s="done"><td></td><td>Stale-clip guard in tests</td><td class="why">If someone edits a twister's text without regenerating, <code>data_test.dart</code> fails, so the app can't say an old version.</td><td>—</td><td class="who">Claude</td></tr>
+<tr data-id="v4" data-s="done"><td></td><td>API key on this Mac</td><td class="why">Needed to search voices and generate. No key was found, and Claude must not handle it in chat.</td><td>Put <code>ELEVENLABS_API_KEY=…</code> in <code>repo/.env</code> (gitignored), or use Keychain.</td><td class="who">You</td></tr>
+<tr data-id="v5" data-s="done"><td></td><td>Pick native male voices</td><td class="why">Shortlisted from the Voice Library, male only. My picks: Daniel (GB), Brian (US), Viraj (Hindi, 531K users), Theo Teacher (German). They are already set in <code>tool/voices.json</code>.</td><td>Listen in <code>voices.html</code> and confirm or swap. Then add the Hindi and German voices to My Voices.</td><td class="who">You (by ear)</td></tr>
+<tr data-id="v6" data-s="done"><td></td><td>Generate 100 clips + QC</td><td class="why">Generated in one pass: 5,700 characters, 6 MB, about 6 minutes of audio. A local Whisper check matched 97 of 100. Three need a listen: <code>hi-oont-ooncha</code> (heard "ओंट", not "ऊँट"), <code>gb-sixth-sheikh</code> ("sixth" may come out as "six"), <code>hi-chatai-chatni</code> ("पे" heard as "भे").</td><td>All 3 listened to and approved. No re-records needed.</td><td class="who">Claude + you</td></tr>
+<tr data-id="v7" data-s="doing"><td></td><td>Merge PR #2</td><td class="why">Committed and open as <a href="https://github.com/Pratiyush/tongue-twister/pull/2">Pratiyush/tongue-twister#2</a> (branch <code>elevenlabs-voices</code>). GitHub rejects pushes to branch names with a slash in this repo, so use names without one.</td><td>Install the CI build on a phone, check playback, then merge.</td><td class="who">You</td></tr>
+<tr data-id="v8" data-s="done"><td></td><td>Test on a real phone</td><td class="why">Galaxy S23 Ultra, release build, all PASS: clips play (not TTS), Fast + 3× repeat; all 100 detail pages in light and dark; lists, Settings, Favourites; 1.3× font; portrait lock; bottom inset; consent form; test banner above nav bar on home and lists only; language filter hide/restore; Privacy choices row. Fixed after: a bottom fade on long practice pages (Hindi #4, #7…). Left: iPhone silent switch.</td><td>Check on an iPhone when one is available.</td><td class="who">Claude</td></tr>
+</tbody></table></div>
+
+<h2>3 · Improvements, ranked by impact ÷ effort</h2>
+<div class="wrap"><table data-group="improve"><thead><tr><th>Status</th><th>Idea</th><th>Why it matters</th><th>How</th><th>Effort</th></tr></thead><tbody>
+<tr data-id="i1" data-s="todo"><td></td><td>Karaoke word highlight</td><td class="why">Learners follow along word by word. This is the biggest perceived-quality gain from the new voices.</td><td>The ElevenLabs <code>/with-timestamps</code> endpoint returns character timings. Save them next to each mp3 and highlight in sync with playback.</td><td class="who">S–M</td></tr>
+<tr data-id="i2" data-s="todo"><td></td><td>Record yourself &amp; compare</td><td class="why">"I said it!" is an honour system. Hearing your own attempt next to the native one is the core practice loop.</td><td>Use the mic (the <code>record</code> package) for an A/B playback screen. Keep everything on the device; nothing is uploaded.</td><td class="who">M</td></tr>
+<tr data-id="i3" data-s="todo"><td></td><td>Speed challenge with a timer</td><td class="why">Gives a reason to come back: "3× in 6.2 s, your best is 5.8 s".</td><td>Time the run, store the best per twister, and show the native speaker's clip length as a target.</td><td class="who">S</td></tr>
+<tr data-id="i4" data-s="todo"><td></td><td>Accuracy scoring</td><td class="why">Objective feedback on what you actually said.</td><td>On-device speech-to-text (<code>speech_to_text</code>), then word-level diff against the twister. Hindi recognition quality varies, so start with English and German.</td><td class="who">M–L</td></tr>
+<tr data-id="i5" data-s="todo"><td></td><td>Daily streak + gentle reminder</td><td class="why">Drives retention in practice apps.</td><td>Count the days in a row with ≥1 attempt; add an optional local notification.</td><td class="who">S</td></tr>
+<tr data-id="i6" data-s="done"><td></td><td>Localise the app UI</td><td class="why">The UI is English-only. Your other apps ship ~40 languages, and Hindi/German learners would expect at least those UI languages.</td><td><code>flutter_localizations</code> + ARB files; start with en/hi/de, then scale.</td><td class="who">M</td></tr>
+<tr data-id="i7" data-s="todo"><td></td><td>More sections</td><td class="why">Spanish, French and Japanese twisters are popular. With ElevenLabs, a new language now costs content, not voice engineering.</td><td>Follow "Adding a language" in AGENTS.md, and only add authentic twisters.</td><td class="who">M each</td></tr>
+<tr data-id="i8" data-s="todo"><td></td><td>Smaller clips</td><td class="why">100 × ~60 KB ≈ 6 MB at 128 kbps. Speech sounds identical at 64 kbps.</td><td>Switch <code>output_format</code> to <code>mp3_44100_64</code>, which roughly halves the size.</td><td class="who">XS</td></tr>
+<tr data-id="i9" data-s="todo"><td></td><td>Screen-reader labels</td><td class="why">Icon buttons (listen, favourite, 3×) need semantic labels for TalkBack/VoiceOver; Apple review checks this more and more.</td><td>Run an a11y pass and add <code>Semantics</code>/<code>tooltip</code> to icon buttons.</td><td class="who">S</td></tr>
+</tbody></table></div>
+
+<footer>Source of truth for the code: <code>AGENTS.md</code>. This page is a planning view; regenerate or edit it as items land.</footer>
+</main>
+<script>
+const ORDER=['todo','doing','done','block'],LABEL={todo:'To do',doing:'Doing',done:'Done',block:'Blocked'};
+let saved={};try{saved=JSON.parse(localStorage.getItem('tt-tracker')||'{}')}catch(e){}
+function render(){
+  const rows=[...document.querySelectorAll('tr[data-id]')],count={todo:0,doing:0,done:0,block:0};
+  rows.forEach(r=>{const s=saved[r.dataset.id]||r.dataset.s;count[s]++;
+    r.cells[0].innerHTML=`<span class="pill ${s}" role="button" tabindex="0">${LABEL[s]}</span>`;});
+  const total=rows.length;
+  document.getElementById('kpis').innerHTML=
+    `<div class="kpi"><b>${count.done}/${total}</b><span>done</span></div>`+
+    `<div class="kpi"><b class="block">${count.block}</b><span>blocked on you</span></div>`+
+    `<div class="kpi"><b>${document.querySelectorAll('[data-group=blockers] tr[data-id]').length}</b><span>store blockers</span></div>`+
+    `<div class="kpi"><b>100</b><span>clips to generate</span></div>`;
+  document.getElementById('barfill').style.width=(count.done/total*100)+'%';
+}
+document.addEventListener('click',e=>{const p=e.target.closest('.pill');if(!p)return;
+  const r=p.closest('tr'),cur=saved[r.dataset.id]||r.dataset.s;
+  saved[r.dataset.id]=ORDER[(ORDER.indexOf(cur)+1)%ORDER.length];
+  try{localStorage.setItem('tt-tracker',JSON.stringify(saved))}catch(e){}render();});
+document.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.classList.contains('pill'))e.target.click();});
+render();
+</script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Voice Picker</title>
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--ink:#16181d;--mute:#5d6470;--line:#e3e6eb;--pick:#1f8a4c;--pickbg:#e9f6ee;}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1115;--card:#171a21;--ink:#e8eaee;--mute:#9aa1ad;--line:#2a2f3a;--pick:#4cc27e;--pickbg:#15281d;}}
+:root[data-theme="dark"]{--bg:#0f1115;--card:#171a21;--ink:#e8eaee;--mute:#9aa1ad;--line:#2a2f3a;--pick:#4cc27e;--pickbg:#15281d;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+main{max-width:980px;margin:0 auto;padding:24px 16px 64px}
+h1{font-size:24px;margin:0 0 4px}h2{font-size:18px;margin:28px 0 10px}
+.sub{color:var(--mute);margin:0 0 8px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}
+label.v{display:block;background:var(--card);border:2px solid var(--line);border-radius:12px;padding:12px 14px;cursor:pointer}
+label.v:has(input:checked){border-color:var(--pick);background:var(--pickbg)}
+.top{display:flex;gap:8px;align-items:baseline;justify-content:space-between}
+.name{font-weight:650}
+.badge{font-size:11px;font-weight:700;color:var(--pick);border:1px solid var(--pick);border-radius:999px;padding:1px 7px;white-space:nowrap}
+.why{color:var(--mute);font-size:13px;margin:4px 0 8px}
+audio{width:100%;height:36px}
+input[type=radio]{margin-right:6px}
+pre{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px;overflow-x:auto;font:12.5px ui-monospace,Menlo,monospace}
+button{font:inherit;padding:6px 12px;border-radius:8px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
+.note{color:var(--mute);font-size:13px}
+</style>
+</head>
+<body>
+<main>
+<h1>Tongue Twisters: pick one male voice per language</h1>
+<p class="sub">These are real ElevenLabs preview clips. The green card in each language is my pick, based on library metadata (native language, a "clear" or "teacher" style, and how many people use it). I couldn't listen to them, so trust your ears over my pick. Click a card to choose it.</p>
+<p class="note">Each owner recorded their own preview, so a preview may not be in the target language. What matters is clarity, pace and accent. Clips the app generates will speak the twister in the right language.</p>
+<div id="root"></div>
+<h2>Your choice</h2>
+<pre id="out"></pre>
+<button id="copy">Copy for Claude</button> <span class="note" id="copied"></span>
+</main>
+<script>
+const G='https://storage.googleapis.com/eleven-public-prod/';
+const DATA=[
+ {loc:'en-GB',title:'🇬🇧 British English',voices:[
+  {id:'onwK4e9ZLuTAKqWW03F9',name:'Daniel — Steady Broadcaster',why:'Built-in British male, newsreader diction. A crisp, even pace suits tongue twisters.',src:G+'premade/voices/onwK4e9ZLuTAKqWW03F9/7eee0236-1a72-4b86-b303-5dcadc007ba9.mp3',rec:true},
+  {id:'JBFqnCBsd6RMkjVDRZzb',name:'George — Warm Storyteller',why:'Built-in British male, the current default. Warmer and more theatrical, slightly less crisp.',src:G+'premade/voices/JBFqnCBsd6RMkjVDRZzb/e6206d1a-0721-4787-aafb-06a6e705cac5.mp3'}]},
+ {loc:'en-US',title:'🇺🇸 American English',voices:[
+  {id:'nPczCjzI2devNBz1zQrb',name:'Brian — Deep, Resonant',why:'Built-in American male, the current default. Clear general-American accent.',src:G+'premade/voices/nPczCjzI2devNBz1zQrb/2dd3e72c-4fd3-42f1-93ea-abc5d4e5aa1d.mp3',rec:true}]},
+ {loc:'hi-IN',title:'🇮🇳 Hindi',voices:[
+  {id:'FmBhnvP58BK0vz65OOj7',name:'Viraj — Energetic, Clear Narrator',why:'Native Hindi, standard accent, the most used Hindi male voice (531K). "Clear" is exactly what twisters need.',src:G+'database/workspace/514d94e9241c48e8b7905375729c436f/voices/FmBhnvP58BK0vz65OOj7/w5DIsCcczKNy3L1C6hp0.mp3',rec:true},
+  {id:'IvLWq57RKibBrqZGpQrC',name:'Rian — Energetic Conversational',why:'Native Hindi, 466K users. More casual, so it may rush tricky clusters.',src:G+'database/workspace/514d94e9241c48e8b7905375729c436f/voices/IvLWq57RKibBrqZGpQrC/RjJQ0iNaxcUwLSIh6tTp.mp3'},
+  {id:'IMzcdjL6UK1gZxag6QAU',name:'Shrey — Deep, Professional',why:'Native Hindi, educational, 127K users. Calmer and deeper.',src:G+'database/workspace/514d94e9241c48e8b7905375729c436f/voices/IMzcdjL6UK1gZxag6QAU/p14rbUHkjp5KN59kRWEw.mp3'}]},
+ {loc:'de-DE',title:'🇩🇪 German',voices:[
+  {id:'TIKjTeWOFujJEvXK1qIU',name:'Theo Teacher — Clear & Trustworthy',why:'Native German, standard accent, built for teaching. Precise articulation suits "Fischers Fritz".',src:G+'database/workspace/408f5707fa3a40c1b8a789ad0430380e/voices/TIKjTeWOFujJEvXK1qIU/af7PzBhON3Jq4UMS9CzY.mp3',rec:true},
+  {id:'MJ0RnG71ty4LH3dvNfSd',name:'Leon — Soothing & Grounded',why:'Native German, the most used here (28K). Soft and calm, possibly too slow.',src:G+'database/user/8lFbpyj9WaVPcRPynJQfb7WMid32/voices/MJ0RnG71ty4LH3dvNfSd/D0nNLMigIUeRI5kcY9P5.mp3'},
+  {id:'KLBrrm88YPTNluCcvTrb',name:'Otto — Energetic & Charismatic',why:'Native German, 8K users. Lively, a good fit for the fast challenge.',src:G+'database/user/Ugu0tUnhweQjZLi9GZUX14rN1JG3/voices/KLBrrm88YPTNluCcvTrb/TNFuXuoAgh2rf5dNZZuX.mp3'}]},
+];
+let pick={};try{pick=JSON.parse(localStorage.getItem('tt-voice-pick')||'{}')}catch(e){}
+const root=document.getElementById('root');
+for(const s of DATA){
+  const h=document.createElement('h2');h.textContent=s.title;root.appendChild(h);
+  const g=document.createElement('div');g.className='grid';root.appendChild(g);
+  const chosen=pick[s.loc]||s.voices.find(v=>v.rec).id;pick[s.loc]=chosen;
+  for(const v of s.voices){
+    const l=document.createElement('label');l.className='v';
+    l.innerHTML=`<div class="top"><span><input type="radio" name="${s.loc}" value="${v.id}" ${v.id===chosen?'checked':''}><span class="name"></span></span>${v.rec?'<span class="badge">My pick</span>':''}</div><div class="why"></div><audio controls preload="none" src="${v.src}"></audio>`;
+    l.querySelector('.name').textContent=v.name;l.querySelector('.why').textContent=v.why;
+    l.querySelector('input').addEventListener('change',()=>{pick[s.loc]=v.id;save();});
+    g.appendChild(l);
+  }
+}
+document.addEventListener('play',e=>{document.querySelectorAll('audio').forEach(a=>{if(a!==e.target)a.pause()})},true);
+function text(){return DATA.map(s=>{const v=s.voices.find(x=>x.id===pick[s.loc]);return `${s.loc}: ${v.name} (${v.id})`}).join('\n')}
+function save(){try{localStorage.setItem('tt-voice-pick',JSON.stringify(pick))}catch(e){}document.getElementById('out').textContent=text();}
+document.getElementById('copy').onclick=async()=>{try{await navigator.clipboard.writeText('Use these voices:\n'+text());document.getElementById('copied').textContent='Copied, paste it into the chat.'}catch(e){document.getElementById('copied').textContent='Select the text above and copy it.'}};
+save();
+</script>
+</body>
+</html>

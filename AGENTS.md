@@ -13,7 +13,17 @@ Guidance for AI coding agents (and humans) working on this repository.
 | Hindi | `hindi` | `hi-IN` |
 | German | `german` | `de-DE` |
 
-Stack: Flutter (stable, pinned in `.github/workflows/build.yml`), Dart 3, `flutter_riverpod` 3, `flutter_tts`, `shared_preferences`. No code generation.
+Stack: Flutter (stable, pinned in `.github/workflows/build.yml`), Dart 3, `flutter_riverpod` 3, `just_audio`, `flutter_tts`, `shared_preferences`. No code generation.
+
+## Voice clips (ElevenLabs)
+
+Each twister plays a pre-recorded native-speaker clip from `assets/audio/<id>.mp3`, generated with ElevenLabs. Twisters without a clip fall back to device text-to-speech. The API key never ships in the app.
+
+- Voices and settings: `tool/voices.json` (one native voice per section).
+- Generate: `dart run tool/generate_voices.dart` (key from `ELEVENLABS_API_KEY` or a gitignored `.env`). It only regenerates clips whose text, voice or model changed, and deletes orphans.
+- Find a native voice: `--find hi-IN`, then `--use hi-IN <owner> <voice_id> <name>`.
+- `assets/audio/manifest.json` records what each clip says; `test/data_test.dart` fails if a twister's text no longer matches its clip. **After editing a twister's text, regenerate.**
+- `SpeechController.speak` plays clips via `ClipPlayer` (`clipPlayerProvider`); tests use `FakeClipPlayer`. Speed comes from `PlaybackSpeed.clipSpeed` (0.75 / 1.0 / 1.25, pitch kept).
 
 ## Commands
 
@@ -23,6 +33,8 @@ dart format lib test          # CI expects formatted code
 flutter analyze               # must report "No issues found!"
 flutter test                  # all tests must pass
 flutter run                   # needs a device or simulator
+flutter build apk --debug && python3 tool/ad_e2e.py [-s SERIAL]
+                              # banner, pop-up and rewarded ad end to end on Android
 ```
 
 Run format, analyze and test before every commit.
@@ -78,14 +90,14 @@ docs/screenshots/           README images
 
 ## Adding a language
 
-1. Add a value to `LanguageSection` (id, title, subtitle, flag, `ttsLocale`, group), and to `SectionGroup` if it needs a new heading.
+1. Add a value to `LanguageSection` (id, `nativeName`, `nativeSubtitle`, flag, `ttsLocale`, group), and to `SectionGroup` if it needs a new heading. Add its language name to `lib/l10n/app_en.arb` and the switches in `lib/l10n/l10n_ext.dart`.
 2. Add `accent` and `accentDeep` in `SectionColors`, and a sample phrase in `settings_screen.dart` `_sampleFor`.
 3. Create `lib/data/twisters_<locale>.dart` and include it in `TwisterRepository.forSection`.
 4. Extend `test/data_test.dart`. All `switch` expressions over `LanguageSection` are exhaustive, so the analyzer points at every place to update.
 
 ## App credit
 
-The home screen footer and Settings → About show "Made with ❤️ by Pratiyush Kumar Singh" (`appCredit` in `settings_screen.dart`). Keep it.
+The home screen footer and Settings → About show "Made with ❤️ by Pratiyush Kumar Singh": the `appCredit` ARB key filled with `appCreditName` from `settings_screen.dart`. Keep it; the name is never translated.
 
 ## Testing
 
@@ -95,7 +107,8 @@ The home screen footer and Settings → About show "Made with ❤️ by Pratiyus
 
 ## Platforms and builds
 
-- Android: `AndroidManifest.xml` declares the `android.intent.action.TTS_SERVICE` query, which Android 11+ needs. Release builds use the debug signing key.
+- Android: `AndroidManifest.xml` declares the `android.intent.action.TTS_SERVICE` query, which Android 11+ needs. Release builds are signed with the upload key from `android/key.properties` (git-ignored; CI writes it from secrets), or the debug key when that file is missing.
+- Privacy policy and support page: `docs/privacy/index.html` and `docs/index.html`, served at `https://pratiyush.github.io/tongue-twisters/` from the `Pratiyush/pratiyush.github.io` repository (changes go in by pull request there). Settings → About links to it (`privacyPolicyUrl` in `lib/providers/links_provider.dart`). When ads, stored data or settings labels change, update both copies. `app-ads.txt` lives at that site's root.
 - iOS: `flutter_tts` plays through the silent switch (`IosTextToSpeechAudioCategory.playback`).
-- CI (`.github/workflows/build.yml`): analyze and test, then a release APK (Ubuntu) and an unsigned IPA (macOS). Every push to the default branch publishes a GitHub Release `v<version>-build<run>` with both files, and `v*` tags publish that version. Android ships as per-processor APKs (`tongue-twisters-arm64-v8a.apk`, `-armeabi-v7a`, `-x86_64`) plus the universal `tongue-twisters.apk`; stable links are `releases/latest/download/<file>`. Bump `version:` in `pubspec.yaml` and `appVersion` in `settings_screen.dart` together.
+- CI (`.github/workflows/build.yml`): analyze and test, then a release APK (Ubuntu) and an unsigned IPA (macOS). Every push to the default branch publishes a GitHub Release `v<version>-build<run>` with both files, and `v*` tags publish that version. Android ships as per-processor APKs (`tongue-twisters-arm64-v8a.apk`, `-armeabi-v7a`, `-x86_64`) plus the universal `tongue-twisters.apk`, and `tongue-twisters.aab` for Google Play. Every build uses the CI run number as its build number; stable links are `releases/latest/download/<file>`. Bump `version:` in `pubspec.yaml` and `appVersion` in `settings_screen.dart` together.
 - Launcher icons: edit `assets/icon/*.png`, then run `dart run flutter_launcher_icons`. Afterwards, **revert any change it makes to `ios/Runner.xcodeproj/project.pbxproj`**; it's a known bug in the tool.

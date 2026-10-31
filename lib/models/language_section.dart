@@ -5,32 +5,28 @@
 enum LanguageSection {
   englishUK(
     id: 'en-GB',
-    title: 'British English',
-    subtitle: 'Lorries, biscuits and a proper cup of tea',
     flag: '🇬🇧',
     ttsLocale: 'en-GB',
     group: SectionGroup.english,
   ),
   englishUS(
     id: 'en-US',
-    title: 'American English',
-    subtitle: 'Woodchucks, buggies and unique New York',
     flag: '🇺🇸',
     ttsLocale: 'en-US',
     group: SectionGroup.english,
   ),
   hindi(
     id: 'hi-IN',
-    title: 'हिन्दी · Hindi',
-    subtitle: 'कच्चा पापड़, पक्का पापड़',
+    nativeName: 'हिन्दी',
+    nativeSubtitle: 'कच्चा पापड़, पक्का पापड़',
     flag: '🇮🇳',
     ttsLocale: 'hi-IN',
     group: SectionGroup.hindi,
   ),
   german(
     id: 'de-DE',
-    title: 'Deutsch · German',
-    subtitle: 'Zungenbrecher für Fischers Fritz',
+    nativeName: 'Deutsch',
+    nativeSubtitle: 'Zungenbrecher für Fischers Fritz',
     flag: '🇩🇪',
     ttsLocale: 'de-DE',
     group: SectionGroup.german,
@@ -38,47 +34,36 @@ enum LanguageSection {
 
   const LanguageSection({
     required this.id,
-    required this.title,
-    required this.subtitle,
+    this.nativeName,
+    this.nativeSubtitle,
     required this.flag,
     required this.ttsLocale,
     required this.group,
   });
 
   final String id;
-  final String title;
-  final String subtitle;
+
+  /// The language's name in its own script, shown before the translated
+  /// name ("हिन्दी · Hindi"). Never translated; null for English sections.
+  final String? nativeName;
+
+  /// Tagline written in the section's own language. Never translated; null
+  /// for English sections, whose taglines are UI strings in the ARB.
+  final String? nativeSubtitle;
   final String flag;
 
   /// BCP-47 locale handed to the device's text-to-speech engine.
   final String ttsLocale;
   final SectionGroup group;
-
-  /// Plain English name, used in sentences.
-  String get englishName => switch (this) {
-    LanguageSection.englishUK => 'British English',
-    LanguageSection.englishUS => 'American English',
-    LanguageSection.hindi => 'Hindi',
-    LanguageSection.german => 'German',
-  };
-
-  /// Short label shown on chips and list headers.
-  String get shortLabel => switch (this) {
-    LanguageSection.englishUK => 'UK',
-    LanguageSection.englishUS => 'US',
-    LanguageSection.hindi => 'Hindi',
-    LanguageSection.german => 'German',
-  };
 }
 
 /// Top-level headings on the home screen.
+///
+/// Display names come from `lib/l10n/l10n_ext.dart`.
 enum SectionGroup {
-  english('English'),
-  hindi('Hindi'),
-  german('German');
-
-  const SectionGroup(this.label);
-  final String label;
+  english,
+  hindi,
+  german;
 
   List<LanguageSection> get sections =>
       LanguageSection.values.where((s) => s.group == this).toList();
