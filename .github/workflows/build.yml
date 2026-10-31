@@ -41,11 +41,30 @@ jobs:
           channel: stable
           cache: true
       - run: flutter pub get
+      # Sign with the Play upload key when the secrets exist (not on forks).
+      - name: Set up upload key
+        env:
+          KEYSTORE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+          KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+        run: |
+          if [ -z "$KEYSTORE_BASE64" ]; then
+            echo "No upload key secrets: release builds use the debug key."
+            exit 0
+          fi
+          echo "$KEYSTORE_BASE64" | base64 -d > "$RUNNER_TEMP/upload.jks"
+          {
+            echo "storePassword=$KEYSTORE_PASSWORD"
+            echo "keyPassword=$KEYSTORE_PASSWORD"
+            echo "keyAlias=upload"
+            echo "storeFile=$RUNNER_TEMP/upload.jks"
+          } > android/key.properties
+      # Release builds serve real ads (admob.json); local debug builds keep
+      # Google's test ads so nobody clicks their own live ads.
       # Every CI run gets a higher build number (Android versionCode, iOS
       # CFBundleVersion), which the stores require for each upload.
       # One small APK per processor type, plus a universal APK that runs
       # everywhere (kept so the old download link still works).
-      - run: flutter build apk --release --split-per-abi --build-number=${{ github.run_number }}
+      - run: flutter build apk --release --split-per-abi --dart-define-from-file=admob.json --build-number=${{ github.run_number }}
       - name: Collect per-processor APKs
         run: |
           mkdir -p dist
@@ -53,11 +72,13 @@ jobs:
           cp "$out/app-arm64-v8a-release.apk"   dist/tongue-twisters-arm64-v8a.apk
           cp "$out/app-armeabi-v7a-release.apk" dist/tongue-twisters-armeabi-v7a.apk
           cp "$out/app-x86_64-release.apk"      dist/tongue-twisters-x86_64.apk
-      - run: flutter build apk --release --build-number=${{ github.run_number }}
+      - run: flutter build apk --release --dart-define-from-file=admob.json --build-number=${{ github.run_number }}
       - run: cp build/app/outputs/flutter-apk/app-release.apk dist/tongue-twisters.apk
       # Google Play only accepts an Android App Bundle.
-      - run: flutter build appbundle --release --build-number=${{ github.run_number }}
+      - run: flutter build appbundle --release --dart-define-from-file=admob.json --build-number=${{ github.run_number }}
       - run: cp build/app/outputs/bundle/release/app-release.aab dist/tongue-twisters.aab
+      # Shows which key signed the bundle (upload key: SHA256 92:EF:99:BE...).
+      - run: keytool -printcert -jarfile dist/tongue-twisters.aab | grep -E 'Owner|SHA256:'
       - run: ls -lh dist
       - uses: actions/upload-artifact@v4
         with:
@@ -78,7 +99,7 @@ jobs:
           channel: stable
           cache: true
       - run: flutter pub get
-      - run: flutter build ios --release --no-codesign --build-number=${{ github.run_number }}
+      - run: flutter build ios --release --no-codesign --dart-define-from-file=admob.json --build-number=${{ github.run_number }}
       # Package the .app as an .ipa. It is unsigned: sign it (e.g. with
       # Sideloadly/AltStore or Xcode) before installing on an iPhone.
       - name: Package unsigned IPA

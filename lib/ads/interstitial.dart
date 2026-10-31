@@ -8,9 +8,9 @@ import '../providers/preferences_provider.dart';
 import 'ads.dart';
 import 'rewarded.dart';
 
-/// Interstitial ad unit ids; Google's public test units by default. Release
-/// builds pass real ids with `--dart-define=ADMOB_INTERSTITIAL_ANDROID=...`
-/// and `ADMOB_INTERSTITIAL_IOS`.
+/// Interstitial ad unit ids. The defaults are Google's public test units, so debug
+/// builds never serve live ads. Release builds in CI pass the real ids with
+/// `--dart-define-from-file=admob.json`.
 const _interstitialAndroid = String.fromEnvironment(
   'ADMOB_INTERSTITIAL_ANDROID',
   defaultValue: 'ca-app-pub-3940256099942544/1033173712',

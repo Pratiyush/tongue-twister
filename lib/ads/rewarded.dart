@@ -7,9 +7,9 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 import '../providers/preferences_provider.dart';
 import 'ads.dart';
 
-/// Rewarded ad unit ids; Google's public test units by default. Release
-/// builds pass real ids with `--dart-define=ADMOB_REWARDED_ANDROID=...` and
-/// `ADMOB_REWARDED_IOS`.
+/// Rewarded ad unit ids. The defaults are Google's public test units, so debug
+/// builds never serve live ads. Release builds in CI pass the real ids with
+/// `--dart-define-from-file=admob.json`.
 const _rewardedAndroid = String.fromEnvironment(
   'ADMOB_REWARDED_ANDROID',
   defaultValue: 'ca-app-pub-3940256099942544/5224354917',
