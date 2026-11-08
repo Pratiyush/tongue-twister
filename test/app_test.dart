@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:tongue_twister/models/language_section.dart';
 import 'package:tongue_twister/providers/favorites_provider.dart';
 import 'package:tongue_twister/providers/practice_provider.dart';
+import 'package:tongue_twister/providers/links_provider.dart';
 import 'package:tongue_twister/providers/settings_provider.dart';
 
 import 'helpers.dart';
@@ -58,6 +60,19 @@ void main() {
     expect(container.read(favoritesProvider), {'gb-red-lorry'});
   });
 
+  testWidgets('hidden languages disappear from home', (tester) async {
+    final container = await createContainer();
+    addTearDown(container.dispose);
+    container
+        .read(settingsProvider.notifier)
+        .setSectionVisible(LanguageSection.hindi, false);
+    await tester.pumpWidget(buildApp(container));
+
+    await tester.scrollUntilVisible(find.text('Deutsch · German'), 200);
+    expect(find.text('हिन्दी · Hindi'), findsNothing);
+    expect(find.text('Hindi'), findsNothing);
+  });
+
   testWidgets('missing voice shows a hint', (tester) async {
     final container = await createContainer(
       engine: FakeSpeechEngine(unavailable: {'hi-IN'}),
@@ -81,9 +96,14 @@ void main() {
     tester.view.devicePixelRatio = 3;
     addTearDown(tester.view.reset);
     final engine = FakeSpeechEngine(unavailable: {'hi-IN'});
+    final opened = <Uri>[];
     final container = await createContainer(
       engine: engine,
       prefs: {'practice_counts': '{"de-fischers-fritz":2}'},
+      openLink: (uri) async {
+        opened.add(uri);
+        return true;
+      },
     );
     addTearDown(container.dispose);
     await tester.pumpWidget(buildApp(container));
@@ -96,15 +116,21 @@ void main() {
     final app = tester.widget<MaterialApp>(find.byType(MaterialApp));
     expect(app.themeMode, ThemeMode.dark);
 
+    await tester.scrollUntilVisible(find.byTooltip('More repeats'), 200);
+    await tester.ensureVisible(find.byTooltip('More repeats'));
+    await tester.pumpAndSettle();
     await tester.tap(find.byTooltip('More repeats'));
     await tester.pump();
     expect(container.read(settingsProvider).repeatCount, 4);
 
+    await tester.scrollUntilVisible(find.text('Show meaning'), 200);
+    await tester.ensureVisible(find.text('Show meaning'));
+    await tester.pumpAndSettle();
     await tester.tap(find.text('Show meaning'));
     await tester.pump();
     expect(container.read(settingsProvider).showMeaning, isFalse);
 
-    await tester.scrollUntilVisible(find.text('Deutsch · German'), 200);
+    await tester.scrollUntilVisible(find.byTooltip('Test German voice'), 200);
     expect(find.textContaining('hi-IN · Not installed'), findsOneWidget);
     expect(find.textContaining('de-DE · Installed'), findsOneWidget);
     await tester.ensureVisible(find.byTooltip('Test German voice'));
@@ -119,6 +145,15 @@ void main() {
     await tester.tap(find.text('Clear'));
     await tester.pumpAndSettle();
     expect(container.read(practiceProvider), isEmpty);
+
+    await tester.pump(const Duration(seconds: 5)); // the snackbar goes
+    await tester.pumpAndSettle();
+    await tester.scrollUntilVisible(find.text('Privacy policy'), 200);
+    await tester.ensureVisible(find.text('Privacy policy'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Privacy policy'));
+    await tester.pump();
+    expect(opened, [privacyPolicyUrl]);
 
     // Meaning is hidden and the challenge button follows the repeat count.
     await tester.pageBack();

@@ -11,7 +11,7 @@ A Flutter app (iOS and Android) for practising tongue twisters in four sections:
 
 ## Features
 
-- **Listen** to each twister in the section's native accent using the device's text-to-speech engine, at slow, normal or fast speed.
+- **Listen** to each twister read by a native-speaker voice (recorded with ElevenLabs and bundled, so it works offline), at slow, normal or fast speed. Any twister without a recording falls back to the device's text-to-speech.
 - **3× in a row** plays a twister three times back to back, the classic challenge.
 - **I said it!** logs a practice attempt. Each section shows how many of its twisters you've practised.
 - **Recommended for you**: the home screen suggests what to practise next. It prefers untried twisters in the languages you practise most, easiest first, then brings back your least-practised ones for revision.

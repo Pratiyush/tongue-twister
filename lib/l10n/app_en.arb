@@ -1,0 +1,534 @@
+{
+  "@@locale": "en",
+  "@@x-translator-notes": "Tongue Twisters is a friendly app for practising tongue twisters in British English, American English, Hindi and German. Tone: warm, short, casual; address the user informally where the language allows. The twisters themselves are never translated. Keep the brand name 'Tongue Twisters' in Latin letters. Keep emoji and {placeholders} exactly. Prefer short words: most strings sit on buttons, chips or one-line list rows on a 360 dp wide phone.",
+  "appTitle": "Tongue Twisters",
+  "@appTitle": {
+    "description": "Brand name, app bar title. Do NOT translate."
+  },
+  "settingsLanguage": "App language",
+  "@settingsLanguage": {
+    "description": "Settings row and screen title for choosing the UI language. Max ~20 chars."
+  },
+  "languageSystemDefault": "System default",
+  "@languageSystemDefault": {
+    "description": "First option in the language list: follow the phone's language. Max ~20 chars."
+  },
+  "languageFollowsDevice": "Follows your device · {language}",
+  "@languageFollowsDevice": {
+    "description": "Subtitle under 'System default'; {language} is a flag + language name like '🇩🇪 Deutsch'.",
+    "placeholders": {
+      "language": {
+        "type": "String"
+      }
+    }
+  },
+  "languageSearchHint": "Search languages",
+  "@languageSearchHint": {
+    "description": "Hint text in the search box on the language list. Max ~24 chars."
+  },
+  "appCredit": "Made with ❤️ by {name}",
+  "@appCredit": {
+    "description": "Credit line in the home footer and Settings → About. {name} is the developer's name, never translated. Keep the ❤️ emoji. Max ~40 chars plus the name.",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "favouritesTitle": "Favourites",
+  "@favouritesTitle": {
+    "description": "Home app-bar heart button tooltip and the Favourites screen title. Max ~20 chars."
+  },
+  "settingsTitle": "Settings",
+  "@settingsTitle": {
+    "description": "Home app-bar gear button tooltip and the Settings screen title. Max ~20 chars."
+  },
+  "actionListen": "Listen",
+  "@actionListen": {
+    "description": "Button / tooltip that plays a twister aloud. Max ~12 chars."
+  },
+  "actionStop": "Stop",
+  "@actionStop": {
+    "description": "Button / tooltip that stops playback. Max ~12 chars."
+  },
+  "addToFavourites": "Add to favourites",
+  "@addToFavourites": {
+    "description": "Tooltip on the empty heart icon of a twister. Max ~30 chars."
+  },
+  "removeFromFavourites": "Remove from favourites",
+  "@removeFromFavourites": {
+    "description": "Tooltip on the filled heart icon of a twister. Max ~30 chars."
+  },
+  "languageBritishEnglish": "British English",
+  "@languageBritishEnglish": {
+    "description": "Name of the British English section (home card, app bar, settings) and used inside sentences. Max ~20 chars."
+  },
+  "languageAmericanEnglish": "American English",
+  "@languageAmericanEnglish": {
+    "description": "Name of the American English section (home card, app bar, settings) and used inside sentences. Max ~20 chars."
+  },
+  "languageHindi": "Hindi",
+  "@languageHindi": {
+    "description": "The language name Hindi: home heading, chips, and inside sentences. Max ~14 chars."
+  },
+  "languageGerman": "German",
+  "@languageGerman": {
+    "description": "The language name German: home heading, chips, and inside sentences. Max ~14 chars."
+  },
+  "groupEnglish": "English",
+  "@groupEnglish": {
+    "description": "Home-screen heading above the British and American English sections. Max ~14 chars."
+  },
+  "sectionTitleNative": "{native} · {language}",
+  "@sectionTitleNative": {
+    "description": "Section title for non-English sections, e.g. 'हिन्दी · Hindi'. {native} is the language's own name and is never translated; {language} is the translated language name. Usually keep as is.",
+    "placeholders": {
+      "native": {
+        "type": "String"
+      },
+      "language": {
+        "type": "String"
+      }
+    }
+  },
+  "sectionShortUK": "UK",
+  "@sectionShortUK": {
+    "description": "Very short label for British English on chips next to a flag. Max ~6 chars."
+  },
+  "sectionShortUS": "US",
+  "@sectionShortUS": {
+    "description": "Very short label for American English on chips next to a flag. Max ~6 chars."
+  },
+  "sectionSubtitleUK": "Lorries, biscuits and a proper cup of tea",
+  "@sectionSubtitleUK": {
+    "description": "Tagline under 'British English' on the home card and in Settings; a playful hint at British vocabulary. Max ~45 chars."
+  },
+  "sectionSubtitleUS": "Woodchucks, buggies and unique New York",
+  "@sectionSubtitleUS": {
+    "description": "Tagline under 'American English' on the home card and in Settings; a playful hint at American twisters. Max ~45 chars."
+  },
+  "difficultyEasy": "Easy",
+  "@difficultyEasy": {
+    "description": "Difficulty badge and filter chip. Max ~10 chars."
+  },
+  "difficultyMedium": "Medium",
+  "@difficultyMedium": {
+    "description": "Difficulty badge and filter chip. Max ~10 chars."
+  },
+  "difficultyHard": "Hard",
+  "@difficultyHard": {
+    "description": "Difficulty badge and filter chip. Max ~10 chars."
+  },
+  "speedSlow": "Slow",
+  "@speedSlow": {
+    "description": "Playback speed segment (three segments share a 360 dp row). Max ~8 chars."
+  },
+  "speedNormal": "Normal",
+  "@speedNormal": {
+    "description": "Playback speed segment (three segments share a 360 dp row). Max ~8 chars."
+  },
+  "speedFast": "Fast",
+  "@speedFast": {
+    "description": "Playback speed segment (three segments share a 360 dp row). Max ~8 chars."
+  },
+  "heroTitle": "Twist your tongue!",
+  "@heroTitle": {
+    "description": "Big headline on the home-screen banner. Max ~24 chars."
+  },
+  "heroSubtitle": "Listen to a native voice, then say it faster each time.",
+  "@heroSubtitle": {
+    "description": "Line under the home banner headline. Max ~70 chars."
+  },
+  "heroStatRatio": "{done}/{total}",
+  "@heroStatRatio": {
+    "description": "Big number on the home banner: twisters practised out of all visible twisters, e.g. '3/100'.",
+    "placeholders": {
+      "done": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "heroStatPractised": "practised",
+  "@heroStatPractised": {
+    "description": "Small lowercase label under the 'done/total' number on the home banner. Max ~12 chars."
+  },
+  "heroStatFavourites": "favourites",
+  "@heroStatFavourites": {
+    "description": "Small lowercase label under the favourites count on the home banner. Max ~12 chars."
+  },
+  "surpriseMe": "Surprise me",
+  "@surpriseMe": {
+    "description": "Home banner button that opens a random twister. Max ~20 chars."
+  },
+  "sectionProgress": "{practised, plural, other{{practised} of {total} practised}}",
+  "@sectionProgress": {
+    "description": "Under the progress bar on a home section card, e.g. '3 of 25 practised'. Max ~25 chars.",
+    "placeholders": {
+      "practised": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "recommendedTitle": "Recommended for you",
+  "@recommendedTitle": {
+    "description": "Heading of the suggestion card on the home screen. Max ~25 chars."
+  },
+  "recommendRevise": "Time to revise: your least-practised twister",
+  "@recommendRevise": {
+    "description": "Why a twister is suggested: the user has tried everything; this is the one practised least. Max ~50 chars."
+  },
+  "recommendStarter": "{level, select, easy{A good easy one to start with} medium{A good medium one to start with} hard{A good hard one to start with} other{A good one to start with}}",
+  "@recommendStarter": {
+    "description": "Why a twister is suggested to a brand-new user. {level} is easy, medium or hard. Max ~40 chars.",
+    "placeholders": {
+      "level": {
+        "type": "String"
+      }
+    }
+  },
+  "recommendPractisedLanguage": "{level, select, easy{New easy twister in {language}, a language you practise} medium{New medium twister in {language}, a language you practise} hard{New hard twister in {language}, a language you practise} other{New twister in {language}, a language you practise}}",
+  "@recommendPractisedLanguage": {
+    "description": "Why a twister is suggested: an untried one in a language the user already practises. {level} is easy, medium or hard; {language} is a language name like 'German'. Max ~60 chars.",
+    "placeholders": {
+      "level": {
+        "type": "String"
+      },
+      "language": {
+        "type": "String"
+      }
+    }
+  },
+  "recommendNewLanguage": "Try something new in {language}",
+  "@recommendNewLanguage": {
+    "description": "Why a twister is suggested: a language the user hasn't practised yet. {language} is a language name like 'Hindi'. Max ~40 chars.",
+    "placeholders": {
+      "language": {
+        "type": "String"
+      }
+    }
+  },
+  "searchTwistersHint": "Search twisters",
+  "@searchTwistersHint": {
+    "description": "Hint in the search box on a section's twister list. Max ~24 chars."
+  },
+  "filterAll": "All",
+  "@filterAll": {
+    "description": "Filter chip that shows every difficulty. Max ~8 chars."
+  },
+  "noTwistersMatch": "No twisters match.",
+  "@noTwistersMatch": {
+    "description": "Empty state when search or filter finds nothing. Max ~40 chars."
+  },
+  "favouritesEmpty": "Tap ♡ on any twister to keep it here.",
+  "@favouritesEmpty": {
+    "description": "Empty state on the Favourites screen. Keep the ♡ symbol. Max ~60 chars."
+  },
+  "practisedTimes": "{count, plural, other{Practised {count}×}}",
+  "@practisedTimes": {
+    "description": "Small label on a twister: how many times the user said it, e.g. 'Practised 3×'. × means 'times'. Max ~16 chars.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "pagerSwipeHint": "{current} / {total} · swipe for more",
+  "@pagerSwipeHint": {
+    "description": "Below a twister on the practice screen: position in the list, e.g. '3 / 25 · swipe for more'. Max ~32 chars.",
+    "placeholders": {
+      "current": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "pronunciationLabel": "Pronunciation",
+  "@pronunciationLabel": {
+    "description": "Small caps heading above the romanised text of a Hindi twister (shown upper-cased). Max ~20 chars."
+  },
+  "meaningLabel": "Meaning",
+  "@meaningLabel": {
+    "description": "Small caps heading above the translation of a twister (shown upper-cased). Max ~20 chars."
+  },
+  "repeatInARow": "{count, plural, other{{count}× in a row}}",
+  "@repeatInARow": {
+    "description": "Practice-screen button that plays the twister several times back to back, e.g. '3× in a row'. Half of a 360 dp row. Max ~16 chars.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "saidIt": "I said it!",
+  "@saidIt": {
+    "description": "Big green button the user taps after saying the twister aloud. Max ~20 chars."
+  },
+  "practiseFirstTry": "First try logged. Now say it faster!",
+  "@practiseFirstTry": {
+    "description": "Toast after the first 'I said it!' on a twister. Max ~50 chars."
+  },
+  "practiseThreeTimes": "Three times! Your tongue is warming up.",
+  "@practiseThreeTimes": {
+    "description": "Toast after the third 'I said it!' on a twister. Max ~50 chars."
+  },
+  "practiseTenTimes": "Ten times. You have mastered this one!",
+  "@practiseTenTimes": {
+    "description": "Toast after the tenth 'I said it!' on a twister. Max ~50 chars."
+  },
+  "practisedCountToast": "{count, plural, =1{Nice! Practised once.} other{Nice! Practised {count} times.}}",
+  "@practisedCountToast": {
+    "description": "Toast after 'I said it!' for any other count. Max ~40 chars.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "noVoiceForLocale": "No {locale} voice on this device. Add one in your system text-to-speech settings.",
+  "@noVoiceForLocale": {
+    "description": "Snackbar when the phone has no text-to-speech voice for a language. {locale} is a code like 'hi-IN'. Max ~100 chars.",
+    "placeholders": {
+      "locale": {
+        "type": "String"
+      }
+    }
+  },
+  "settingsAppearance": "Appearance",
+  "@settingsAppearance": {
+    "description": "Settings section header. Max ~20 chars."
+  },
+  "themeSystem": "System",
+  "@themeSystem": {
+    "description": "Theme segment: follow the phone's light/dark setting. Max ~8 chars."
+  },
+  "themeLight": "Light",
+  "@themeLight": {
+    "description": "Theme segment: light mode. Max ~8 chars."
+  },
+  "themeDark": "Dark",
+  "@themeDark": {
+    "description": "Theme segment: dark mode. Max ~8 chars."
+  },
+  "settingsLanguages": "Languages",
+  "@settingsLanguages": {
+    "description": "Settings section header for which twister languages to show. Max ~20 chars."
+  },
+  "settingsLanguagesHelp": "Choose the languages you want to learn. Hidden languages disappear from the home screen.",
+  "@settingsLanguagesHelp": {
+    "description": "Help text under the 'Languages' header in Settings. Max ~100 chars."
+  },
+  "settingsPlayback": "Playback",
+  "@settingsPlayback": {
+    "description": "Settings section header. Max ~20 chars."
+  },
+  "settingsSpeakingSpeed": "Speaking speed",
+  "@settingsSpeakingSpeed": {
+    "description": "Settings row title above the speed buttons. Max ~24 chars."
+  },
+  "settingsRepeatChallenge": "Repeat challenge",
+  "@settingsRepeatChallenge": {
+    "description": "Settings row title for how many times '× in a row' plays. Max ~24 chars."
+  },
+  "settingsRepeatSubtitle": "{count, plural, =1{Plays a twister once} other{Plays a twister {count} times in a row}}",
+  "@settingsRepeatSubtitle": {
+    "description": "Settings row subtitle under 'Repeat challenge'. Max ~40 chars.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "repeatCountValue": "{count}×",
+  "@repeatCountValue": {
+    "description": "Current repeat count between the − and + buttons, e.g. '3×'.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "fewerRepeats": "Fewer repeats",
+  "@fewerRepeats": {
+    "description": "Tooltip on the − button of 'Repeat challenge'. Max ~20 chars."
+  },
+  "moreRepeats": "More repeats",
+  "@moreRepeats": {
+    "description": "Tooltip on the + button of 'Repeat challenge'. Max ~20 chars."
+  },
+  "settingsDisplay": "Display",
+  "@settingsDisplay": {
+    "description": "Settings section header. Max ~20 chars."
+  },
+  "showPronunciation": "Show pronunciation",
+  "@showPronunciation": {
+    "description": "Settings switch title. Max ~24 chars."
+  },
+  "showPronunciationHelp": "Romanised text under Hindi twisters",
+  "@showPronunciationHelp": {
+    "description": "Settings switch subtitle. Max ~45 chars."
+  },
+  "showMeaning": "Show meaning",
+  "@showMeaning": {
+    "description": "Settings switch title. Max ~24 chars."
+  },
+  "showMeaningHelp": "English translation for Hindi and German",
+  "@showMeaningHelp": {
+    "description": "Settings switch subtitle: the twisters' meanings are written in English. Max ~45 chars."
+  },
+  "settingsVoices": "Voices",
+  "@settingsVoices": {
+    "description": "Settings section header. Max ~20 chars."
+  },
+  "settingsVoicesHelp": "Twisters play recordings by native speakers. Your phone's text-to-speech voice is used only when a recording is missing. If a language shows as not installed, add it in your phone's text-to-speech settings.",
+  "@settingsVoicesHelp": {
+    "description": "Help paragraph under 'Voices' in Settings. Deliberately no menu path: say 'your phone's text-to-speech settings' in the words your language's phones use. Max ~250 chars."
+  },
+  "voiceInstalled": "Installed",
+  "@voiceInstalled": {
+    "description": "Voice status: the phone has a voice for this language. Max ~16 chars."
+  },
+  "voiceNotInstalled": "Not installed",
+  "@voiceNotInstalled": {
+    "description": "Voice status: the phone lacks a voice for this language. Max ~16 chars."
+  },
+  "voiceUnknown": "Unknown",
+  "@voiceUnknown": {
+    "description": "Voice status: the check failed. Max ~16 chars."
+  },
+  "voiceChecking": "Checking…",
+  "@voiceChecking": {
+    "description": "Voice status while checking. Max ~16 chars."
+  },
+  "voiceStatusLine": "{locale} · {status}",
+  "@voiceStatusLine": {
+    "description": "Subtitle of a voice row, e.g. 'de-DE · Installed'. {locale} is a code; {status} is one of the voice statuses.",
+    "placeholders": {
+      "locale": {
+        "type": "String"
+      },
+      "status": {
+        "type": "String"
+      }
+    }
+  },
+  "testVoice": "Test {language} voice",
+  "@testVoice": {
+    "description": "Tooltip on the play button of a voice row. {language} is a short label like 'UK' or 'German'. Max ~30 chars.",
+    "placeholders": {
+      "language": {
+        "type": "String"
+      }
+    }
+  },
+  "settingsYourData": "Your data",
+  "@settingsYourData": {
+    "description": "Settings section header. Max ~20 chars."
+  },
+  "resetProgress": "Reset practice progress",
+  "@resetProgress": {
+    "description": "Settings row that clears practice counts. Max ~30 chars."
+  },
+  "resetProgressTitle": "Reset progress?",
+  "@resetProgressTitle": {
+    "description": "Confirmation dialog title. Max ~30 chars."
+  },
+  "resetProgressBody": "All practice counts will be set back to zero.",
+  "@resetProgressBody": {
+    "description": "Confirmation dialog text. Max ~80 chars."
+  },
+  "resetProgressDone": "Practice progress reset",
+  "@resetProgressDone": {
+    "description": "Snackbar after resetting. Max ~40 chars."
+  },
+  "clearFavourites": "Clear favourites",
+  "@clearFavourites": {
+    "description": "Settings row that removes all favourites. Max ~30 chars."
+  },
+  "clearFavouritesTitle": "Clear favourites?",
+  "@clearFavouritesTitle": {
+    "description": "Confirmation dialog title. Max ~30 chars."
+  },
+  "clearFavouritesBody": "All twisters will be removed from your favourites.",
+  "@clearFavouritesBody": {
+    "description": "Confirmation dialog text. Max ~80 chars."
+  },
+  "clearFavouritesDone": "Favourites cleared",
+  "@clearFavouritesDone": {
+    "description": "Snackbar after clearing favourites. Max ~40 chars."
+  },
+  "dialogCancel": "Cancel",
+  "@dialogCancel": {
+    "description": "Dialog button that closes without changing anything. Max ~12 chars."
+  },
+  "dialogClear": "Clear",
+  "@dialogClear": {
+    "description": "Dialog button that confirms a reset or clear. Max ~12 chars."
+  },
+  "settingsAbout": "About",
+  "@settingsAbout": {
+    "description": "Settings section header. Max ~20 chars."
+  },
+  "aboutVersion": "Version {version}",
+  "@aboutVersion": {
+    "description": "First line of the About row, e.g. 'Version 1.0.0'. Max ~20 chars.",
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "privacyChoices": "Privacy choices",
+  "@privacyChoices": {
+    "description": "Settings row that reopens the ad-consent form (EU/UK). Max ~30 chars."
+  },
+  "privacyChoicesHelp": "Change your ad consent",
+  "@privacyChoicesHelp": {
+    "description": "Subtitle of 'Privacy choices'. Max ~40 chars."
+  },
+  "privacyPolicy": "Privacy policy",
+  "@privacyPolicy": {
+    "description": "Settings › About row that opens the privacy policy web page. Max ~30 chars."
+  },
+  "settingsAds": "Ads",
+  "@settingsAds": {
+    "description": "Settings section header for ad options. Max ~16 chars."
+  },
+  "adFreeWatch": "Go ad-free for 1 hour",
+  "@adFreeWatch": {
+    "description": "Settings row: watch one video to hide all ads for an hour. Max ~32 chars."
+  },
+  "adFreeWatchHelp": "Watch one short video",
+  "@adFreeWatchHelp": {
+    "description": "Subtitle under 'Go ad-free for 24 hours'. Max ~32 chars."
+  },
+  "adFreeActive": "Ad-free until {time}",
+  "@adFreeActive": {
+    "description": "Settings row while ads are off; {time} is a weekday + time like 'Fri 14:30'. Max ~32 chars.",
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "adFreeThanks": "Thanks! No ads until {time}.",
+  "@adFreeThanks": {
+    "description": "Snackbar after the video was watched; {time} like 'Fri 14:30'. Max ~48 chars.",
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "adFreeUnavailable": "No video available right now. Try again later.",
+  "@adFreeUnavailable": {
+    "description": "Snackbar when no rewarded video could load or it was closed early. Max ~60 chars."
+  }
+}

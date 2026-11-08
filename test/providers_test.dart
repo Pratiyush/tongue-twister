@@ -5,6 +5,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:tongue_twister/ads/interstitial.dart';
+import 'package:tongue_twister/ads/rewarded.dart';
+import 'package:tongue_twister/l10n/app_localizations.dart';
+import 'package:tongue_twister/l10n/l10n_ext.dart';
 import 'package:tongue_twister/models/language_section.dart';
 import 'package:tongue_twister/models/twister.dart';
 import 'package:tongue_twister/providers/preferences_provider.dart';
@@ -136,6 +140,49 @@ void main() {
       expect(engine.spoken, hasLength(1));
       expect(container.read(speechControllerProvider).speakingId, isNull);
     });
+
+    test('prefers the recorded clip at the chosen speed', () async {
+      final engine = FakeSpeechEngine(unavailable: {'hi-IN'});
+      final clips = FakeClipPlayer(clips: {clipAssetFor('hi-kachcha-papad')});
+      final container = await createContainer(engine: engine, clips: clips);
+      addTearDown(container.dispose);
+      final twister = container.read(twisterByIdProvider('hi-kachcha-papad'))!;
+
+      container.read(settingsProvider.notifier).setSpeed(PlaybackSpeed.fast);
+      final result = await container
+          .read(speechControllerProvider.notifier)
+          .speak(twister, times: 3);
+
+      expect(result, SpeakResult.done);
+      expect(
+        clips.played,
+        List.filled(3, (
+          'assets/audio/hi-kachcha-papad.mp3',
+          PlaybackSpeed.fast.clipSpeed,
+        )),
+      );
+      expect(engine.spoken, isEmpty);
+    });
+
+    test('stop interrupts a clip repeat loop', () async {
+      final clips = FakeClipPlayer(clips: {clipAssetFor('de-blaukraut')})
+        ..gate = Completer<void>();
+      final container = await createContainer(clips: clips);
+      addTearDown(container.dispose);
+      final twister = container.read(twisterByIdProvider('de-blaukraut'))!;
+      final controller = container.read(speechControllerProvider.notifier);
+
+      final pending = controller.speak(twister, times: 3);
+      await pumpEventQueue();
+      expect(
+        container.read(speechControllerProvider).isSpeaking(twister.id),
+        isTrue,
+      );
+
+      await controller.stop();
+      expect(await pending, SpeakResult.stopped);
+      expect(clips.played, hasLength(1));
+    });
   });
 
   group('settings', () {
@@ -169,6 +216,47 @@ void main() {
       expect(s.speed, PlaybackSpeed.fast);
       expect(s.repeatCount, 5);
       expect(s.showMeaning, isFalse);
+    });
+
+    test('hidden languages persist, filter twisters and keep one', () async {
+      final container = await createContainer();
+      final n = container.read(settingsProvider.notifier);
+      n.setSectionVisible(LanguageSection.hindi, false);
+      n.setSectionVisible(LanguageSection.german, false);
+      n.setSectionVisible(LanguageSection.englishUS, false);
+      // Hiding the last visible language is refused.
+      n.setSectionVisible(LanguageSection.englishUK, false);
+
+      final visible = container.read(visibleTwistersProvider);
+      expect(visible, isNotEmpty);
+      expect(
+        visible.every((t) => t.section == LanguageSection.englishUK),
+        isTrue,
+      );
+      expect(
+        container.read(recommendationProvider)!.twister.section,
+        LanguageSection.englishUK,
+      );
+      container.dispose();
+
+      final prefs = await SharedPreferences.getInstance();
+      final reloaded = ProviderContainer(
+        overrides: [sharedPreferencesProvider.overrideWithValue(prefs)],
+      );
+      addTearDown(reloaded.dispose);
+      expect(reloaded.read(settingsProvider).hiddenSections, {
+        LanguageSection.hindi,
+        LanguageSection.german,
+        LanguageSection.englishUS,
+      });
+
+      reloaded
+          .read(settingsProvider.notifier)
+          .setSectionVisible(LanguageSection.hindi, true);
+      expect(
+        reloaded.read(settingsProvider).isVisible(LanguageSection.hindi),
+        isTrue,
+      );
     });
 
     test('clamps repeat count and ignores unknown saved values', () async {
@@ -210,13 +298,88 @@ void main() {
     });
   });
 
+  test('section titles keep the native name, once in its own language', () {
+    final en = lookupAppLocalizations(const Locale('en'));
+    final de = lookupAppLocalizations(const Locale('de'));
+    final hi = lookupAppLocalizations(const Locale('hi'));
+    expect(LanguageSection.german.title(en), 'Deutsch · German');
+    expect(LanguageSection.german.title(de), 'Deutsch');
+    expect(LanguageSection.hindi.title(hi), 'हिन्दी');
+    expect(LanguageSection.hindi.title(de), startsWith('हिन्दी · '));
+  });
+
+  group('interstitial policy', () {
+    final now = DateTime(2026, 10, 30, 12);
+    bool allows({
+      int launches = 2,
+      int total = 20,
+      int since = 5,
+      DateTime? last,
+    }) => InterstitialPolicy.allows(
+      launches: launches,
+      totalPractised: total,
+      practisedSinceLast: since,
+      lastShown: last,
+      now: now,
+    );
+
+    test('shows after enough practice in a later session', () {
+      expect(allows(), isTrue);
+    });
+    test('never in the first session', () {
+      expect(allows(launches: 1), isFalse);
+    });
+    test('not before the grace period', () {
+      expect(allows(total: 9), isFalse);
+    });
+    test('needs 5 practised twisters since the last ad', () {
+      expect(allows(since: 4), isFalse);
+    });
+    test('at least 3 minutes apart', () {
+      expect(allows(last: now.subtract(const Duration(minutes: 2))), isFalse);
+      expect(allows(last: now.subtract(const Duration(minutes: 3))), isTrue);
+    });
+    test('counts practice and resets after an ad is due', () async {
+      final container = await createContainer();
+      addTearDown(container.dispose);
+      final n = container.read(interstitialProvider.notifier);
+      for (var i = 0; i < 5; i++) {
+        n.onPractised();
+      }
+      expect(container.read(interstitialProvider).practisedSinceLast, 5);
+      // Ads are unsupported in tests, so nothing loads or shows.
+      n.onLeftPractice(now: now);
+      expect(container.read(interstitialProvider).lastShown, isNull);
+    });
+  });
+
+  test('a watched video turns ads off for 1 hour and persists', () async {
+    final container = await createContainer();
+    final adFree = container.read(adFreeProvider.notifier);
+    final now = DateTime(2026, 10, 30, 12);
+    expect(adFree.isActive(now), isFalse);
+    adFree.grant(now);
+    expect(adFree.isActive(now.add(const Duration(minutes: 59))), isTrue);
+    expect(adFree.isActive(now.add(const Duration(hours: 1))), isFalse);
+    container.dispose();
+
+    final prefs = await SharedPreferences.getInstance();
+    final reloaded = ProviderContainer(
+      overrides: [sharedPreferencesProvider.overrideWithValue(prefs)],
+    );
+    addTearDown(reloaded.dispose);
+    expect(reloaded.read(adFreeProvider), now.add(adFreeFor));
+  });
+
   group('recommendation', () {
+    final en = lookupAppLocalizations(const Locale('en'));
+
     test('a new user starts with the first easy twister', () async {
       final container = await createContainer();
       addTearDown(container.dispose);
       final rec = container.read(recommendationProvider)!;
       expect(rec.twister.id, 'gb-seashells');
-      expect(rec.reason, contains('start'));
+      expect(rec.describe(en), contains('start'));
     });
 
     test(
@@ -230,7 +393,7 @@ void main() {
         expect(rec.twister.section, LanguageSection.german);
         expect(rec.twister.difficulty, Difficulty.easy);
         expect(rec.twister.id, 'de-zehn-ziegen');
-        expect(rec.reason, contains('German'));
+        expect(rec.describe(en), contains('German'));
       },
     );
 
@@ -254,7 +417,7 @@ void main() {
       }
       final rec = container.read(recommendationProvider)!;
       expect(rec.twister.id, 'hi-marham');
-      expect(rec.reason, contains('revise'));
+      expect(rec.describe(en), contains('revise'));
     });
   });
 }

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../ads/ads.dart';
+import '../l10n/app_localizations.dart';
+import '../l10n/l10n_ext.dart';
 import '../models/language_section.dart';
 import '../models/twister.dart';
 import '../providers/twister_providers.dart';
@@ -36,21 +39,25 @@ class _SectionScreenState extends ConsumerState<SectionScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context);
     final section = widget.section;
     final visible = _filter(ref.watch(sectionTwistersProvider(section)));
 
     return SectionTheme(
       section: section,
       child: Scaffold(
+        bottomNavigationBar: ref.watch(adsSupportedProvider)
+            ? const BannerAdBar()
+            : null,
         appBar: SectionAppBar(section: section),
         body: Column(
           children: [
             Padding(
               padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
               child: TextField(
-                decoration: const InputDecoration(
-                  prefixIcon: Icon(Icons.search),
-                  hintText: 'Search twisters',
+                decoration: InputDecoration(
+                  prefixIcon: const Icon(Icons.search),
+                  hintText: l.searchTwistersHint,
                   isDense: true,
                 ),
                 onChanged: (value) => setState(() => _query = value),
@@ -62,14 +69,14 @@ class _SectionScreenState extends ConsumerState<SectionScreen> {
               child: Row(
                 children: [
                   ChoiceChip(
-                    label: const Text('All'),
+                    label: Text(l.filterAll),
                     selected: _difficulty == null,
                     onSelected: (_) => setState(() => _difficulty = null),
                   ),
                   for (final level in Difficulty.values) ...[
                     const SizedBox(width: 8),
                     ChoiceChip(
-                      label: Text(level.label),
+                      label: Text(level.label(l)),
                       selected: _difficulty == level,
                       onSelected: (selected) =>
                           setState(() => _difficulty = selected ? level : null),
@@ -80,9 +87,14 @@ class _SectionScreenState extends ConsumerState<SectionScreen> {
             ),
             Expanded(
               child: visible.isEmpty
-                  ? const Center(child: Text('No twisters match.'))
+                  ? Center(child: Text(l.noTwistersMatch))
                   : ListView.builder(
-                      padding: const EdgeInsets.fromLTRB(12, 0, 12, 24),
+                      padding: EdgeInsets.fromLTRB(
+                        12,
+                        0,
+                        12,
+                        24 + MediaQuery.paddingOf(context).bottom,
+                      ),
                       itemCount: visible.length,
                       itemBuilder: (context, index) => TwisterCard(
                         twister: visible[index],

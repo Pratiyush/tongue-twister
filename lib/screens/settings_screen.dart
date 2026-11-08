@@ -1,16 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
 
+import '../ads/ads.dart';
+import '../ads/rewarded.dart';
+import '../l10n/app_localizations.dart';
+import '../l10n/l10n_ext.dart';
+import '../l10n/languages.dart';
 import '../models/language_section.dart';
 import '../providers/favorites_provider.dart';
+import '../providers/links_provider.dart';
 import '../providers/practice_provider.dart';
 import '../providers/settings_provider.dart';
 import '../providers/speech_provider.dart';
+import 'language_screen.dart';
 
 const appVersion = '1.0.0';
-const appCredit = 'Made with ❤️ by Pratiyush Kumar Singh';
 
-/// A short phrase used to test each language's voice.
+/// The developer's name in the credit line ("Made with ❤️ by …", the
+/// `appCredit` ARB key). A name, so it is never translated.
+const appCreditName = 'Pratiyush Kumar Singh';
+
+/// A short phrase spoken (not shown) to test each language's voice; it is
+/// in the voice's own language, so it is never translated.
 String _sampleFor(LanguageSection section) => switch (section) {
   LanguageSection.englishUK => 'Hello! Red lorry, yellow lorry.',
   LanguageSection.englishUS => 'Hi there! Toy boat, toy boat.',
@@ -22,6 +34,7 @@ class SettingsScreen extends ConsumerWidget {
   const SettingsScreen({super.key});
 
   Future<bool> _confirm(BuildContext context, String title, String body) async {
+    final l = AppLocalizations.of(context);
     final result = await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
@@ -30,16 +43,22 @@ class SettingsScreen extends ConsumerWidget {
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context, false),
-            child: const Text('Cancel'),
+            child: Text(l.dialogCancel),
           ),
           FilledButton(
             onPressed: () => Navigator.pop(context, true),
-            child: const Text('Clear'),
+            child: Text(l.dialogClear),
           ),
         ],
       ),
     );
     return result ?? false;
+  }
+
+  /// "Fri 14:30" in the UI language's own format.
+  String _formatUntil(BuildContext context, DateTime until) {
+    final locale = Localizations.localeOf(context).toLanguageTag();
+    return DateFormat.E(locale).add_jm().format(until);
   }
 
   void _toast(BuildContext context, String message) {
@@ -53,31 +72,55 @@ class SettingsScreen extends ConsumerWidget {
     final settings = ref.watch(settingsProvider);
     final notifier = ref.read(settingsProvider.notifier);
     final theme = Theme.of(context);
+    final l = AppLocalizations.of(context);
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Settings')),
+      appBar: AppBar(title: Text(l.settingsTitle)),
       body: ListView(
-        padding: const EdgeInsets.only(bottom: 24),
+        padding: EdgeInsets.only(
+          bottom: 24 + MediaQuery.paddingOf(context).bottom,
+        ),
         children: [
-          const _Header('Appearance'),
+          Builder(
+            builder: (context) {
+              final tag = settings.language;
+              final picked = tag == null ? null : languageForTag(tag);
+              return ListTile(
+                leading: const Icon(Icons.translate),
+                title: Text(l.settingsLanguage),
+                subtitle: Text(
+                  picked == null
+                      ? l.languageSystemDefault
+                      : '${picked.flag} ${picked.name}',
+                ),
+                trailing: const Icon(Icons.chevron_right),
+                onTap: () => Navigator.of(context).push(
+                  MaterialPageRoute<void>(
+                    builder: (_) => const LanguageScreen(),
+                  ),
+                ),
+              );
+            },
+          ),
+          _Header(l.settingsAppearance),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: SegmentedButton<ThemeMode>(
-              segments: const [
+              segments: [
                 ButtonSegment(
                   value: ThemeMode.system,
-                  icon: Icon(Icons.brightness_auto),
-                  label: Text('System'),
+                  icon: const Icon(Icons.brightness_auto),
+                  label: Text(l.themeSystem),
                 ),
                 ButtonSegment(
                   value: ThemeMode.light,
-                  icon: Icon(Icons.light_mode),
-                  label: Text('Light'),
+                  icon: const Icon(Icons.light_mode),
+                  label: Text(l.themeLight),
                 ),
                 ButtonSegment(
                   value: ThemeMode.dark,
-                  icon: Icon(Icons.dark_mode),
-                  label: Text('Dark'),
+                  icon: const Icon(Icons.dark_mode),
+                  label: Text(l.themeDark),
                 ),
               ],
               selected: {settings.themeMode},
@@ -85,15 +128,43 @@ class SettingsScreen extends ConsumerWidget {
             ),
           ),
 
-          const _Header('Playback'),
+          _Header(l.settingsLanguages),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 0, 16, 4),
+            child: Text(
+              l.settingsLanguagesHelp,
+              style: theme.textTheme.bodySmall?.copyWith(
+                color: theme.colorScheme.onSurfaceVariant,
+              ),
+            ),
+          ),
+          for (final section in LanguageSection.values)
+            CheckboxListTile(
+              secondary: Text(
+                section.flag,
+                style: const TextStyle(fontSize: 28),
+              ),
+              title: Text(section.title(l)),
+              subtitle: Text(section.subtitle(l)),
+              value: settings.isVisible(section),
+              // The last visible language can't be hidden.
+              onChanged:
+                  settings.isVisible(section) &&
+                      settings.hiddenSections.length ==
+                          LanguageSection.values.length - 1
+                  ? null
+                  : (on) => notifier.setSectionVisible(section, on ?? true),
+            ),
+
+          _Header(l.settingsPlayback),
           ListTile(
-            title: const Text('Speaking speed'),
+            title: Text(l.settingsSpeakingSpeed),
             subtitle: Padding(
               padding: const EdgeInsets.only(top: 8),
               child: SegmentedButton<PlaybackSpeed>(
                 segments: [
                   for (final speed in PlaybackSpeed.values)
-                    ButtonSegment(value: speed, label: Text(speed.label)),
+                    ButtonSegment(value: speed, label: Text(speed.label(l))),
                 ],
                 selected: {settings.speed},
                 showSelectedIcon: false,
@@ -102,26 +173,24 @@ class SettingsScreen extends ConsumerWidget {
             ),
           ),
           ListTile(
-            title: const Text('Repeat challenge'),
-            subtitle: Text(
-              'Plays a twister ${settings.repeatCount} times in a row',
-            ),
+            title: Text(l.settingsRepeatChallenge),
+            subtitle: Text(l.settingsRepeatSubtitle(settings.repeatCount)),
             trailing: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
                 IconButton(
-                  tooltip: 'Fewer repeats',
+                  tooltip: l.fewerRepeats,
                   icon: const Icon(Icons.remove_circle_outline),
                   onPressed: settings.repeatCount > AppSettings.minRepeats
                       ? () => notifier.setRepeatCount(settings.repeatCount - 1)
                       : null,
                 ),
                 Text(
-                  '${settings.repeatCount}×',
+                  l.repeatCountValue(settings.repeatCount),
                   style: theme.textTheme.titleMedium,
                 ),
                 IconButton(
-                  tooltip: 'More repeats',
+                  tooltip: l.moreRepeats,
                   icon: const Icon(Icons.add_circle_outline),
                   onPressed: settings.repeatCount < AppSettings.maxRepeats
                       ? () => notifier.setRepeatCount(settings.repeatCount + 1)
@@ -131,79 +200,129 @@ class SettingsScreen extends ConsumerWidget {
             ),
           ),
 
-          const _Header('Display'),
+          _Header(l.settingsDisplay),
           SwitchListTile(
-            title: const Text('Show pronunciation'),
-            subtitle: const Text('Romanised text under Hindi twisters'),
+            title: Text(l.showPronunciation),
+            subtitle: Text(l.showPronunciationHelp),
             value: settings.showPronunciation,
             onChanged: notifier.setShowPronunciation,
           ),
           SwitchListTile(
-            title: const Text('Show meaning'),
-            subtitle: const Text('English translation for Hindi and German'),
+            title: Text(l.showMeaning),
+            subtitle: Text(l.showMeaningHelp),
             value: settings.showMeaning,
             onChanged: notifier.setShowMeaning,
           ),
 
-          const _Header('Voices'),
+          _Header(l.settingsVoices),
           Padding(
             padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
             child: Text(
-              'Twisters are read by your phone\'s text-to-speech voices. '
-              'If a language is missing, install it in your system settings '
-              '(Android: Settings → System → Languages → Text-to-speech; '
-              'iOS: Settings → Accessibility → Spoken Content → Voices).',
+              l.settingsVoicesHelp,
               style: theme.textTheme.bodySmall?.copyWith(
                 color: theme.colorScheme.onSurfaceVariant,
               ),
             ),
           ),
           for (final section in LanguageSection.values)
-            _VoiceTile(section: section),
+            if (settings.isVisible(section)) _VoiceTile(section: section),
 
-          const _Header('Your data'),
+          _Header(l.settingsYourData),
           ListTile(
             leading: const Icon(Icons.restart_alt),
-            title: const Text('Reset practice progress'),
+            title: Text(l.resetProgress),
             onTap: () async {
               final ok = await _confirm(
                 context,
-                'Reset progress?',
-                'All practice counts will be set back to zero.',
+                l.resetProgressTitle,
+                l.resetProgressBody,
               );
               if (!ok) return;
               ref.read(practiceProvider.notifier).clearAll();
-              if (context.mounted) _toast(context, 'Practice progress reset');
+              if (context.mounted) _toast(context, l.resetProgressDone);
             },
           ),
           ListTile(
             leading: const Icon(Icons.heart_broken_outlined),
-            title: const Text('Clear favourites'),
+            title: Text(l.clearFavourites),
             onTap: () async {
               final ok = await _confirm(
                 context,
-                'Clear favourites?',
-                'All twisters will be removed from your favourites.',
+                l.clearFavouritesTitle,
+                l.clearFavouritesBody,
               );
               if (!ok) return;
               ref.read(favoritesProvider.notifier).clearAll();
-              if (context.mounted) _toast(context, 'Favourites cleared');
+              if (context.mounted) _toast(context, l.clearFavouritesDone);
             },
           ),
 
-          const _Header('About'),
+          _Header(l.settingsAbout),
           ListTile(
             leading: const Icon(Icons.info_outline),
-            title: const Text('Tongue Twisters'),
-            subtitle: const Text('Version $appVersion\n$appCredit'),
+            title: Text(l.appTitle),
+            subtitle: Text(
+              [
+                l.aboutVersion(appVersion),
+                l.appCredit(appCreditName),
+              ].join('\n'),
+            ),
             isThreeLine: true,
             onTap: () => showLicensePage(
               context: context,
-              applicationName: 'Tongue Twisters',
+              applicationName: l.appTitle,
               applicationVersion: appVersion,
-              applicationLegalese: appCredit,
+              applicationLegalese: l.appCredit(appCreditName),
             ),
           ),
+          ListTile(
+            leading: const Icon(Icons.policy_outlined),
+            title: Text(l.privacyPolicy),
+            trailing: const Icon(Icons.open_in_new),
+            onTap: () => ref.read(linkOpenerProvider)(privacyPolicyUrl),
+          ),
+          if (ref.watch(adsReadyProvider).value ?? false) ...[
+            _Header(l.settingsAds),
+            Builder(
+              builder: (context) {
+                final untilAt = ref.watch(adFreeProvider);
+                final adFree = ref.read(adFreeProvider.notifier);
+                String until() => _formatUntil(
+                  context,
+                  ref.read(adFreeProvider) ?? untilAt ?? DateTime.now(),
+                );
+                return adFree.isActive()
+                    ? ListTile(
+                        leading: const Icon(Icons.check_circle_outline),
+                        title: Text(l.adFreeActive(until())),
+                      )
+                    : ListTile(
+                        leading: const Icon(Icons.ondemand_video_outlined),
+                        title: Text(l.adFreeWatch),
+                        subtitle: Text(l.adFreeWatchHelp),
+                        onTap: () async {
+                          final earned = await adFree.watchVideo();
+                          if (!context.mounted) return;
+                          _toast(
+                            context,
+                            earned
+                                ? l.adFreeThanks(until())
+                                : l.adFreeUnavailable,
+                          );
+                        },
+                      );
+              },
+            ),
+          ],
+          // Required by Google's consent rules wherever consent applies
+          // (EEA, UK, Switzerland).
+          if (ref.watch(privacyOptionsRequiredProvider).value ?? false)
+            ListTile(
+              leading: const Icon(Icons.privacy_tip_outlined),
+              title: Text(l.privacyChoices),
+              subtitle: Text(l.privacyChoicesHelp),
+              onTap: showPrivacyOptions,
+            ),
         ],
       ),
     );
@@ -243,39 +362,40 @@ class _VoiceTile extends ConsumerWidget {
       speechControllerProvider.select((s) => s.isSpeaking(testId)),
     );
     final scheme = Theme.of(context).colorScheme;
+    final l = AppLocalizations.of(context);
 
     final (icon, color, status) = switch (available) {
       AsyncData(value: true) => (
         Icons.check_circle,
         scheme.primary,
-        'Installed',
+        l.voiceInstalled,
       ),
       AsyncData(value: false) => (
         Icons.error_outline,
         scheme.error,
-        'Not installed',
+        l.voiceNotInstalled,
       ),
-      AsyncError() => (Icons.help_outline, scheme.outline, 'Unknown'),
-      _ => (Icons.hourglass_empty, scheme.outline, 'Checking…'),
+      AsyncError() => (Icons.help_outline, scheme.outline, l.voiceUnknown),
+      _ => (Icons.hourglass_empty, scheme.outline, l.voiceChecking),
     };
 
     return ListTile(
       leading: Text(section.flag, style: const TextStyle(fontSize: 28)),
-      title: Text(section.title),
+      title: Text(section.title(l)),
       subtitle: Row(
         children: [
           Icon(icon, size: 16, color: color),
           const SizedBox(width: 4),
           Flexible(
             child: Text(
-              '${section.ttsLocale} · $status',
+              l.voiceStatusLine(section.ttsLocale, status),
               overflow: TextOverflow.ellipsis,
             ),
           ),
         ],
       ),
       trailing: IconButton(
-        tooltip: speaking ? 'Stop' : 'Test ${section.shortLabel} voice',
+        tooltip: speaking ? l.actionStop : l.testVoice(section.shortLabel(l)),
         icon: Icon(
           speaking ? Icons.stop_circle_outlined : Icons.play_circle_outline,
         ),

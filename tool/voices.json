@@ -1,0 +1,28 @@
+{
+  "model": "eleven_multilingual_v2",
+  "voice_settings": {
+    "stability": 0.6,
+    "similarity_boost": 0.8,
+    "style": 0.0,
+    "use_speaker_boost": true,
+    "speed": 0.95
+  },
+  "sections": {
+    "en-GB": {
+      "voice_id": "onwK4e9ZLuTAKqWW03F9",
+      "name": "Daniel - Steady Broadcaster (British, male)"
+    },
+    "en-US": {
+      "voice_id": "nPczCjzI2devNBz1zQrb",
+      "name": "Brian - Deep, Resonant (American, male)"
+    },
+    "hi-IN": {
+      "voice_id": "FmBhnvP58BK0vz65OOj7",
+      "name": "Viraj - Energetic, Clear Narrator (Hindi, male)"
+    },
+    "de-DE": {
+      "voice_id": "TIKjTeWOFujJEvXK1qIU",
+      "name": "Theo Teacher - Clear & Trustworthy (German, male)"
+    }
+  }
+}

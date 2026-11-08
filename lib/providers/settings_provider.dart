@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../models/language_section.dart';
 import 'preferences_provider.dart';
 
 enum PlaybackSpeed {
-  slow('Slow', 0.25),
-  normal('Normal', 0.45),
-  fast('Fast', 0.65);
+  slow(0.25, 0.75),
+  normal(0.45, 1.0),
+  fast(0.65, 1.25);
 
-  const PlaybackSpeed(this.label, this.rate);
-  final String label;
+  const PlaybackSpeed(this.rate, this.clipSpeed);
 
   /// flutter_tts rate: 0.0–1.0, where 0.5 is roughly natural speed.
   final double rate;
+
+  /// Playback-rate multiplier for recorded voice clips (pitch is kept).
+  final double clipSpeed;
 }
 
 class AppSettings {
@@ -22,6 +25,8 @@ class AppSettings {
     this.repeatCount = 3,
     this.showPronunciation = true,
     this.showMeaning = true,
+    this.hiddenSections = const {},
+    this.language,
   });
 
   static const minRepeats = 2;
@@ -39,18 +44,32 @@ class AppSettings {
   /// Show English meanings for Hindi and German twisters.
   final bool showMeaning;
 
+  /// Languages the user chose not to learn. Stored as hidden rather than
+  /// shown, so a newly added language appears by default.
+  final Set<LanguageSection> hiddenSections;
+
+  bool isVisible(LanguageSection section) => !hiddenSections.contains(section);
+
+  /// The UI language the user picked (a BCP 47 tag from
+  /// `lib/l10n/languages.dart`), or null to follow the device.
+  final String? language;
+
   AppSettings copyWith({
     ThemeMode? themeMode,
     PlaybackSpeed? speed,
     int? repeatCount,
     bool? showPronunciation,
     bool? showMeaning,
+    Set<LanguageSection>? hiddenSections,
+    String? Function()? language,
   }) => AppSettings(
     themeMode: themeMode ?? this.themeMode,
     speed: speed ?? this.speed,
     repeatCount: repeatCount ?? this.repeatCount,
     showPronunciation: showPronunciation ?? this.showPronunciation,
     showMeaning: showMeaning ?? this.showMeaning,
+    hiddenSections: hiddenSections ?? this.hiddenSections,
+    language: language != null ? language() : this.language,
   );
 }
 
@@ -59,6 +78,8 @@ const _speedKey = 'settings.speed';
 const _repeatKey = 'settings.repeat_count';
 const _pronunciationKey = 'settings.show_pronunciation';
 const _meaningKey = 'settings.show_meaning';
+const _hiddenSectionsKey = 'settings.hidden_sections';
+const _languageKey = 'settings.language';
 
 T _byName<T extends Enum>(List<T> values, String? name, T fallback) =>
     values.where((v) => v.name == name).firstOrNull ?? fallback;
@@ -86,6 +107,11 @@ class SettingsNotifier extends Notifier<AppSettings> {
       showPronunciation:
           prefs.getBool(_pronunciationKey) ?? defaults.showPronunciation,
       showMeaning: prefs.getBool(_meaningKey) ?? defaults.showMeaning,
+      hiddenSections: {
+        for (final id in prefs.getStringList(_hiddenSectionsKey) ?? const [])
+          ...LanguageSection.values.where((s) => s.id == id),
+      },
+      language: prefs.getString(_languageKey),
     );
   }
 
@@ -113,6 +139,30 @@ class SettingsNotifier extends Notifier<AppSettings> {
   void setShowMeaning(bool value) {
     state = state.copyWith(showMeaning: value);
     ref.read(sharedPreferencesProvider).setBool(_meaningKey, value);
+  }
+
+  /// Sets the UI language by tag; null follows the device.
+  void setLanguage(String? tag) {
+    state = state.copyWith(language: () => tag);
+    final prefs = ref.read(sharedPreferencesProvider);
+    tag == null
+        ? prefs.remove(_languageKey)
+        : prefs.setString(_languageKey, tag);
+  }
+
+  /// Shows or hides a language. At least one language always stays visible.
+  void setSectionVisible(LanguageSection section, bool visible) {
+    final hidden = {...state.hiddenSections};
+    if (visible) {
+      hidden.remove(section);
+    } else {
+      hidden.add(section);
+      if (hidden.length == LanguageSection.values.length) return;
+    }
+    state = state.copyWith(hiddenSections: hidden);
+    ref.read(sharedPreferencesProvider).setStringList(_hiddenSectionsKey, [
+      for (final s in hidden) s.id,
+    ]);
   }
 }
 

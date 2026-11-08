@@ -1,13 +1,7 @@
 import 'language_section.dart';
 
-enum Difficulty {
-  easy('Easy'),
-  medium('Medium'),
-  hard('Hard');
-
-  const Difficulty(this.label);
-  final String label;
-}
+/// Display names come from `lib/l10n/l10n_ext.dart`.
+enum Difficulty { easy, medium, hard }
 
 class Twister {
   const Twister({

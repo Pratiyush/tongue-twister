@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../l10n/app_localizations.dart';
+import '../l10n/l10n_ext.dart';
 import '../models/twister.dart';
 import '../theme/app_theme.dart';
 
@@ -19,7 +21,7 @@ class DifficultyBadge extends StatelessWidget {
         borderRadius: BorderRadius.circular(999),
       ),
       child: Text(
-        difficulty.label,
+        difficulty.label(AppLocalizations.of(context)),
         style: theme.textTheme.labelSmall?.copyWith(
           color: foreground,
           fontWeight: FontWeight.w700,
