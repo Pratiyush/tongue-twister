@@ -15,7 +15,7 @@ import '../providers/settings_provider.dart';
 import '../providers/speech_provider.dart';
 import 'language_screen.dart';
 
-const appVersion = '1.0.0';
+const appVersion = '1.0.1';
 
 /// The developer's name in the credit line ("Made with ❤️ by …", the
 /// `appCredit` ARB key). A name, so it is never translated.
