@@ -49,3 +49,9 @@ app.*.map.json
 
 # ElevenLabs API key for tool/generate_voices.dart
 .env
+
+# Signing secrets: keystore, passwords (never commit)
+secrets/
+*.jks
+*.keystore
+key.properties
