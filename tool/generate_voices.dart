@@ -82,7 +82,7 @@ Future<void> main(List<String> args) async {
     final voice = _voiceFor(sections, t.section)!;
     final bytes = await _post(
       key,
-      '/v1/text-to-speech/$voice?output_format=mp3_44100_128',
+      '/v1/text-to-speech/$voice?output_format=mp3_44100_64',
       {
         'text': t.text,
         'model_id': model,
