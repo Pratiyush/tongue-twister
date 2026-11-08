@@ -86,6 +86,7 @@ class TwisterCard extends ConsumerWidget {
                           if (showSection)
                             Text(
                               '${twister.section.flag} ${twister.section.shortLabel(l)}',
+                              semanticsLabel: twister.section.shortLabel(l),
                               style: theme.textTheme.labelSmall,
                             ),
                           DifficultyBadge(twister.difficulty),

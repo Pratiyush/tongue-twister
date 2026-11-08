@@ -214,78 +214,86 @@ class _SectionCard extends ConsumerWidget {
         clipBehavior: Clip.antiAlias,
         child: Ink(
           decoration: BoxDecoration(gradient: section.gradient),
-          child: InkWell(
-            onTap: () => Navigator.of(context).push(
-              MaterialPageRoute<void>(
-                builder: (_) => SectionScreen(section: section),
+          child: Semantics(
+            button: true,
+            child: InkWell(
+              onTap: () => Navigator.of(context).push(
+                MaterialPageRoute<void>(
+                  builder: (_) => SectionScreen(section: section),
+                ),
               ),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(16),
-              child: Row(
-                children: [
-                  Container(
-                    width: 56,
-                    height: 56,
-                    alignment: Alignment.center,
-                    decoration: const BoxDecoration(
-                      color: Colors.white24,
-                      shape: BoxShape.circle,
-                    ),
-                    child: Text(
-                      section.flag,
-                      style: const TextStyle(fontSize: 30),
-                    ),
-                  ),
-                  const SizedBox(width: 16),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          section.title(l),
-                          style: theme.textTheme.titleMedium?.copyWith(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w700,
-                          ),
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Row(
+                  children: [
+                    Container(
+                      width: 56,
+                      height: 56,
+                      alignment: Alignment.center,
+                      decoration: const BoxDecoration(
+                        color: Colors.white24,
+                        shape: BoxShape.circle,
+                      ),
+                      child: ExcludeSemantics(
+                        child: Text(
+                          section.flag,
+                          style: const TextStyle(fontSize: 30),
                         ),
-                        const SizedBox(height: 2),
-                        Text(
-                          section.subtitle(l),
-                          style: theme.textTheme.bodySmall?.copyWith(
-                            color: Colors.white.withValues(alpha: 0.85),
-                          ),
-                        ),
-                        const SizedBox(height: 10),
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(4),
-                          child: LinearProgressIndicator(
-                            value: total == 0 ? 0 : practiced / total,
-                            minHeight: 6,
-                            color: Colors.white,
-                            backgroundColor: Colors.white24,
-                          ),
-                        ),
-                        const SizedBox(height: 4),
-                        Text(
-                          l.sectionProgress(practiced, total),
-                          style: theme.textTheme.labelSmall?.copyWith(
-                            color: Colors.white.withValues(alpha: 0.9),
-                          ),
-                        ),
-                      ],
+                      ),
                     ),
-                  ),
-                  const SizedBox(width: 12),
-                  Container(
-                    padding: const EdgeInsets.all(4),
-                    decoration: const BoxDecoration(
-                      color: Colors.white,
-                      shape: BoxShape.circle,
+                    const SizedBox(width: 16),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            section.title(l),
+                            style: theme.textTheme.titleMedium?.copyWith(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                          const SizedBox(height: 2),
+                          Text(
+                            section.subtitle(l),
+                            style: theme.textTheme.bodySmall?.copyWith(
+                              color: Colors.white.withValues(alpha: 0.85),
+                            ),
+                          ),
+                          const SizedBox(height: 10),
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(4),
+                            child: LinearProgressIndicator(
+                              value: total == 0 ? 0 : practiced / total,
+                              minHeight: 6,
+                              color: Colors.white,
+                              backgroundColor: Colors.white24,
+                            ),
+                          ),
+                          const SizedBox(height: 4),
+                          Text(
+                            l.sectionProgress(practiced, total),
+                            style: theme.textTheme.labelSmall?.copyWith(
+                              color: Colors.white.withValues(alpha: 0.9),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                    child: Icon(Icons.chevron_right, color: section.accentDeep),
-                  ),
-                ],
+                    const SizedBox(width: 12),
+                    Container(
+                      padding: const EdgeInsets.all(4),
+                      decoration: const BoxDecoration(
+                        color: Colors.white,
+                        shape: BoxShape.circle,
+                      ),
+                      child: Icon(
+                        Icons.chevron_right,
+                        color: section.accentDeep,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
@@ -314,69 +322,77 @@ class _RecommendationCard extends ConsumerWidget {
           return Card(
             margin: EdgeInsets.zero,
             clipBehavior: Clip.antiAlias,
-            child: InkWell(
-              onTap: () {
-                final list = ref.read(sectionTwistersProvider(twister.section));
-                Navigator.of(context).push(
-                  MaterialPageRoute<void>(
-                    builder: (_) => TwisterDetailScreen(
-                      twisters: list,
-                      initialIndex: list.indexOf(twister),
-                    ),
-                  ),
-                );
-              },
-              child: Padding(
-                padding: const EdgeInsets.all(16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        Icon(
-                          Icons.auto_awesome,
-                          size: 18,
-                          color: scheme.primary,
-                        ),
-                        const SizedBox(width: 6),
-                        Expanded(
-                          child: Text(
-                            l.recommendedTitle,
-                            style: theme.textTheme.labelLarge?.copyWith(
-                              color: scheme.primary,
-                              fontWeight: FontWeight.w700,
-                            ),
-                          ),
-                        ),
-                        Text(twister.section.flag),
-                        const SizedBox(width: 8),
-                        DifficultyBadge(twister.difficulty),
-                      ],
-                    ),
-                    const SizedBox(height: 10),
-                    Text(
-                      twister.text,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      style: theme.textTheme.titleMedium?.copyWith(
-                        fontWeight: FontWeight.w600,
+            child: Semantics(
+              button: true,
+              child: InkWell(
+                onTap: () {
+                  final list = ref.read(
+                    sectionTwistersProvider(twister.section),
+                  );
+                  Navigator.of(context).push(
+                    MaterialPageRoute<void>(
+                      builder: (_) => TwisterDetailScreen(
+                        twisters: list,
+                        initialIndex: list.indexOf(twister),
                       ),
                     ),
-                    const SizedBox(height: 6),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Text(
-                            recommendation.describe(l),
-                            style: theme.textTheme.bodySmall?.copyWith(
-                              color: scheme.onSurfaceVariant,
+                  );
+                },
+                child: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.auto_awesome,
+                            size: 18,
+                            color: scheme.primary,
+                          ),
+                          const SizedBox(width: 6),
+                          Expanded(
+                            child: Text(
+                              l.recommendedTitle,
+                              style: theme.textTheme.labelLarge?.copyWith(
+                                color: scheme.primary,
+                                fontWeight: FontWeight.w700,
+                              ),
                             ),
                           ),
+                          Text(
+                            twister.section.flag,
+                            semanticsLabel: twister.section.title(l),
+                          ),
+                          const SizedBox(width: 8),
+                          DifficultyBadge(twister.difficulty),
+                        ],
+                      ),
+                      const SizedBox(height: 10),
+                      Text(
+                        twister.text,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: theme.textTheme.titleMedium?.copyWith(
+                          fontWeight: FontWeight.w600,
                         ),
-                        Icon(Icons.arrow_forward, color: scheme.primary),
-                      ],
-                    ),
-                  ],
+                      ),
+                      const SizedBox(height: 6),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              recommendation.describe(l),
+                              style: theme.textTheme.bodySmall?.copyWith(
+                                color: scheme.onSurfaceVariant,
+                              ),
+                            ),
+                          ),
+                          Icon(Icons.arrow_forward, color: scheme.primary),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),

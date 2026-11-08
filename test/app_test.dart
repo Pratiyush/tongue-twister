@@ -191,4 +191,49 @@ void main() {
     );
     expect(find.text('Made with ❤️ by Pratiyush Kumar Singh'), findsOneWidget);
   });
+
+  testWidgets('icon-only controls expose screen-reader labels', (tester) async {
+    final semantics = tester.ensureSemantics();
+    final container = await createContainer();
+    addTearDown(container.dispose);
+    await tester.pumpWidget(buildApp(container));
+    await tester.pumpAndSettle();
+
+    // Home: app bar icons and the section cards.
+    expectTooltipButton(tester, 'Favourites');
+    expectTooltipButton(tester, 'Settings');
+    expect(find.bySemanticsLabel(RegExp('British English')), findsWidgets);
+    await expectLater(tester, meetsGuideline(labeledTapTargetGuideline));
+
+    // Section list: per-card listen and favourite buttons.
+    await tester.scrollUntilVisible(find.text('British English'), 200);
+    await tester.tap(find.text('British English'));
+    await tester.pumpAndSettle();
+    expectTooltipButton(tester, 'Listen');
+    expectTooltipButton(tester, 'Add to favourites');
+    await expectLater(tester, meetsGuideline(labeledTapTargetGuideline));
+
+    // Practice screen: favourite toggle announces its state.
+    await tester.tap(find.textContaining('Red lorry'));
+    await tester.pumpAndSettle();
+    expectTooltipButton(tester, 'Add to favourites');
+    expect(find.bySemanticsLabel('Listen'), findsOneWidget);
+    expect(
+      find.bySemanticsLabel('Plays a twister 3 times in a row'),
+      findsOneWidget,
+    );
+    expect(find.bySemanticsLabel('Speaking speed'), findsOneWidget);
+    await expectLater(tester, meetsGuideline(labeledTapTargetGuideline));
+
+    await tester.tap(find.byTooltip('Add to favourites'));
+    await tester.pumpAndSettle();
+    expectTooltipButton(tester, 'Remove from favourites');
+    semantics.dispose();
+  });
+}
+
+/// Screen readers announce an icon button's tooltip as its name.
+void expectTooltipButton(WidgetTester tester, String tooltip) {
+  final node = tester.getSemantics(find.byTooltip(tooltip).first);
+  expect(node, isSemantics(tooltip: tooltip, isButton: true));
 }

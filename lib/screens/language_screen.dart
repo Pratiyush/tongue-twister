@@ -54,26 +54,36 @@ class _LanguageScreenState extends ConsumerState<LanguageScreen> {
             ),
           ),
           if (_query.trim().isEmpty)
-            ListTile(
-              leading: const Icon(Icons.phone_android, size: 28),
-              title: Text(l.languageSystemDefault),
-              subtitle: device == null
-                  ? null
-                  : Text(
-                      l.languageFollowsDevice('${device.flag} ${device.name}'),
-                    ),
-              trailing: picked == null ? check : null,
-              onTap: () => notifier.setLanguage(null),
+            Semantics(
+              selected: picked == null,
+              child: ListTile(
+                leading: const Icon(Icons.phone_android, size: 28),
+                title: Text(l.languageSystemDefault),
+                subtitle: device == null
+                    ? null
+                    : Text(
+                        l.languageFollowsDevice(
+                          '${device.flag} ${device.name}',
+                        ),
+                      ),
+                trailing: picked == null ? check : null,
+                onTap: () => notifier.setLanguage(null),
+              ),
             ),
           for (final language in shown)
-            ListTile(
-              leading: Text(
-                language.flag,
-                style: const TextStyle(fontSize: 28),
+            Semantics(
+              selected: picked == language.tag,
+              child: ListTile(
+                leading: ExcludeSemantics(
+                  child: Text(
+                    language.flag,
+                    style: const TextStyle(fontSize: 28),
+                  ),
+                ),
+                title: Text(language.name),
+                trailing: picked == language.tag ? check : null,
+                onTap: () => notifier.setLanguage(language.tag),
               ),
-              title: Text(language.name),
-              trailing: picked == language.tag ? check : null,
-              onTap: () => notifier.setLanguage(language.tag),
             ),
         ],
       ),

@@ -140,9 +140,8 @@ class SettingsScreen extends ConsumerWidget {
           ),
           for (final section in LanguageSection.values)
             CheckboxListTile(
-              secondary: Text(
-                section.flag,
-                style: const TextStyle(fontSize: 28),
+              secondary: ExcludeSemantics(
+                child: Text(section.flag, style: const TextStyle(fontSize: 28)),
               ),
               title: Text(section.title(l)),
               subtitle: Text(section.subtitle(l)),
@@ -380,7 +379,9 @@ class _VoiceTile extends ConsumerWidget {
     };
 
     return ListTile(
-      leading: Text(section.flag, style: const TextStyle(fontSize: 28)),
+      leading: ExcludeSemantics(
+        child: Text(section.flag, style: const TextStyle(fontSize: 28)),
+      ),
       title: Text(section.title(l)),
       subtitle: Row(
         children: [

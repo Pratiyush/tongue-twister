@@ -321,15 +321,20 @@ class _PracticeControls extends ConsumerWidget {
         padding: const EdgeInsets.fromLTRB(16, 8, 16, 12),
         child: Column(
           children: [
-            SegmentedButton<PlaybackSpeed>(
-              segments: [
-                for (final speed in PlaybackSpeed.values)
-                  ButtonSegment(value: speed, label: Text(speed.label(l))),
-              ],
-              selected: {settings.speed},
-              showSelectedIcon: false,
-              onSelectionChanged: (selection) =>
-                  ref.read(settingsProvider.notifier).setSpeed(selection.first),
+            Semantics(
+              container: true,
+              label: l.settingsSpeakingSpeed,
+              child: SegmentedButton<PlaybackSpeed>(
+                segments: [
+                  for (final speed in PlaybackSpeed.values)
+                    ButtonSegment(value: speed, label: Text(speed.label(l))),
+                ],
+                selected: {settings.speed},
+                showSelectedIcon: false,
+                onSelectionChanged: (selection) => ref
+                    .read(settingsProvider.notifier)
+                    .setSpeed(selection.first),
+              ),
             ),
             const SizedBox(height: 12),
             Row(
@@ -353,7 +358,12 @@ class _PracticeControls extends ConsumerWidget {
                             times: settings.repeatCount,
                           ),
                     icon: const Icon(Icons.repeat),
-                    label: Text(l.repeatInARow(settings.repeatCount)),
+                    label: Text(
+                      l.repeatInARow(settings.repeatCount),
+                      semanticsLabel: l.settingsRepeatSubtitle(
+                        settings.repeatCount,
+                      ),
+                    ),
                   ),
                 ),
               ],
